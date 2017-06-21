@@ -1,6 +1,9 @@
 # sl == ls
 alias sl="ls"
 
+# using c++11
+alias g++='g++ -std=c++11'
+
 # pandoc template
 #alias pandoc2chspdf="pandoc --template=$HOME/模板/chs_template.tex --latex-engine=xelatex -M CJKmainfont:文泉驿微米黑 --biblio $HOME/Tex/MyRef.bib" 
 alias pandoc="pandoc --filter pandoc-tablenos"
@@ -27,6 +30,7 @@ battery_indicator(){
  fi
  while true
  do
+  clear
   battery_usage
   sleep $indent
  done 
@@ -42,9 +46,6 @@ alias rm="rm-p"
 # ppsspp savedata control
 alias sync_psp_data_from_Lenovo="\cp -uvr /media/ericx/LENOVO/Eric/psp/memstick/PSP/SAVEDATA/* ~/.config/ppsspp/PSP/SAVEDATA"
 alias sync_psp_data_to_Lenovo="\cp -uvr ~/.config/ppsspp/PSP/SAVEDATA /media/ericx/LENOVO/Eric/psp/memstick/PSP/SAVEDATA/*"
-
-# open dir in gui
-alias opendir="nautilus"
 
 # pipe dict to less
 d(){ dict $* | less; }
@@ -62,15 +63,17 @@ cd $curdir
 # temporary custom programs
 alias revise="excute_program_in_specific_dir revise.py /home/ericx/Eric/MyPrograms/exam/revise"
 alias SysAna="excute_program_in_specific_dir sysana.py /home/ericx/Eric/MyPrograms/exam/SysAna"
+alias Sat6="excute_program_in_specific_dir engmain.py /home/ericx/Eric/MyPrograms/exam/English_words"
 
 alias zotero="excute_program_in_specific_dir zotero /opt/Zotero_linux-x86_64"
 
 xmind(){
 local OPTIND
-while getopts i opt
+while getopts it opt
 do
   case "$opt" in
     i) local Interactive=1;;
+    t) local Interactive=1;;
   esac
 done
 shift $[ $OPTIND - 1 ]
@@ -83,7 +86,7 @@ if [ $# = 0 ]
 then
   if [ $Interactive = 0 ]
     then ./XMind
-  else ls workbook | grep -P "^.*\.xmind$"
+  else find -name '*.xmind'
   fi
 else
  local all=""
@@ -91,16 +94,31 @@ else
  do
    all=$all"_"$word
  done
- local filename=${all:1}.*\.xmind
- echo "Matching files..."
  echo "-----------------"
- if ls workbook | grep "^$filename$"; then 
+ local found=($(find -name '*.xmind' | grep ".*/${all:1}[^/]*$"))
+ if [ ${#found[@]} = 1 ] ; then 
+   echo "One File Found."
+   echo ${found[0]}
    echo "-----------------"
-   if [ $Interactive = 0 ]
-     then ./XMind workbook/$(ls workbook | grep "^$filename$")
+   if [ $Interactive = 0 ]; then 
+     ./XMind ${found[0]}
    fi
- else 
+ elif [ ${#found[@]} = 0 ]; then 
    echo "No matching file found. Exit."
+   echo "-----------------"
+ else
+   echo "More than one file found."
+   for ((i = 0 ; i < ${#found[@]} ; ++i )); do
+     echo -e "$i\t${found[$i]}"
+   done
+   echo "-----------------"
+   if [ $Interactive = 0 ]; then 
+     local choose
+     read -p "Which one to choose? " choose
+     if [[ $choose < ${#found[@]} ]]; then
+     ./XMind ${found[$choose]}
+     fi
+   fi
    echo
  fi
 fi
@@ -173,4 +191,12 @@ color_palette(){
         fi
     done
     echo
+}
+
+# brightness
+brightness(){
+    if [ $# = 0 ]
+    then
+        cat /sys/class/backlight/intel_backlight/brightness
+    fi
 }
