@@ -1,8 +1,17 @@
+# suspend check
+alias susp="cat /proc/sys/vm/laptop_mode; sleep 1s; systemctl suspend"
+
 # sl == ls
 alias sl="ls"
 
 # using c++11
 alias g++='g++ -std=c++11'
+
+# fbi preference
+alias fbi='fbi -P'
+
+# colorit preference
+alias coloritmd='colorit -c ~/.coloritrc.md'
 
 # pandoc template
 #alias pandoc2chspdf="pandoc --template=$HOME/模板/chs_template.tex --latex-engine=xelatex -M CJKmainfont:文泉驿微米黑 --biblio $HOME/Tex/MyRef.bib" 
@@ -20,21 +29,6 @@ export PATH=$PATH:~/Eric/MyPrograms/bin
 alias white_fontcolor="echo -en \"\e]P7ffffff\""
 alias default_fontcolor="echo -en \"\e]R\""
 
-# battery preference
-battery_usage(){ echo $(cat /sys/class/power_supply/BAT1/capacity)%;}
-battery_indicator(){
- local indent='5m'
- if [[ $# > 0 ]]
- then
-  indent=$1
- fi
- while true
- do
-  clear
-  battery_usage
-  sleep $indent
- done 
-}
 
 # octave preference
 alias octave="octave --no-gui"
@@ -46,6 +40,9 @@ alias rm="rm-p"
 # ppsspp savedata control
 alias sync_psp_data_from_Lenovo="\cp -uvr /media/ericx/LENOVO/Eric/psp/memstick/PSP/SAVEDATA/* ~/.config/ppsspp/PSP/SAVEDATA"
 alias sync_psp_data_to_Lenovo="\cp -uvr ~/.config/ppsspp/PSP/SAVEDATA /media/ericx/LENOVO/Eric/psp/memstick/PSP/SAVEDATA/*"
+
+# nds savedata control
+alias backup_microsd="\cp -uv /media/ericx/R4/rom/*.SAV /media/ericx/LENOVO/Eric/nds/microSD\ backup/rom/"
 
 # pipe dict to less
 d(){ dict $* | less; }
@@ -193,10 +190,40 @@ color_palette(){
     echo
 }
 
+# indicators
+
 # brightness
-brightness(){
-    if [ $# = 0 ]
-    then
-        cat /sys/class/backlight/intel_backlight/brightness
-    fi
+
+alias set_brightness="sudoedit /sys/class/backlight/intel_backlight/brightness"
+show_brightness(){
+    echo $(cat /sys/class/backlight/intel_backlight/brightness):$(cat /sys/class/backlight/intel_backlight/max_brightness)
+}
+indicator_brightness(){
+ local indent='5m'
+ if [[ $# > 0 ]]
+ then
+  indent=$1
+ fi
+ while true
+ do
+  clear
+  show_brightness
+  sleep $indent
+ done 
+}
+
+# battery preference
+show_capacity(){ echo $(cat /sys/class/power_supply/BAT1/capacity)%;}
+indicator_battery(){
+ local indent='5m'
+ if [[ $# > 0 ]]
+ then
+  indent=$1
+ fi
+ while true
+ do
+  clear
+  show_capacity
+  sleep $indent
+ done 
 }
