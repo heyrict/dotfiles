@@ -37,6 +37,7 @@ Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
 "Plugin 'Valloric/YouCompleteMe'
 "Plugin 'davidhalter/jedi-vim'
 Plugin 'maralla/completor.vim'
+Plugin 'artur-shaik/vim-javacomplete2'
 " Previm
 Plugin 'kannokanno/previm'
 " Tlist
@@ -53,6 +54,11 @@ Plugin 'Xuyuanp/nerdtree-git-plugin'
 " kivy syntax highlight
 "Plugin 'farfanoide/vim-kivy'
 Plugin 'file://home/ericx/.vim/bundle/custom_vim_kivy'
+" Color scheme
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'vim-airline/vim-airline'
+Plugin 'edkolev/tmuxline.vim'
+Plugin 'vim-airline/vim-airline-themes'
 "
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -70,6 +76,77 @@ filetype plugin indent on    " required
 " Put your non-Plugin stuff after this line
 "
 " VUNDLE SETTINGS END
+
+" Solarized Color Scheme Configs
+let g:solarized_visibility="normal"
+let g:solarized_contrast="normal"
+syntax enable
+if $TMUX =~ ""
+    colorscheme desert
+elseif $TERM=="xterm-256color"
+    colorscheme solarized
+    set background=dark
+    let g:solarized_termcolors=16
+elseif $TERM=="xterm"
+    colorscheme solarized
+    set background=dark
+    let g:solarized_termcolors=256
+elseif $TERM=="linux"
+    colorscheme solarized
+    set background=dark
+    let g:solarized_termcolors=16
+elseif $TERM=="fbterm"
+    colorscheme solarized
+    set background=dark
+    let g:solarized_termcolors=256
+endif
+
+" Airline Configs
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_detect_modified=1
+"let g:airline_section_b = '%-0.10{getcwd()}'
+"let g:airline_section_c = '%t'
+set t_Co=16
+"let g:airline_section_c = airline#section#create(['%{!show_capacity}'])
+let g:airline#extensions#tmuxline#enabled = 1
+let airline#extensions#tmuxline#snapshot_file = "~/.tmuxline.snapshot"
+let g:airline_theme='wombat'
+
+if $TERM=="linux"
+    if !exists('g:airline_symbols')
+        let g:airline_symbols = {}
+    endif
+    " old vim-powerline symbols
+    let g:airline_left_sep = '>'
+    let g:airline_left_alt_sep = '>>'
+    let g:airline_right_sep = '<'
+    let g:airline_right_alt_sep = '<<'
+    let g:airline_symbols.branch = '@'
+    let g:airline_symbols.readonly = '[ro]'
+    let g:airline_symbols.linenr = '|'
+    let g:airline_symbols.crypt = '[l]'
+    let g:airline_symbols.maxlinenr = ' {ln}'
+    let g:airline_symbols.paste = '[p]'
+    let g:airline_symbols.spell = '[s]'
+    let g:airline_symbols.notexists = '[ne]'
+    let g:airline_symbols.whitespace = ''
+endif
+
+" tmuxline Configs
+let g:tmuxline_separators = {
+  \ 'left' : '>',
+  \ 'left_alt': '',
+  \ 'right' : '<',
+  \ 'right_alt' : '',
+  \ 'space' : ' '}
+let g:tmuxline_preset = {
+  \'a'       : '#S',
+  \'b'       : '#W',
+  \'win'     : '#I #W',
+  \'cwin'    : '#I #W',
+  \'x'       : '< #(cat /sys/class/backlight/intel_backlight/brightness)/#(cat /sys/class/backlight/intel_backlight/max_brightness)[#(cat /sys/class/power_supply/BAT1/capacity)%%]',
+  \'y'       : '%Y-%m-%d %H:%M',
+  \'options' : {'status-justify' : 'left'}}
 
 " Tlist Variables
 "
@@ -116,9 +193,9 @@ let g:completor_python_binary = 'python3'
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 
 " TMUX Configs
-:if $TMUX
-: set term=screen
-:endif
+":if $TMUX
+": set term=screen
+":endif
 
 set autoindent
 set tabstop=4
@@ -167,7 +244,7 @@ function RunFile()
     elseif expand('%:e') == "c"
         :exec '! gcc ' . @% . ' -o ' . expand('%:r') . ".out ;gdb " . expand('%:r') . ".out"
     elseif expand('%:e') == "cpp"
-        :exec '! g++ ' . @% . ' -o ' . expand('%:r') . ".out ;gdb " . expand('%:r') . ".out"
+        :exec '! g++ -std=c++11 ' . @% . ' -o ' . expand('%:r') . ".out ;gdb " . expand('%:r') . ".out"
     elseif expand('%:e') == "kv"
         if filereadable("main.py")
             :exec "! python3 main.py"

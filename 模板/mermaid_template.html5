@@ -37,7 +37,7 @@ $for(header-includes)$
 $endfor$
 
 <!-- mermaid min js -->
-<script src="/usr/local/lib/node_modules/mermaid.cli/mermaid.min.js"></script>
+<script src="/usr/local/lib/node_modules/mermaid/dist/mermaid.min.js"></script>
 <script src="https://unpkg.com/mermaid@7.1.0/dist/mermaid.min.js"></script>
 <script>mermaid.initialize({startOnLoad:true});</script>
 

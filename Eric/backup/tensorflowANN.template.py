@@ -1,21 +1,28 @@
-# coding: utf-8
+#Info: A basic template for building a ANN by tensorflow
+#Info: =================================================
+#Info:
+#Info: To estimate using the trained model, you may use tf.estimator described
+#Info: [here](https://www.tensorflow.org/programmers_guide/saved_model).
+#Info:
+#Info: TODO: Maybe add License here
 
-# A basic template for building a ANN by tensorflow
-#
-# To estimate using the trained model, you may use tf.estimator described
-# [here](https://www.tensorflow.org/programmers_guide/saved_model).
-#
-# TODO: Maybe add License here
+#-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-#
 
+#Info: ## Import required libraries here
 
-# Import required libraries here
+#-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-#
+
 import numpy as np, tensorflow as tf
 import os, sys
 random_state = 0
 np.random.seed(random_state)
 
+#-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-#
 
-# Define pre-defined variables here
+#Info: ## Define pre-defined variables here
+
+#-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-#
+
 graph = tf.Graph()
 num_steps = 1001
 #batch_size = 128
@@ -25,8 +32,12 @@ summary_dir = os.path.join("/tmp/"+os.path.splitext(sys.argv[0])[0],model_name)
 summary_inteval = 200
 save_filename = os.path.join("./"+os.path.splitext(sys.argv[0])[0],model_name+".ckpt")
 
+#-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-#
 
-# Useful functions
+#Info: ## Useful functions
+
+#-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-#
+
 ## Function to split 3 datasets
 def train_validate_test_split(X, y, train_percent=.6, validate_percent=.2, random_state=None):
     from sklearn.cross_validation import train_test_split
@@ -47,11 +58,19 @@ def accuracy(predictions, labels):
 def reshape_labels(label, unique_label_num):
     return (np.arange(unique_label_num)==label[:,None]).astype(np.float32)
 
+#-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-#
 
-# Load & format datasets here
+#Info: ## Load & format datasets here
+
+#-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-#
 
 
-# Start graph design
+#-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-#
+
+#Info: ## Start graph design
+
+#-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-#
+
 with graph.as_default():
     # Datasets
 
@@ -77,6 +96,12 @@ with graph.as_default():
 
     # Merge all summaries
     merged = tf.summary.merge_all()
+
+#-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-#
+
+#Info: ## Run a session
+
+#-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-#
 
 with tf.Session(graph=graph) as sess:
     summary_writer = tf.summary.FileWriter(summary_dir, graph)

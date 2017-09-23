@@ -11,9 +11,12 @@ export APP_ANDROID_ANT_PATH="/opt/apache-ant-1.9.4"
 export APP_P4A_SOURCE_DIR="/usr/local/lib/python3.5/dist-packages/pythonforandroid"
 
 # prevent errors on suspend
-alias susp="sudo modprobe -r ath10k_pci ath10k_core; systemctl suspend"
-alias unsusp="sudo modprobe ath10k_core; sudo modprobe ath10k_pci"
-alias hiber="sudo modprobe -r ath10k_pci ath10k_core; sudo systemctl hibernate"
+alias susp="wifi off; systemctl suspend"
+alias unsusp="sudo modprobe ath10k_pci; wifi on"
+alias hiber="wifi off; sudo systemctl hibernate"
+
+# 8-bit color for fbterm
+alias eight='TERM=fbterm; echo -e "\e]P0002B36 \e]P7839496"; clear'
 
 # sl == ls
 alias sl="ls"
@@ -28,23 +31,25 @@ alias qtcreatordk="qtcreator -theme dark -stylesheet ~/.config/QtProject/qtcreat
 alias fbi='fbi -P'
 
 # colorit preference
-alias coloritmd='colorit -c ~/.coloritrc.md'
+alias coloritmd='colorit -c ~/Templates/.md.coloritrc'
+alias coloritpy='colorit -c ~/Templates/.python.coloritrc'
 
 # generate pyqt5 gui frontend
 alias pyqtgen='cp /home/ericx/Eric/backup/pyqt.template.py'
 
 # pandoc template
-#eval "$(pandoc --bash-completion)"
+eval "$(pandoc --bash-completion)"
 #alias pandoc2chspdf="pandoc --template=$HOME/模板/chs_template.tex --latex-engine=xelatex -M CJKmainfont:文泉驿微米黑 --biblio $HOME/Tex/MyRef.bib" 
-alias pandoc="pandoc --filter pandoc-tablenos --filter pandoc-mermaid"
-alias pandoc2mermaid="pandoc -c ~/Templates/github-pandoc.css --template ~/Templates/mermaid_template.html5"
+alias pandoc="pandoc --filter pandoc-tablenos -s"
+alias pandoc2mermaid="pandoc -c ~/Templates/github-pandoc.css --template ~/Templates/mermaid_template.html5 --filter pandoc-mermaid"
+alias pandoc2mermaidpdf="pandoc --filter pandoc-imagine --latex-engine=xelatex -M CJKmainfont:文泉驿微米黑"
 alias pandoc2chs="pandoc --latex-engine=xelatex -M CJKmainfont:文泉驿微米黑 --biblio $HOME/Tex/MyRef.bib" 
 alias pandoc2chspdf="pandoc2chs --template=$HOME/.pandoc/default.latex ~/pandoc_markdown/CHS_METADATA.yaml"
 
 # often-use programs
 alias html2text="~/Eric/Program_Files/html2text/html2text.py"
 alias 2048="~/Eric/Program_Files/2048/2048"
-export PATH=$PATH:~/Eric/MyPrograms/bin:/opt/android-ndk-r10e:~/Qt5.9.1/Tools/QtCreator/bin:~/Qt5.9.1/5.9.1/gcc_64/bin
+export PATH=$PATH:~/Eric/MyPrograms/bin:/opt/android-ndk-r10e:~/Qt5.9.1/Tools/QtCreator/bin:~/Qt5.9.1/5.9.1/gcc_64/bin:$HOME/arm-linux-androideabi/arm-linux-androideabi/bin:$HOME/arm-linux-androideabi/arm-linux-androideabi/lib/
 
 # fbterm preference
 alias white_fontcolor="echo -en \"\e]P7ffffff\""
@@ -83,7 +88,7 @@ cd $curdir
 #alias SysAna="excute_program_in_specific_dir sysana.py /home/ericx/Eric/MyPrograms/exam/SysAna"
 #alias Sat6="excute_program_in_specific_dir engmain.py /home/ericx/Eric/MyPrograms/exam/English_words"
 #
-alias zotero="excute_program_in_specific_dir zotero /opt/Zotero_linux-x86_64"
+alias zotero="excute_program_in_specific_dir zotero ~/Eric/Program_Files/Zotero_linux-x86_64"
 
 xmind(){
 local OPTIND
