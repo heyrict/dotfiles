@@ -17,6 +17,15 @@ alias hiber="wifi off; sudo systemctl hibernate"
 
 # 8-bit color for fbterm
 alias eight='TERM=fbterm; echo -e "\e]P0002B36 \e]P7839496"; clear'
+alias eight-dark='TERM=fbterm; echo -e "\e]P0002B36 \e]P7839496"; clear'
+alias eight-light='TERM=fbterm; echo -e "\e]P0FDF6E3 \e]P7657B83"; clear'
+
+alias vimlight='vim -c "set background=light"'
+
+# 256 color for tmux
+if [ $TMUX ]; then
+    TERM="screen-256color"
+fi
 
 # sl == ls
 alias sl="ls"

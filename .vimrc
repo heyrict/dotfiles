@@ -54,12 +54,15 @@ Plugin 'Xuyuanp/nerdtree-git-plugin'
 " kivy syntax highlight
 "Plugin 'farfanoide/vim-kivy'
 Plugin 'file://home/ericx/.vim/bundle/custom_vim_kivy'
-" Color scheme
+" Color Schema
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'vim-airline/vim-airline'
 Plugin 'edkolev/tmuxline.vim'
 Plugin 'vim-airline/vim-airline-themes'
 "
+" ALE
+Plugin 'w0rp/ale'
+" Folders
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -77,12 +80,47 @@ filetype plugin indent on    " required
 "
 " VUNDLE SETTINGS END
 
+" Custom Commands
+"
+" Run Command
+function RunFile()
+    wa
+    if expand('%:e') == "py"
+        :exec '! python3 ' . @%
+    elseif expand('%:e') == "c"
+        :exec '! gcc ' . @% . ' -o ' . expand('%:r') . ".out ;gdb " . expand('%:r') . ".out"
+    elseif expand('%:e') == "cpp"
+        :exec '! g++ -std=c++11 ' . @% . ' -o ' . expand('%:r') . ".out ;gdb " . expand('%:r') . ".out"
+    elseif expand('%:e') == "kv"
+        if filereadable("main.py")
+            :exec "! python3 main.py"
+        else
+            :exec "! python3 " . expand('%:r') . "*.py"
+        endif
+    endif
+endfunction
+command R :call RunFile()
+
+" Ale Configs
+let g:ale_java_javac_classpath='/opt/jdk1.8.0_144/bin/javac'
+let g:ale_python_pylint_executable='pylint3'
+let g:ale_lint_on_save=1
+let g:ale_fix_on_save=1
+let g:ale_python_yapf_use_global=1
+let g:ale_enabled=0
+let g:ale_fixers = {
+\   'javascript': [ 'eslint' ],
+\   'python': [ 'isort' , 'yapf' ]
+\}
+
 " Solarized Color Scheme Configs
 let g:solarized_visibility="normal"
 let g:solarized_contrast="normal"
 syntax enable
-if $TMUX =~ ""
-    colorscheme desert
+if $TERM=="screen-256color"
+    colorscheme solarized
+    set background=dark
+    let g:solarized_termcolors=256
 elseif $TERM=="xterm-256color"
     colorscheme solarized
     set background=dark
@@ -101,26 +139,41 @@ elseif $TERM=="fbterm"
     let g:solarized_termcolors=256
 endif
 
+let g:markdown_folding=0
+
 " Airline Configs
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_detect_modified=1
+function Capacity()
+    silent exec "!echo /sys/class/power_supply/BAT1/capacity" . "%"
+endfunction
+"call airline#parts#define_function('bat', 'Capacity')
+"let g:airline_section_c = airline#section#create_right(['ffenc','bat'])
 "let g:airline_section_b = '%-0.10{getcwd()}'
 "let g:airline_section_c = '%t'
-set t_Co=16
-"let g:airline_section_c = airline#section#create(['%{!show_capacity}'])
+"let g:airline_section_c = airline#section#create(['%{cat /sys/class/power_supply/BAT1/capacity}'])
 let g:airline#extensions#tmuxline#enabled = 1
 let airline#extensions#tmuxline#snapshot_file = "~/.tmuxline.snapshot"
-let g:airline_theme='wombat'
+let g:airline#extensions#wordcount#enabled = 0
+"let g:airline#extensions#wordcount#format = '%d words'
+if $TERM=="linux" || $TERM=="fbterm"
+    set t_Co=16
+    let g:airline_theme='wombat'
+elseif $TERM=="xterm"
+    set t_Co=16
+    let g:airline_theme='wombat'
+else
+    let g:airline_theme='solarized'
+endif
 
 if $TERM=="linux"
     if !exists('g:airline_symbols')
         let g:airline_symbols = {}
     endif
-    " old vim-powerline symbols
     let g:airline_left_sep = '>'
-    let g:airline_left_alt_sep = '>>'
+    let g:airline_left_alt_sep = ''
     let g:airline_right_sep = '<'
-    let g:airline_right_alt_sep = '<<'
+    let g:airline_right_alt_sep = ''
     let g:airline_symbols.branch = '@'
     let g:airline_symbols.readonly = '[ro]'
     let g:airline_symbols.linenr = '|'
@@ -130,22 +183,43 @@ if $TERM=="linux"
     let g:airline_symbols.spell = '[s]'
     let g:airline_symbols.notexists = '[ne]'
     let g:airline_symbols.whitespace = ''
+"else
+"    let g:airline_left_sep = '»'
+"    let g:airline_right_sep = '«'
+"    let g:airline_symbols.crypt = '🔒'
+"    let g:airline_symbols.linenr = '¶'
+"    let g:airline_symbols.maxlinenr = '㏑'
+"    let g:airline_symbols.branch = 'ᚠ'
+"    let g:airline_symbols.paste = 'ρ'
+"    let g:airline_symbols.spell = 'Ꞩ'
+"    let g:airline_symbols.notexists = '∄'
+"    let g:airline_symbols.whitespace = 'Ξ'
 endif
 
 " tmuxline Configs
-let g:tmuxline_separators = {
-  \ 'left' : '>',
-  \ 'left_alt': '',
-  \ 'right' : '<',
-  \ 'right_alt' : '',
-  \ 'space' : ' '}
+if $TERM == "linux"
+    let g:tmuxline_separators = {
+      \ 'left' : '>',
+      \ 'left_alt': '',
+      \ 'right' : '<',
+      \ 'right_alt' : '',
+      \ 'space' : ' '}
+else
+    let g:tmuxline_separators = {
+      \ 'left' : '»',
+      \ 'left_alt': '',
+      \ 'right' : '«',
+      \ 'right_alt' : '',
+      \ 'space' : ' '}
+endif
+
 let g:tmuxline_preset = {
   \'a'       : '#S',
   \'b'       : '#W',
   \'win'     : '#I #W',
   \'cwin'    : '#I #W',
-  \'x'       : '< #(cat /sys/class/backlight/intel_backlight/brightness)/#(cat /sys/class/backlight/intel_backlight/max_brightness)[#(cat /sys/class/power_supply/BAT1/capacity)%%]',
-  \'y'       : '%Y-%m-%d %H:%M',
+  \'y'       : '#(cat /sys/class/backlight/intel_backlight/brightness)/#(cat /sys/class/backlight/intel_backlight/max_brightness)[#(cat /sys/class/power_supply/BAT1/capacity)%%]',
+  \'z'       : '%Y-%m-%d %H:%M',
   \'options' : {'status-justify' : 'left'}}
 
 " Tlist Variables
@@ -235,22 +309,3 @@ let g:NERDTreeIndicatorMapCustom = {
 
 " Clean up white spaces before saving
 autocmd BufWritePre *.c,*.cpp,*.py,*.md,*.markdown,*.mkd,*.tex %s/\s\+$//e
-
-" Run Command
-function RunFile()
-    wa
-    if expand('%:e') == "py"
-        :exec '! python3 ' . @%
-    elseif expand('%:e') == "c"
-        :exec '! gcc ' . @% . ' -o ' . expand('%:r') . ".out ;gdb " . expand('%:r') . ".out"
-    elseif expand('%:e') == "cpp"
-        :exec '! g++ -std=c++11 ' . @% . ' -o ' . expand('%:r') . ".out ;gdb " . expand('%:r') . ".out"
-    elseif expand('%:e') == "kv"
-        if filereadable("main.py")
-            :exec "! python3 main.py"
-        else
-            :exec "! python3 " . expand('%:r') . "*.py"
-        endif
-    endif
-endfunction
-command R :call RunFile()
