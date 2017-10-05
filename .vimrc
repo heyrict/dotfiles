@@ -62,6 +62,9 @@ Plugin 'vim-airline/vim-airline-themes'
 "
 " ALE
 Plugin 'w0rp/ale'
+
+" For htmldjango
+"Plugin 'mjbrownie/vim-htmldjango_omnicomplete'
 " Folders
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -86,7 +89,13 @@ filetype plugin indent on    " required
 function RunFile()
     wa
     if expand('%:e') == "py"
-        :exec '! python3 ' . @%
+        if filereadable("manage.py")                    "Django preferences
+            :exec "! python3 manage.py runserver"
+        elseif filereadable("../manage.py")
+            :exec "! python3 ../manage.py runserver"
+        else
+            :exec '! python3 ' . @%
+        endif
     elseif expand('%:e') == "c"
         :exec '! gcc ' . @% . ' -o ' . expand('%:r') . ".out ;gdb " . expand('%:r') . ".out"
     elseif expand('%:e') == "cpp"
@@ -101,16 +110,48 @@ function RunFile()
 endfunction
 command R :call RunFile()
 
+function FMTHTML()
+    %s/%20/ /g
+    %s/%7D/}/g
+    %s/%7B/{/g
+    %s/&quot\;/'/g
+endfunction
+command FMTHTML :call FMTHTML()
+
+function FMTSYM()
+    :exec "!symexchange -s %"
+endfunction
+command FMTSYM :call FMTSYM()
+
+au FileType c,c++ inoremap { {}<left>
+au FileType c,c++ inoremap [ []<left>
+
+" omni complete functions
+au FileType htmldjango set omnifunc=htmldjangocomplete#CompleteDjango
+let g:htmldjangocomplete_html_flavour = 'html5'
+au FileType htmldjango inoremap {% {%  %}<left><left><left>
+au FileType htmldjango inoremap {{ {{  }}<left><left><left>
+
+
 " Ale Configs
+if $LAPTOP_MODE==0
+    let g:ale_lint_on_save=1
+    "let g:ale_fix_on_save=0
+    let g:ale_enabled=1
+else
+    let g:ale_enabled=0
+endif
+
 let g:ale_java_javac_classpath='/opt/jdk1.8.0_144/bin/javac'
 let g:ale_python_pylint_executable='pylint3'
-let g:ale_lint_on_save=1
-let g:ale_fix_on_save=1
+let g:ale_python_pylint_use_global=1
 let g:ale_python_yapf_use_global=1
-let g:ale_enabled=0
+let g:ale_javascript_jshint_use_global=1
+let g:ale_html_tidy_executable='tidy'
 let g:ale_fixers = {
-\   'javascript': [ 'eslint' ],
-\   'python': [ 'isort' , 'yapf' ]
+\   'javascript': [ 'prettier'],
+\   'python': [ 'isort' , 'yapf' ],
+\   'css': [ 'prettier' ],
 \}
 
 " Solarized Color Scheme Configs
@@ -119,27 +160,22 @@ let g:solarized_contrast="normal"
 syntax enable
 if $TERM=="screen-256color"
     colorscheme solarized
-    set background=dark
     let g:solarized_termcolors=256
 elseif $TERM=="xterm-256color"
     colorscheme solarized
-    set background=dark
     let g:solarized_termcolors=16
 elseif $TERM=="xterm"
     colorscheme solarized
-    set background=dark
     let g:solarized_termcolors=256
 elseif $TERM=="linux"
     colorscheme solarized
-    set background=dark
     let g:solarized_termcolors=16
 elseif $TERM=="fbterm"
     colorscheme solarized
-    set background=dark
     let g:solarized_termcolors=256
 endif
 
-let g:markdown_folding=0
+"let g:markdown_folding=0
 
 " Airline Configs
 let g:airline#extensions#tabline#enabled = 1
@@ -156,12 +192,12 @@ let g:airline#extensions#tmuxline#enabled = 1
 let airline#extensions#tmuxline#snapshot_file = "~/.tmuxline.snapshot"
 let g:airline#extensions#wordcount#enabled = 0
 "let g:airline#extensions#wordcount#format = '%d words'
-if $TERM=="linux" || $TERM=="fbterm"
+if $TERM=="linux"
     set t_Co=16
     let g:airline_theme='wombat'
 elseif $TERM=="xterm"
     set t_Co=16
-    let g:airline_theme='wombat'
+    let g:airline_theme='solarized'
 else
     let g:airline_theme='solarized'
 endif
@@ -309,3 +345,7 @@ let g:NERDTreeIndicatorMapCustom = {
 
 " Clean up white spaces before saving
 autocmd BufWritePre *.c,*.cpp,*.py,*.md,*.markdown,*.mkd,*.tex %s/\s\+$//e
+
+" remap keys
+map <S-PageDown> :tabnext<cr>
+map <S-PageUp> :tabprevious<cr>

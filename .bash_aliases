@@ -10,17 +10,24 @@ export APP_ANDROID_ANT_PATH="/opt/apache-ant-1.9.4"
 #export APP_ANDROID_API="26"
 export APP_P4A_SOURCE_DIR="/usr/local/lib/python3.5/dist-packages/pythonforandroid"
 
+export LAPTOP_MODE="$(cat /proc/sys/vm/laptop_mode)"
+
 # prevent errors on suspend
 alias susp="wifi off; systemctl suspend"
 alias unsusp="sudo modprobe ath10k_pci; wifi on"
 alias hiber="wifi off; sudo systemctl hibernate"
 
-# 8-bit color for fbterm
-alias eight='TERM=fbterm; echo -e "\e]P0002B36 \e]P7839496"; clear'
-alias eight-dark='TERM=fbterm; echo -e "\e]P0002B36 \e]P7839496"; clear'
-alias eight-light='TERM=fbterm; echo -e "\e]P0FDF6E3 \e]P7657B83"; clear'
+# git
+alias git_log="git log --oneline --all --decorate --graph"
 
-alias vimlight='vim -c "set background=light"'
+# 8-bit color for fbterm
+alias eight='TERM=fbterm; echo -e "\e]R \e]P0002B36 \e]P7839496"; clear'
+alias eight-dark='TERM=fbterm; echo -e "\e]R \e]P0002B36 \e]P7839496"; clear'
+alias eight-light='TERM=fbterm; echo -e "\e]R \e]P0FDF6E3 \e]P7657B83"; clear'
+
+alias viml='\vim -c "set background=light"'
+alias vimd='\vim -c "set background=dark"'
+alias vim='viml'
 
 # 256 color for tmux
 if [ $TMUX ]; then
@@ -47,11 +54,12 @@ alias coloritpy='colorit -c ~/Templates/.python.coloritrc'
 alias pyqtgen='cp /home/ericx/Eric/backup/pyqt.template.py'
 
 # pandoc template
-eval "$(pandoc --bash-completion)"
+#eval "$(pandoc --bash-completion)"
 #alias pandoc2chspdf="pandoc --template=$HOME/模板/chs_template.tex --latex-engine=xelatex -M CJKmainfont:文泉驿微米黑 --biblio $HOME/Tex/MyRef.bib" 
 alias pandoc="pandoc --filter pandoc-tablenos -s"
 alias pandoc2mermaid="pandoc -c ~/Templates/github-pandoc.css --template ~/Templates/mermaid_template.html5 --filter pandoc-mermaid"
 alias pandoc2mermaidpdf="pandoc --filter pandoc-imagine --latex-engine=xelatex -M CJKmainfont:文泉驿微米黑"
+alias pandoc4django="pandoc -c \"{% static 'github-pandoc.css' %}\" --template ~/Templates/django_template.html5"
 alias pandoc2chs="pandoc --latex-engine=xelatex -M CJKmainfont:文泉驿微米黑 --biblio $HOME/Tex/MyRef.bib" 
 alias pandoc2chspdf="pandoc2chs --template=$HOME/.pandoc/default.latex ~/pandoc_markdown/CHS_METADATA.yaml"
 
@@ -77,7 +85,7 @@ alias sync_psp_data_from_Lenovo="\cp -uvr /media/ericx/LENOVO/Eric/psp/memstick/
 alias sync_psp_data_to_Lenovo="\cp -uvr ~/.config/ppsspp/PSP/SAVEDATA/* /media/ericx/LENOVO/Eric/psp/memstick/PSP/SAVEDATA/"
 
 # nds savedata control
-alias backup_microsd="\cp -uv /media/ericx/R4/rom/*.SAV /media/ericx/LENOVO/Eric/nds/microSD\ backup/rom/"
+alias backup_microsd="\cp -uv /media/ericx/R4/rom/*.SAV /home/ericx/Eric/backup/nds/; \cp -uv /media/ericx/R4/rom/*.SAV /media/ericx/LENOVO/Eric/nds/microSD\ backup/rom/"
 
 # pipe dict to less
 d(){ dict $* | less; }
@@ -99,102 +107,103 @@ cd $curdir
 #
 alias zotero="excute_program_in_specific_dir zotero ~/Eric/Program_Files/Zotero_linux-x86_64"
 
-xmind(){
-local OPTIND
-while getopts it opt
-do
-  case "$opt" in
-    i) local Interactive=1;;
-    t) local Interactive=1;;
-  esac
-done
-shift $[ $OPTIND - 1 ]
-
-if [ ! $Interactive ]; then local Interactive=0; fi
-
-local curdir=$(pwd)
-cd /opt/XMind/XMind_amd64/
-if [ $# = 0 ]
-then
-  if [ $Interactive = 0 ]
-    then ./XMind
-  else find -name '*.xmind'
-  fi
-else
- local all=""
- for word in $*
- do
-   all=$all"_"$word
- done
- echo "-----------------"
- local found=($(find -name '*.xmind' | grep ".*/${all:1}[^/]*$"))
- if [ ${#found[@]} = 1 ] ; then 
-   echo "One File Found."
-   echo ${found[0]}
-   echo "-----------------"
-   if [ $Interactive = 0 ]; then 
-     ./XMind ${found[0]}
-   fi
- elif [ ${#found[@]} = 0 ]; then 
-   echo "No matching file found. Exit."
-   echo "-----------------"
- else
-   echo "More than one file found."
-   for ((i = 0 ; i < ${#found[@]} ; ++i )); do
-     echo -e "$i\t${found[$i]}"
-   done
-   echo "-----------------"
-   if [ $Interactive = 0 ]; then 
-     local choose
-     read -p "Which one to choose? " choose
-     if [[ $choose < ${#found[@]} ]]; then
-     ./XMind ${found[$choose]}
-     fi
-   fi
-   echo
- fi
-fi
-cd $curdir
-return 0
-}
+alias xmind="excute_program_in_specific_dir XMind /opt/XMind/XMind_amd64"
+#xmind(){
+#local OPTIND
+#while getopts it opt
+#do
+#  case "$opt" in
+#    i) local Interactive=1;;
+#    t) local Interactive=1;;
+#  esac
+#done
+#shift $[ $OPTIND - 1 ]
+#
+#if [ ! $Interactive ]; then local Interactive=0; fi
+#
+#local curdir=$(pwd)
+#cd /opt/XMind/XMind_amd64/
+#if [ $# = 0 ]
+#then
+#  if [ $Interactive = 0 ]
+#    then ./XMind
+#  else find -name '*.xmind'
+#  fi
+#else
+# local all=""
+# for word in $*
+# do
+#   all=$all"_"$word
+# done
+# echo "-----------------"
+# local found=($(find -name '*.xmind' | grep ".*/${all:1}[^/]*$"))
+# if [ ${#found[@]} = 1 ] ; then 
+#   echo "One File Found."
+#   echo ${found[0]}
+#   echo "-----------------"
+#   if [ $Interactive = 0 ]; then 
+#     ./XMind ${found[0]}
+#   fi
+# elif [ ${#found[@]} = 0 ]; then 
+#   echo "No matching file found. Exit."
+#   echo "-----------------"
+# else
+#   echo "More than one file found."
+#   for ((i = 0 ; i < ${#found[@]} ; ++i )); do
+#     echo -e "$i\t${found[$i]}"
+#   done
+#   echo "-----------------"
+#   if [ $Interactive = 0 ]; then 
+#     local choose
+#     read -p "Which one to choose? " choose
+#     if [[ $choose < ${#found[@]} ]]; then
+#     ./XMind ${found[$choose]}
+#     fi
+#   fi
+#   echo
+# fi
+#fi
+#cd $curdir
+#return 0
+#}
 
 # indicators
 
 # brightness
 
 alias set_brightness="sudoedit /sys/class/backlight/intel_backlight/brightness"
-show_brightness(){
-    echo $(cat /sys/class/backlight/intel_backlight/brightness):$(cat /sys/class/backlight/intel_backlight/max_brightness)
-}
-indicator_brightness(){
- local indent='5m'
- if [[ $# > 0 ]]
- then
-  indent=$1
- fi
- while true
- do
-  clear
-  show_brightness
-  sleep $indent
- done 
-}
+#show_brightness(){
+#    echo $(cat /sys/class/backlight/intel_backlight/brightness):$(cat /sys/class/backlight/intel_backlight/max_brightness)
+#}
+#indicator_brightness(){
+# local indent='5m'
+# if [[ $# > 0 ]]
+# then
+#  indent=$1
+# fi
+# while true
+# do
+#  clear
+#  show_brightness
+#  sleep $indent
+# done 
+#}
 
 # battery preference
 show_capacity(){ echo $(cat /sys/class/power_supply/BAT1/capacity)%;}
-indicator_battery(){
- local indent='5m'
- if [[ $# > 0 ]]
- then
-  indent=$1
- fi
- while true
- do
-  clear
-  show_capacity
-  sleep $indent
- done 
-}
+#indicator_battery(){
+# local indent='5m'
+# if [[ $# > 0 ]]
+# then
+#  indent=$1
+# fi
+# while true
+# do
+#  clear
+#  show_capacity
+#  sleep $indent
+# done 
+#}
 
 ## run splash in docker
 #splash(){
@@ -216,27 +225,27 @@ else
 fi
 }
 
-ncbi(){
-if test $# -eq 0
-then
-    firefox https://www.ncbi.nlm.nih.gov/
-else
-    local str=""
-    for i in $*;do str=$str"+"$i;done
-    firefox https://www.ncbi.nlm.nih.gov/gquery/?term=${str:1}
-fi
-}
-
-nature(){
-if test $# -eq 0
-then
-    firefox https://www.nature.com/
-else
-    local str=""
-    for i in $*;do str=$str"+"$i;done
-    firefox https://www.nature.com/search?q=${str:1}
-fi
-}
+#ncbi(){
+#if test $# -eq 0
+#then
+#    firefox https://www.ncbi.nlm.nih.gov/
+#else
+#    local str=""
+#    for i in $*;do str=$str"+"$i;done
+#    firefox https://www.ncbi.nlm.nih.gov/gquery/?term=${str:1}
+#fi
+#}
+#
+#nature(){
+#if test $# -eq 0
+#then
+#    firefox https://www.nature.com/
+#else
+#    local str=""
+#    for i in $*;do str=$str"+"$i;done
+#    firefox https://www.nature.com/search?q=${str:1}
+#fi
+#}
 
 wanfang(){
 if test $# -eq 0
@@ -250,15 +259,15 @@ fi
 }
 
 # color palettes
-color_palette(){
-    for i in {0..255}
-    do
-        echo -en "\e[48;5;${i}mc${i}\e[0m\t"
-        if [ $[${i} % 16] = 15 ]
-        then
-            echo
-        fi
-    done
-    echo
-}
+#color_palette(){
+#    for i in {0..255}
+#    do
+#        echo -en "\e[48;5;${i}mc${i}\e[0m\t"
+#        if [ $[${i} % 16] = 15 ]
+#        then
+#            echo
+#        fi
+#    done
+#    echo
+#}
 
