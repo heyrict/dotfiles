@@ -1,3 +1,5 @@
+{% load i18n %}
+{% load static %}
 <!DOCTYPE html>
 <html$if(lang)$ lang="$lang$"$endif$$if(dir)$ dir="$dir$"$endif$>
 <head>
@@ -35,12 +37,6 @@ $endif$
 $for(header-includes)$
   $header-includes$
 $endfor$
-
-<!-- mermaid min js -->
-<script src="/usr/local/lib/node_modules/mermaid/dist/mermaid.min.js"></script>
-<script src="https://unpkg.com/mermaid@7.1.0/dist/mermaid.min.js"></script>
-<script>mermaid.initialize({startOnLoad:true});</script>
-
 </head>
 <body>
 $for(include-before)$

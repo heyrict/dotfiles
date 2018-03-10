@@ -54,6 +54,12 @@ Plugin 'Xuyuanp/nerdtree-git-plugin'
 " kivy syntax highlight
 "Plugin 'farfanoide/vim-kivy'
 Plugin 'file://home/ericx/.vim/bundle/custom_vim_kivy'
+
+" Javascript Environment
+Plugin 'pangloss/vim-javascript'
+Plugin 'mxw/vim-jsx'
+Plugin 'jparise/vim-graphql'
+
 " Color Schema
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'vim-airline/vim-airline'
@@ -65,6 +71,9 @@ Plugin 'w0rp/ale'
 
 " For htmldjango
 "Plugin 'mjbrownie/vim-htmldjango_omnicomplete'
+" For markdown
+Plugin 'godlygeek/tabular'
+Plugin 'plasticboy/vim-markdown'
 " Folders
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -87,15 +96,9 @@ filetype plugin indent on    " required
 "
 " Run Command
 function RunFile()
-    wa
+    up
     if expand('%:e') == "py"
-        if filereadable("manage.py")                    "Django preferences
-            :exec "! python3 manage.py runserver"
-        elseif filereadable("../manage.py")
-            :exec "! python3 ../manage.py runserver"
-        else
-            :exec '! python3 ' . @%
-        endif
+        :exec '! python3 ' . @%
     elseif expand('%:e') == "c"
         :exec '! gcc ' . @% . ' -o ' . expand('%:r') . ".out ;gdb " . expand('%:r') . ".out"
     elseif expand('%:e') == "cpp"
@@ -111,6 +114,7 @@ endfunction
 command R :call RunFile()
 
 function FMTHTML()
+    w
     %s/%20/ /g
     %s/%7D/}/g
     %s/%7B/{/g
@@ -119,9 +123,17 @@ endfunction
 command FMTHTML :call FMTHTML()
 
 function FMTSYM()
+    w
+    " :exec "!symexchange -s -x ', ，' -x '. 。' %"
     :exec "!symexchange -s %"
 endfunction
 command FMTSYM :call FMTSYM()
+
+function ModifyTable()
+    w
+    :exec "!tableutils -Ppnr %"
+endfunction
+command M :call ModifyTable()
 
 au FileType c,c++ inoremap { {}<left>
 au FileType c,c++ inoremap [ []<left>
@@ -132,11 +144,20 @@ let g:htmldjangocomplete_html_flavour = 'html5'
 au FileType htmldjango inoremap {% {%  %}<left><left><left>
 au FileType htmldjango inoremap {{ {{  }}<left><left><left>
 
+" vim-markdown configs
+let g:vim_markdown_folding_level = 3
+let g:vim_markdown_folding_style_pythonic = 1
+let g:vim_markdown_emphasis_multiline = 0
+let g:vim_markdown_math = 1
+let g:vim_markdown_frontmatter = 1
+"let g:vim_markdown_fenced_languages = ['c++=cpp', 'viml=vim', 'bash=sh', 'ini=dosini', 'python=py']
+
+set foldmethod=marker
 
 " Ale Configs
 if $LAPTOP_MODE==0
     let g:ale_lint_on_save=1
-    "let g:ale_fix_on_save=0
+    let g:ale_fix_on_save=1
     let g:ale_enabled=1
 else
     let g:ale_enabled=0
@@ -146,44 +167,45 @@ let g:ale_java_javac_classpath='/opt/jdk1.8.0_144/bin/javac'
 let g:ale_python_pylint_executable='pylint3'
 let g:ale_python_pylint_use_global=1
 let g:ale_python_yapf_use_global=1
-let g:ale_javascript_jshint_use_global=1
+let g:ale_javascript_prettier_use_global=1
+let g:ale_javascript_prettier_use_local_config=1
 let g:ale_html_tidy_executable='tidy'
+let g:ale_linters = {
+\   'javascript': [ 'eslint' ],
+\}
 let g:ale_fixers = {
-\   'javascript': [ 'prettier'],
+\   'javascript': [ 'prettier' ],
+\   'json': [ 'prettier' ],
 \   'python': [ 'isort' , 'yapf' ],
 \   'css': [ 'prettier' ],
 \}
 
 " Solarized Color Scheme Configs
-let g:solarized_visibility="normal"
-let g:solarized_contrast="normal"
+let g:solarized_visibility="high"
+call togglebg#map("<F5>")
 syntax enable
 if $TERM=="screen-256color"
-    colorscheme solarized
     let g:solarized_termcolors=256
+    colorscheme solarized
 elseif $TERM=="xterm-256color"
     colorscheme solarized
-    let g:solarized_termcolors=16
 elseif $TERM=="xterm"
-    colorscheme solarized
+    let g:solarized_termtrans=1
     let g:solarized_termcolors=256
+    let g:solarized_contrast="high"
+    colorscheme solarized
 elseif $TERM=="linux"
-    colorscheme solarized
     let g:solarized_termcolors=16
-elseif $TERM=="fbterm"
     colorscheme solarized
+elseif $TERM=="fbterm"
     let g:solarized_termcolors=256
+    colorscheme solarized
 endif
-
-"let g:markdown_folding=0
+set background=dark
 
 " Airline Configs
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_detect_modified=1
-function Capacity()
-    silent exec "!echo /sys/class/power_supply/BAT1/capacity" . "%"
-endfunction
-"call airline#parts#define_function('bat', 'Capacity')
 "let g:airline_section_c = airline#section#create_right(['ffenc','bat'])
 "let g:airline_section_b = '%-0.10{getcwd()}'
 "let g:airline_section_c = '%t'
@@ -197,6 +219,7 @@ if $TERM=="linux"
     let g:airline_theme='wombat'
 elseif $TERM=="xterm"
     set t_Co=16
+    set t_BE=
     let g:airline_theme='solarized'
 else
     let g:airline_theme='solarized'
@@ -254,7 +277,7 @@ let g:tmuxline_preset = {
   \'b'       : '#W',
   \'win'     : '#I #W',
   \'cwin'    : '#I #W',
-  \'y'       : '#(cat /sys/class/backlight/intel_backlight/brightness)/#(cat /sys/class/backlight/intel_backlight/max_brightness)[#(cat /sys/class/power_supply/BAT1/capacity)%%]',
+  \'y'       : '#(cat /sys/class/backlight/intel_backlight/brightness)/#(cat /sys/class/backlight/intel_backlight/max_brightness)[#(cat /sys/class/power_supply/BAT1/capacity)%%]{#(cat /sys/class/power_supply/BAT1/power_now)}',
   \'z'       : '%Y-%m-%d %H:%M',
   \'options' : {'status-justify' : 'left'}}
 
@@ -272,6 +295,9 @@ let Tlist_Show_One_File=1
 let Tlist_Use_Right_Window=1
 let Tlist_Use_SingleClick=1
 nnoremap <silent> <F8> :TlistToggle<CR>
+
+" vim-jsx Configs
+let g:jsx_ext_required = 0
 
 " Jedi-vim Configs
 "
@@ -299,6 +325,7 @@ nnoremap <silent> <F8> :TlistToggle<CR>
 "
 " Completor.vim Configs
 let g:completor_python_binary = 'python3'
+let g:completor_node_binary = 'node'
 "let g:completor_auto_close_doc = 0
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 
@@ -314,6 +341,8 @@ set expandtab
 set number
 set timeout ttimeoutlen=50
 
+autocmd Filetype html,htmldjango,json,javascript set tabstop=2 shiftwidth=2
+
 execute pathogen#infect()
 
 set encoding=utf-8 fileencodings=ucs-bom,utf-8,cp936
@@ -323,7 +352,7 @@ set encoding=utf-8 fileencodings=ucs-bom,utf-8,cp936
 let g:previm_open_cmd='firefox'
 let g:previm_enable_realtime = 10
 "let g:previm_disable_default_css = 1
-"let g:previm_custom_css_path = '~/.vim/bundle/previm/preview/css/origin.css'
+let g:previm_custom_css_path = '~/Templates/github-pandoc.css'
 
 " NERDTree Configs
 "
