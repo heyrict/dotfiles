@@ -37,11 +37,11 @@ $for(header-includes)$
 $endfor$
 
 <!-- mermaid min css -->
-<link rel="stylesheet" href="file:///usr/local/lib/node_modules/mermaid/dist/mermaid.forest.min.css"></link>
+<link rel="stylesheet" href="file:///home/ericx/.nvm/versions/node/v9.4.0/lib/node_modules/mermaid/dist/mermaid.forest.min.css"></link>
 <link rel="https://unpkg.com/mermaid@7.1.0/dist/mermaid.forest.min.js"></link>
 
 <!-- mermaid min js -->
-<script src="file:///usr/local/lib/node_modules/mermaid/dist/mermaid.min.js"></script>
+<script src="file:///home/ericx/.nvm/versions/node/v9.4.0/lib/node_modules/mermaid/dist/mermaid.min.js"></script>
 <script src="https://unpkg.com/mermaid@7.1.0/dist/mermaid.min.js"></script>
 <script>mermaid.initialize({startOnLoad:true});</script>
 

@@ -37,13 +37,13 @@ Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
 "Plugin 'Valloric/YouCompleteMe'
 "Plugin 'davidhalter/jedi-vim'
 Plugin 'maralla/completor.vim'
-Plugin 'artur-shaik/vim-javacomplete2'
+"Plugin 'artur-shaik/vim-javacomplete2'
 " Previm
 Plugin 'kannokanno/previm'
 " Tlist
 Plugin 'taglist-plus'
 " STL references
-Plugin 'stlrefvim'
+"Plugin 'stlrefvim'
 " autoswitch fcitx-remote
 Plugin 'fcitx.vim'
 " syntax highlight for .qml files
@@ -74,6 +74,12 @@ Plugin 'w0rp/ale'
 " For markdown
 Plugin 'godlygeek/tabular'
 Plugin 'plasticboy/vim-markdown'
+
+" Orgmod
+"Plugin 'jceb/vim-orgmode'
+"Plugin 'tpope/vim-speeddating'
+
+
 " Folders
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -172,9 +178,11 @@ let g:ale_javascript_prettier_use_local_config=1
 let g:ale_html_tidy_executable='tidy'
 let g:ale_linters = {
 \   'javascript': [ 'eslint' ],
+\   'typescript': [ 'eslint' ],
 \}
 let g:ale_fixers = {
 \   'javascript': [ 'prettier' ],
+\   'typescript': [ 'prettier' ],
 \   'json': [ 'prettier' ],
 \   'python': [ 'isort' , 'yapf' ],
 \   'css': [ 'prettier' ],
@@ -294,6 +302,7 @@ let Tlist_File_Fold_Auto_Close=1
 let Tlist_Show_One_File=1
 let Tlist_Use_Right_Window=1
 let Tlist_Use_SingleClick=1
+command T TlistOpen
 nnoremap <silent> <F8> :TlistToggle<CR>
 
 " vim-jsx Configs
@@ -322,11 +331,13 @@ let g:jsx_ext_required = 0
 "autocmd FileType xml set omnifunc=xmlcomplete#CompleteTags
 "autocmd FileType php set omnifunc=phpcomplete#CompletePHP
 "autocmd FileType c set omnifunc=ccomplete#Complete
-"
+
+
 " Completor.vim Configs
 let g:completor_python_binary = 'python3'
 let g:completor_node_binary = 'node'
-"let g:completor_auto_close_doc = 0
+let g:completor_auto_close_doc = 1
+let g:completor_doc_position = 'top'
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 
 " TMUX Configs
@@ -341,7 +352,8 @@ set expandtab
 set number
 set timeout ttimeoutlen=50
 
-autocmd Filetype html,htmldjango,json,javascript set tabstop=2 shiftwidth=2
+autocmd Filetype html,htmldjango,json,javascript,typescript set tabstop=2 shiftwidth=2
+autocmd Filetype markdown set keywordprg=dict
 
 execute pathogen#infect()
 
@@ -349,15 +361,15 @@ set encoding=utf-8 fileencodings=ucs-bom,utf-8,cp936
 
 " Previm Variables
 "
-let g:previm_open_cmd='firefox'
+let g:previm_open_cmd='xdg-open'
 let g:previm_enable_realtime = 10
 "let g:previm_disable_default_css = 1
-let g:previm_custom_css_path = '~/Templates/github-pandoc.css'
+let g:previm_custom_css_path = '~/Templates/solarized-light.min.css'
 
 " NERDTree Configs
 "
-command F w | NERDTree
-command T TlistOpen
+command F up | NERDTree
+nnoremap <silent> <F9> :NERDTreeToggle<CR>
 let g:NERDTreeQuitOnOpen = 1
 let g:NERDTreeIndicatorMapCustom = {
     \ "Modified"  : "!",
@@ -371,6 +383,14 @@ let g:NERDTreeIndicatorMapCustom = {
     \ 'Ignored'   : '-',
     \ "Unknown"   : "?"
     \ }
+
+"" OrgMode Configs
+"let g:org_indent = 0
+"let g:org_agenda_files = ['~/org/*.org']
+""let g:org_todo_keywords = [
+"" \ ['TODO(t)', '|', 'DONE(d)'],
+"" \ ['REPORT(r)', 'BUG(b)', 'KNOWNCAUSE(k)', '|', 'FIXED(f)'],
+"" \ ['CANCELED(c)']]
 
 " Clean up white spaces before saving
 autocmd BufWritePre *.c,*.cpp,*.py,*.md,*.markdown,*.mkd,*.tex %s/\s\+$//e

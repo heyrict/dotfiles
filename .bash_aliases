@@ -16,10 +16,13 @@ export APP_ANDROID_ANT_PATH="/opt/apache-ant-1.9.4"
 #export APP_ANDROID_API="26"
 export APP_P4A_SOURCE_DIR="/usr/local/lib/python3.5/dist-packages/pythonforandroid"
 
+export NLTK_DATA="$NLTK_DATA:/media/ericx/LENOVO/Data/NLTK"
+
 export LAPTOP_MODE="$(cat /proc/sys/vm/laptop_mode)"
 
-# Two firefox
-alias fde="~/Eric/Program_Files/firefox/firefox"
+# Mimic xbox360 driver with SHANWAN Generic joystick using xboxdrv
+alias mimic-xpad="sudo xboxdrv --evdev /dev/input/by-id/usb-SHANWAN_Android_Gamepad-event-joystick --evdev-absmap ABS_X=x1,ABS_Y=y1,ABS_RZ=x2,ABS_Z=y2,ABS_HAT0X=dpad_x,ABS_HAT0Y=dpad_y --axismap -Y1=Y1,-Y2=Y2 --evdev-keymap BTN_NORTH=x,BTN_WEST=y,BTN_EAST=a,BTN_SOUTH=b,BTN_THUMBL=tl,BTN_THUMBR=tr,BTN_TL=lt,BTN_TR=rt,BTN_TL2=lb,BTN_TR2=rb,BTN_SELECT=back,BTN_MODE=guide,BTN_START=start --axis-sensitivity Y1=-0.6,Y2=-0.6,X1=-0.6,X2=-0.6 --mimic-xpad --silent --detach-kernel-driver"
+alias mimic-keyboard="sudo xboxdrv --evdev /dev/input/by-id/usb-SHANWAN_Android_Gamepad-event-joystick --evdev-absmap ABS_X=x1,ABS_Y=y1,ABS_RZ=x2,ABS_Z=y2,ABS_HAT0X=dpad_x,ABS_HAT0Y=dpad_y --axismap -Y1=Y1,-Y2=Y2 --evdev-keymap BTN_NORTH=x,BTN_WEST=y,BTN_EAST=a,BTN_SOUTH=b,BTN_THUMBL=tl,BTN_THUMBR=tr,BTN_TL=lt,BTN_TR=rt,BTN_TL2=lb,BTN_TR2=rb,BTN_SELECT=back,BTN_MODE=guide,BTN_START=start --axis-sensitivity Y1=-0.6,Y2=-0.6,X1=-0.6,X2=-0.6 --dpad-as-button --trigger-as-button --ui-axismap x1=KEY_LEFT:KEY_RIGHT,y1=KEY_UP:KEY_DOWN,x2=KEY_A:KEY_D,y2=KEY_W:KEY_S,trigger=REL_WHEEL:5:100 --ui-buttonmap a=KEY_X,b=KEY_C,x=KEY_S,y=KEY_A,rb=KEY_PAGEDOWN,lb=KEY_PAGEUP,lt=BTN_LEFT,rt=KEY_ESC,tl=KEY_T,tr=KEY_Y,dl=KEY_LEFT,dr=KEY_RIGHT,du=KEY_UP,dd=KEY_DOWN,start=KEY_FORWARD,back=KEY_BACK,guide=KEY_ESC --silent --detach-kernel-driver"
 
 # virtualenv
 activate() {
@@ -28,10 +31,10 @@ activate() {
 
 # fix-tensorflow
 export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/usr/local/cuda-8.0/lib64:/usr/local/cuda-8.0/extras/CUPTI/lib64:/usr/local/cuda-8.0/targets/x86_64-linux/lib/"
-alias fixtf="sudo modprobe --force-modversion nvidia-390-uvm"
+alias fixtf="sudo modprobe --force-modversion nvidia-396-uvm"
 
 # mitmproxy override
-alias mitmoverride="mitmproxy -s ~/Eric/Program_Files/mitmproxy-resource-override/mitmResourceOverride.py"
+alias mitmoverride="mitmproxy --anticache -s ~/Eric/Program_Files/mitmproxy-resource-override/mitmResourceOverride.py"
 
 # HDMI output redirect settings
 alias HDMIConfigure="xrandr --output HDMI-1 --scale-from 1366x768 --panning 1366x768+0+0/1366x768+0+0/64/64/64/64"
@@ -77,7 +80,7 @@ alias eight='eight-dark'
 
 alias viml='\vim -c "set background=light"'
 alias vimd='\vim -c "set background=dark"'
-alias vim='vimd'
+#alias vim='vimd'
 
 # 256 color for tmux
 if [ $TMUX ]; then
@@ -97,9 +100,9 @@ alias sl="ls"
 alias fbi='fbi -P'
 
 # colorit preference
-alias coloritmd='colorit -c ~/Templates/.md.coloritrc'
-alias coloritdef='colorit -c ~/Templates/.def.coloritrc'
-alias coloritpy='colorit -c ~/Templates/.python.coloritrc'
+alias coloritmd='colorit -c ~/Templates/md.coloritrc'
+alias coloritdef='colorit -c ~/Templates/def.coloritrc'
+alias coloritpy='colorit -c ~/Templates/python.coloritrc'
 
 # generate pyqt5 gui frontend
 #alias pyqtgen='cp /home/ericx/Eric/backup/pyqt.template.py'
@@ -110,12 +113,11 @@ alias coloritpy='colorit -c ~/Templates/.python.coloritrc'
 alias pandoc="pandoc --filter pandoc-tablenos -s"
 alias pandoc2mermaid="pandoc -c ~/Templates/github-pandoc.css --template ~/Templates/mermaid_template.html5 --filter pandoc-mermaid"
 alias pandoc2mermaidpdf="pandoc --filter pandoc-imagine --latex-engine=xelatex -M CJKmainfont:文泉驿微米黑"
-alias pandoc4django="pandoc -c \"{% static 'github-pandoc.css' %}\" --template ~/Templates/django_template.html5"
 alias pandoc2chs="pandoc --latex-engine=xelatex -M CJKmainfont:文泉驿微米黑 --biblio $HOME/Tex/MyRef.bib" 
 alias pandoc2chspdf="pandoc2chs --template=$HOME/.pandoc/default.latex ~/pandoc_markdown/CHS_METADATA.yaml"
 
 # often-use programs
-export PATH=$PATH:~/Eric/MyPrograms/bin:~/Eric/Program_Files/bin:/opt/android-ndk-r10e:~/Qt5.9.1/Tools/QtCreator/bin:~/Qt5.9.1/5.9.1/gcc_64/bin:$HOME/arm-linux-androideabi/arm-linux-androideabi/bin:$HOME/arm-linux-androideabi/arm-linux-androideabi/lib/
+export PATH=$PATH:~/Eric/MyPrograms/bin:~/Eric/Program_Files/bin:/opt/android-ndk-r10e:~/Qt5.9.1/Tools/QtCreator/bin:~/Qt5.9.1/5.9.1/gcc_64/bin:$HOME/Android/OriginalSdk/platform-tools
 
 # fbterm preference
 #alias white_fontcolor="echo -en \"\e]P7ffffff\""
@@ -143,7 +145,7 @@ alias backup_microsd="\cp -uv /media/ericx/R4/rom/*.SAV /home/ericx/Eric/backup/
 
 # backup savedata
 alias nutstore="~/.nutstore/dist/bin/nutstore-pydaemon.py"
-alias backup_savedata="\cp -uv ~/Eric/backup/nds/* ~/NutStore/backup/nds/; \cp -uv ~/.config/PCSX2/memcards/* ~/NutStore/backup/ps2; \cp -uvr ~/.config/ppsspp/PSP/SAVEDATA/ ~/NutStore/backup/psp"
+alias backup_savedata="\cp -uv ~/Eric/backup/nds/* ~/NutStore/backup/nds/; \cp -uv ~/.config/PCSX2/memcards/* ~/NutStore/backup/ps2; \cp -uvr ~/.config/ppsspp/PSP/SAVEDATA/ ~/NutStore/backup/psp; \cp -uvr /media/ericx/LENOVO/Eric/ps3/dev_hdd0/home/ ~/NutStore/backup/ps3"
 
 # pipe dict to less
 d(){ dict $* | less; }
