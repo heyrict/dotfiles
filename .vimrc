@@ -145,7 +145,7 @@ au FileType c,c++ inoremap { {}<left>
 au FileType c,c++ inoremap [ []<left>
 
 " omni complete functions
-au FileType htmldjango set omnifunc=htmldjangocomplete#CompleteDjango
+"au FileType htmldjango set omnifunc=htmldjangocomplete#CompleteDjango
 let g:htmldjangocomplete_html_flavour = 'html5'
 au FileType htmldjango inoremap {% {%  %}<left><left><left>
 au FileType htmldjango inoremap {{ {{  }}<left><left><left>
@@ -171,14 +171,14 @@ endif
 
 let g:ale_java_javac_classpath='/opt/jdk1.8.0_144/bin/javac'
 let g:ale_python_pylint_executable='pylint3'
-let g:ale_python_pylint_use_global=1
-let g:ale_python_yapf_use_global=1
-let g:ale_javascript_prettier_use_global=1
+"let g:ale_python_pylint_use_global=1
+"let g:ale_python_yapf_use_global=1
+"let g:ale_javascript_prettier_use_global=1
 let g:ale_javascript_prettier_use_local_config=1
-let g:ale_html_tidy_executable='tidy'
 let g:ale_linters = {
 \   'javascript': [ 'eslint' ],
 \   'typescript': [ 'eslint' ],
+\   'html': [ 'tidy' ],
 \}
 let g:ale_fixers = {
 \   'javascript': [ 'prettier' ],
@@ -351,8 +351,9 @@ set shiftwidth=4
 set expandtab
 set number
 set timeout ttimeoutlen=50
+set backspace=indent,eol,start
 
-autocmd Filetype html,htmldjango,json,javascript,typescript set tabstop=2 shiftwidth=2
+autocmd Filetype html,htmldjango,json,javascript,typescript,css set tabstop=2 shiftwidth=2
 autocmd Filetype markdown set keywordprg=dict
 
 execute pathogen#infect()
