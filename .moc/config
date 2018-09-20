@@ -69,7 +69,7 @@ ReadTags = yes
 #
 # Example:    MusicDir = "/home/joe/music"
 #
-MusicDir = "/media/ericx/LENOVO/Eric/music"
+MusicDir = "/media/heyrict/LENOVO/Eric/music"
 
 # Start in the music directory by default?  If set to 'no', start
 # in the current directory by default.  A single directory on
@@ -218,7 +218,7 @@ StartInMusicDir = no
 #
 # Example:    Theme = laras_theme
 #
-Theme = green_theme
+Theme = moca_theme
 
 # The theme used when running on an xterm.
 #
@@ -291,7 +291,7 @@ Keymap = "keymap"
 #             Fastdir3 = /mp3/rap
 #             Fastdir4 = /mp3/etc
 #
-Fastdir1 = "/media/ericx/LENOVO/Eric/music"
+Fastdir1 = "/media/heyrict/LENOVO/Eric/music"
 #Fastdir2 =
 #Fastdir3 =
 #Fastdir4 =

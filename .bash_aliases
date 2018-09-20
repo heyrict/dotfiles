@@ -5,20 +5,23 @@ if [ -f ~/.bash_passwords ]; then
 fi
 
 # Android Env
-#export ANDROIDSDK="$HOME/Android/Sdk"
-export ANDROIDSDK="$HOME/Android/OriginalSdk"
+export ANDROID_HOME="$HOME/Android"
+export ANDROIDSDK="$HOME/Android"
 export ANDROIDNDK="/opt/crystax-ndk-10.3.2"
 #export ANDROIDAPI="26"
 
-export APP_ANDROID_SDK_PATH="$HOME/Android/OriginalSdk"
+export APP_ANDROID_SDK_PATH="$HOME/Android"
 export APP_ANDROID_NDK_PATH="/opt/crystax-ndk-10.3.2"
 export APP_ANDROID_ANT_PATH="/opt/apache-ant-1.9.4"
 #export APP_ANDROID_API="26"
 export APP_P4A_SOURCE_DIR="/usr/local/lib/python3.5/dist-packages/pythonforandroid"
 
-export NLTK_DATA="$NLTK_DATA:/media/ericx/LENOVO/Data/NLTK"
+export NLTK_DATA="/media/heyrict/LENOVO/Data/NLTK"
 
 export LAPTOP_MODE="$(cat /proc/sys/vm/laptop_mode)"
+
+# node with global node_modules
+alias gnode="NODE_PATH="/home/heyrict/.nvm/versions/node/v10.7.0/lib/node_modules/" node"
 
 # Mimic xbox360 driver with SHANWAN Generic joystick using xboxdrv
 alias mimic-xpad="sudo xboxdrv --evdev /dev/input/by-id/usb-SHANWAN_Android_Gamepad-event-joystick --evdev-absmap ABS_X=x1,ABS_Y=y1,ABS_RZ=x2,ABS_Z=y2,ABS_HAT0X=dpad_x,ABS_HAT0Y=dpad_y --axismap -Y1=Y1,-Y2=Y2 --evdev-keymap BTN_NORTH=x,BTN_WEST=y,BTN_EAST=a,BTN_SOUTH=b,BTN_THUMBL=tl,BTN_THUMBR=tr,BTN_TL=lt,BTN_TR=rt,BTN_TL2=lb,BTN_TR2=rb,BTN_SELECT=back,BTN_MODE=guide,BTN_START=start --axis-sensitivity Y1=-0.6,Y2=-0.6,X1=-0.6,X2=-0.6 --mimic-xpad --silent --detach-kernel-driver"
@@ -105,7 +108,7 @@ alias coloritdef='colorit -c ~/Templates/def.coloritrc'
 alias coloritpy='colorit -c ~/Templates/python.coloritrc'
 
 # generate pyqt5 gui frontend
-#alias pyqtgen='cp /home/ericx/Eric/backup/pyqt.template.py'
+#alias pyqtgen='cp /home/heyrict/Eric/backup/pyqt.template.py'
 
 # pandoc template
 #eval "$(pandoc --bash-completion)"
@@ -117,7 +120,7 @@ alias pandoc2chs="pandoc --latex-engine=xelatex -M CJKmainfont:文泉驿微米�
 alias pandoc2chspdf="pandoc2chs --template=$HOME/.pandoc/default.latex ~/pandoc_markdown/CHS_METADATA.yaml"
 
 # often-use programs
-export PATH=$PATH:~/Eric/MyPrograms/bin:~/Eric/Program_Files/bin:/opt/android-ndk-r10e:~/Qt5.9.1/Tools/QtCreator/bin:~/Qt5.9.1/5.9.1/gcc_64/bin:$HOME/Android/OriginalSdk/platform-tools
+export PATH=$PATH:~/Eric/MyPrograms/bin:~/Eric/Program_Files/bin:/opt/android-ndk-r10e:~/Qt5.9.1/Tools/QtCreator/bin:~/Qt5.9.1/5.9.1/gcc_64/bin:$HOME/Android/platform-tools
 
 # fbterm preference
 #alias white_fontcolor="echo -en \"\e]P7ffffff\""
@@ -128,31 +131,26 @@ export PATH=$PATH:~/Eric/MyPrograms/bin:~/Eric/Program_Files/bin:/opt/android-nd
 alias octave="octave --no-gui"
 
 # rm-protect
-alias cp="cp -i"
-alias rm="rm-p"
+#alias cp="cp -i"
+#alias rm="rm-p"
 
 # ppsspp savedata control
-alias sync_psp_data_from_Lenovo="\cp -uvr /media/ericx/LENOVO/Eric/psp/memstick/PSP/SAVEDATA/* ~/.config/ppsspp/PSP/SAVEDATA"
-alias sync_psp_data_to_Lenovo="\cp -uvr ~/.config/ppsspp/PSP/SAVEDATA/* /media/ericx/LENOVO/Eric/psp/memstick/PSP/SAVEDATA/"
-
-# ppsspp savedata control
-alias sync_ps2_data_from_Lenovo="\cp -uvr /media/ericx/LENOVO/Eric/ps2/PCSX2\ 1.4.0/memcards/*.ps2 ~/.config/PCSX2/memcards/"
-alias sync_ps2_data_to_Lenovo="\cp -uvr ~/.config/PCSX2/memcards/*.ps2 /media/ericx/LENOVO/Eric/ps2/PCSX2\ 1.4.0/memcards/"
-
+alias sync_psp_data_from_Lenovo="\cp -uvr /media/heyrict/LENOVO/Eric/psp/memstick/PSP/SAVEDATA/* ~/.config/ppsspp/PSP/SAVEDATA"
+alias sync_psp_data_to_Lenovo="\cp -uvr ~/.config/ppsspp/PSP/SAVEDATA/* /media/heyrict/LENOVO/Eric/psp/memstick/PSP/SAVEDATA/"
 
 # nds savedata control
-alias backup_microsd="\cp -uv /media/ericx/R4/rom/*.SAV /home/ericx/Eric/backup/nds/; \cp -uv /media/ericx/R4/rom/*.SAV /media/ericx/LENOVO/Eric/nds/microSD\ backup/rom/"
+alias backup_microsd="\cp -uv /media/heyrict/R4/rom/*.SAV /home/heyrict/Eric/backup/nds/; \cp -uv /media/heyrict/R4/rom/*.SAV /media/heyrict/LENOVO/Eric/nds/microSD\ backup/rom/"
 
 # backup savedata
 alias nutstore="~/.nutstore/dist/bin/nutstore-pydaemon.py"
-alias backup_savedata="\cp -uv ~/Eric/backup/nds/* ~/NutStore/backup/nds/; \cp -uv ~/.config/PCSX2/memcards/* ~/NutStore/backup/ps2; \cp -uvr ~/.config/ppsspp/PSP/SAVEDATA/ ~/NutStore/backup/psp; \cp -uvr /media/ericx/LENOVO/Eric/ps3/dev_hdd0/home/ ~/NutStore/backup/ps3"
+alias backup_savedata="\cp -uv ~/Eric/backup/nds/* ~/NutStore/backup/nds/; \cp -uv /media/heyrict/LENOVO/Eric/ps2/PCSX2 1.4.0/memcards/*.ps2 ~/NutStore/backup/ps2; \cp -uvr ~/.config/ppsspp/PSP/SAVEDATA/ ~/NutStore/backup/psp; \cp -uvr /media/heyrict/LENOVO/Eric/ps3/dev_hdd0/home/ ~/NutStore/backup/ps3"
 
 # pipe dict to less
 d(){ dict $* | less; }
 
 # cd to specified directories
-alias wd="cd /home/ericx/Eric/MyPrograms"
-alias cindy="cd /home/ericx/Eric/MyPrograms/django/cindy"
+alias wd="cd /home/heyrict/Eric/MyPrograms"
+alias cindy="cd /home/heyrict/Eric/MyPrograms/django/cindy"
 
 excute_program_in_specific_dir(){
 local curdir=$(pwd)
@@ -162,9 +160,9 @@ cd $curdir
 }
 
 ## temporary custom programs
-#alias revise="excute_program_in_specific_dir revise.py /home/ericx/Eric/MyPrograms/exam/revise"
-#alias SysAna="excute_program_in_specific_dir sysana.py /home/ericx/Eric/MyPrograms/exam/SysAna"
-#alias Sat6="excute_program_in_specific_dir engmain.py /home/ericx/Eric/MyPrograms/exam/English_words"
+#alias revise="excute_program_in_specific_dir revise.py /home/heyrict/Eric/MyPrograms/exam/revise"
+#alias SysAna="excute_program_in_specific_dir sysana.py /home/heyrict/Eric/MyPrograms/exam/SysAna"
+#alias Sat6="excute_program_in_specific_dir engmain.py /home/heyrict/Eric/MyPrograms/exam/English_words"
 
 #alias zotero="excute_program_in_specific_dir zotero ~/Eric/Program_Files/Zotero_linux-x86_64"
 #alias xmind="excute_program_in_specific_dir XMind /opt/XMind/XMind_amd64"

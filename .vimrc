@@ -34,9 +34,9 @@ Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
 " Customized Plugins
 "
 " Auto Complete
-"Plugin 'Valloric/YouCompleteMe'
+Plugin 'Valloric/YouCompleteMe'
 "Plugin 'davidhalter/jedi-vim'
-Plugin 'maralla/completor.vim'
+"Plugin 'maralla/completor.vim'
 "Plugin 'artur-shaik/vim-javacomplete2'
 " Previm
 Plugin 'kannokanno/previm'
@@ -74,6 +74,8 @@ Plugin 'w0rp/ale'
 " For markdown
 Plugin 'godlygeek/tabular'
 Plugin 'plasticboy/vim-markdown'
+" For Typescript
+Plugin 'leafgarland/typescript-vim'
 
 " Orgmod
 "Plugin 'jceb/vim-orgmode'
@@ -156,9 +158,13 @@ let g:vim_markdown_folding_style_pythonic = 1
 let g:vim_markdown_emphasis_multiline = 0
 let g:vim_markdown_math = 1
 let g:vim_markdown_frontmatter = 1
-"let g:vim_markdown_fenced_languages = ['c++=cpp', 'viml=vim', 'bash=sh', 'ini=dosini', 'python=py']
+let g:vim_markdown_fenced_languages = ['c++=cpp', 'viml=vim', 'bash=sh', 'ini=dosini', 'ts=typescript', 'tsx=typescript.jsx']
 
 set foldmethod=marker
+
+" vim-typescript configs
+autocmd BufNewFile,BufRead *.tsx,*.jsx set filetype=typescript.jsx
+autocmd BufNewFile,BufRead /home/heyrict/Eric/MyPrograms/reactnativeproj/* set nowritebackup
 
 " Ale Configs
 if $LAPTOP_MODE==0
@@ -169,20 +175,22 @@ else
     let g:ale_enabled=0
 endif
 
-let g:ale_java_javac_classpath='/opt/jdk1.8.0_144/bin/javac'
+let g:ale_java_javac_classpath='/opt/jdk1.8.0_181/bin/javac'
 let g:ale_python_pylint_executable='pylint3'
 "let g:ale_python_pylint_use_global=1
 "let g:ale_python_yapf_use_global=1
 "let g:ale_javascript_prettier_use_global=1
-let g:ale_javascript_prettier_use_local_config=1
+"let g:ale_javascript_eslint_use_global=1
 let g:ale_linters = {
 \   'javascript': [ 'eslint' ],
 \   'typescript': [ 'eslint' ],
+\   'typescript.jsx': [ 'eslint' ],
 \   'html': [ 'tidy' ],
 \}
 let g:ale_fixers = {
 \   'javascript': [ 'prettier' ],
 \   'typescript': [ 'prettier' ],
+\   'typescript.jsx': [ 'prettier' ],
 \   'json': [ 'prettier' ],
 \   'python': [ 'isort' , 'yapf' ],
 \   'css': [ 'prettier' ],
@@ -197,6 +205,7 @@ if $TERM=="screen-256color"
     colorscheme solarized
 elseif $TERM=="xterm-256color"
     colorscheme solarized
+    let g:solarized_termtrans=1
 elseif $TERM=="xterm"
     let g:solarized_termtrans=1
     let g:solarized_termcolors=256
@@ -319,26 +328,31 @@ let g:jsx_ext_required = 0
 "let g:jedi#rename_command = "<leader>r"
 
 " YCM Variables
-"
-"let g:ycm_global_ycm_extra_conf='~/Eric/backup/.ycm_global_ycm_extra_conf'
-"let g:ycm_confirm_extra_conf=0
-"let g:ycm_python_binary_path= '/usr/bin/python3.5'
-"filetype plugin on
-"autocmd FileType python set omnifunc=pythoncomplete#Complete
-"autocmd FileType javascrīpt set omnifunc=javascriptcomplete#CompleteJS
-"autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
-"autocmd FileType css set omnifunc=csscomplete#CompleteCSS
-"autocmd FileType xml set omnifunc=xmlcomplete#CompleteTags
-"autocmd FileType php set omnifunc=phpcomplete#CompletePHP
-"autocmd FileType c set omnifunc=ccomplete#Complete
+
+"let g:ycm_autoclose_preview_window_after_completion = 1
+let g:ycm_key_invoke_completion = '<C-X>'
+filetype plugin on
+autocmd FileType python set omnifunc=pythoncomplete#Complete
+autocmd FileType javascrīpt set omnifunc=javascriptcomplete#CompleteJS
+autocmd FileType typescript set omnifunc=javascriptcomplete#CompleteJS
+autocmd FileType typescript.jsx set omnifunc=javascriptcomplete#CompleteJS
+autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
+autocmd FileType css set omnifunc=csscomplete#CompleteCSS
+autocmd FileType xml set omnifunc=xmlcomplete#CompleteTags
+autocmd FileType php set omnifunc=phpcomplete#CompletePHP
+autocmd FileType c set omnifunc=ccomplete#Complete
+
+nnoremap <silent> <F2> :YcmCompleter GetDoc<CR>
+nnoremap <silent> <F3> :YcmCompleter GetType<CR>
+nnoremap <silent> <F4> :YcmCompleter GoTo<CR>
 
 
 " Completor.vim Configs
-let g:completor_python_binary = 'python3'
-let g:completor_node_binary = 'node'
-let g:completor_auto_close_doc = 1
-let g:completor_doc_position = 'top'
-inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+"let g:completor_python_binary = 'python3'
+"let g:completor_node_binary = 'node'
+"let g:completor_auto_close_doc = 1
+"let g:completor_doc_position = 'top'
+"inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 
 " TMUX Configs
 ":if $TMUX
@@ -353,7 +367,7 @@ set number
 set timeout ttimeoutlen=50
 set backspace=indent,eol,start
 
-autocmd Filetype html,htmldjango,json,javascript,typescript,css set tabstop=2 shiftwidth=2
+autocmd Filetype html,htmldjango,json,javascript,typescript,typescript.jsx,css set tabstop=2 shiftwidth=2
 autocmd Filetype markdown set keywordprg=dict
 
 execute pathogen#infect()
