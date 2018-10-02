@@ -32,6 +32,9 @@ activate() {
     source ~/$1/bin/activate;
 }
 
+# ssh related
+alias ssh_through_proxy='ssh -o "ProxyCommand=nc -X connect -x localhost:8123 %h %p"'
+
 # fix-tensorflow
 export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/usr/local/cuda-8.0/lib64:/usr/local/cuda-8.0/extras/CUPTI/lib64:/usr/local/cuda-8.0/targets/x86_64-linux/lib/"
 alias fixtf="sudo modprobe --force-modversion nvidia-396-uvm"
