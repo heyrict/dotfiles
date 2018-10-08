@@ -146,7 +146,7 @@ alias backup_microsd="\cp -uv /media/heyrict/R4/rom/*.SAV /home/heyrict/Eric/bac
 
 # backup savedata
 alias nutstore="~/.nutstore/dist/bin/nutstore-pydaemon.py"
-alias backup_savedata="\cp -uv ~/Eric/backup/nds/* ~/NutStore/backup/nds/; \cp -uv /media/heyrict/LENOVO/Eric/ps2/PCSX2 1.4.0/memcards/*.ps2 ~/NutStore/backup/ps2; \cp -uvr ~/.config/ppsspp/PSP/SAVEDATA/ ~/NutStore/backup/psp; \cp -uvr /media/heyrict/LENOVO/Eric/ps3/dev_hdd0/home/ ~/NutStore/backup/ps3"
+alias backup_savedata="\cp -uv ~/Eric/backup/nds/* ~/NutStore/backup/nds/; \cp -uv /media/heyrict/LENOVO/Eric/ps2/PCSX2\ 1.4.0/memcards/*.ps2 ~/NutStore/backup/ps2; \cp -uvr ~/.config/ppsspp/PSP/SAVEDATA/ ~/NutStore/backup/psp; \cp -uvr /media/heyrict/LENOVO/Eric/ps3/dev_hdd0/home/ ~/NutStore/backup/ps3"
 
 # pipe dict to less
 d(){ dict $* | less; }

@@ -183,8 +183,8 @@ let g:ale_python_pylint_executable='pylint3'
 "let g:ale_javascript_eslint_use_global=1
 let g:ale_linters = {
 \   'javascript': [ 'eslint' ],
-\   'typescript': [ 'eslint' ],
-\   'typescript.jsx': [ 'eslint' ],
+\   'typescript': [ 'tslint' ],
+\   'typescript.jsx': [ 'tslint' ],
 \   'html': [ 'tidy' ],
 \}
 let g:ale_fixers = {
