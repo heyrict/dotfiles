@@ -57,7 +57,8 @@ Plugin 'file://home/ericx/.vim/bundle/custom_vim_kivy'
 
 " Javascript Environment
 Plugin 'pangloss/vim-javascript'
-Plugin 'mxw/vim-jsx'
+Plugin 'MaxMEllon/vim-jsx-pretty'
+"Plugin 'mxw/vim-jsx'
 Plugin 'jparise/vim-graphql'
 
 " Color Schema
@@ -158,12 +159,12 @@ let g:vim_markdown_folding_style_pythonic = 1
 let g:vim_markdown_emphasis_multiline = 0
 let g:vim_markdown_math = 1
 let g:vim_markdown_frontmatter = 1
-let g:vim_markdown_fenced_languages = ['c++=cpp', 'viml=vim', 'bash=sh', 'ini=dosini', 'ts=typescript', 'tsx=typescript.jsx']
+let g:vim_markdown_fenced_languages = ['c++=cpp', 'viml=vim', 'bash=sh', 'ini=dosini', 'ts=typescript', 'tsx=typescript']
 
 set foldmethod=marker
 
 " vim-typescript configs
-autocmd BufNewFile,BufRead *.tsx,*.jsx set filetype=typescript.jsx
+autocmd BufNewFile,BufRead *.tsx,*.jsx set filetype=typescript
 autocmd BufNewFile,BufRead /home/heyrict/Eric/MyPrograms/reactnativeproj/* set nowritebackup
 
 " Ale Configs
@@ -184,13 +185,11 @@ let g:ale_python_pylint_executable='pylint3'
 let g:ale_linters = {
 \   'javascript': [ 'eslint' ],
 \   'typescript': [ 'tslint' ],
-\   'typescript.jsx': [ 'tslint' ],
 \   'html': [ 'tidy' ],
 \}
 let g:ale_fixers = {
 \   'javascript': [ 'prettier' ],
 \   'typescript': [ 'prettier' ],
-\   'typescript.jsx': [ 'prettier' ],
 \   'json': [ 'prettier' ],
 \   'python': [ 'isort' , 'yapf' ],
 \   'css': [ 'prettier' ],
@@ -314,8 +313,11 @@ let Tlist_Use_SingleClick=1
 command T TlistOpen
 nnoremap <silent> <F8> :TlistToggle<CR>
 
-" vim-jsx Configs
-let g:jsx_ext_required = 0
+"" vim-jsx Configs
+"let g:jsx_ext_required = 0
+
+" vim-jsx-pretty Configs
+let g:vim_jsx_pretty_colorful_config = 1
 
 " Jedi-vim Configs
 "
@@ -335,7 +337,6 @@ filetype plugin on
 autocmd FileType python set omnifunc=pythoncomplete#Complete
 autocmd FileType javascrīpt set omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType typescript set omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType typescript.jsx set omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
 autocmd FileType css set omnifunc=csscomplete#CompleteCSS
 autocmd FileType xml set omnifunc=xmlcomplete#CompleteTags
@@ -345,6 +346,11 @@ autocmd FileType c set omnifunc=ccomplete#Complete
 nnoremap <silent> <F2> :YcmCompleter GetDoc<CR>
 nnoremap <silent> <F3> :YcmCompleter GetType<CR>
 nnoremap <silent> <F4> :YcmCompleter GoTo<CR>
+
+let g:ycm_filetype_whitelist = {
+\ 'markdown': 1,
+\}
+"autocmd FileType markdown let g:ycm_min_num_of_chars_for_completion=3
 
 
 " Completor.vim Configs
@@ -367,8 +373,8 @@ set number
 set timeout ttimeoutlen=50
 set backspace=indent,eol,start
 
-autocmd Filetype html,htmldjango,json,javascript,typescript,typescript.jsx,css set tabstop=2 shiftwidth=2
-autocmd Filetype markdown set keywordprg=dict
+autocmd Filetype html,htmldjango,json,javascript,typescript,css set tabstop=2 shiftwidth=2
+autocmd Filetype markdown,csv set keywordprg=dict
 
 execute pathogen#infect()
 

@@ -1,0 +1,8 @@
+# elinks history file
+.elinks/*hist*
+.elinks/cookies
+
+# mocp temporary files
+.moc/cache
+.moc/pid
+.moc/playlist.m3u

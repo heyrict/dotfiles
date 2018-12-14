@@ -115,11 +115,11 @@ alias coloritpy='colorit -c ~/Templates/python.coloritrc'
 
 # pandoc template
 #eval "$(pandoc --bash-completion)"
-#alias pandoc2chspdf="pandoc --template=$HOME/模板/chs_template.tex --latex-engine=xelatex -M CJKmainfont:文泉驿微米黑 --biblio $HOME/Tex/MyRef.bib" 
+#alias pandoc2chspdf="pandoc --template=$HOME/模板/chs_template.tex --latex-engine=xelatex -M 'CJKmainfont:WenQuanYi Micro Hei' --biblio $HOME/Tex/MyRef.bib"
 alias pandoc="pandoc --filter pandoc-tablenos -s"
 alias pandoc2mermaid="pandoc -c ~/Templates/github-pandoc.css --template ~/Templates/mermaid_template.html5 --filter pandoc-mermaid"
-alias pandoc2mermaidpdf="pandoc --filter pandoc-imagine --latex-engine=xelatex -M CJKmainfont:文泉驿微米黑"
-alias pandoc2chs="pandoc --latex-engine=xelatex -M CJKmainfont:文泉驿微米黑 --biblio $HOME/Tex/MyRef.bib" 
+alias pandoc2mermaidpdf="pandoc --filter pandoc-imagine --latex-engine=xelatex -M 'CJKmainfont:WenQuanYi Micro Hei'"
+alias pandoc2chs="pandoc --latex-engine=xelatex -M 'CJKmainfont:WenQuanYi Micro Hei' --biblio $HOME/Tex/MyRef.bib"
 alias pandoc2chspdf="pandoc2chs --template=$HOME/.pandoc/default.latex ~/pandoc_markdown/CHS_METADATA.yaml"
 
 # often-use programs
@@ -138,15 +138,15 @@ alias octave="octave --no-gui"
 #alias rm="rm-p"
 
 # ppsspp savedata control
-alias sync_psp_data_from_Lenovo="\cp -uvr /media/heyrict/LENOVO/Eric/psp/memstick/PSP/SAVEDATA/* ~/.config/ppsspp/PSP/SAVEDATA"
-alias sync_psp_data_to_Lenovo="\cp -uvr ~/.config/ppsspp/PSP/SAVEDATA/* /media/heyrict/LENOVO/Eric/psp/memstick/PSP/SAVEDATA/"
+alias ppsspp="test -d /media/heyrict/LENOVO/Eric/psp/ && ppsspp || echo 'Folder not exist: /media/heyrict/LENOVO/Eric/psp/, exit.'"
+alias PPSSPP="ppsspp"
 
 # nds savedata control
 alias backup_microsd="\cp -uv /media/heyrict/R4/rom/*.SAV /home/heyrict/Eric/backup/nds/; \cp -uv /media/heyrict/R4/rom/*.SAV /media/heyrict/LENOVO/Eric/nds/microSD\ backup/rom/"
 
 # backup savedata
 alias nutstore="~/.nutstore/dist/bin/nutstore-pydaemon.py"
-alias backup_savedata="\cp -uv ~/Eric/backup/nds/* ~/NutStore/backup/nds/; \cp -uv /media/heyrict/LENOVO/Eric/ps2/PCSX2\ 1.4.0/memcards/*.ps2 ~/NutStore/backup/ps2; \cp -uvr ~/.config/ppsspp/PSP/SAVEDATA/ ~/NutStore/backup/psp; \cp -uvr /media/heyrict/LENOVO/Eric/ps3/dev_hdd0/home/ ~/NutStore/backup/ps3"
+alias backup_savedata="\cp -uv ~/Eric/backup/nds/* ~/NutStore/backup/nds/; \cp -uv /media/heyrict/LENOVO/Eric/ps2/PCSX2\ 1.4.0/memcards/*.ps2 ~/NutStore/backup/ps2; \cp -uvr /media/heyrict/LENOVO/Eric/psp/memstick/PSP/SAVEDATA/ ~/NutStore/backup/psp; \cp -uvr /media/heyrict/LENOVO/Eric/ps3/dev_hdd0/home/ ~/NutStore/backup/ps3"
 
 # pipe dict to less
 d(){ dict $* | less; }
@@ -199,14 +199,14 @@ cd $curdir
 # done
 # echo "-----------------"
 # local found=($(find -name '*.xmind' | grep ".*/${all:1}[^/]*$"))
-# if [ ${#found[@]} = 1 ] ; then 
+# if [ ${#found[@]} = 1 ] ; then
 #   echo "One File Found."
 #   echo ${found[0]}
 #   echo "-----------------"
-#   if [ $Interactive = 0 ]; then 
+#   if [ $Interactive = 0 ]; then
 #     ./XMind ${found[0]}
 #   fi
-# elif [ ${#found[@]} = 0 ]; then 
+# elif [ ${#found[@]} = 0 ]; then
 #   echo "No matching file found. Exit."
 #   echo "-----------------"
 # else
@@ -215,7 +215,7 @@ cd $curdir
 #     echo -e "$i\t${found[$i]}"
 #   done
 #   echo "-----------------"
-#   if [ $Interactive = 0 ]; then 
+#   if [ $Interactive = 0 ]; then
 #     local choose
 #     read -p "Which one to choose? " choose
 #     if [[ $choose < ${#found[@]} ]]; then
@@ -248,7 +248,7 @@ alias set_brightness="sudoedit /sys/class/backlight/intel_backlight/brightness"
 #  clear
 #  show_brightness
 #  sleep $indent
-# done 
+# done
 #}
 
 # battery preference
@@ -264,7 +264,7 @@ show_capacity(){ echo $(cat /sys/class/power_supply/BAT1/capacity)%;}
 #  clear
 #  show_capacity
 #  sleep $indent
-# done 
+# done
 #}
 
 ## run splash in docker
