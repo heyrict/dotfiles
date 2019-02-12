@@ -1,7 +1,7 @@
-" Change Default Language
+" {{{1 Change Default Language
 language en_US.utf8
 
-" VUNDLE SETTINGS
+" {{{1 VUNDLE SETTINGS
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
@@ -61,6 +61,9 @@ Plugin 'MaxMEllon/vim-jsx-pretty'
 "Plugin 'mxw/vim-jsx'
 Plugin 'jparise/vim-graphql'
 
+" Julia Environment
+"Plugin 'JuliaEditorSupport/julia-vim'
+
 " Color Schema
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'vim-airline/vim-airline'
@@ -101,7 +104,7 @@ filetype plugin indent on    " required
 "
 " VUNDLE SETTINGS END
 
-" Custom Commands
+" {{{1 Custom Commands
 "
 " Run Command
 function RunFile()
@@ -131,29 +134,16 @@ function FMTHTML()
 endfunction
 command FMTHTML :call FMTHTML()
 
-function FMTSYM()
-    w
-    " :exec "!symexchange -s -x ', ，' -x '. 。' %"
-    :exec "!symexchange -s %"
-endfunction
-command FMTSYM :call FMTSYM()
-
-function ModifyTable()
-    w
-    :exec "!tableutils -Ppnr %"
-endfunction
-command M :call ModifyTable()
-
 au FileType c,c++ inoremap { {}<left>
 au FileType c,c++ inoremap [ []<left>
 
-" omni complete functions
+" {{{1 omni complete functions
 "au FileType htmldjango set omnifunc=htmldjangocomplete#CompleteDjango
 let g:htmldjangocomplete_html_flavour = 'html5'
 au FileType htmldjango inoremap {% {%  %}<left><left><left>
 au FileType htmldjango inoremap {{ {{  }}<left><left><left>
 
-" vim-markdown configs
+" {{{1 vim-markdown configs
 let g:vim_markdown_folding_level = 3
 let g:vim_markdown_folding_style_pythonic = 1
 let g:vim_markdown_emphasis_multiline = 0
@@ -163,13 +153,13 @@ let g:vim_markdown_fenced_languages = ['c++=cpp', 'viml=vim', 'bash=sh', 'ini=do
 
 set foldmethod=marker
 
-" vim-typescript configs
+" {{{1 vim-typescript configs
 autocmd BufNewFile,BufRead *.tsx,*.jsx set filetype=typescript
 autocmd BufNewFile,BufRead /home/heyrict/Eric/MyPrograms/reactnativeproj/* set nowritebackup
 
-" Ale Configs
+" {{{1 Ale Configs
 if $LAPTOP_MODE==0
-    let g:ale_lint_on_save=1
+    let g:ale_lint_on_save=0
     let g:ale_fix_on_save=1
     let g:ale_enabled=1
 else
@@ -177,7 +167,7 @@ else
 endif
 
 let g:ale_java_javac_classpath='/opt/jdk1.8.0_181/bin/javac'
-let g:ale_python_pylint_executable='pylint3'
+let g:ale_python_pylint_executable='pylint'
 "let g:ale_python_pylint_use_global=1
 "let g:ale_python_yapf_use_global=1
 "let g:ale_javascript_prettier_use_global=1
@@ -195,7 +185,7 @@ let g:ale_fixers = {
 \   'css': [ 'prettier' ],
 \}
 
-" Solarized Color Scheme Configs
+" {{{1 Solarized Color Scheme Configs
 let g:solarized_visibility="high"
 call togglebg#map("<F5>")
 syntax enable
@@ -219,17 +209,19 @@ elseif $TERM=="fbterm"
 endif
 set background=dark
 
-" Airline Configs
+" {{{1 Airline Configs
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_detect_modified=1
 "let g:airline_section_c = airline#section#create_right(['ffenc','bat'])
 "let g:airline_section_b = '%-0.10{getcwd()}'
 "let g:airline_section_c = '%t'
 "let g:airline_section_c = airline#section#create(['%{cat /sys/class/power_supply/BAT1/capacity}'])
-let g:airline#extensions#tmuxline#enabled = 1
-let airline#extensions#tmuxline#snapshot_file = "~/.tmuxline.snapshot"
 let g:airline#extensions#wordcount#enabled = 0
 "let g:airline#extensions#wordcount#format = '%d words'
+if $TMUX!=""
+    let g:airline#extensions#tmuxline#enabled = 1
+    let airline#extensions#tmuxline#snapshot_file = "~/.tmuxline.snapshot"
+endif
 if $TERM=="linux"
     set t_Co=16
     let g:airline_theme='wombat'
@@ -271,7 +263,7 @@ if $TERM=="linux"
 "    let g:airline_symbols.whitespace = 'Ξ'
 endif
 
-" tmuxline Configs
+" {{{1 tmuxline Configs
 if $TERM == "linux"
     let g:tmuxline_separators = {
       \ 'left' : '>',
@@ -297,7 +289,7 @@ let g:tmuxline_preset = {
   \'z'       : '%Y-%m-%d %H:%M',
   \'options' : {'status-justify' : 'left'}}
 
-" Tlist Variables
+" {{{1 Tlist Variables
 "
 let Tlist_Auto_Highlight_Tag=1
 let Tlist_Auto_Open=0
@@ -313,13 +305,13 @@ let Tlist_Use_SingleClick=1
 command T TlistOpen
 nnoremap <silent> <F8> :TlistToggle<CR>
 
-"" vim-jsx Configs
+"" {{{1 vim-jsx Configs
 "let g:jsx_ext_required = 0
 
 " vim-jsx-pretty Configs
 let g:vim_jsx_pretty_colorful_config = 1
 
-" Jedi-vim Configs
+" {{{1 Jedi-vim Configs
 "
 "let g:jedi#goto_command = "<leader>d"
 "let g:jedi#goto_assignments_command = "<leader>g"
@@ -329,42 +321,50 @@ let g:vim_jsx_pretty_colorful_config = 1
 "let g:jedi#completions_command = "<Tab>"
 "let g:jedi#rename_command = "<leader>r"
 
-" YCM Variables
+" {{{1 YCM Variables
 
 "let g:ycm_autoclose_preview_window_after_completion = 1
-let g:ycm_key_invoke_completion = '<C-X>'
-filetype plugin on
-autocmd FileType python set omnifunc=pythoncomplete#Complete
-autocmd FileType javascrīpt set omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType typescript set omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
-autocmd FileType css set omnifunc=csscomplete#CompleteCSS
-autocmd FileType xml set omnifunc=xmlcomplete#CompleteTags
-autocmd FileType php set omnifunc=phpcomplete#CompletePHP
-autocmd FileType c set omnifunc=ccomplete#Complete
+let g:ycm_key_invoke_completion = 'Tab'
+"let g:ycm_seed_identifiers_with_syntax=1
+"let g:ycm_confirm_extra_conf=0
+let g:ycm_semantic_triggers =  {
+\   'c': ['->', '.'],
+\   'objc': ['->', '.', 're!\[[_a-zA-Z]+\w*\s', 're!^\s*[^\W\d]\w*\s',
+\            're!\[.*\]\s'],
+\   'ocaml': ['.', '#'],
+\   'cpp,cuda,objcpp': ['->', '.', '::'],
+\   'perl': ['->'],
+\   'php': ['->', '::'],
+\   'cs,d,elixir,go,groovy,java,javascript,julia,perl6,scala,typescript,vb': ['.'],
+\   'python': ['.', 're!import (\w+, ?)*\w{2,}'],
+\   'ruby,rust': ['.', '::'],
+\   'lua': ['.', ':'],
+\   'erlang': [':'],
+\ }
+"set completeopt=longest,menu
 
 nnoremap <silent> <F2> :YcmCompleter GetDoc<CR>
 nnoremap <silent> <F3> :YcmCompleter GetType<CR>
 nnoremap <silent> <F4> :YcmCompleter GoTo<CR>
 
-let g:ycm_filetype_whitelist = {
-\ 'markdown': 1,
-\}
-"autocmd FileType markdown let g:ycm_min_num_of_chars_for_completion=3
+let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf.py'
+"let g:ycm_min_num_of_chars_for_completion = 2
+filetype plugin on
 
 
-" Completor.vim Configs
+" {{{1 Completor.vim Configs
 "let g:completor_python_binary = 'python3'
 "let g:completor_node_binary = 'node'
 "let g:completor_auto_close_doc = 1
 "let g:completor_doc_position = 'top'
 "inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 
-" TMUX Configs
+" {{{1 TMUX Configs
 ":if $TMUX
 ": set term=screen
 ":endif
 
+" {{{1 General Configs
 set autoindent
 set tabstop=4
 set shiftwidth=4
@@ -376,18 +376,16 @@ set backspace=indent,eol,start
 autocmd Filetype html,htmldjango,json,javascript,typescript,css set tabstop=2 shiftwidth=2
 autocmd Filetype markdown,csv set keywordprg=dict
 
-execute pathogen#infect()
-
 set encoding=utf-8 fileencodings=ucs-bom,utf-8,cp936
 
-" Previm Variables
+" {{{1 Previm Variables
 "
 let g:previm_open_cmd='xdg-open'
 let g:previm_enable_realtime = 10
 "let g:previm_disable_default_css = 1
 let g:previm_custom_css_path = '~/Templates/solarized-light.min.css'
 
-" NERDTree Configs
+" {{{1 NERDTree Configs
 "
 command F up | NERDTree
 nnoremap <silent> <F9> :NERDTreeToggle<CR>
@@ -405,7 +403,7 @@ let g:NERDTreeIndicatorMapCustom = {
     \ "Unknown"   : "?"
     \ }
 
-"" OrgMode Configs
+"" {{{1 OrgMode Configs
 "let g:org_indent = 0
 "let g:org_agenda_files = ['~/org/*.org']
 ""let g:org_todo_keywords = [
@@ -413,9 +411,9 @@ let g:NERDTreeIndicatorMapCustom = {
 "" \ ['REPORT(r)', 'BUG(b)', 'KNOWNCAUSE(k)', '|', 'FIXED(f)'],
 "" \ ['CANCELED(c)']]
 
-" Clean up white spaces before saving
+" {{{1 Clean up white spaces before saving
 autocmd BufWritePre *.c,*.cpp,*.py,*.md,*.markdown,*.mkd,*.tex %s/\s\+$//e
 
-" remap keys
+" {{{1 remap keys
 map <S-PageDown> :tabnext<cr>
 map <S-PageUp> :tabprevious<cr>

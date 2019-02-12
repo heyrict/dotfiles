@@ -36,8 +36,8 @@ activate() {
 alias ssh_through_proxy='ssh -o "ProxyCommand=nc -X connect -x localhost:8123 %h %p"'
 
 # fix-tensorflow
-export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/usr/local/cuda-8.0/lib64:/usr/local/cuda-8.0/extras/CUPTI/lib64:/usr/local/cuda-8.0/targets/x86_64-linux/lib/"
-alias fixtf="sudo modprobe --force-modversion nvidia-396-uvm"
+#export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/usr/local/cuda-8.0/lib64:/usr/local/cuda-8.0/extras/CUPTI/lib64:/usr/local/cuda-8.0/targets/x86_64-linux/lib/"
+#alias fixtf="sudo modprobe --force-modversion nvidia-396-uvm"
 
 # mitmproxy override
 alias mitmoverride="mitmproxy --anticache -s ~/Eric/Program_Files/mitmproxy-resource-override/mitmResourceOverride.py"
@@ -75,6 +75,9 @@ alias hiber="wifi off; sudo systemctl hibernate"
 
 # hosts
 #alias hosts_download="wget https://coding.net/u/scaffrey/p/hosts/git/raw/master/hosts-files/hosts"
+
+# aria2c bt trackers
+alias fetch_trackers='sed -i "s@^\(bt-tracker=\).*@\1$(curl -s -L https://raw.githubusercontent.com/ngosang/trackerslist/master/trackers_all_ip.txt | sed "/^\s*$/d" | tr "\n" ",")@" ~/.aria2/aria2.conf'
 
 # git
 alias git_log="git log --oneline --all --decorate --graph"
@@ -145,8 +148,7 @@ alias PPSSPP="ppsspp"
 alias backup_microsd="\cp -uv /media/heyrict/R4/rom/*.SAV /home/heyrict/Eric/backup/nds/; \cp -uv /media/heyrict/R4/rom/*.SAV /media/heyrict/LENOVO/Eric/nds/microSD\ backup/rom/"
 
 # backup savedata
-alias nutstore="~/.nutstore/dist/bin/nutstore-pydaemon.py"
-alias backup_savedata="\cp -uv ~/Eric/backup/nds/* ~/NutStore/backup/nds/; \cp -uv /media/heyrict/LENOVO/Eric/ps2/PCSX2\ 1.4.0/memcards/*.ps2 ~/NutStore/backup/ps2; \cp -uvr /media/heyrict/LENOVO/Eric/psp/memstick/PSP/SAVEDATA/ ~/NutStore/backup/psp; \cp -uvr /media/heyrict/LENOVO/Eric/ps3/dev_hdd0/home/ ~/NutStore/backup/ps3"
+alias backup_savedata="\cp -uv ~/Eric/backup/nds/* ~/NutStore/backup/nds/; \cp -uvr /media/heyrict/LENOVO/Eric/ps2/PCSX2\ 1.4.0/memcards/*.ps2 ~/NutStore/backup/ps2; \cp -uvr /media/heyrict/LENOVO/Eric/psp/memstick/PSP/SAVEDATA/ ~/NutStore/backup/psp; \cp -uvr /media/heyrict/LENOVO/Eric/ps3/dev_hdd0/home/ ~/NutStore/backup/ps3"
 
 # pipe dict to less
 d(){ dict $* | less; }
@@ -155,12 +157,12 @@ d(){ dict $* | less; }
 alias wd="cd /home/heyrict/Eric/MyPrograms"
 alias cindy="cd /home/heyrict/Eric/MyPrograms/django/cindy"
 
-excute_program_in_specific_dir(){
-local curdir=$(pwd)
-cd $2
-./$1 ${@:3}
-cd $curdir
-}
+#excute_program_in_specific_dir(){
+#local curdir=$(pwd)
+#cd $2
+#./$1 ${@:3}
+#cd $curdir
+#}
 
 ## temporary custom programs
 #alias revise="excute_program_in_specific_dir revise.py /home/heyrict/Eric/MyPrograms/exam/revise"
