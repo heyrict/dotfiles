@@ -61,6 +61,8 @@ Plugin 'MaxMEllon/vim-jsx-pretty'
 "Plugin 'mxw/vim-jsx'
 Plugin 'jparise/vim-graphql'
 
+"Plugin 'alvan/vim-closetag'
+
 " Julia Environment
 "Plugin 'JuliaEditorSupport/julia-vim'
 
@@ -80,11 +82,18 @@ Plugin 'godlygeek/tabular'
 Plugin 'plasticboy/vim-markdown'
 " For Typescript
 Plugin 'leafgarland/typescript-vim'
+Plugin 'peitalin/vim-jsx-typescript'
 
 " Orgmod
 "Plugin 'jceb/vim-orgmode'
 "Plugin 'tpope/vim-speeddating'
+" Organized Text
+Plugin 'vimoutliner/vimoutliner'
+" Task warrior
+"Plugin 'farseer90718/vim-taskwarrior'
 
+" Others
+Plugin 'jiangmiao/auto-pairs'
 
 " Folders
 " All of your Plugins must be added before the following line
@@ -104,39 +113,6 @@ filetype plugin indent on    " required
 "
 " VUNDLE SETTINGS END
 
-" {{{1 Custom Commands
-"
-" Run Command
-function RunFile()
-    up
-    if expand('%:e') == "py"
-        :exec '! python3 ' . @%
-    elseif expand('%:e') == "c"
-        :exec '! gcc ' . @% . ' -o ' . expand('%:r') . ".out ;gdb " . expand('%:r') . ".out"
-    elseif expand('%:e') == "cpp"
-        :exec '! g++ -std=c++11 ' . @% . ' -o ' . expand('%:r') . ".out ;gdb " . expand('%:r') . ".out"
-    elseif expand('%:e') == "kv"
-        if filereadable("main.py")
-            :exec "! python3 main.py"
-        else
-            :exec "! python3 " . expand('%:r') . "*.py"
-        endif
-    endif
-endfunction
-command R :call RunFile()
-
-function FMTHTML()
-    w
-    %s/%20/ /g
-    %s/%7D/}/g
-    %s/%7B/{/g
-    %s/&quot\;/'/g
-endfunction
-command FMTHTML :call FMTHTML()
-
-au FileType c,c++ inoremap { {}<left>
-au FileType c,c++ inoremap [ []<left>
-
 " {{{1 omni complete functions
 "au FileType htmldjango set omnifunc=htmldjangocomplete#CompleteDjango
 let g:htmldjangocomplete_html_flavour = 'html5'
@@ -149,38 +125,51 @@ let g:vim_markdown_folding_style_pythonic = 1
 let g:vim_markdown_emphasis_multiline = 0
 let g:vim_markdown_math = 1
 let g:vim_markdown_frontmatter = 1
+let g:vim_markdown_new_list_item_indent = 0
 let g:vim_markdown_fenced_languages = ['c++=cpp', 'viml=vim', 'bash=sh', 'ini=dosini', 'ts=typescript', 'tsx=typescript']
+let g:vim_markdown_follow_anchor = 1
 
 set foldmethod=marker
 
 " {{{1 vim-typescript configs
-autocmd BufNewFile,BufRead *.tsx,*.jsx set filetype=typescript
+autocmd BufNewFile,BufRead *.tsx set filetype=typescript
 autocmd BufNewFile,BufRead /home/heyrict/Eric/MyPrograms/reactnativeproj/* set nowritebackup
 
 " {{{1 Ale Configs
 if $LAPTOP_MODE==0
-    let g:ale_lint_on_save=0
+    let g:ale_lint_on_save=1
     let g:ale_fix_on_save=1
     let g:ale_enabled=1
 else
+    let g:ale_lint_on_save=0
+    let g:ale_fix_on_save=0
     let g:ale_enabled=0
 endif
 
-let g:ale_java_javac_classpath='/opt/jdk1.8.0_181/bin/javac'
+"let g:ale_java_javac_classpath='/opt/jdk1.8.0_181/bin/javac'
 let g:ale_python_pylint_executable='pylint'
 "let g:ale_python_pylint_use_global=1
+let g:ale_python_pylint_options = '--rcfile /home/heyrict/.pylintrc'
 "let g:ale_python_yapf_use_global=1
 "let g:ale_javascript_prettier_use_global=1
 "let g:ale_javascript_eslint_use_global=1
+let g:ale_rust_cargo_use_clippy=executable('cargo-clippy')
+let g:ale_rust_rls_config = {
+\   'rust': {
+\     'clippy_preference': 'on'
+\   }
+\ }
 let g:ale_linters = {
 \   'javascript': [ 'eslint' ],
-\   'typescript': [ 'tslint' ],
+\   'typescript': [ 'tsserver' ],
+\   'rust': ['rls'],
 \   'html': [ 'tidy' ],
 \}
 let g:ale_fixers = {
 \   'javascript': [ 'prettier' ],
 \   'typescript': [ 'prettier' ],
 \   'json': [ 'prettier' ],
+\   'rust': ['rustfmt'],
 \   'python': [ 'isort' , 'yapf' ],
 \   'css': [ 'prettier' ],
 \}
@@ -207,7 +196,12 @@ elseif $TERM=="fbterm"
     let g:solarized_termcolors=256
     colorscheme solarized
 endif
-set background=dark
+
+if $BACKLIGHT=="light"
+    set background=light
+else
+    set background=dark
+endif
 
 " {{{1 Airline Configs
 let g:airline#extensions#tabline#enabled = 1
@@ -285,11 +279,11 @@ let g:tmuxline_preset = {
   \'b'       : '#W',
   \'win'     : '#I #W',
   \'cwin'    : '#I #W',
-  \'y'       : '#(cat /sys/class/backlight/intel_backlight/brightness)/#(cat /sys/class/backlight/intel_backlight/max_brightness)[#(cat /sys/class/power_supply/BAT1/capacity)%%]{#(cat /sys/class/power_supply/BAT1/power_now)}',
+  \'y'       : '#(cat /sys/class/backlight/intel_backlight/brightness)/#(cat /sys/class/backlight/intel_backlight/max_brightness)[#(cat /sys/class/power_supply/BAT1/capacity)%%]{#(cat /sys/class/power_supply/BAT1/power_now)}[#(cat /sys/class/power_supply/BAT1/status)]',
   \'z'       : '%Y-%m-%d %H:%M',
   \'options' : {'status-justify' : 'left'}}
 
-" {{{1 Tlist Variables
+" {{{1 taglist Variables
 "
 let Tlist_Auto_Highlight_Tag=1
 let Tlist_Auto_Open=0
@@ -302,7 +296,9 @@ let Tlist_File_Fold_Auto_Close=1
 let Tlist_Show_One_File=1
 let Tlist_Use_Right_Window=1
 let Tlist_Use_SingleClick=1
-command T TlistOpen
+let tlist_markdown_settings = 'markdown;h:h1;i:h2;j:h3;k:h4'
+let tlist_javascript_settings = 'javascript;s:const;c:class;l:let'
+"command T TlistOpen
 nnoremap <silent> <F8> :TlistToggle<CR>
 
 "" {{{1 vim-jsx Configs
@@ -324,28 +320,17 @@ let g:vim_jsx_pretty_colorful_config = 1
 " {{{1 YCM Variables
 
 "let g:ycm_autoclose_preview_window_after_completion = 1
-let g:ycm_key_invoke_completion = 'Tab'
-"let g:ycm_seed_identifiers_with_syntax=1
+let g:ycm_key_invoke_completion = 'jk'
+let g:ycm_seed_identifiers_with_syntax=1
 "let g:ycm_confirm_extra_conf=0
-let g:ycm_semantic_triggers =  {
-\   'c': ['->', '.'],
-\   'objc': ['->', '.', 're!\[[_a-zA-Z]+\w*\s', 're!^\s*[^\W\d]\w*\s',
-\            're!\[.*\]\s'],
-\   'ocaml': ['.', '#'],
-\   'cpp,cuda,objcpp': ['->', '.', '::'],
-\   'perl': ['->'],
-\   'php': ['->', '::'],
-\   'cs,d,elixir,go,groovy,java,javascript,julia,perl6,scala,typescript,vb': ['.'],
-\   'python': ['.', 're!import (\w+, ?)*\w{2,}'],
-\   'ruby,rust': ['.', '::'],
-\   'lua': ['.', ':'],
-\   'erlang': [':'],
-\ }
 "set completeopt=longest,menu
+set completeopt=menu
 
 nnoremap <silent> <F2> :YcmCompleter GetDoc<CR>
 nnoremap <silent> <F3> :YcmCompleter GetType<CR>
 nnoremap <silent> <F4> :YcmCompleter GoTo<CR>
+command Fix :YcmCompleter FixIt
+au filetype typescript nnoremap <silent> <F10> :YcmCompleter FixIt<CR>
 
 let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf.py'
 "let g:ycm_min_num_of_chars_for_completion = 2
@@ -387,7 +372,6 @@ let g:previm_custom_css_path = '~/Templates/solarized-light.min.css'
 
 " {{{1 NERDTree Configs
 "
-command F up | NERDTree
 nnoremap <silent> <F9> :NERDTreeToggle<CR>
 let g:NERDTreeQuitOnOpen = 1
 let g:NERDTreeIndicatorMapCustom = {
@@ -411,9 +395,85 @@ let g:NERDTreeIndicatorMapCustom = {
 "" \ ['REPORT(r)', 'BUG(b)', 'KNOWNCAUSE(k)', '|', 'FIXED(f)'],
 "" \ ['CANCELED(c)']]
 
+"" {{{1 vim-closetag Configs
+"let g:closetag_filenames = "*.html,*.xhtml,*.jsx,*.js,*.tsx,*.ts"
+"let g:closetag_regions = {
+"\ 'typescript': 'jsxRegion,tsxRegion',
+"\ 'javascript': 'jsxRegion',
+"\ }
+"let g:closetag_xhtml_filetypes = 'xhtml,javascript,typescript'
+
+" {{{1 Rust Configs
+let g:rust_fold = 1
+
+" {{{1 Custom Commands
+"
+" Run Command
+function RunFile()
+    up
+    if expand('%:e') == "py"
+        :exec '! python3 ' . @%
+    elseif expand('%:e') == "c"
+        :exec '! gcc ' . @% . ' -o ' . expand('%:r') . ".out ;gdb " . expand('%:r') . ".out"
+    elseif expand('%:e') == "cpp"
+        :exec '! g++ -std=c++11 ' . @% . ' -o ' . expand('%:r') . ".out ;gdb " . expand('%:r') . ".out"
+    elseif expand('%:e') == "rs"  "Rust
+        :exec 'RustRun'
+    elseif expand('%:e') == "kv"  "python kivy template file
+        if filereadable("main.py")
+            :exec "! python3 main.py"
+        else
+            :exec "! python3 " . expand('%:r') . "*.py"
+        endif
+    endif
+endfunction
+command Run :call RunFile()
+nnoremap g<C-R> :call RunFile()<cr>
+
+"function FMTHTML()
+"    w
+"    %s/%20/ /g
+"    %s/%7D/}/g
+"    %s/%7B/{/g
+"    %s/&quot\;/'/g
+"endfunction
+"command FMTHTML :call FMTHTML()
+
 " {{{1 Clean up white spaces before saving
-autocmd BufWritePre *.c,*.cpp,*.py,*.md,*.markdown,*.mkd,*.tex %s/\s\+$//e
+autocmd BufWritePre *.c,*.cpp,*.py,*.md,*.puml,*.tex %s/\s\+$//e
+
+" {{{1 auto pairs
+au Filetype rust let b:AutoPairs = {'(':')', '[':']', '{':'}','"':'"', '`':'`', '```':'```'}
 
 " {{{1 remap keys
 map <S-PageDown> :tabnext<cr>
 map <S-PageUp> :tabprevious<cr>
+
+"au FileType c,c++,rust,javascript,json,graphql inoremap {<cr> {<cr>}<up><end><cr>
+"au FileType c,c++,rust,javascript,json,graphql inoremap { {}<left>
+"au FileType c,c++,rust,python,javascript,graphql inoremap {<esc> {<esc>
+"au FileType c,c++,rust,javascript,json,graphql inoremap <expr> } strpart(getline('.'), col('.')-1, 1) == "}" ? "\<right>" : "}"
+"
+"au FileType c,c++,rust,javascript,json,graphql inoremap [<cr> [<cr>]<up><end><cr>
+"au FileType c,c++,rust,javascript,json,graphql inoremap [ []<left>
+"au FileType c,c++,rust,python,javascript,graphql inoremap [<esc> [<esc>
+"au FileType c,c++,rust,javascript,json,graphql inoremap <expr> ] strpart(getline('.'), col('.')-1, 1) == "]" ? "\<right>" : "]"
+"
+"au FileType c,c++,rust,python,javascript,graphql inoremap (<cr> (<cr>)<up><end><cr>
+"au FileType c,c++,rust,python,javascript,graphql inoremap ( ()<left>
+"au FileType c,c++,rust,python,javascript,graphql inoremap (<esc> (<esc>
+"au FileType c,c++,rust,python,javascript,graphql inoremap <expr> ) strpart(getline('.'), col('.')-1, 1) == ")" ? "\<right>" : ")"
+"
+"" html tags
+"au FileType javascript,html inoremap < <><left>
+"au FileType javascript,html inoremap <<space> <<space>
+""au FileType javascript,html inoremap </ < /><left><left><left>
+"au FileType javascript,html inoremap <expr> > strpart(getline('.'), col('.')-1, 1) == ">" ? "\<right>" : ">"
+"au FileType javascript,html inoremap <expr> <cr> match(getline('.'), '<[^/ ]\+>') >= 0 ? '<cr>/<esc>O' : '<cr>'
+
+" wrapping
+vnoremap _( <esc>`>a)<esc>`<i(<esc>
+vnoremap _[ <esc>`>a]<esc>`<i[<esc>
+vnoremap _{ <esc>`>a}<esc>`<i{<esc>
+vnoremap _* <esc>`>a**<esc>`<i**<esc>
+vnoremap _+ <esc>`>a*<esc>`<i*<esc>

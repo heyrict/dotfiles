@@ -21,11 +21,27 @@ export NLTK_DATA="/media/heyrict/LENOVO/Data/NLTK"
 export LAPTOP_MODE="$(cat /proc/sys/vm/laptop_mode)"
 
 # node with global node_modules
-alias gnode="NODE_PATH="/home/heyrict/.nvm/versions/node/v10.7.0/lib/node_modules/" node"
+alias gnode="NODE_PATH=\"/home/heyrict/.nvm/versions/node/v10.7.0/lib/node_modules/\" node"
 
 # Mimic xbox360 driver with SHANWAN Generic joystick using xboxdrv
 alias mimic-xpad="sudo xboxdrv --evdev /dev/input/by-id/usb-SHANWAN_Android_Gamepad-event-joystick --evdev-absmap ABS_X=x1,ABS_Y=y1,ABS_RZ=x2,ABS_Z=y2,ABS_HAT0X=dpad_x,ABS_HAT0Y=dpad_y --axismap -Y1=Y1,-Y2=Y2 --evdev-keymap BTN_NORTH=x,BTN_WEST=y,BTN_EAST=a,BTN_SOUTH=b,BTN_THUMBL=tl,BTN_THUMBR=tr,BTN_TL=lt,BTN_TR=rt,BTN_TL2=lb,BTN_TR2=rb,BTN_SELECT=back,BTN_MODE=guide,BTN_START=start --axis-sensitivity Y1=-0.6,Y2=-0.6,X1=-0.6,X2=-0.6 --mimic-xpad --silent --detach-kernel-driver"
 alias mimic-keyboard="sudo xboxdrv --evdev /dev/input/by-id/usb-SHANWAN_Android_Gamepad-event-joystick --evdev-absmap ABS_X=x1,ABS_Y=y1,ABS_RZ=x2,ABS_Z=y2,ABS_HAT0X=dpad_x,ABS_HAT0Y=dpad_y --axismap -Y1=Y1,-Y2=Y2 --evdev-keymap BTN_NORTH=x,BTN_WEST=y,BTN_EAST=a,BTN_SOUTH=b,BTN_THUMBL=tl,BTN_THUMBR=tr,BTN_TL=lt,BTN_TR=rt,BTN_TL2=lb,BTN_TR2=rb,BTN_SELECT=back,BTN_MODE=guide,BTN_START=start --axis-sensitivity Y1=-0.6,Y2=-0.6,X1=-0.6,X2=-0.6 --dpad-as-button --trigger-as-button --ui-axismap x1=KEY_LEFT:KEY_RIGHT,y1=KEY_UP:KEY_DOWN,x2=KEY_A:KEY_D,y2=KEY_W:KEY_S,trigger=REL_WHEEL:5:100 --ui-buttonmap a=KEY_X,b=KEY_C,x=KEY_S,y=KEY_A,rb=KEY_PAGEDOWN,lb=KEY_PAGEUP,lt=BTN_LEFT,rt=KEY_ESC,tl=KEY_T,tr=KEY_Y,dl=KEY_LEFT,dr=KEY_RIGHT,du=KEY_UP,dd=KEY_DOWN,start=KEY_FORWARD,back=KEY_BACK,guide=KEY_ESC --silent --detach-kernel-driver"
+alias mimic-xbox="sudo xboxdrv \
+   --evdev /dev/input/by-id/usb-Sony_Interactive_Entertainment_Wireless_Controller-event-if03\
+   --evdev-absmap ABS_X=x1,ABS_Y=y1                 \
+   --evdev-absmap ABS_Z=x2,ABS_RZ=y2                \
+   --evdev-absmap ABS_HAT0X=dpad_x,ABS_HAT0Y=dpad_y \
+   --evdev-keymap BTN_A=x,BTN_B=a                   \
+   --evdev-keymap BTN_C=b,BTN_X=y                   \
+   --evdev-keymap BTN_Y=lb,BTN_Z=rb                 \
+   --evdev-keymap BTN_TL=lt,BTN_TR=rt               \
+   --evdev-keymap BTN_SELECT=tl,BTN_START=tr        \
+   --evdev-keymap BTN_TL2=back,BTN_TR2=start        \
+   --evdev-keymap BTN_MODE=guide                    \
+   --axismap -y1=y1,-y2=y2                          \
+   --mimic-xpad                                     \
+   --silent
+"
 
 # virtualenv
 activate() {
@@ -83,12 +99,14 @@ alias fetch_trackers='sed -i "s@^\(bt-tracker=\).*@\1$(curl -s -L https://raw.gi
 alias git_log="git log --oneline --all --decorate --graph"
 
 # 8-bit color for fbterm
-alias eight-dark='TERM=fbterm; echo -e "\e]R \e]P0002B36 \e]P7839496"; clear'
-alias eight-light='TERM=fbterm; echo -e "\e]R \e]P0FDF6E3 \e]P7657B83"; clear'
+alias eight-dark='export TERM=fbterm; export BACKLIGHT=dark; echo -e "\e]R \e]P0002B36 \e]P7839496"; clear'
+alias eight-light='export TERM=fbterm; export BACKLIGHT=light; echo -e "\e]R \e]P0FDF6E3 \e]P7657B83"; clear'
 alias eight='eight-dark'
+alias bg-dark="export BACKLIGHT=dark"
+alias bg-light="export BACKLIGHT=light; export TASKRC=~/.lighttaskrc;"
 
-alias viml='\vim -c "set background=light"'
-alias vimd='\vim -c "set background=dark"'
+#alias viml='\vim -c "set background=light"'
+#alias vimd='\vim -c "set background=dark"'
 #alias vim='vimd'
 
 # 256 color for tmux
@@ -118,15 +136,15 @@ alias coloritpy='colorit -c ~/Templates/python.coloritrc'
 
 # pandoc template
 #eval "$(pandoc --bash-completion)"
-#alias pandoc2chspdf="pandoc --template=$HOME/模板/chs_template.tex --latex-engine=xelatex -M 'CJKmainfont:WenQuanYi Micro Hei' --biblio $HOME/Tex/MyRef.bib"
+#alias pandoc2chspdf="pandoc --template=$HOME/模板/chs_template.tex --pdf-engine=xelatex -M 'CJKmainfont:WenQuanYi Micro Hei' --biblio $HOME/Tex/MyRef.bib"
 alias pandoc="pandoc --filter pandoc-tablenos -s"
 alias pandoc2mermaid="pandoc -c ~/Templates/github-pandoc.css --template ~/Templates/mermaid_template.html5 --filter pandoc-mermaid"
-alias pandoc2mermaidpdf="pandoc --filter pandoc-imagine --latex-engine=xelatex -M 'CJKmainfont:WenQuanYi Micro Hei'"
-alias pandoc2chs="pandoc --latex-engine=xelatex -M 'CJKmainfont:WenQuanYi Micro Hei' --biblio $HOME/Tex/MyRef.bib"
+alias pandoc2mermaidpdf="pandoc --filter pandoc-imagine --pdf-engine=xelatex -M 'CJKmainfont:WenQuanYi Micro Hei'"
+alias pandoc2chs="pandoc --pdf-engine=xelatex -M 'CJKmainfont:WenQuanYi Micro Hei' --biblio $HOME/Tex/MyRef.bib"
 alias pandoc2chspdf="pandoc2chs --template=$HOME/.pandoc/default.latex ~/pandoc_markdown/CHS_METADATA.yaml"
 
 # often-use programs
-export PATH=$PATH:~/Eric/MyPrograms/bin:~/Eric/Program_Files/bin:/opt/android-ndk-r10e:~/Qt5.9.1/Tools/QtCreator/bin:~/Qt5.9.1/5.9.1/gcc_64/bin:$HOME/Android/platform-tools
+export PATH=$PATH:~/Eric/MyPrograms/bin:~/Eric/Program_Files/bin:$HOME/Android/platform-tools:~/Eric/Program_Files/java-jars
 
 # fbterm preference
 #alias white_fontcolor="echo -en \"\e]P7ffffff\""
@@ -141,21 +159,25 @@ alias octave="octave --no-gui"
 #alias rm="rm-p"
 
 # ppsspp savedata control
-alias ppsspp="test -d /media/heyrict/LENOVO/Eric/psp/ && ppsspp || echo 'Folder not exist: /media/heyrict/LENOVO/Eric/psp/, exit.'"
-alias PPSSPP="ppsspp"
+#alias ppsspp="test -d /media/heyrict/LENOVO/Eric/psp/ && ppsspp || echo 'Folder not exist: /media/heyrict/LENOVO/Eric/psp/, exit.'"
+#alias PPSSPP="ppsspp"
 
 # nds savedata control
-alias backup_microsd="\cp -uv /media/heyrict/R4/rom/*.SAV /home/heyrict/Eric/backup/nds/; \cp -uv /media/heyrict/R4/rom/*.SAV /media/heyrict/LENOVO/Eric/nds/microSD\ backup/rom/"
+alias backup_microsd="\cp -puv /media/heyrict/R4/rom/*.SAV /home/heyrict/Eric/backup/nds/; \cp -puv /media/heyrict/R4/rom/*.SAV /media/heyrict/LENOVO/Eric/nds/microSD\ backup/rom/"
 
 # backup savedata
-alias backup_savedata="\cp -uv ~/Eric/backup/nds/* ~/NutStore/backup/nds/; \cp -uvr /media/heyrict/LENOVO/Eric/ps2/PCSX2\ 1.4.0/memcards/*.ps2 ~/NutStore/backup/ps2; \cp -uvr /media/heyrict/LENOVO/Eric/psp/memstick/PSP/SAVEDATA/ ~/NutStore/backup/psp; \cp -uvr /media/heyrict/LENOVO/Eric/ps3/dev_hdd0/home/ ~/NutStore/backup/ps3"
+#alias backup_savedata="\cp -puv ~/Eric/backup/nds/* ~/NutStore/backup/nds/; \cp -puvr /media/heyrict/LENOVO/Eric/ps2/PCSX2\ 1.4.0/memcards/*.ps2 ~/NutStore/backup/ps2; \cp -puvr /media/heyrict/LENOVO/Eric/psp/memstick/PSP/SAVEDATA/ ~/NutStore/backup/psp; \cp -puvr /media/heyrict/LENOVO/Eric/ps3/dev_hdd0/home/ ~/NutStore/backup/ps3; rm ~/NutStore/backup/ps3/home/*/trophy/*/TROP*.PNG"
+alias backup_savedata="rsync -pui ~/Eric/backup/nds/* ~/NutStore/backup/nds/; rsync -puir /media/heyrict/LENOVO/Eric/ps2/PCSX2\ 1.4.0/memcards/*.ps2 ~/NutStore/backup/ps2; rsync -puir /media/heyrict/LENOVO/Eric/psp/memstick/PSP/SAVEDATA/ ~/NutStore/backup/psp; rsync -puvr --exclude=TROP*.PNG /media/heyrict/LENOVO/Eric/ps3/dev_hdd0/home/* ~/NutStore/backup/ps3; rsync -puir /media/heyrict/LENOVO/Eric/wii/Dolphin-x64/Sys/Wii/title/ ~/NutStore/backup/wii"
+
+# sync android savedata files
+alias android_push="\cp -puvr /media/heyrict/LENOVO/Eric/psp/memstick/PSP/SAVEDATA/ /tmp/psp_android_sync; adb push --sync /tmp/psp_android_sync/* /sdcard/Download/RetroGames/psp/memstick/PSP/SAVEDATA/; rm -r /tmp/psp_android_sync"
 
 # pipe dict to less
-d(){ dict $* | less; }
+d(){ dict $* | colorit | less -R; }
 
 # cd to specified directories
 alias wd="cd /home/heyrict/Eric/MyPrograms"
-alias cindy="cd /home/heyrict/Eric/MyPrograms/django/cindy"
+alias cindy="cd /home/heyrict/Eric/MyPrograms/web/cindy"
 
 #excute_program_in_specific_dir(){
 #local curdir=$(pwd)
@@ -235,7 +257,8 @@ alias cindy="cd /home/heyrict/Eric/MyPrograms/django/cindy"
 
 # brightness
 
-alias set_brightness="sudoedit /sys/class/backlight/intel_backlight/brightness"
+alias set_brightness="vim /sys/class/backlight/intel_backlight/brightness"
+alias backlight_off="xset dpms force off"
 #show_brightness(){
 #    echo $(cat /sys/class/backlight/intel_backlight/brightness):$(cat /sys/class/backlight/intel_backlight/max_brightness)
 #}
@@ -288,6 +311,9 @@ else
     browse https://www.ncbi.nlm.nih.gov/pubmed?term=${str:1}
 fi
 }
+pmid(){
+    browse https://www.ncbi.nlm.nih.gov/pubmed/$1
+}
 
 #ncbi(){
 #if test $# -eq 0
@@ -334,4 +360,4 @@ fi
 #    done
 #    echo
 #}
-
+alias increase_inotify="sudo sysctl -w fs.inotify.max_user_watches=100000"

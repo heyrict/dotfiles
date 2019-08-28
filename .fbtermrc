@@ -11,7 +11,7 @@
 #font-names=Monaco:style=Testo normale, Tlwg Mono:style=Bold Fallback
 font-names=WenQuanYi Micro Hei Mono,Monaco:style=Normaali,Tlwg Mono:style=Bold Fallback
 #font-names=DejaVu Sans Mono,Droid Sans Fallback
-font-size=15
+font-size=14
 
 # force font width (and/or height), usually for non-fixed width fonts
 # legal value format: n (fw_new = n), +n (fw_new = fw_old + n), -n (fw_new = fw_old - n)
