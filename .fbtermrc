@@ -9,7 +9,7 @@
 #font-names=mono
 #font-names=Tlwg Mono:style=Bold, DejaVu Sans Mono:style=Bold, Ubuntu Mono:style=Bold, WenQuanYi Micro Hei Mono Fallback
 #font-names=Monaco:style=Testo normale, Tlwg Mono:style=Bold Fallback
-font-names=WenQuanYi Micro Hei Mono,Monaco:style=Normaali,Tlwg Mono:style=Bold Fallback
+font-names=WenQuanYi Micro Hei Mono,Monaco:style=Normaali Fallback
 #font-names=DejaVu Sans Mono,Droid Sans Fallback
 font-size=14
 

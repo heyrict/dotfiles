@@ -1,3 +1,5 @@
+" vim:foldmethod=marker
+
 " {{{1 Change Default Language
 language en_US.utf8
 
@@ -34,14 +36,20 @@ Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
 " Customized Plugins
 "
 " Auto Complete
-Plugin 'Valloric/YouCompleteMe'
+"Plugin 'Valloric/YouCompleteMe'
+"Plugin 'Shougo/deoplete.nvim'
+"Plugin 'tbodt/deoplete-tabnine'
+Plugin 'neoclide/coc.nvim'
+
+"Plugin 'zxqfl/tabnine-vim'
 "Plugin 'davidhalter/jedi-vim'
 "Plugin 'maralla/completor.vim'
 "Plugin 'artur-shaik/vim-javacomplete2'
 " Previm
 Plugin 'kannokanno/previm'
 " Tlist
-Plugin 'taglist-plus'
+"Plugin 'taglist-plus'
+Plugin 'majutsushi/tagbar'
 " STL references
 "Plugin 'stlrefvim'
 " autoswitch fcitx-remote
@@ -60,6 +68,9 @@ Plugin 'pangloss/vim-javascript'
 Plugin 'MaxMEllon/vim-jsx-pretty'
 "Plugin 'mxw/vim-jsx'
 Plugin 'jparise/vim-graphql'
+" For Typescript
+"Plugin 'leafgarland/typescript-vim'
+"Plugin 'peitalin/vim-jsx-typescript'
 
 "Plugin 'alvan/vim-closetag'
 
@@ -73,16 +84,13 @@ Plugin 'edkolev/tmuxline.vim'
 Plugin 'vim-airline/vim-airline-themes'
 "
 " ALE
-Plugin 'w0rp/ale'
+"Plugin 'w0rp/ale'
 
 " For htmldjango
 "Plugin 'mjbrownie/vim-htmldjango_omnicomplete'
 " For markdown
 Plugin 'godlygeek/tabular'
 Plugin 'plasticboy/vim-markdown'
-" For Typescript
-Plugin 'leafgarland/typescript-vim'
-Plugin 'peitalin/vim-jsx-typescript'
 
 " Orgmod
 "Plugin 'jceb/vim-orgmode'
@@ -126,53 +134,114 @@ let g:vim_markdown_emphasis_multiline = 0
 let g:vim_markdown_math = 1
 let g:vim_markdown_frontmatter = 1
 let g:vim_markdown_new_list_item_indent = 0
-let g:vim_markdown_fenced_languages = ['c++=cpp', 'viml=vim', 'bash=sh', 'ini=dosini', 'ts=typescript', 'tsx=typescript']
+let g:vim_markdown_fenced_languages = ['c++=cpp', 'viml=vim', 'bash=sh', 'ini=dosini', 'tsx=typescript.tsx']
 let g:vim_markdown_follow_anchor = 1
 
-set foldmethod=marker
+autocmd filetype typescript,javascript,typescript.jsx,javascript.jsx,python set foldmethod=marker
 
 " {{{1 vim-typescript configs
-autocmd BufNewFile,BufRead *.tsx set filetype=typescript
+autocmd BufNewFile,BufRead *.tsx set filetype=typescript.tsx
 autocmd BufNewFile,BufRead /home/heyrict/Eric/MyPrograms/reactnativeproj/* set nowritebackup
 
-" {{{1 Ale Configs
-if $LAPTOP_MODE==0
-    let g:ale_lint_on_save=1
-    let g:ale_fix_on_save=1
-    let g:ale_enabled=1
-else
-    let g:ale_lint_on_save=0
-    let g:ale_fix_on_save=0
-    let g:ale_enabled=0
-endif
-
-"let g:ale_java_javac_classpath='/opt/jdk1.8.0_181/bin/javac'
-let g:ale_python_pylint_executable='pylint'
+"" {{{1 Ale Configs
+"if $LAPTOP_MODE==0
+"    let g:ale_lint_on_save=1
+"    let g:ale_fix_on_save=1
+"    let g:ale_enabled=1
+"else
+"    let g:ale_lint_on_text_changed=0
+"    let g:ale_lint_on_insert_leave=0
+"    let g:ale_lint_on_enter=0
+"    let g:ale_lint_on_save=1
+"    let g:ale_fix_on_save=1
+"    let g:ale_enabled=1
+"endif
+"
+"set omnifunc=ale#completion#OmniFunc
+""inoremap jk <C-X><C-O>
+"imap jk <Plug>(ale_complete)
+"nnoremap <silent> <F2> :ALEHover<CR>
+"nnoremap <silent> <F3> :ALEDocumentation<CR>
+"nnoremap <silent> <F4> :if &mod \| :ALEGoToDefinitionInSplit \| else \| :ALEGoToDefinition \| endif<CR>
+"
+"" Tab to complete
+"inoremap <silent><expr> <TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
+"
+"let g:ale_completion_enabled = 1
+"let g:ale_completion_tsserver_autoimport = 1
+"let g:ale_linters = {
+"\   'javascript': [ 'eslint' ],
+"\   'typescript': [ 'tsserver' ],
+"\   'rust': [ 'rls' ],
+"\   'html': [ 'tidy' ],
+"\   'python': [ 'pyls' ]
+"\}
+"
+""let g:ale_java_javac_classpath='/opt/jdk1.8.0_181/bin/javac'
 "let g:ale_python_pylint_use_global=1
-let g:ale_python_pylint_options = '--rcfile /home/heyrict/.pylintrc'
+"let g:ale_python_pylint_options = '--rcfile /home/heyrict/.pylintrc'
 "let g:ale_python_yapf_use_global=1
-"let g:ale_javascript_prettier_use_global=1
-"let g:ale_javascript_eslint_use_global=1
-let g:ale_rust_cargo_use_clippy=executable('cargo-clippy')
-let g:ale_rust_rls_config = {
-\   'rust': {
-\     'clippy_preference': 'on'
-\   }
-\ }
-let g:ale_linters = {
-\   'javascript': [ 'eslint' ],
-\   'typescript': [ 'tsserver' ],
-\   'rust': ['rls'],
-\   'html': [ 'tidy' ],
-\}
-let g:ale_fixers = {
-\   'javascript': [ 'prettier' ],
-\   'typescript': [ 'prettier' ],
-\   'json': [ 'prettier' ],
-\   'rust': ['rustfmt'],
-\   'python': [ 'isort' , 'yapf' ],
-\   'css': [ 'prettier' ],
-\}
+""let g:ale_javascript_prettier_use_global=1
+""let g:ale_javascript_eslint_use_global=1
+"let g:ale_fixers = {
+"\   'javascript': [ 'prettier' ],
+"\   'typescript': [ 'prettier' ],
+"\   'json': [ 'prettier' ],
+"\   'rust': [ 'rustfmt' ],
+"\   'python': [ 'isort' , 'yapf' ],
+"\   'css': [ 'prettier' ],
+"\}
+
+" {{{1 Coc Configs
+"inoremap jk <C-X><C-O>
+nnoremap <silent> <F3> :ALEDocumentation<CR>
+nnoremap <silent> <F4> :if &mod \| <Plug>(coc-definition) \| else \| :ALEGoToDefinition \| endif<CR>
+" Remap keys for gotos
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+" Use K to show documentation in preview window
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+    if (index(['vim','help'], &filetype) >= 0)
+        execute 'h '.expand('<cword>')
+    else
+        call CocAction('doHover')
+    endif
+endfunction
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+" Tab to complete
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+" Formatting
+command! -nargs=0 Fix :CocFix
+command! -nargs=0 Fmt :call CocAction('format')
+command! -nargs=0 Organize   :call     CocAction('runCommand', 'editor.action.organizeImport')
+
+" Diagnostics navigation
+nmap <silent> <space>[ <Plug>(coc-diagnostic-prev)
+nmap <silent> <space>] <Plug>(coc-diagnostic-next)
+
+" Maybe related to signature
+augroup coc_group
+  autocmd!
+  " Setup formatexpr specified filetype(s).
+  "autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
+  " Update signature help on jump placeholder
+  autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+augroup end
 
 " {{{1 Solarized Color Scheme Configs
 let g:solarized_visibility="high"
@@ -180,10 +249,11 @@ call togglebg#map("<F5>")
 syntax enable
 if $TERM=="screen-256color"
     let g:solarized_termcolors=256
+    let g:solarized_termtrans=1
     colorscheme solarized
 elseif $TERM=="xterm-256color"
-    colorscheme solarized
     let g:solarized_termtrans=1
+    colorscheme solarized
 elseif $TERM=="xterm"
     let g:solarized_termtrans=1
     let g:solarized_termcolors=256
@@ -210,12 +280,16 @@ let g:airline_detect_modified=1
 "let g:airline_section_b = '%-0.10{getcwd()}'
 "let g:airline_section_c = '%t'
 "let g:airline_section_c = airline#section#create(['%{cat /sys/class/power_supply/BAT1/capacity}'])
+let g:airline_powerline_fonts = 1
 let g:airline#extensions#wordcount#enabled = 0
 "let g:airline#extensions#wordcount#format = '%d words'
 if $TMUX!=""
     let g:airline#extensions#tmuxline#enabled = 1
     let airline#extensions#tmuxline#snapshot_file = "~/.tmuxline.snapshot"
 endif
+"if g:ale_enabled==1
+"    let g:airline#extensions#ale#enabled = 1
+"endif
 if $TERM=="linux"
     set t_Co=16
     let g:airline_theme='wombat'
@@ -227,23 +301,23 @@ else
     let g:airline_theme='solarized'
 endif
 
-if $TERM=="linux"
-    if !exists('g:airline_symbols')
-        let g:airline_symbols = {}
-    endif
-    let g:airline_left_sep = '>'
-    let g:airline_left_alt_sep = ''
-    let g:airline_right_sep = '<'
-    let g:airline_right_alt_sep = ''
-    let g:airline_symbols.branch = '@'
-    let g:airline_symbols.readonly = '[ro]'
-    let g:airline_symbols.linenr = '|'
-    let g:airline_symbols.crypt = '[l]'
-    let g:airline_symbols.maxlinenr = ' {ln}'
-    let g:airline_symbols.paste = '[p]'
-    let g:airline_symbols.spell = '[s]'
-    let g:airline_symbols.notexists = '[ne]'
-    let g:airline_symbols.whitespace = ''
+"if $TERM=="linux"
+"    if !exists('g:airline_symbols')
+"        let g:airline_symbols = {}
+"    endif
+"    let g:airline_left_sep = '>'
+"    let g:airline_left_alt_sep = ''
+"    let g:airline_right_sep = '<'
+"    let g:airline_right_alt_sep = ''
+"    let g:airline_symbols.branch = '@'
+"    let g:airline_symbols.readonly = '[ro]'
+"    let g:airline_symbols.linenr = '|'
+"    let g:airline_symbols.crypt = '[l]'
+"    let g:airline_symbols.maxlinenr = ' {ln}'
+"    let g:airline_symbols.paste = '[p]'
+"    let g:airline_symbols.spell = '[s]'
+"    let g:airline_symbols.notexists = '[ne]'
+"    let g:airline_symbols.whitespace = ''
 "else
 "    let g:airline_left_sep = '»'
 "    let g:airline_right_sep = '«'
@@ -255,24 +329,24 @@ if $TERM=="linux"
 "    let g:airline_symbols.spell = 'Ꞩ'
 "    let g:airline_symbols.notexists = '∄'
 "    let g:airline_symbols.whitespace = 'Ξ'
-endif
+"endif
 
 " {{{1 tmuxline Configs
-if $TERM == "linux"
-    let g:tmuxline_separators = {
-      \ 'left' : '>',
-      \ 'left_alt': '',
-      \ 'right' : '<',
-      \ 'right_alt' : '',
-      \ 'space' : ' '}
-else
-    let g:tmuxline_separators = {
-      \ 'left' : '»',
-      \ 'left_alt': '',
-      \ 'right' : '«',
-      \ 'right_alt' : '',
-      \ 'space' : ' '}
-endif
+"if $TERM == "linux"
+"    let g:tmuxline_separators = {
+"      \ 'left' : '>',
+"      \ 'left_alt': '',
+"      \ 'right' : '<',
+"      \ 'right_alt' : '',
+"      \ 'space' : ' '}
+"else
+"    let g:tmuxline_separators = {
+"      \ 'left' : '»',
+"      \ 'left_alt': '',
+"      \ 'right' : '«',
+"      \ 'right_alt' : '',
+"      \ 'space' : ' '}
+"endif
 
 let g:tmuxline_preset = {
   \'a'       : '#S',
@@ -283,23 +357,70 @@ let g:tmuxline_preset = {
   \'z'       : '%Y-%m-%d %H:%M',
   \'options' : {'status-justify' : 'left'}}
 
-" {{{1 taglist Variables
-"
-let Tlist_Auto_Highlight_Tag=1
-let Tlist_Auto_Open=0
-let Tlist_Auto_Update=1
-let Tlist_Close_On_Select=1
-let Tlist_Display_Tag_Scope=1
-let Tlist_Exit_OnlyWindow=1
-let Tlist_Enable_Dold_Column=1
-let Tlist_File_Fold_Auto_Close=1
-let Tlist_Show_One_File=1
-let Tlist_Use_Right_Window=1
-let Tlist_Use_SingleClick=1
-let tlist_markdown_settings = 'markdown;h:h1;i:h2;j:h3;k:h4'
-let tlist_javascript_settings = 'javascript;s:const;c:class;l:let'
-"command T TlistOpen
-nnoremap <silent> <F8> :TlistToggle<CR>
+"" {{{1 taglist Variables
+""
+"let Tlist_Auto_Highlight_Tag=1
+"let Tlist_Auto_Open=0
+"let Tlist_Auto_Update=1
+"let Tlist_Close_On_Select=1
+"let Tlist_Display_Tag_Scope=1
+"let Tlist_Exit_OnlyWindow=1
+"let Tlist_Enable_Dold_Column=1
+"let Tlist_File_Fold_Auto_Close=1
+"let Tlist_Show_One_File=1
+"let Tlist_Use_Right_Window=1
+"let Tlist_Use_SingleClick=1
+"let tlist_markdown_settings = 'markdown;h:h1;i:h2;j:h3;k:h4'
+"let tlist_javascript_settings = 'javascript;s:const;c:class;l:let'
+""command T TlistOpen
+"nnoremap <silent> <F8> :TlistToggle<CR>
+
+" {{{1 tagbar Variables
+nnoremap <silent> <F8> :TagbarToggle<CR>
+let g:tagbar_type_markdown = {
+    \ 'ctagstype': 'markdown',
+    \ 'kinds' : [
+        \ 'c:h1',
+        \ 's:h2',
+        \ 'S:h3',
+        \ 't:h4',
+        \ 'T:h5',
+        \ 'u:h6',
+    \ ],
+\ }
+
+let g:tagbar_type_rust = {
+\ 'ctagstype' : 'rust',
+\ 'kinds' : [
+    \ 'n:modules',
+    \ 's:structures:1',
+    \ 'i:interfaces',
+    \ 'c:implementations',
+    \ 'f:functions:1',
+    \ 'g:enumerations:1',
+    \ 't:type aliases:1:0',
+    \ 'v:constants:1:0',
+    \ 'M:macros:1',
+    \ 'm:fields:1:0',
+    \ 'e:enum variants:1:0',
+    \ 'P:methods:1',
+\ ],
+\ 'sro': '::',
+\ 'kind2scope' : {
+    \ 'n': 'module',
+    \ 's': 'struct',
+    \ 'i': 'interface',
+    \ 'c': 'implementation',
+    \ 'f': 'function',
+    \ 'g': 'enum',
+    \ 't': 'typedef',
+    \ 'v': 'variable',
+    \ 'M': 'macro',
+    \ 'm': 'field',
+    \ 'e': 'enumerator',
+    \ 'P': 'method',
+\ },
+\ }
 
 "" {{{1 vim-jsx Configs
 "let g:jsx_ext_required = 0
@@ -317,24 +438,36 @@ let g:vim_jsx_pretty_colorful_config = 1
 "let g:jedi#completions_command = "<Tab>"
 "let g:jedi#rename_command = "<leader>r"
 
-" {{{1 YCM Variables
+"" {{{1 YCM Variables
+""let g:ycm_autoclose_preview_window_after_completion = 1
+"let g:ycm_key_invoke_completion = 'jk'
+"let g:ycm_seed_identifiers_with_syntax=1
+""let g:ycm_confirm_extra_conf=0
+""set completeopt=longest,menu
+"set completeopt=menu
+"
+"nnoremap <silent> <F2> :YcmCompleter GetDoc<CR>
+"nnoremap <silent> <F3> :YcmCompleter GetType<CR>
+"nnoremap <silent> <F4> :YcmCompleter GoTo<CR>
+"command Fix :YcmCompleter FixIt
+"
+"let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf.py'
+""let g:ycm_min_num_of_chars_for_completion = 2
 
-"let g:ycm_autoclose_preview_window_after_completion = 1
-let g:ycm_key_invoke_completion = 'jk'
-let g:ycm_seed_identifiers_with_syntax=1
-"let g:ycm_confirm_extra_conf=0
-"set completeopt=longest,menu
-set completeopt=menu
-
-nnoremap <silent> <F2> :YcmCompleter GetDoc<CR>
-nnoremap <silent> <F3> :YcmCompleter GetType<CR>
-nnoremap <silent> <F4> :YcmCompleter GoTo<CR>
-command Fix :YcmCompleter FixIt
-au filetype typescript nnoremap <silent> <F10> :YcmCompleter FixIt<CR>
-
-let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf.py'
-"let g:ycm_min_num_of_chars_for_completion = 2
-filetype plugin on
+"" {{{1 Deoplete Variables
+"if has('nvim')
+"  let g:deoplete#enable_at_startup=1
+"
+"  " Tab to complete
+"  inoremap <silent><expr> <TAB>
+"              \ pumvisible() ? "\<C-n>" :
+"              \ <SID>check_back_space() ? "\<TAB>" :
+"              \ deoplete#mappings#manual_complete()
+"  function! s:check_back_space() abort "{{{
+"      let col = col('.') - 1
+"      return !col || getline('.')[col - 1]  =~ '\s'
+"  endfunction"}}}
+"endif
 
 
 " {{{1 Completor.vim Configs
@@ -358,8 +491,9 @@ set number
 set timeout ttimeoutlen=50
 set backspace=indent,eol,start
 
-autocmd Filetype html,htmldjango,json,javascript,typescript,css set tabstop=2 shiftwidth=2
-autocmd Filetype markdown,csv set keywordprg=dict
+autocmd Filetype html,htmldjango,json,javascript,typescript,typescript.tsx,css,yaml set tabstop=2 shiftwidth=2
+"autocmd Filetype markdown,csv set keywordprg=dict
+autocmd Filetype markdown,csv set keywordprg=trans\ -d\ -no-ansi\ :zh
 
 set encoding=utf-8 fileencodings=ucs-bom,utf-8,cp936
 
@@ -406,19 +540,26 @@ let g:NERDTreeIndicatorMapCustom = {
 " {{{1 Rust Configs
 let g:rust_fold = 1
 
+" {{{1 Justfile
+autocmd BufNewFile,BufRead justfile set filetype=make
+
 " {{{1 Custom Commands
 "
 " Run Command
+command -nargs=* CargoRun update | execute "!cargo run" <q-args>
+
 function RunFile()
     up
-    if expand('%:e') == "py"
+    if &ft == "python"
         :exec '! python3 ' . @%
-    elseif expand('%:e') == "c"
+    elseif &ft == "c"
         :exec '! gcc ' . @% . ' -o ' . expand('%:r') . ".out ;gdb " . expand('%:r') . ".out"
-    elseif expand('%:e') == "cpp"
+    elseif &ft == "cpp"
         :exec '! g++ -std=c++11 ' . @% . ' -o ' . expand('%:r') . ".out ;gdb " . expand('%:r') . ".out"
-    elseif expand('%:e') == "rs"  "Rust
-        :exec 'RustRun'
+    elseif &ft == "rust"
+        :exec '! cargo run'
+    elseif &ft == "tex"
+        :exec '! xelatex ' . @% . ";evince " . expand('%:r') . ".pdf"
     elseif expand('%:e') == "kv"  "python kivy template file
         if filereadable("main.py")
             :exec "! python3 main.py"
@@ -449,6 +590,8 @@ au Filetype rust let b:AutoPairs = {'(':')', '[':']', '{':'}','"':'"', '`':'`', 
 map <S-PageDown> :tabnext<cr>
 map <S-PageUp> :tabprevious<cr>
 
+nnoremap gh :nohlsearch<CR>
+
 "au FileType c,c++,rust,javascript,json,graphql inoremap {<cr> {<cr>}<up><end><cr>
 "au FileType c,c++,rust,javascript,json,graphql inoremap { {}<left>
 "au FileType c,c++,rust,python,javascript,graphql inoremap {<esc> {<esc>
@@ -477,3 +620,4 @@ vnoremap _[ <esc>`>a]<esc>`<i[<esc>
 vnoremap _{ <esc>`>a}<esc>`<i{<esc>
 vnoremap _* <esc>`>a**<esc>`<i**<esc>
 vnoremap _+ <esc>`>a*<esc>`<i*<esc>
+
