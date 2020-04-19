@@ -1,0 +1,4 @@
+# Zoxide, for changing directorys easier. needs `zoxier` binary in path.
+ajeetdsouza/zoxide
+# Additional completion scripts
+#zsh-users/zsh-completions
