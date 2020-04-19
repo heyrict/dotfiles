@@ -36,10 +36,12 @@ Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
 " Customized Plugins
 "
 " Auto Complete
-"Plugin 'Valloric/YouCompleteMe'
-"Plugin 'Shougo/deoplete.nvim'
-"Plugin 'tbodt/deoplete-tabnine'
-Plugin 'neoclide/coc.nvim'
+if getenv("NOCOMPL") == v:null
+  "Plugin 'Valloric/YouCompleteMe'
+  "Plugin 'Shougo/deoplete.nvim'
+  "Plugin 'tbodt/deoplete-tabnine'
+  Plugin 'neoclide/coc.nvim'
+endif
 
 "Plugin 'zxqfl/tabnine-vim'
 "Plugin 'davidhalter/jedi-vim'
@@ -74,8 +76,17 @@ Plugin 'jparise/vim-graphql'
 
 "Plugin 'alvan/vim-closetag'
 
+" Python Environment
+Plugin 'Vimjas/vim-python-pep8-indent'
+
+" For htmldjango
+"Plugin 'mjbrownie/vim-htmldjango_omnicomplete'
+
 " Julia Environment
 "Plugin 'JuliaEditorSupport/julia-vim'
+
+" Flutter Environment
+Plugin 'dart-lang/dart-vim-plugin'
 
 " Color Schema
 Plugin 'altercation/vim-colors-solarized'
@@ -86,11 +97,13 @@ Plugin 'vim-airline/vim-airline-themes'
 " ALE
 "Plugin 'w0rp/ale'
 
-" For htmldjango
-"Plugin 'mjbrownie/vim-htmldjango_omnicomplete'
 " For markdown
 Plugin 'godlygeek/tabular'
 Plugin 'plasticboy/vim-markdown'
+"Plugin 'vim-pandoc/vim-pandoc-syntax'
+"Plugin 'vim-pandoc/vim-pandoc'
+" For toml
+Plugin 'cespare/vim-toml'
 
 " Orgmod
 "Plugin 'jceb/vim-orgmode'
@@ -100,8 +113,9 @@ Plugin 'vimoutliner/vimoutliner'
 " Task warrior
 "Plugin 'farseer90718/vim-taskwarrior'
 
-" Others
-Plugin 'jiangmiao/auto-pairs'
+" Pairing
+"Plugin 'jiangmiao/auto-pairs'
+Plugin 'tmsvg/pear-tree'
 
 " Folders
 " All of your Plugins must be added before the following line
@@ -121,14 +135,8 @@ filetype plugin indent on    " required
 "
 " VUNDLE SETTINGS END
 
-" {{{1 omni complete functions
-"au FileType htmldjango set omnifunc=htmldjangocomplete#CompleteDjango
-let g:htmldjangocomplete_html_flavour = 'html5'
-au FileType htmldjango inoremap {% {%  %}<left><left><left>
-au FileType htmldjango inoremap {{ {{  }}<left><left><left>
-
 " {{{1 vim-markdown configs
-let g:vim_markdown_folding_level = 3
+let g:vim_markdown_folding_level = 1
 let g:vim_markdown_folding_style_pythonic = 1
 let g:vim_markdown_emphasis_multiline = 0
 let g:vim_markdown_math = 1
@@ -137,14 +145,24 @@ let g:vim_markdown_new_list_item_indent = 0
 let g:vim_markdown_fenced_languages = ['c++=cpp', 'viml=vim', 'bash=sh', 'ini=dosini', 'tsx=typescript.tsx']
 let g:vim_markdown_follow_anchor = 1
 
-autocmd filetype typescript,javascript,typescript.jsx,javascript.jsx,python set foldmethod=marker
+" {{{1 vim-pandoc configs
+let g:pandoc#filetypes#pandoc_markdown = 0
+let g:pandoc#folding#fold_yaml = 1
+let g:pandoc#folding#mode = 'relative'
 
 " {{{1 vim-typescript configs
 autocmd BufNewFile,BufRead *.tsx set filetype=typescript.tsx
-autocmd BufNewFile,BufRead /home/heyrict/Eric/MyPrograms/reactnativeproj/* set nowritebackup
+"autocmd BufNewFile,BufRead /home/heyrict/Eric/MyPrograms/reactnativeproj/* set nowritebackup
+
+" {{{1 pest grammar files
+autocmd BufRead,BufNewFile "*.pest" set filetype=c
+autocmd BufRead,BufNewFile "*.pest" let b:coc_enabled = 0
 
 "" {{{1 Ale Configs
-"if $LAPTOP_MODE==0
+"function! OnBattery()
+"    return readfile('/sys/class/power_supply/ACAD/online') == ['0']
+"endfunction
+"if OnBattery()
 "    let g:ale_lint_on_save=1
 "    let g:ale_fix_on_save=1
 "    let g:ale_enabled=1
@@ -201,6 +219,11 @@ nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
+nmap <silent> <Leader>rn <Plug>(coc-rename)
+nmap <silent> <Leader>ca <Plug>(coc-codeaction)
+nmap <silent> <Leader>fj <Plug>(coc-float-jump)
+nmap <silent> <Leader>rf <Plug>(coc-refactor)
+nmap <Leader>fi <Plug>(coc-fix-current)
 
 " Use K to show documentation in preview window
 nnoremap <silent> K :call <SID>show_documentation()<CR>
@@ -208,6 +231,8 @@ nnoremap <silent> K :call <SID>show_documentation()<CR>
 function! s:show_documentation()
     if (index(['vim','help'], &filetype) >= 0)
         execute 'h '.expand('<cword>')
+    elseif (index(['css','text', 'markdown'], &filetype) >= 0)
+        execute '! trans -d -no-ansi :zh '.expand("'<cword>'")
     else
         call CocAction('doHover')
     endif
@@ -247,11 +272,7 @@ augroup end
 let g:solarized_visibility="high"
 call togglebg#map("<F5>")
 syntax enable
-if $TERM=="screen-256color"
-    let g:solarized_termcolors=256
-    let g:solarized_termtrans=1
-    colorscheme solarized
-elseif $TERM=="xterm-256color"
+if $TERM=="xterm-256color"
     let g:solarized_termtrans=1
     colorscheme solarized
 elseif $TERM=="xterm"
@@ -491,11 +512,12 @@ set number
 set timeout ttimeoutlen=50
 set backspace=indent,eol,start
 
-autocmd Filetype html,htmldjango,json,javascript,typescript,typescript.tsx,css,yaml set tabstop=2 shiftwidth=2
+autocmd Filetype html,htmldjango,json,javascript,typescript,typescript.tsx,css,yaml,dart set tabstop=2 shiftwidth=2
 "autocmd Filetype markdown,csv set keywordprg=dict
 autocmd Filetype markdown,csv set keywordprg=trans\ -d\ -no-ansi\ :zh
+autocmd Filetype javascript,typescript,javascript.tsx,typescript.tsx set foldmethod=syntax
 
-set encoding=utf-8 fileencodings=ucs-bom,utf-8,cp936
+set encoding=utf-8 fileencodings=ucs-bom,utf-8,shift-jis,cp936
 
 " {{{1 Previm Variables
 "
@@ -580,11 +602,55 @@ nnoremap g<C-R> :call RunFile()<cr>
 "endfunction
 "command FMTHTML :call FMTHTML()
 
+function FMTTable()
+    let l:pos = getpos('.')
+    normal! {
+    " Search instead of `normal! j` because of the table at beginning of file edge case.
+    call search('|')
+    normal! j
+    " Remove everything that is not a pipe, colon or hyphen next to a colon othewise
+    " well formated tables would grow because of addition of 2 spaces on the separator
+    " line by Tabularize /|.
+    let l:flags = (&gdefault ? '' : 'g')
+    if match(getline('.'), "^[ |:-]\\+$") == -1
+        normal! kyyp
+    endif
+    execute 's/\(:\@<!-:\@!\|[^|:-]\)//e' . l:flags
+    execute 's/--/-/e' . l:flags
+    Tabularize /|
+    " Move colons for alignment to left or right side of the cell.
+    execute 's/:\( \+\)|/\1:|/e' . l:flags
+    execute 's/|\( \+\):/|:\1/e' . l:flags
+    execute 's/ /-/' . l:flags
+    normal! 0
+    if matchstr(getline('.'), '\%'.col('.').'c.') == '-'
+        normal! vt|r 
+    endif
+    call setpos('.', l:pos)
+endfunction
+command FT :call FMTTable()
+
 " {{{1 Clean up white spaces before saving
-autocmd BufWritePre *.c,*.cpp,*.py,*.md,*.puml,*.tex %s/\s\+$//e
+autocmd BufWritePre *.md,*.puml,*.tex %s/\s\+$//e
 
 " {{{1 auto pairs
-au Filetype rust let b:AutoPairs = {'(':')', '[':']', '{':'}','"':'"', '`':'`', '```':'```'}
+"au Filetype rust let b:AutoPairs = {'(':')', '[':']', '{':'}','"':'"', '`':'`', '```':'```'}
+" {{{1 pear-tree
+let g:pear_tree_pairs = {
+            \ '(': {'closer': ')'},
+            \ '[': {'closer': ']'},
+            \ '{': {'closer': '}'},
+            \ '"': {'closer': '"'},
+            \ "'": {'closer': "'"},
+            \ "`": {'closer': "`"},
+            \ }
+
+let g:pear_tree_smart_openers = 1
+let g:pear_tree_smart_closers = 0
+let g:pear_tree_smart_backspace = 1
+let g:pear_tree_repeatable_expand = 0
+
+autocmd Filetype markdown exe "let b:pear_tree_smart_openers = 0"
 
 " {{{1 remap keys
 map <S-PageDown> :tabnext<cr>
@@ -621,3 +687,8 @@ vnoremap _{ <esc>`>a}<esc>`<i{<esc>
 vnoremap _* <esc>`>a**<esc>`<i**<esc>
 vnoremap _+ <esc>`>a*<esc>`<i*<esc>
 
+" {{{1 Custom filetype autocommands
+autocmd filetype typescript,javascript,typescript.jsx,javascript.jsx,python set foldmethod=marker
+
+" {{{1 Netrw
+let g:netrw_browsex_viewer= "xdg-open"
