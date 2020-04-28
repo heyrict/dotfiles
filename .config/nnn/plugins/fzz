@@ -1,0 +1,11 @@
+#!/usr/bin/env sh
+
+#. "$(dirname "$0")"/.nnn-plugin-helper
+
+if which zoxide >/dev/null 2>&1; then
+    sel=$(zoxide query -i | awk '{print $2}')
+else
+    exit 1
+fi
+
+printf "%s" "0$sel" > "$NNN_PIPE"

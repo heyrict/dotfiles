@@ -6,28 +6,32 @@ fi
 
 export NLTK_DATA="/media/heyrict/LENOVO/Data/NLTK"
 
-# Mimic xbox360 driver with SHANWAN Generic joystick using xboxdrv
-alias mimic-xbox="sudo xboxdrv \
-   --evdev /dev/input/by-id/usb-Sony_Interactive_Entertainment_Wireless_Controller-event-if03\
-   --evdev-absmap ABS_X=x1,ABS_Y=y1                 \
-   --evdev-absmap ABS_Z=x2,ABS_RZ=y2                \
-   --evdev-absmap ABS_HAT0X=dpad_x,ABS_HAT0Y=dpad_y \
-   --evdev-keymap BTN_A=x,BTN_B=a                   \
-   --evdev-keymap BTN_C=b,BTN_X=y                   \
-   --evdev-keymap BTN_Y=lb,BTN_Z=rb                 \
-   --evdev-keymap BTN_TL=lt,BTN_TR=rt               \
-   --evdev-keymap BTN_SELECT=tl,BTN_START=tr        \
-   --evdev-keymap BTN_TL2=back,BTN_TR2=start        \
-   --evdev-keymap BTN_MODE=guide                    \
-   --axismap -y1=y1,-y2=y2                          \
-   --mimic-xpad                                     \
-   --silent
-"
+## Mimic xbox360 driver with SHANWAN Generic joystick using xboxdrv
+#alias mimic-xbox="sudo xboxdrv \
+#   --evdev /dev/input/by-id/usb-Sony_Interactive_Entertainment_Wireless_Controller-event-if03\
+#   --evdev-absmap ABS_X=x1,ABS_Y=y1                 \
+#   --evdev-absmap ABS_Z=x2,ABS_RZ=y2                \
+#   --evdev-absmap ABS_HAT0X=dpad_x,ABS_HAT0Y=dpad_y \
+#   --evdev-keymap BTN_A=x,BTN_B=a                   \
+#   --evdev-keymap BTN_C=b,BTN_X=y                   \
+#   --evdev-keymap BTN_Y=lb,BTN_Z=rb                 \
+#   --evdev-keymap BTN_TL=lt,BTN_TR=rt               \
+#   --evdev-keymap BTN_SELECT=tl,BTN_START=tr        \
+#   --evdev-keymap BTN_TL2=back,BTN_TR2=start        \
+#   --evdev-keymap BTN_MODE=guide                    \
+#   --axismap -y1=y1,-y2=y2                          \
+#   --mimic-xpad                                     \
+#   --silent
+#"
 
 # virtualenv
 activate() {
     source ~/$1/bin/activate;
 }
+
+# vim without language server
+alias ncvim='NOCOMPL=true vim'
+alias ncnvim='NOCOMPL=true nvim'
 
 # ssh related
 alias ssh_through_proxy='ssh -o "ProxyCommand=nc -X connect -x localhost:8123 %h %p"'
@@ -127,18 +131,31 @@ alias wd="cd /home/heyrict/Eric/MyPrograms"
 
 
 # brightness
-alias set_brightness="vim /sys/class/backlight/intel_backlight/brightness"
 alias backlight_off="xset dpms force off"
+
+set_brightness() {
+    if [ $# -eq 0 ]; then
+        vim /sys/class/backlight/intel_backlight/brightness
+    else
+        echo "$1" > /sys/class/backlight/intel_backlight/brightness
+    fi
+}
 #show_brightness(){
 #    echo $(cat /sys/class/backlight/intel_backlight/brightness):$(cat /sys/class/backlight/intel_backlight/max_brightness)
 #}
 
 # battery preference
-show_capacity(){ echo $(cat /sys/class/power_supply/BAT1/capacity)%;}
+alias show_capacity='echo $(cat /sys/class/power_supply/BAT1/capacity)%;'
 
 # Change opacity of alacritty
 altrans() {
-    vi --clean ~/.config/alacritty/alacritty.yml -c "%s/^background_opacity:[0-9 .]*$/background_opacity: $1/" -c "wq"
+    if [ $# -eq 0 ]; then
+        rg background_opacity ~/.config/alacritty/alacritty.yml | awk '{print $2}'
+    else
+        vi --clean ~/.config/alacritty/alacritty.yml\
+            -c "%s/^background_opacity:[0-9 .]*$/background_opacity: $1/"\
+            -c "wq"
+    fi
 }
 
 alias increase_inotify="sudo sysctl -w fs.inotify.max_user_watches=100000"

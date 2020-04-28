@@ -1,0 +1,28 @@
+Player 1 Input:
+  Handler: DualShock 4
+  Device: "DS4 Pad #1"
+  Profile: Default Profile
+Player 2 Input:
+  Handler: "Null"
+  Device: Default Null Device
+  Profile: No Profiles
+Player 3 Input:
+  Handler: "Null"
+  Device: "Null"
+  Profile: Default Profile
+Player 4 Input:
+  Handler: "Null"
+  Device: "Null"
+  Profile: Default Profile
+Player 5 Input:
+  Handler: "Null"
+  Device: "Null"
+  Profile: Default Profile
+Player 6 Input:
+  Handler: "Null"
+  Device: "Null"
+  Profile: Default Profile
+Player 7 Input:
+  Handler: "Null"
+  Device: "Null"
+  Profile: Default Profile

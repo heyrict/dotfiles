@@ -1,0 +1,63 @@
+set completion-bg \#073642
+set completion-group-bg \#002b36
+set completion-highlight-bg \#859900
+set index-active-bg \#b58900
+set index-bg \#073642
+set inputbar-bg \#073642
+set statusbar-bg \#073642
+set notification-bg \#eee8d5
+
+set completion-fg \#fdf6e3
+set completion-group-fg \#fdf6e3
+set completion-highlight-fg \#eee8d5
+set index-active-fg \#eee8d5
+set index-fg \#fdf6e3
+set inputbar-fg \#fdf6e3
+set statusbar-fg \#fdf6e3
+set notification-fg \#073642
+
+# solarized dark
+#set recolor-lightcolor \#002b36
+#set recolor-darkcolor \#839496
+#set default-bg \#073642
+
+# solarized light
+set recolor-lightcolor \#fdf6e3
+set recolor-darkcolor \#839496
+set default-bg \#eee8d5
+
+map [normal] <C-1> set "recolor-lightcolor \#002b36"
+map [normal] <C-2> set "recolor-lightcolor \#fdf6e3"
+
+map [fullscreen] <C-1> set "recolor-lightcolor \#002b36"
+map [fullscreen] <C-2> set "recolor-lightcolor \#fdf6e3"
+
+# enable theme
+set recolor true
+
+set scroll-step 80
+set vertical-center true
+
+map [normal] . navigate next
+map [fullscreen] . navigate next
+
+map [normal] , navigate previous
+map [fullscreen] , navigate previous
+
+#map [normal] n navigate next
+#map [fullscreen] n navigate next
+
+#map [normal] p navigate previous
+#map [fullscreen] p navigate previous
+
+#map [normal] J scroll half-down
+#map [fullscreen] J scroll half-down
+
+#map [normal] K scroll half-up
+#map [fullscreen] K scroll half-up
+
+map [normal] w adjust_window width
+map [fullscreen] w adjust_window width
+
+map [normal] W adjust_window best-fit
+map [fullscreen] W adjust_window best-fit

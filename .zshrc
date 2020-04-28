@@ -17,6 +17,7 @@ helpcomp_bins=(
 )
 compdef _gnu_generic $helpcomp_bins
 compdef nvim=vim
+compdef yadm=git
 
 # Completion styles {{{1
 zstyle ':completion:*' auto-description yes
@@ -25,11 +26,9 @@ zstyle ':completion:*:messages' format "%F{green}%d%f"
 zstyle ':completion:*' verbose yes
 zstyle ':completion:*' group-name ''
 
-# Oh-my-zsh 
+# Oh-my-zsh {{{1
 # Path to your oh-my-zsh installation.
 export ZSH="/home/heyrict/.oh-my-zsh"
-
-ZSH_THEME="powerlevel10k/powerlevel10k"
 
 CASE_SENSITIVE=true
 
@@ -73,6 +72,12 @@ plugins=(
     virtualenv
     yarn
 )
+
+if [ ${TTY:5:3} = "tty" ]; then
+    ZSH_THEME="altered-jonathan"
+else
+    ZSH_THEME="powerlevel10k/powerlevel10k"
+fi
 
 source $ZSH/oh-my-zsh.sh
 
@@ -158,10 +163,18 @@ export RUSTUP_UPDATE_ROOT=https://mirrors.ustc.edu.cn/rust-static/rustup
 export RUST_SRC_PATH=/home/heyrict/.rustup/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src
 path+=$HOME/.cargo/bin
 ## Flutter {{{2
-export PUB_HOSTED_URL=https://pub.flutter-io.cn
-export FLUTTER_STORAGE_BASE_URL=https://storage.flutter-io.cn
+#export PUB_HOSTED_URL=https://pub.flutter-io.cn
+#export FLUTTER_STORAGE_BASE_URL=https://storage.flutter-io.cn
+export PUB_HOSTED_URL="https://mirrors.tuna.tsinghua.edu.cn/dart-pub/"
+export FLUTTER_STORAGE_BASE_URL="https://mirrors.tuna.tsinghua.edu.cn/flutter"
 path+=$HOME/Flutter/bin
 path+=$HOME/Flutter/bin/cache/dart-sdk/bin
+## NNN {{{2
+export NNN_BMS="w:~/Eric/MyPrograms;c:~/pandoc_markdown/markdown/CliMed;m:/media/heyrict/LENOVO/Eric/mov;u:/media/heyrict;t:/tmp"
+export NNN_COLORS='5234'
+export NNN_ARCHIVE="\\.(7z|bz2|gz|tar|tgz|zip)$"
+export NNN_IDLE_TIMEOUT=180
+export NNN_PLUG='o:fzopen;p:-mocplay;d:diffs;k:-chksum;c:fzcd;z:fzz;s:organize;b:-_bat $nnn'
 ## Custom {{{2
 path=(
     $path
@@ -190,6 +203,10 @@ export LS_COLORS="$LS_COLORS:ow=1;36"
 #case "$TERM" in
 #    xterm-color|*-256color) eval "$(starship init zsh)";;
 #esac
-#
-#[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
+# Fuzzy finder {{{1
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# Powerlevel10k {{{1
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh

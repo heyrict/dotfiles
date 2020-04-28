@@ -115,3 +115,60 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
+
+# Texlive settings
+export MANPATH=$MANPATH:/usr/local/texlive/2019/texmf-dist/doc/man
+export INFOPATH=$INFOPATH:/usr/local/texlive/2019/texmf-dist/doc/info
+export PATH=$PATH:/usr/local/texlive/2019/bin/x86_64-linux
+
+# NVM settings
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+[ -s "$NVM_DIR/npm_completion" ] && \. "$NVM_DIR/npm_completion"  # This loads npm bash_completion
+
+# set vi key-binding
+set -o vi
+bind -m vi-insert \C-p:previous-history
+bind -m vi-insert \C-n:next-history
+bind -m vi-insert \C-e:alias-expand-line
+bind -m vi-insert \C-l:clear-screen
+bind -m vi G:end-of-history
+bind -m vi g:start-of-history
+
+# enable default python virtualenv
+source ~/pyenv/env/bin/activate
+export HASURA_GRAPHQL_ADMIN_SECRET="CINDYTHINK_HASURA_ADMIN_SECRET"
+
+# yarn
+export PATH=$PATH:$HOME/.yarn/bin
+
+# java
+export JAVA_HOME=/usr/lib/jvm/java-12-openjdk-amd64
+export CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar
+export PATH=$JAVA_HOME/bin:$JAVA_HOME/jre/bin:$PATH
+
+# cargo
+export PATH=$PATH:$HOME/.cargo/bin
+
+# Mirrors
+# - For Rust
+export RUSTUP_DIST_SERVER=https://mirrors.ustc.edu.cn/rust-static
+export RUSTUP_UPDATE_ROOT=https://mirrors.ustc.edu.cn/rust-static/rustup
+export RUST_SRC_PATH=/home/heyrict/.rustup/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src
+
+## - For Flutter
+export PUB_HOSTED_URL=https://dart-pub.mirrors.sjtug.sjtu.edu.cn/
+export FLUTTER_STORAGE_BASE_URL=https://mirrors.sjtug.sjtu.edu.cn/
+export PATH=$PATH:$HOME/Flutter/bin
+
+# often-use programs
+export PATH=$PATH:~/Eric/MyPrograms/bin:~/Eric/Program_Files/bin:$HOME/Android/platform-tools:~/Eric/Program_Files/java-jars
+
+# starship
+# To uninstall, run cargo uninstall starship
+case "$TERM" in
+    xterm-color|*-256color) eval "$(starship init bash)";;
+esac
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
