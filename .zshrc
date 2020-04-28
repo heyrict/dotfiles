@@ -17,7 +17,6 @@ helpcomp_bins=(
 )
 compdef _gnu_generic $helpcomp_bins
 compdef nvim=vim
-compdef yadm=git
 
 # Completion styles {{{1
 zstyle ':completion:*' auto-description yes
