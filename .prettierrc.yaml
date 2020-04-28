@@ -1,0 +1,6 @@
+overrides:
+    - files: "*.md"
+      options:
+          tabWidth: 4
+          parser: 'markdown'
+          printWidth: 120

@@ -374,8 +374,9 @@ let g:tmuxline_preset = {
   \'b'       : '#W',
   \'win'     : '#I #W',
   \'cwin'    : '#I #W',
-  \'y'       : '#(cat /sys/class/backlight/intel_backlight/brightness)/#(cat /sys/class/backlight/intel_backlight/max_brightness)[#(cat /sys/class/power_supply/BAT1/capacity)%%]{#(cat /sys/class/power_supply/BAT1/power_now)}[#(cat /sys/class/power_supply/BAT1/status)]',
-  \'z'       : '%Y-%m-%d %H:%M',
+  \'x'       : "t=#(rg background_opacity ~/.config/alacritty/alacritty.yml | awk '{print $2}')",
+  \'y'       : '#(cat /sys/class/backlight/intel_backlight/brightness)/#(cat /sys/class/backlight/intel_backlight/max_brightness)[#(cat /sys/class/power_supply/BAT1/capacity)%#(cat /sys/class/power_supply/BAT1/status | head -c 1)]{#(cat /sys/class/power_supply/BAT1/power_now | sed "s/0\\\\{1,3\\\\}$//")}',
+  \'z'       : '%m-%d@%H:%M',
   \'options' : {'status-justify' : 'left'}}
 
 "" {{{1 taglist Variables
@@ -513,8 +514,8 @@ set timeout ttimeoutlen=50
 set backspace=indent,eol,start
 
 autocmd Filetype html,htmldjango,json,javascript,typescript,typescript.tsx,css,yaml,dart set tabstop=2 shiftwidth=2
-"autocmd Filetype markdown,csv set keywordprg=dict
-autocmd Filetype markdown,csv set keywordprg=trans\ -d\ -no-ansi\ :zh
+autocmd Filetype markdown,csv set keywordprg=dict
+"autocmd Filetype markdown,csv set keywordprg=trans\ -d\ -no-ansi\ :zh
 autocmd Filetype javascript,typescript,javascript.tsx,typescript.tsx set foldmethod=syntax
 
 set encoding=utf-8 fileencodings=ucs-bom,utf-8,shift-jis,cp936
