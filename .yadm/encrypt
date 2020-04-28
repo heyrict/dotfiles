@@ -1,0 +1,11 @@
+/home/heyrict/.ssh/*
+/home/heyrict/.bash_passwords
+/home/heyrict/.config/BaiduPCS-Go/pcs_config.json
+/home/heyrict/.config/cordless/config.json
+/home/heyrict/.config/KeePass/KeePass.config.xml
+/home/heyrict/.config/keepassxc/keepassxc.ini
+/home/heyrict/.config/rclone/rclone.conf
+/home/heyrict/.davfs2/
+/home/heyrict/.gnupg/
+/home/heyrict/.kaggle/
+/home/heyrict/.task/freecinc_*

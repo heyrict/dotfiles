@@ -551,6 +551,22 @@ let g:vim_jsx_pretty_colorful_config = 1
 ": set term=screen
 ":endif
 
+" {{{1 General Configs
+set autoindent
+set tabstop=4
+set shiftwidth=4
+set expandtab
+set number
+set timeout ttimeoutlen=50
+set backspace=indent,eol,start
+
+autocmd Filetype html,htmldjango,json,javascript,typescript,typescript.tsx,css,yaml,dart set tabstop=2 shiftwidth=2
+autocmd Filetype markdown,csv set keywordprg=dict
+"autocmd Filetype markdown,csv set keywordprg=trans\ -d\ -no-ansi\ :zh
+autocmd Filetype javascript,typescript,javascript.tsx,typescript.tsx set foldmethod=syntax
+
+set encoding=utf-8 fileencodings=ucs-bom,utf-8,shift-jis,cp936
+
 " {{{1 Previm Variables
 "
 let g:previm_open_cmd='xdg-open'

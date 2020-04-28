@@ -208,7 +208,7 @@ altrans() {
     if [ $# -eq 0 ]; then
         rg background_opacity ~/.config/alacritty/alacritty.yml | awk '{print $2}'
     else
-        vim --clean ~/.config/alacritty/alacritty.yml\
+        vi --clean ~/.config/alacritty/alacritty.yml\
             -c "%s/^background_opacity:[0-9 .]*$/background_opacity: $1/"\
             -c "wq"
     fi
