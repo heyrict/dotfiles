@@ -15,8 +15,8 @@ UUID=19815a12-719d-4b4d-8da6-88c1db24c315                 none    swap    sw    
 UUID=150861fb-f13b-40e4-9b71-e0e25cb9b3a0     /tmp        ext4    defaults          0       0
 
 # NTFS Partitions
-UUID=9C484FA7484F7ED0   /media/heyrict/LENOVO             ntfs    rw,users,errors=remount-ro 0       1
-UUID=3E36091B3608D635   /media/heyrict/Windows            ntfs    rw,users,errors=remount-ro 0       1
+UUID=9C484FA7484F7ED0   /media/heyrict/LENOVO             ntfs    rw,user,exec,uid=1000,gid=1000,dmask=027,fmask=027,errors=remount-ro 0       1
+UUID=3E36091B3608D635   /media/heyrict/Windows            ntfs    rw,user,exec,uid=1000,gid=1000,dmask=027,fmask=027,errors=remount-ro 0       1
 
 # WebDAV Partitions
 #https://dav.jianguoyun.com/dav/  /media/heyrict/nutstore  davfs   rw,user,uid=heyrict,noauto 0 0

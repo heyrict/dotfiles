@@ -78,17 +78,15 @@ alias eight-dark='export TERM=fbterm; export BACKLIGHT=dark; ~/Eric/MyPrograms/s
 alias eight-light='export TERM=fbterm; export BACKLIGHT=light; ~/Eric/MyPrograms/shell/solarized-light-fbterm.sh; clear; echo $BACKLIGHT > ~/.prev_theme'
 alias eight='eight-dark'
 alias bg-dark="export BACKLIGHT=dark; vi --clean ~/.config/alacritty/alacritty.yml -c '%s/\*solarized_light/\*solarized_dark/' -c 'wq'; export BAT_THEME=OneHalfDark; echo dark > ~/.prev_theme"
-alias bg-light="export BACKLIGHT=light; export TASKRC=~/.lighttaskrc; vi --clean ~/.config/alacritty/alacritty.yml -c '%s/\*solarized_dark/\*solarized_light/' -c 'wq'; export BAT_THEME='Monokai Extended Light'; echo light > ~/.prev_theme"
+alias bg-light="export BACKLIGHT=light; vi --clean ~/.config/alacritty/alacritty.yml -c '%s/\*solarized_dark/\*solarized_light/' -c 'wq'; export BAT_THEME='Monokai Extended Light'; echo light > ~/.prev_theme"
 
 if [ -f ~/.prev_theme ]; then
   if [ `cat ~/.prev_theme` = light ]; then
     export BAT_THEME="Monokai Extended Light";
     export BACKLIGHT=light;
-    export TASKRC=~/.lighttaskrc;
   else
     export BAT_THEME="OneHalfDark";
     export BACKLIGHT=dark;
-    unset TASKRC
   fi
 fi
 

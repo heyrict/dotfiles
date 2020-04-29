@@ -1,4 +1,26 @@
-sync:
+
+all: sync packages other
+
+other:
+	tree -L 2 ~/Eric/Program_Files/ > other-programs.txt
+
+packages: pkg-npm pkg-yarn pkg-python
+
+pkg-npm:
+	npm list -g --depth=0  2>/dev/null >npm-global.txt || return 0
+
+pkg-yarn:
+	rsync -ui ~/.config/yarn/global/package.json yarn-global.json
+
+pkg-python:
+	pip freeze > python-global.txt
+
+pkg-rust:
+	ls ~/.cargo/bin > rust-global.txt
+
+sync: etc udev
+
+etc:
 	just pull_file /etc/X11/xorg.conf.d
 	just pull_file /etc/anacrontab
 	just pull_file /etc/apt/apt.conf.d/00aptitude
@@ -12,8 +34,16 @@ sync:
 	just pull_file /etc/udhcpd.conf
 	just pull_file /etc/vsftpd.conf
 
+udev:
+	just pull_file /lib/udev/rules.d/98-backlight.rules
+	just pull_file /lib/udev/rules.d/99-ds4-controllers.rules
+
 pull_file FILE:
 	#!/usr/bin/env sh
+	if [ ! -e "{{FILE}}" ]; then
+		echo "{{FILE}}" does not exist
+	fi
+	
 	d=`dirname "{{FILE}}" | sed "s/^\///"`
 	if [ ! -d "$d" ]; then
 		mkdir -p "$d"
