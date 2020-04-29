@@ -1,0 +1,9 @@
+/home/heyrict/.nvm/versions/node/v12.13.0/lib
+├── @elm-tooling/elm-language-server@1.4.4
+├── @marp-team/marp-cli@0.15.0
+├── elm-test@0.19.1
+├── expo-cli@3.4.1
+├── graphqurl@0.3.3
+├── npm@6.12.0
+└── pandoc-mermaid-filter@0.2.0 (git+https://github.com/nishimaki10/pandoc-mermaid-filter.git#16fcf5217a47ed0259aa9e0f9fd9028ead6ab822)
+
