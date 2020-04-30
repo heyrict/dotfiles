@@ -1,0 +1,12 @@
+% misc.qrcode
+
+# Generate a QR code
+if [ <colored> = true ]; then\
+    myqr -d /tmp -n qrcode.png -p ~/Pictures/avata2.jpg -c "<string>";\
+else\
+    myqr -d /tmp -n qrcode.png -p ~/Pictures/avata2.jpg "<string>";\
+fi
+fim /tmp/qrcode.png
+rm /tmp/qrcode.png
+
+$ colored: echo true false | tr " " "\n"

@@ -1,0 +1,21 @@
+% android.pictures
+
+# Pull Pictures and videos of a specific date
+for f in `adb shell ls /sdcard/DCIM/Camera/<type>_<date>*`; do\
+    adb pull $f .;\
+done
+
+$ type: echo * VID IMG | tr " " "\n"
+$ date: adb shell ls /sdcard/DCIM/Camera/ | rg -o '\d{8}' | uniq
+
+
+% android.qq.ls
+# List QQ received files
+adb ls /sdcard/Android/data/com.tencent.mobileqq/Tencent/QQfile_recv | cut -d " " -f 4
+
+
+% android.qq.pull
+# Pull QQ received files
+adb pull /sdcard/Android/data/com.tencent.mobileqq/Tencent/QQfile_recv/<qq_recv_file>
+
+$ qq_recv_file: adb ls /sdcard/Android/data/com.tencent.mobileqq/Tencent/QQfile_recv | cut -d " " -f 4

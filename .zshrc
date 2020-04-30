@@ -169,12 +169,30 @@ export FLUTTER_STORAGE_BASE_URL="https://mirrors.tuna.tsinghua.edu.cn/flutter"
 path+=$HOME/Flutter/bin
 path+=$HOME/Flutter/bin/cache/dart-sdk/bin
 ## NNN {{{2
+
+# Book marks
+# - w: working directory
+# - c: notes for clinical medicine
+# - m: Multimedia
+# - u: Mount point
+# - t: /tmp
 export NNN_BMS="w:~/Eric/MyPrograms;c:~/pandoc_markdown/markdown/CliMed;m:/media/heyrict/LENOVO/Eric/mov;u:/media/heyrict;t:/tmp"
+
 export NNN_COLORS='5234'
 export NNN_ARCHIVE="\\.(7z|bz2|gz|tar|tgz|zip)$"
 export NNN_IDLE_TIMEOUT=180
+
+# Plugins
+# - o: Open file found with fzf
+# - p: Play this music in mocp server
+# - d: Show diffs between two files
+# - c: CD into directory found with fzf
+# - s: Organize
+# - b: Page the file with bat
 export NNN_PLUG='o:fzopen;p:-mocplay;d:diffs;k:-chksum;c:fzcd;z:fzz;s:organize;b:-_bat $nnn'
 ## Custom {{{2
+export TASKRC="~/.taskrc"
+
 path=(
     $path
     $HOME/Eric/MyPrograms/bin
@@ -198,6 +216,9 @@ export HASURA_GRAPHQL_ADMIN_SECRET="CINDYTHINK_HASURA_ADMIN_SECRET"
 ## Change ls colors {{{2
 export LS_COLORS="$LS_COLORS:ow=1;36"
 
+## Navi {{{2
+export NAVI_PATH=~/.config/navi/custom/
+
 # Starship for zsh {{{1
 #case "$TERM" in
 #    xterm-color|*-256color) eval "$(starship init zsh)";;
@@ -209,3 +230,6 @@ export LS_COLORS="$LS_COLORS:ow=1;36"
 # Powerlevel10k {{{1
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# Navi {{{1
+[ -x `command -v navi` ] && source <(navi widget zsh)

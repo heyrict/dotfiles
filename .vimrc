@@ -525,7 +525,7 @@ set encoding=utf-8 fileencodings=ucs-bom,utf-8,shift-jis,cp936
 let g:previm_open_cmd='xdg-open'
 let g:previm_enable_realtime = 10
 "let g:previm_disable_default_css = 1
-let g:previm_custom_css_path = '~/Templates/solarized-light.min.css'
+let g:previm_custom_css_path = '~/assets/css/solarized-light.min.css'
 
 " {{{1 NERDTree Configs
 "
