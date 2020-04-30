@@ -105,7 +105,7 @@ alias fbi='fbi -P'
 #eval "$(pandoc --bash-completion)"
 #alias pandoc2chspdf="pandoc --template=$HOME/模板/chs_template.tex --pdf-engine=xelatex -M 'CJKmainfont:WenQuanYi Micro Hei' --biblio $HOME/Tex/MyRef.bib"
 alias pandoc="pandoc --filter pandoc-tablenos -s"
-alias pandoc2mermaid="pandoc -c ~/Templates/github-pandoc.css --template ~/Templates/mermaid_template.html5 --filter pandoc-mermaid"
+alias pandoc2mermaid="pandoc -c ~/assets/css/github-pandoc.css --template ~/assets/css/mermaid_template.html5 --filter pandoc-mermaid"
 alias pandoc2mermaidpdf="pandoc --filter pandoc-imagine --pdf-engine=xelatex -M 'CJKmainfont:WenQuanYi Micro Hei'"
 alias pandoc2chs="pandoc --pdf-engine=xelatex -M 'CJKmainfont:WenQuanYi Micro Hei' --biblio $HOME/Tex/MyRef.bib"
 alias pandoc2chspdf="pandoc2chs --template=$HOME/.pandoc/default.latex ~/pandoc_markdown/CHS_METADATA.yaml"
