@@ -1,0 +1,15 @@
+% sys.reload-udev
+
+# Reload udev rules (needs super user privilege)
+udevadm control --reload-rules
+
+
+% sys.mount.blocking-process
+
+# Check the process blocking the mount point
+fuser <directory>
+
+% sys.audio.equalizer
+
+# Run pulsemixer
+pulsemixer

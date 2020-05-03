@@ -1,0 +1,34 @@
+#!/bin/bash
+
+# Usage
+# brightness (set|get)
+
+MAX_BRIGHTNESS=$(cat /sys/class/backlight/intel_backlight/max_brightness)
+
+CUR_ACTUAL_BRIGHTNESS=$(cat /sys/class/backlight/intel_backlight/brightness)
+
+CUR_BRIGHTNESS=$(echo "scale=1; $CUR_ACTUAL_BRIGHTNESS * 100 / $MAX_BRIGHTNESS" | bc)
+
+
+set_brightness() {
+    local BRIGHTNESS=$(\
+        rofi -dmenu -i -p 'Brightness(%)' -hide-scrollbar -lines 0 -width 22 \
+        -separator-style "none" \
+        -location 5 -xoffset -40 -yoffset -40 \
+        -width 30 -line-padding 4 -padding 2 -lines 4\
+    );
+
+    if [ $BRIGHTNESS -le 100 -a $BRIGHTNESS -ge 0 ]; then
+        ACTUAL_BRIGHTNESS=$(echo "$BRIGHTNESS * $MAX_BRIGHTNESS / 100" | bc)
+        echo "$ACTUAL_BRIGHTNESS" > /sys/class/backlight/intel_backlight/brightness
+    fi
+}
+
+case "$1" in
+    *get) echo $CUR_BRIGHTNESS ;;
+    *get-percent) echo $CUR_BRIGHTNESS ;;
+    *get-actual) echo $CUR_ACTUAL_BRIGHTNESS ;;
+    *follow) tail /sys/class/backlight/intel_backlight/brightness;;
+    *follow-percent) tail /sys/class/backlight/intel_backlight/brightness;;
+    *set) set_brightness $2
+esac

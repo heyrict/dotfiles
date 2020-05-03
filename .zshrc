@@ -1,9 +1,21 @@
 # vim:foldmethod=marker
+
+# Language and IME {{{1
 export LANG=en_US.UTF-8
 
-# Antibody {{{1
-source <(antibody init)
-antibody bundle < ~/.zsh_plugins.txt
+# The following lines were added by compinstall {{{1
+fpath=(~/.zsh/completion $fpath)
+
+zstyle :compinstall filename '/home/heyrict/.zshrc'
+
+autoload -Uz compinit 
+if [[ -n ${ZDOTDIR:-${HOME}}/.zcompdump(#qN.mh+24) ]]; then
+	compinit;
+else
+	compinit -C;
+fi;
+
+# End of lines added by compinstall
 
 # Custom completions with --help {{{1
 helpcomp_bins=(
@@ -25,17 +37,26 @@ zstyle ':completion:*:messages' format "%F{green}%d%f"
 zstyle ':completion:*' verbose yes
 zstyle ':completion:*' group-name ''
 
+# Antibody {{{1
+export ANTIBODY_HOME=~/.antibody
+source <(antibody init)
+antibody bundle < ~/.zsh_plugins.txt
+
+if [ ! "${TTY:5:3}" = "tty" ]; then
+    antibody bundle romkatv/powerlevel10k
+fi
+
 # Oh-my-zsh {{{1
-# Path to your oh-my-zsh installation.
-export ZSH="/home/heyrict/.oh-my-zsh"
-
-CASE_SENSITIVE=true
-
-# Uncomment the following line to disable bi-weekly auto-update checks.
-DISABLE_AUTO_UPDATE="true"
-
-# Uncomment the following line to display red dots whilst waiting for completion.
-#COMPLETION_WAITING_DOTS="true"
+## Path to your oh-my-zsh installation.
+#export ZSH="/home/heyrict/.oh-my-zsh"
+#
+#CASE_SENSITIVE=true
+#
+## Uncomment the following line to disable bi-weekly auto-update checks.
+#DISABLE_AUTO_UPDATE="true"
+#
+## Uncomment the following line to display red dots whilst waiting for completion.
+##COMPLETION_WAITING_DOTS="true"
 
 # Uncomment the following line if you want to disable marking untracked files
 # under VCS as dirty. This makes repository status check for large repositories
@@ -44,41 +65,41 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 
 HIST_STAMPS="%Y-%M-%d %H:%m:%s"
 
-plugins=(
-    adb
-    cargo
-    command-not-found
-    #django
-    colored-man-pages
-    docker
-    encode64
-    fd
-    flutter
-    git
-    node
-    npm
-    nvm
-    pip
-    postgres
-    python
-    ripgrep
-    rsync
-    rust
-    rustup
-    taskwarrior
-    torrent
-    ufw
-    virtualenv
-    yarn
-)
-
-if [ ${TTY:5:3} = "tty" ]; then
-    ZSH_THEME="altered-jonathan"
-else
-    ZSH_THEME="powerlevel10k/powerlevel10k"
-fi
-
-source $ZSH/oh-my-zsh.sh
+#plugins=(
+#    adb
+#    cargo
+#    command-not-found
+#    #django
+#    colored-man-pages
+#    docker
+#    encode64
+#    fd
+#    flutter
+#    git
+#    node
+#    npm
+#    nvm
+#    pip
+#    postgres
+#    python
+#    ripgrep
+#    rsync
+#    rust
+#    rustup
+#    taskwarrior
+#    torrent
+#    ufw
+#    virtualenv
+#    yarn
+#)
+#
+#if [ ${TTY:5:3} = "tty" ]; then
+#    ZSH_THEME="altered-jonathan"
+#else
+#    ZSH_THEME="powerlevel10k/powerlevel10k"
+#fi
+#
+#source $ZSH/oh-my-zsh.sh
 
 # Preferred editor for local and remote sessions
 if [[ -n $SSH_CONNECTION ]]; then
@@ -105,19 +126,19 @@ zle -N edit-command-line
 bindkey -M vicmd 'V' edit-command-line
 # End of lines configured by zsh-newuser-install
 
-# The following lines were added by compinstall {{{1
-#zstyle :compinstall filename '/home/heyrict/.zshrc'
-#
-#autoload -Uz compinit 
-#if [[ -n ${ZDOTDIR:-${HOME}}/.zcompdump(#qN.mh+24) ]]; then
-#	compinit;
-#else
-#	compinit -C;
-#fi;
+# Ported from bash {{{1
+## colored prompts {{{2
+if [ -x /usr/bin/dircolors ]; then
+    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+    alias ls='ls --color=auto'
+    #alias dir='dir --color=auto'
+    #alias vdir='vdir --color=auto'
 
-# End of lines added by compinstall
+    alias grep='grep --color=auto'
+    alias fgrep='fgrep --color=auto'
+    alias egrep='egrep --color=auto'
+fi
 
-# Inherited from bash {{{1
 ## some more ls aliases {{{2
 alias ll='ls -alF'
 alias la='ls -A'
@@ -139,16 +160,17 @@ path=('/usr/local/bin' '/usr/bin' $path)
 manpath=('/usr/local/man' '/usr/share/man' $manpath)
 
 ## Texlive {{{2
-manpath+=/usr/local/texlive/2019/texmf-dist/doc/man
-infopath+=/usr/local/texlive/2019/texmf-dist/doc/info
-path+=/usr/local/texlive/2019/bin/x86_64-linux
+#manpath+=/usr/local/texlive/2020/texmf-dist/doc/man
+#infopath+=/usr/local/texlive/2020/texmf-dist/doc/info
+#path+=/usr/local/texlive/2020/bin/x86_64-linux
 ## Nvm {{{2
 export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+source /usr/share/nvm/init-nvm.sh
+
 ## Yarn {{{2
 path+=$HOME/.yarn/bin
 ## Java {{{2
-export JAVA_HOME=/usr/lib/jvm/java-12-openjdk-amd64
+export JAVA_HOME=/usr/lib/jvm/java-11-openjdk
 classpath=(. $JAVA_HOME/lib/dt.jar $JAVA_HOME/lib/tools.jar)
 path=($JAVA_HOME/bin $JAVA_HOME/jre/bin $path)
 ## Android {{{2
@@ -176,7 +198,7 @@ path+=$HOME/Flutter/bin/cache/dart-sdk/bin
 # - m: Multimedia
 # - u: Mount point
 # - t: /tmp
-export NNN_BMS="w:~/Eric/MyPrograms;c:~/pandoc_markdown/markdown/CliMed;m:/media/heyrict/LENOVO/Eric/mov;u:/media/heyrict;t:/tmp"
+export NNN_BMS="w:~/Eric/MyPrograms;c:~/pandoc_markdown/markdown/CliMed;m:/mnt/LENOVO/Eric/mov;u:/mnt;t:/tmp"
 
 export NNN_COLORS='5234'
 export NNN_ARCHIVE="\\.(7z|bz2|gz|tar|tgz|zip)$"
@@ -195,9 +217,9 @@ export TASKRC="~/.taskrc"
 
 path=(
     $path
-    $HOME/Eric/MyPrograms/bin
-    $HOME/Eric/Program_Files/bin
-    $HOME/Eric/Program_Files/java-jars
+    $HOME/MyPrograms/bin
+    $HOME/Programs/bin
+    $HOME/Programs/Slicer-4.11.0-2020-04-30-linux-amd64/bin
     $HOME/Android/platform-tools
 )
 
