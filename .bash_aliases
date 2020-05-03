@@ -4,7 +4,7 @@ if [ -f ~/.bash_passwords ]; then
     . ~/.bash_passwords
 fi
 
-export NLTK_DATA="/media/heyrict/LENOVO/Data/NLTK"
+export NLTK_DATA="/mnt/LENOVO/Data/NLTK"
 
 ## Mimic xbox360 driver with SHANWAN Generic joystick using xboxdrv
 #alias mimic-xbox="sudo xboxdrv \
@@ -29,6 +29,9 @@ activate() {
     source ~/$1/bin/activate;
 }
 
+# aria2c with rpc enabled
+alias aria2cd=aria2c --enable-rpc
+
 # vim without language server
 alias ncvim='NOCOMPL=true vim'
 alias ncnvim='NOCOMPL=true nvim'
@@ -37,7 +40,7 @@ alias ncnvim='NOCOMPL=true nvim'
 alias ssh_through_proxy='ssh -o "ProxyCommand=nc -X connect -x localhost:8123 %h %p"'
 
 # mitmproxy override
-alias mitmoverride="mitmproxy --anticache -s ~/Eric/Program_Files/mitmproxy-resource-override/mitmResourceOverride.py"
+alias mitmoverride="mitmproxy --anticache -s ~/Programs/mitmproxy-resource-override/mitmResourceOverride.py"
 
 # prevent errors on suspend
 ## normal version
@@ -74,11 +77,11 @@ alias hiber="wifi off; sudo systemctl hibernate"
 alias fetch_trackers='sed -i "s@^\(bt-tracker=\).*@\1$(curl -s -L https://raw.githubusercontent.com/ngosang/trackerslist/master/trackers_all_ip.txt | sed "/^\s*$/d" | tr "\n" ",")@" ~/.aria2/aria2.conf'
 
 # 8-bit color for fbterm
-alias eight-dark='export TERM=fbterm; export BACKLIGHT=dark; ~/Eric/MyPrograms/shell/solarized-dark-fbterm.sh; clear; echo $BACKLIGHT > ~/.prev_theme'
-alias eight-light='export TERM=fbterm; export BACKLIGHT=light; ~/Eric/MyPrograms/shell/solarized-light-fbterm.sh; clear; echo $BACKLIGHT > ~/.prev_theme'
+alias eight-dark='export TERM=fbterm; export BACKLIGHT=dark; ~/MyPrograms/shell/solarized-dark-fbterm.sh; clear; echo $BACKLIGHT > ~/.prev_theme'
+alias eight-light='export TERM=fbterm; export BACKLIGHT=light; ~/MyPrograms/shell/solarized-light-fbterm.sh; clear; echo $BACKLIGHT > ~/.prev_theme'
 alias eight='eight-dark'
-alias bg-dark="export BACKLIGHT=dark; vi --clean ~/.config/alacritty/alacritty.yml -c '%s/\*solarized_light/\*solarized_dark/' -c 'wq'; export BAT_THEME=OneHalfDark; echo dark > ~/.prev_theme"
-alias bg-light="export BACKLIGHT=light; vi --clean ~/.config/alacritty/alacritty.yml -c '%s/\*solarized_dark/\*solarized_light/' -c 'wq'; export BAT_THEME='Monokai Extended Light'; echo light > ~/.prev_theme"
+alias bg-dark="export BACKLIGHT=dark; vim --clean ~/.config/alacritty/alacritty.yml -c '%s/\*solarized_light/\*solarized_dark/' -c 'wq'; export BAT_THEME=OneHalfDark; echo dark > ~/.prev_theme"
+alias bg-light="export BACKLIGHT=light; vim --clean ~/.config/alacritty/alacritty.yml -c '%s/\*solarized_dark/\*solarized_light/' -c 'wq'; export BAT_THEME='Monokai Extended Light'; echo light > ~/.prev_theme"
 
 if [ -f ~/.prev_theme ]; then
   if [ `cat ~/.prev_theme` = light ]; then
@@ -114,18 +117,15 @@ alias pandoc2chspdf="pandoc2chs --template=$HOME/.pandoc/default.latex ~/pandoc_
 alias octave="octave --no-gui"
 
 # backup savedata
-alias backup_savedata="just -f ~/NutStore/backup/justfile -d ~/NutStore/backup/justfile"
+alias backup_savedata="just -f ~/Nutstore/backup/justfile -d ~/Nutstore/backup/justfile"
 
 # sync android savedata files
-alias android_push="adb push --sync /media/heyrict/LENOVO/Eric/psp/memstick/PSP/SAVEDATA/* /sdcard/Download/RetroGames/psp/memstick/PSP/SAVEDATA/"
-alias android_pull="adb pull -a /sdcard/Download/RetroGames/psp/memstick/PSP/SAVEDATA/ /tmp/psp_android_sync; rsync -puir /tmp/psp_android_sync/ /media/heyrict/LENOVO/Eric/psp/memstick/PSP/SAVEDATA/; rm -r /tmp/psp_android_sync"
+alias android_push="adb push --sync /mnt/LENOVO/Eric/psp/memstick/PSP/SAVEDATA/* /sdcard/Download/RetroGames/psp/memstick/PSP/SAVEDATA/"
+alias android_pull="adb pull -a /sdcard/Download/RetroGames/psp/memstick/PSP/SAVEDATA/ /tmp/psp_android_sync; rsync -puir /tmp/psp_android_sync/ /mnt/LENOVO/Eric/psp/memstick/PSP/SAVEDATA/; rm -r /tmp/psp_android_sync"
 alias android_sync="android_push; android_pull"
 
 # pipe dict to less
 d(){ dict $* | colorit | less -R; }
-
-# cd to specified directories
-alias wd="cd /home/heyrict/Eric/MyPrograms"
 
 
 # brightness
@@ -150,7 +150,7 @@ altrans() {
     if [ $# -eq 0 ]; then
         rg background_opacity ~/.config/alacritty/alacritty.yml | awk '{print $2}'
     else
-        vi --clean ~/.config/alacritty/alacritty.yml\
+        vim --clean ~/.config/alacritty/alacritty.yml\
             -c "%s/^background_opacity:[0-9 .]*$/background_opacity: $1/"\
             -c "wq"
     fi

@@ -3,136 +3,102 @@
 " {{{1 Change Default Language
 language en_US.utf8
 
-" {{{1 VUNDLE SETTINGS
-set nocompatible              " be iMproved, required
-filetype off                  " required
+" {{{1 Vim-Plug settings
+set nocompatible
+filetype off
 
 " set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
-"
-" let Vundle manage Vundle, required
-Plugin 'VundleVim/Vundle.vim'
-"
-" The following are examples of different formats supported.
-" Keep Plugin commands between vundle#begin/end.
-" plugin on GitHub repo
-Plugin 'tpope/vim-fugitive'
-" plugin from http://vim-scripts.org/vim/scripts.html
-" Plugin 'L9'
-" Git plugin not hosted on GitHub
-" Plugin 'git://git.wincent.com/command-t.git'
-" git repos on your local machine (i.e. when working on your own plugin)
-" Plugin 'file:///home/ericx/.vim/plugin'
-" The sparkup vim script is in a subdirectory of this repo called vim.
-" Pass the path to set the runtimepath properly.
-Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
-" Install L9 and avoid a Naming conflict if you've already installed a
-" different version somewhere else.
-" Plugin 'ascenator/L9', {'name': 'newL9'}
-"
-" Customized Plugins
-"
+call plug#begin('~/.vim/plugged')
+
+" Git
+Plug 'tpope/vim-fugitive'
+
 " Auto Complete
 if getenv("NOCOMPL") == v:null
-  "Plugin 'Valloric/YouCompleteMe'
-  "Plugin 'Shougo/deoplete.nvim'
-  "Plugin 'tbodt/deoplete-tabnine'
-  Plugin 'neoclide/coc.nvim'
+  "Plug 'Valloric/YouCompleteMe'
+  "Plug 'Shougo/deoplete.nvim'
+  "Plug 'tbodt/deoplete-tabnine'
+  Plug 'neoclide/coc.nvim'
 endif
 
-"Plugin 'zxqfl/tabnine-vim'
-"Plugin 'davidhalter/jedi-vim'
-"Plugin 'maralla/completor.vim'
-"Plugin 'artur-shaik/vim-javacomplete2'
+"Plug 'zxqfl/tabnine-vim'
+"Plug 'davidhalter/jedi-vim'
+"Plug 'maralla/completor.vim'
+"Plug 'artur-shaik/vim-javacomplete2'
 " Previm
-Plugin 'kannokanno/previm'
+Plug 'kannokanno/previm', { 'on': 'PrevimOpen' }
 " Tlist
-"Plugin 'taglist-plus'
-Plugin 'majutsushi/tagbar'
+"Plug 'taglist-plus'
+Plug 'majutsushi/tagbar', { 'on': ['TlistToggle', 'TlistOpen'] }
 " STL references
-"Plugin 'stlrefvim'
+"Plug 'stlrefvim'
 " autoswitch fcitx-remote
-Plugin 'fcitx.vim'
+Plug 'vim-scripts/fcitx.vim'
 " syntax highlight for .qml files
-Plugin 'peterhoeg/vim-qml'
+Plug 'peterhoeg/vim-qml'
 " NERD_tree
-Plugin 'scrooloose/nerdtree'
-Plugin 'Xuyuanp/nerdtree-git-plugin'
+Plug 'scrooloose/nerdtree'
+Plug 'Xuyuanp/nerdtree-git-plugin'
 " kivy syntax highlight
-"Plugin 'farfanoide/vim-kivy'
-Plugin 'file://home/ericx/.vim/bundle/custom_vim_kivy'
+"Plug 'farfanoide/vim-kivy'
+"Plug 'file://home/ericx/.vim/bundle/custom_vim_kivy'
 
 " Javascript Environment
-Plugin 'pangloss/vim-javascript'
-Plugin 'MaxMEllon/vim-jsx-pretty'
-"Plugin 'mxw/vim-jsx'
-Plugin 'jparise/vim-graphql'
+Plug 'pangloss/vim-javascript'
+Plug 'MaxMEllon/vim-jsx-pretty'
+"Plug 'mxw/vim-jsx'
+Plug 'jparise/vim-graphql'
 " For Typescript
-"Plugin 'leafgarland/typescript-vim'
-"Plugin 'peitalin/vim-jsx-typescript'
+"Plug 'leafgarland/typescript-vim'
+"Plug 'peitalin/vim-jsx-typescript'
 
-"Plugin 'alvan/vim-closetag'
+"Plug 'alvan/vim-closetag'
 
 " Python Environment
-Plugin 'Vimjas/vim-python-pep8-indent'
+Plug 'Vimjas/vim-python-pep8-indent'
 
 " For htmldjango
-"Plugin 'mjbrownie/vim-htmldjango_omnicomplete'
+"Plug 'mjbrownie/vim-htmldjango_omnicomplete'
 
 " Julia Environment
-"Plugin 'JuliaEditorSupport/julia-vim'
+"Plug 'JuliaEditorSupport/julia-vim'
 
 " Flutter Environment
-Plugin 'dart-lang/dart-vim-plugin'
+Plug 'dart-lang/dart-vim-plugin'
 
 " Color Schema
-Plugin 'altercation/vim-colors-solarized'
-Plugin 'vim-airline/vim-airline'
-Plugin 'edkolev/tmuxline.vim'
-Plugin 'vim-airline/vim-airline-themes'
+Plug 'altercation/vim-colors-solarized'
+Plug 'vim-airline/vim-airline'
+Plug 'edkolev/tmuxline.vim'
+Plug 'vim-airline/vim-airline-themes'
 "
 " ALE
-"Plugin 'w0rp/ale'
+"Plug 'w0rp/ale'
 
 " For markdown
-Plugin 'godlygeek/tabular'
-Plugin 'plasticboy/vim-markdown'
-"Plugin 'vim-pandoc/vim-pandoc-syntax'
-"Plugin 'vim-pandoc/vim-pandoc'
+Plug 'godlygeek/tabular'
+Plug 'plasticboy/vim-markdown'
+"Plug 'vim-pandoc/vim-pandoc-syntax'
+"Plug 'vim-pandoc/vim-pandoc'
 " For toml
-Plugin 'cespare/vim-toml'
+Plug 'cespare/vim-toml'
 
 " Orgmod
-"Plugin 'jceb/vim-orgmode'
-"Plugin 'tpope/vim-speeddating'
+"Plug 'jceb/vim-orgmode'
+"Plug 'tpope/vim-speeddating'
 " Organized Text
-Plugin 'vimoutliner/vimoutliner'
+Plug 'vimoutliner/vimoutliner'
 " Task warrior
-"Plugin 'farseer90718/vim-taskwarrior'
+"Plug 'farseer90718/vim-taskwarrior'
 
 " Pairing
-"Plugin 'jiangmiao/auto-pairs'
-Plugin 'tmsvg/pear-tree'
+"Plug 'jiangmiao/auto-pairs'
+Plug 'tmsvg/pear-tree'
 
 " Folders
 " All of your Plugins must be added before the following line
-call vundle#end()            " required
+call plug#end()            " required
 filetype plugin indent on    " required
-" To ignore plugin indent changes, instead use:
-"filetype plugin on
-"
-" Brief help
-" :PluginList       - lists configured plugins
-" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
-" :PluginSearch foo - searches for foo; append `!` to refresh local cache
-" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
-"
-" see :h vundle for more details or wiki for FAQ
-" Put your non-Plugin stuff after this line
-"
 " VUNDLE SETTINGS END
 
 " {{{1 vim-markdown configs
@@ -285,6 +251,9 @@ elseif $TERM=="linux"
     colorscheme solarized
 elseif $TERM=="fbterm"
     let g:solarized_termcolors=256
+    colorscheme solarized
+elseif $TERM=="alacritty"
+    let g:solarized_termcolors=16
     colorscheme solarized
 endif
 

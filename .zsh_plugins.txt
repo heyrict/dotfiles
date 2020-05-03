@@ -1,4 +1,11 @@
 # Zoxide, for changing directorys easier. needs `zoxier` binary in path.
 ajeetdsouza/zoxide
+# Powerlevel10k
+#romkatv/powerlevel10k
+
+# Oh-my-zsh plugins
+ohmyzsh/ohmyzsh path:plugins/git
+ohmyzsh/ohmyzsh path:plugins/encode64
+
 # Additional completion scripts
 #zsh-users/zsh-completions

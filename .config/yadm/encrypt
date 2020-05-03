@@ -1,4 +1,5 @@
 /home/heyrict/.ssh/*
+/home/heyrict/.gnupg/*
 /home/heyrict/.bash_passwords
 /home/heyrict/.config/BaiduPCS-Go/pcs_config.json
 /home/heyrict/.config/cordless/config.json

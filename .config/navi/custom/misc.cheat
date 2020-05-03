@@ -6,7 +6,7 @@ if [ <colored> = true ]; then\
 else\
     myqr -d /tmp -n qrcode.png -p ~/Pictures/avata2.jpg "<string>";\
 fi
-fim /tmp/qrcode.png
+xdg-open /tmp/qrcode.png
 rm /tmp/qrcode.png
 
 $ colored: echo true false | tr " " "\n"
