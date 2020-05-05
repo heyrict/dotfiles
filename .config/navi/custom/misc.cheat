@@ -10,3 +10,9 @@ xdg-open /tmp/qrcode.png
 rm /tmp/qrcode.png
 
 $ colored: echo true false | tr " " "\n"
+
+
+% misc.i3.available-keys
+
+# Get available keys in i3 config
+xmodmap -pke | bat

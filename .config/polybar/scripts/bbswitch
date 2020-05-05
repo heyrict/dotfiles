@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+STATE=$(cat /proc/acpi/bbswitch | cut -d " " -f 2)
+
+case "$STATE" in
+    *OFF) echo [NVIDIA];;
+    *ON) echo [INTEL];;
+esac

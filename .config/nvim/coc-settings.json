@@ -14,8 +14,9 @@
     "formatOnSaveFiletypes": ["*"]
   },
   "prettier.disableLanguages": ["vue", "markdown", "rust", "python"],
-  "tsserver.npm": "/home/heyrict/.nvm/versions/node/v10.15.3/bin/npm",
+  "tsserver.npm": "~/.nvm/versions/node/v12.16.3/bin/npm",
   "tsserver.enablejavascript": false,
+  "rust-analyzer.serverPath": "~/.cargo/bin/rust-analyzer",
   "suggest.completionItemKindLabels": {
     "keyword": "\uf1de",
     "variable": "\ue79b",
@@ -105,7 +106,7 @@
     "dart": {
       "command": "dart",
       "args": [
-        "/home/heyrict/Flutter/bin/cache/dart-sdk/bin/snapshots/analysis_server.dart.snapshot",
+        "~/Flutter/bin/cache/dart-sdk/bin/snapshots/analysis_server.dart.snapshot",
         "--lsp"
       ],
       "filetypes": ["dart"],
