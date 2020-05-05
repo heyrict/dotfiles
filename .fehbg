@@ -1,0 +1,2 @@
+#!/bin/sh
+feh --no-fehbg --bg-scale '/home/heyrict/Pictures/Wallpapers/19_HBD_Kirby_1920_1080.jpg' 

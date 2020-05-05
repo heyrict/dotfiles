@@ -7,6 +7,7 @@ export LANG=en_US.UTF-8
 fpath=(~/.zsh/completion $fpath)
 
 zstyle :compinstall filename '/home/heyrict/.zshrc'
+zstyle ':completion:*' menu select
 
 autoload -Uz compinit 
 if [[ -n ${ZDOTDIR:-${HOME}}/.zcompdump(#qN.mh+24) ]]; then

@@ -45,9 +45,6 @@ export QT_IM_MODULE=fcitx
 export XMODIFIERS="@im=fcitx"
 fcitx -d -r &
 
-# Polybar
-. ~/.config/polybar/launch.sh &
-
 # Set background
 . ~/.fehbg &
 
@@ -58,8 +55,14 @@ fcitx -d -r &
 ## Network Manager
 nm-applet &
 
+## Bluetooth Manager
+blueman-applet &
+
 ## Notification Manager
 dunst &
+
+# Polybar
+( sleep 2s && . ~/.config/polybar/launch.sh ) &
 
 # Start WM
 i3

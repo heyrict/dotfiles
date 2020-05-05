@@ -129,7 +129,7 @@ d(){ dict $* | colorit | less -R; }
 
 
 # brightness
-alias backlight_off="xset dpms force off"
+alias backlight_off="sleep 1; xset dpms force off"
 
 set_brightness() {
     if [ $# -eq 0 ]; then
