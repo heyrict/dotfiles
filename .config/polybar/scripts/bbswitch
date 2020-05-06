@@ -3,6 +3,6 @@
 STATE=$(cat /proc/acpi/bbswitch | cut -d " " -f 2)
 
 case "$STATE" in
-    *OFF) echo [NVIDIA];;
-    *ON) echo [INTEL];;
+    *ON) echo NVIDIA;;
+    *OFF) echo INTEL;;
 esac

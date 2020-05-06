@@ -112,11 +112,19 @@ fi
 # Compilation flags
 export ARCHFLAGS="-arch x86_64"
 
-# Lines configured by zsh-newuser-install {{{1
+# History {{{1
 HISTFILE=~/.histfile
 HISTSIZE=1000
 SAVEHIST=1000
+setopt EXTENDED_HISTORY
+setopt HIST_EXPIRE_DUPS_FIRST
+setopt APPEND_HISTORY
+setopt HIST_REDUCE_BLANKS
+setopt HIST_IGNORE_SPACE
+setopt HIST_IGNORE_DUPS
+setopt HIST_SAVE_NO_DUPS
 
+# Vim key binding {{{1
 bindkey -v
 bindkey "^e" _expand_alias
 bindkey '^p' up-history
@@ -225,13 +233,6 @@ path=(
 )
 
 # Other configs {{{1
-## History {{{2
-export HIST_EXPIRE_DUPS_FIRST=true
-export APPEND_HISTORY=true
-export HIST_REDUCE_BLANKS=true
-export HIST_IGNORE_SPACE=true
-export HIST_SAVE_NO_DUPS=true
-
 ## Python {{{2
 source ~/pyenv/env/bin/activate
 export HASURA_GRAPHQL_ADMIN_SECRET="CINDYTHINK_HASURA_ADMIN_SECRET"

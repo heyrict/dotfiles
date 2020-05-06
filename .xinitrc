@@ -62,7 +62,13 @@ blueman-applet &
 dunst &
 
 # Polybar
-( sleep 2s && . ~/.config/polybar/launch.sh ) &
+( sleep 5s && . ~/.config/polybar/launch.sh ) &
+
+# composition manager
+#
+# Most of the time it won't be useful.
+# Only use this when transparency is required and battery life is not a problem.
+#xcompmgr -n &
 
 # Start WM
 i3
