@@ -1,0 +1,68 @@
+#!/bin/bash
+
+DISPLAY_CHARGING="until_full"
+DISPLAY_DISCHARGING="power remain"
+DISPLAY_UNKNOWN=""
+DISPLAY_FULL=""
+
+
+POWER_NOW=$(cat /sys/class/power_supply/BAT1/power_now)
+ENERGY_FULL=$(cat /sys/class/power_supply/BAT1/energy_full)
+ENERGY_NOW=$(cat /sys/class/power_supply/BAT1/energy_now)
+STATUS=$(cat /sys/class/power_supply/BAT1/status)
+
+power() {
+    echo -n " $POWER_NOW" | sed "s/0\{1,3\}$//"
+}
+
+remain() {
+    TIME_REMAIN=$(echo "$ENERGY_NOW / $POWER_NOW" | bc -l)
+    format_time $TIME_REMAIN
+}
+
+until_full() {
+    TIME_UNTIL_FULL=$(echo "($ENERGY_FULL - $ENERGY_NOW) / $POWER_NOW" | bc -l)
+    format_time $TIME_UNTIL_FULL
+}
+
+format_time() {
+    HOURS=$(echo "$1" | cut -d. -f1)
+    if [ ! $HOURS ]; then HOURS=0; fi
+    MINUTES=$(echo "0.$(echo "$1" | cut -d. -f2) * 60" | bc | cut -d. -f1)
+    printf "%s %02d:%02d" $(time_symbol $HOURS) $HOURS $MINUTES
+}
+
+time_symbol() {
+    case "$1" in
+        *0) echo -n ;;
+        *1) echo -n ;;
+        *2) echo -n ;;
+        *3) echo -n ;;
+        *4) echo -n ;;
+        *5) echo -n ;;
+        *6) echo -n ;;
+        *7) echo -n ;;
+        *8) echo -n ;;
+        *9) echo -n ;;
+        *10) echo -n ;;
+        *11) echo -n ;;
+        *12) echo -n ;;
+        *) echo -n ;;
+    esac
+}
+
+case "$STATUS" in
+    *Charging) SYMBOLS=$DISPLAY_CHARGING;;
+    *Discharging) SYMBOLS=$DISPLAY_DISCHARGING;;
+    *Unknown) SYMBOLS=$DISPLAY_UNKNOWN;;
+    *Full) SYMBOLS=$DISPLAY_FULL;;
+esac
+
+for part in $SYMBOLS; do
+    case "$part" in
+        *power) power;;
+        *remain) remain;;
+        *until_full) until_full;;
+    esac
+    echo -n " "
+done;

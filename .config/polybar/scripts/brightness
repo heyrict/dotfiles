@@ -22,8 +22,13 @@ set_brightness() {
         ACTUAL_BRIGHTNESS=$(echo "$BRIGHTNESS * $MAX_BRIGHTNESS / 100" | bc)
         echo "$ACTUAL_BRIGHTNESS" > /sys/class/backlight/intel_backlight/brightness
     fi
+}
 
-    return 0
+update_brightness() {
+    ACTUAL_BRIGHTNESS=$(echo "$CUR_ACTUAL_BRIGHTNESS $*" | bc)
+    if [ $ACTUAL_BRIGHTNESS -le $MAX_BRIGHTNESS -a $ACTUAL_BRIGHTNESS -ge 0 ]; then
+        echo "$ACTUAL_BRIGHTNESS" > /sys/class/backlight/intel_backlight/brightness
+    fi
 }
 
 case "$1" in
@@ -32,5 +37,6 @@ case "$1" in
     *get-actual) echo $CUR_ACTUAL_BRIGHTNESS ;;
     *follow) tail /sys/class/backlight/intel_backlight/brightness;;
     *follow-actual) tail /sys/class/backlight/intel_backlight/brightness;;
-    *set) set_brightness &;;
+    *set) set_brightness & ;;
+    *update) update_brightness $2 & ;;
 esac
