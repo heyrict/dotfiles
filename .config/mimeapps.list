@@ -69,6 +69,7 @@ video/x-matroska=mpv.desktop
 video/webm=mpv.desktop
 image/jpeg=blender.desktop
 image/png=blender.desktop
+application/pdf=org.pwmt.zathura.desktop
 
 [Added Associations]
 x-scheme-handler/http=firefox.desktop
@@ -86,7 +87,7 @@ audio/x-ape=mpv.desktop;
 image/svg+xml=inkscape.desktop;
 application/zip=gnome-software-local-file.desktop;
 application/x-shellscript=bash.desktop;
-application/pdf=evince.desktop;
+application/pdf=zathura.desktop;
 audio/x-tta=mpv.desktop;
 video/mp4=mpv.desktop;
 text/x-matlab=vim.desktop;

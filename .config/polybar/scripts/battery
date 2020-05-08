@@ -16,11 +16,13 @@ power() {
 }
 
 remain() {
+    if [ $POWER_NOW -eq 0 ]; then return; fi
     TIME_REMAIN=$(echo "$ENERGY_NOW / $POWER_NOW" | bc -l)
     format_time $TIME_REMAIN
 }
 
 until_full() {
+    if [ $POWER_NOW -eq 0 ]; then return; fi
     TIME_UNTIL_FULL=$(echo "($ENERGY_FULL - $ENERGY_NOW) / $POWER_NOW" | bc -l)
     format_time $TIME_UNTIL_FULL
 }

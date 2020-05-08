@@ -18,6 +18,7 @@ font pango:WenQuanYi Micro Hei 8
 # Make config floating
 for_window [class="(?i)config"] floating enable
 for_window [title="float$"] floating enable
+for_window [title="mpv$"] floating enable
 for_window [class="^PCSX2"] floating enable
 
 # Disable border

@@ -12,8 +12,8 @@ menu_parent h Left
 menu_child  l Right
 menu_down   j Down
 menu_up     k Up
-menu_select Space Return
-menu_open
+menu_select space Return
+#menu_open m
 
 # Same for image navigation ...
 next_img n Right
