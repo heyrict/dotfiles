@@ -215,12 +215,13 @@ export NNN_IDLE_TIMEOUT=180
 
 # Plugins
 # - o: Open file found with fzf
-# - p: Play this music in mocp server
+# - p: View photos in this folder
+# - P: View photos in this folder in numeric order
 # - d: Show diffs between two files
 # - c: CD into directory found with fzf
 # - s: Organize
 # - b: Page the file with bat
-export NNN_PLUG='o:fzopen;p:-mocplay;d:diffs;k:-chksum;c:fzcd;z:fzz;s:organize;b:-_bat $nnn'
+export NNN_PLUG='o:fzopen;p:-_feh -Z.;P:-_feh -Z. `ls|sort -n`;d:diffs;k:-chksum;c:fzcd;z:fzz;s:organize;b:-_bat $nnn'
 ## Custom {{{2
 export TASKRC="~/.taskrc"
 
