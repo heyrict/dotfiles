@@ -480,7 +480,7 @@ set tabstop=4
 set shiftwidth=4
 set expandtab
 set number
-set timeout ttimeoutlen=50 timeoutlen=100
+set timeout ttimeoutlen=10
 set backspace=indent,eol,start
 
 autocmd Filetype html,htmldjango,json,javascript,typescript,typescript.tsx,css,yaml,dart set tabstop=2 shiftwidth=2
