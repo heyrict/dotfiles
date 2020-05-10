@@ -7,8 +7,8 @@ fi
 export NLTK_DATA="/mnt/LENOVO/Data/NLTK"
 
 # Extension to git merge
-alias gmn=git merge --no-commit
-alias gmnn=git merge --no-commit --no-ff
+alias gmn="git merge --no-commit"
+alias gmnn="git merge --no-commit --no-ff"
 
 ## Mimic xbox360 driver with SHANWAN Generic joystick using xboxdrv
 #alias mimic-xbox="sudo xboxdrv \
@@ -34,7 +34,7 @@ activate() {
 }
 
 # aria2c with rpc enabled
-alias aria2cd=aria2c --enable-rpc
+alias aria2cd="aria2c --enable-rpc"
 
 # vim without language server
 alias ncvim='NOCOMPL=true vim'
@@ -129,7 +129,20 @@ alias android_pull="adb pull -a /sdcard/Download/RetroGames/psp/memstick/PSP/SAV
 alias android_sync="android_push; android_pull"
 
 # pipe dict to less
-d(){ dict $* | colorit | less -R; }
+#d(){ dict $* | colorit | less -R; }
+#dictc() {
+#    echo -n '> '
+#    read word
+#    while [ "$word" ]; do
+#        if [ "$word" = "" ]; then
+#            clear
+#        else
+#            dict $word | colorit | less -R
+#        fi
+#        echo -n '> '
+#        read word
+#    done
+#}
 
 
 # brightness
