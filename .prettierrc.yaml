@@ -1,6 +1,9 @@
 overrides:
-    - files: "*.md"
-      options:
-          tabWidth: 4
-          parser: 'markdown'
-          printWidth: 120
+  - files: "*.md"
+    options:
+      tabWidth: 4
+      parser: "markdown"
+      printWidth: 120
+  - files: "*.yaml"
+    options:
+      tabWidth: 2
