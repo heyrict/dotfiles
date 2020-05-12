@@ -482,6 +482,7 @@ set expandtab
 set number
 set timeout ttimeoutlen=10
 set backspace=indent,eol,start
+set title
 
 autocmd Filetype html,htmldjango,json,javascript,typescript,typescript.tsx,css,yaml,dart set tabstop=2 shiftwidth=2
 autocmd Filetype markdown,csv set keywordprg=dict

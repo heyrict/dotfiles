@@ -112,7 +112,7 @@ floating_modifier $mod
 bindsym $mod+Return exec alacritty
 
 # look up in dict
-bindsym $mod+i exec "alacritty -t 'dict_lookup | float' -d 70 12 --position 200 200 -e bash -c 'sdcv -cn \\"$(xclip -o)\\" | less -R'"
+bindsym $mod+i exec "alacritty -t 'dict_lookup | float' -d 72 12 --position 200 200 -e bash -c 'sdcv -cn \\"$(xclip -o)\\" | less -R'"
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -121,46 +121,47 @@ bindsym $mod+Shift+q kill
 #bindsym $mod+d exec dmenu_run
 
 # resize window (you can also use the mouse for that)
-set $rofi_mode Rofi: [d]run [w]in [s]sh [k]ao/[e]moji [c]ombi [=]
+set $rofi_mode Rofi: DRun Win Kao/Emoji Pow Combi = dIce
 mode "$rofi_mode" {
     # :drun (bash -e "{cmd}; read -n 1 -s ")
-    bindsym $mod+d mode "default"; exec --no-startup-id "rofi -show drun -run-shell-command '{terminal} -e \\" {cmd}; read -n 1 -s\\"'"
     bindsym d mode "default"; exec --no-startup-id "rofi -show drun -run-shell-command '{terminal} -e \\" {cmd}; read -n 1 -s\\"'"
 
     # :window
-    bindsym $mod+w mode "default"; exec --no-startup-id "rofi -show window"
     bindsym w mode "default"; exec --no-startup-id "rofi -show window"
 
     # :ssh
-    bindsym $mod+s mode "default"; exec --no-startup-id "rofi -show ssh"
-    bindsym s mode "default"; exec --no-startup-id "rofi -show ssh"
+    #bindsym s mode "default"; exec --no-startup-id "rofi -show ssh"
 
     # :run
-    bindsym $mod+r mode "default"; exec --no-startup-id "rofi -show run"
-    bindsym r mode "default"; exec --no-startup-id "_res=\\"$(rofi -show run)\\"; notify-send Result $_res"
+    bindsym r mode "default"; exec --no-startup-id "_res=\\"$(rofi -show run)\\"; if [ -n \\"$_res\\" ]; then notify-send Result $_res; fi"
+
+    # :ssh
+    bindsym f mode "default"; exec --no-startup-id firefox
 
     # :combi
-    bindsym $mod+c mode "default"; exec --no-startup-id "rofi -show combi"
     bindsym c mode "default"; exec --no-startup-id "rofi -show combi"
 
     # :calc
-    bindsym $mod+equal mode "default"; exec --no-startup-id "_exp=\\"$(rofi -dmenu -i -p calc -lines 0)\\"; notify-send \\"Result of $_exp\\" \\"= $(echo \\"$_exp\\" | bc -l)\\" "
-    bindsym equal mode "default"; exec --no-startup-id "_exp=\\"$(rofi -dmenu -i -p calc -lines 0)\\"; notify-send \\"Result of $_exp\\" \\"= $(echo \\"$_exp\\" | bc -l)\\" "
+    bindsym equal mode "default"; exec --no-startup-id "_exp=\\"$(rofi -dmenu -i -p calc -lines 0)\\"; notify-send \\"$_exp\\" \\"= $(echo \\"$_exp\\" | bc -l)\\" "
 
     ## rofi-theme-selector
-    #bindsym $mod+t mode "default"; exec --no-startup-id "rofi-theme-selector"
     #bindsym t mode "default"; exec --no-startup-id "rofi-theme-selector"
 
     # :emoji
-    bindsym $mod+e mode "default"; exec --no-startup-id "rofimoji"
     bindsym e mode "default"; exec --no-startup-id "rofimoji"
 
     # :kaomoji
-    bindsym $mod+k mode "default"; exec --no-startup-id "~/.config/rofi/kaomoji/kaomoji.sh"
     bindsym k mode "default"; exec --no-startup-id "~/.config/rofi/kaomoji/kaomoji.sh"
+
+    # powermenu
+    bindsym p mode "default"; exec --no-startup-id "~/.config/polybar/scripts/powermenu"
+
+    # rustdice
+    bindsym i mode "default"; exec --no-startup-id "_exp=\\"$(rofi -dmenu -i -p dice -lines 0)\\"; notify-send \\"$(rustdice \\"$_exp\\")\\" "
 
     # back to normal: Enter or Escape or $mod+r
     bindsym q mode "default"
+    bindsym Control+bracketleft mode "default"
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
@@ -309,6 +310,7 @@ mode "resize" {
         bindsym q mode "default"
         bindsym Return mode "default"
         bindsym Escape mode "default"
+        bindsym Control+bracketleft mode "default"
         bindsym $mod+r mode "default"
 }
 
@@ -351,6 +353,7 @@ mode "move" {
         bindsym q mode "default"
         bindsym Return mode "default"
         bindsym Escape mode "default"
+        bindsym Control+bracketleft mode "default"
         bindsym $mod+r mode "default"
 }
 

@@ -43,7 +43,7 @@ export XIM=fcitx
 export GTK_IM_MODULE=fcitx
 export QT_IM_MODULE=fcitx
 export XMODIFIERS="@im=fcitx"
-GLOG_minloglevel=2 fcitx -d -r &
+( sleep 2s && GLOG_minloglevel=2 fcitx -d -r ) &
 
 # Set background
 . ~/.fehbg &

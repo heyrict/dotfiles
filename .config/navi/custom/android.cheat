@@ -1,11 +1,11 @@
 % android.pictures
 
 # Pull Pictures and videos of a specific date
-for f in `adb shell ls /sdcard/DCIM/Camera/<type>_<date>*`; do\
-    adb pull $f .;\
+for f in `adb shell ls '/sdcard/DCIM/Camera/<type>_<date>*'`; do
+    adb pull $f .;
 done
 
-$ type: echo * VID IMG | tr " " "\n"
+$ type: echo '*' VID IMG | tr " " "\n"
 $ date: adb shell ls /sdcard/DCIM/Camera/ | rg -o '\d{8}' | uniq
 
 
