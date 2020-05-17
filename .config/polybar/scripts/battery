@@ -36,6 +36,9 @@ format_time() {
 
 time_symbol() {
     case "$1" in
+        *10) echo -n ;;
+        *11) echo -n ;;
+        *12) echo -n ;;
         *0) echo -n ;;
         *1) echo -n ;;
         *2) echo -n ;;
@@ -46,10 +49,7 @@ time_symbol() {
         *7) echo -n ;;
         *8) echo -n ;;
         *9) echo -n ;;
-        *10) echo -n ;;
-        *11) echo -n ;;
-        *12) echo -n ;;
-        *) echo -n ;;
+        *) echo -n ;;
     esac
 }
 
