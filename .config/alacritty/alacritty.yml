@@ -655,4 +655,8 @@ key_bindings:
 
   # Custom mappings
   # Alt+Return -> Fullscreen
-  - { key: Return, mods: Alt, action: ToggleFullscreen }
+  #- { key: Return, mods: Alt, action: ToggleFullscreen }
+  - { key: P, mods: Alt, action: ScrollLineUp }
+  - { key: N, mods: Alt, action: ScrollLineDown }
+  - { key: P, mods: Alt|Shift, action: ScrollPageUp }
+  - { key: N, mods: Alt|Shift, action: ScrollPageDown }
