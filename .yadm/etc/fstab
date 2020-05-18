@@ -5,18 +5,23 @@
 # that works even if disks are added and removed. See fstab(5).
 #
 # <file system> <mount point>   <type>  <options>       <dump>  <pass>
-# / was on /dev/sda11 during installation
-UUID=781e1941-b4b4-4fd5-8e3f-5ee7c55dd48f /               ext4    errors=remount-ro 0       1
-# /boot/efi was on /dev/sda1 during installation
-UUID=F607-5FF8  /boot/efi       vfat    umask=0077      0       1
-#/swapfile                       none    swap    sw        0       0
-UUID=19815a12-719d-4b4d-8da6-88c1db24c315                 none    swap    sw        0       0
-#/tmp
-UUID=150861fb-f13b-40e4-9b71-e0e25cb9b3a0     /tmp        ext4    defaults          0       0
+# /dev/sda9 LABEL=ARCHLINUX
+UUID=fc4f5666-2161-49d3-94a1-95ac923b4eb1	/         	ext4      	rw,relatime	0 1
+
+# /dev/sda1 LABEL=SYSTEM_DRV
+UUID=F607-5FF8      	/boot     	vfat      	rw,relatime,fmask=0022,dmask=0022,codepage=437,iocharset=iso8859-1,shortname=mixed,utf8,errors=remount-ro	0 2
+
+# /dev/sda5 LABEL=SWAP
+UUID=25af58d0-8c9e-4604-bb84-c61c37041993                 none    swap    sw        0       0
 
 # NTFS Partitions
-UUID=9C484FA7484F7ED0   /media/heyrict/LENOVO             ntfs    rw,user,exec,uid=1000,gid=1000,dmask=027,fmask=027,errors=remount-ro 0       1
-UUID=3E36091B3608D635   /media/heyrict/Windows            ntfs    rw,user,exec,uid=1000,gid=1000,dmask=027,fmask=027,errors=remount-ro 0       1
+UUID=9C484FA7484F7ED0   /mnt/LENOVO             ntfs    rw,user,exec,uid=1000,gid=1000,dmask=027,fmask=027,errors=remount-ro 0       1
+UUID=3E36091B3608D635   /mnt/Windows            ntfs    rw,user,exec,uid=1000,gid=1000,dmask=027,fmask=027,errors=remount-ro 0       1
+
+# tmpfs
+#/root/images/tmpfile.bin   /tmp                 ext4    rw,nosuid,nodev,bind    0      0
+#/tmp                     /var/tmp               none    rw,nosuid,nodev,bind    0      0
 
 # WebDAV Partitions
 #https://dav.jianguoyun.com/dav/  /media/heyrict/nutstore  davfs   rw,user,uid=heyrict,noauto 0 0
+

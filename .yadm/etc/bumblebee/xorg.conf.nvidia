@@ -16,6 +16,7 @@ Section "Device"
 #   This Setting may be needed in some platforms with more than one
 #   nvidia card, which may confuse the proprietary driver (e.g.,
 #   trying to take ownership of the wrong device). Also needed on Ubuntu 13.04.
+#   BusID "PCI:01:00:0"
     BusID "PCI:04:00:0"
 
 #   Setting ProbeAllGpus to false prevents the new proprietary driver
@@ -31,8 +32,4 @@ Section "Device"
     Option "NoLogo" "true"
     Option "UseEDID" "false"
     Option "UseDisplayDevice" "none"
-EndSection
-
-Section "Files"
-    ModulePath "/usr/lib/x86_64-linux-gnu/nvidia/xorg"
 EndSection
