@@ -234,6 +234,9 @@ path=(
 )
 
 # Other configs {{{1
+## Zsh {{{2
+unsetopt beep
+
 ## Python {{{2
 source ~/pyenv/env/bin/activate
 export HASURA_GRAPHQL_ADMIN_SECRET="CINDYTHINK_HASURA_ADMIN_SECRET"
