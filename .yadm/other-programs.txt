@@ -1,72 +1,11 @@
-/home/heyrict/Eric/Program_Files/
-├── 2048
-│   ├── 2048
-│   └── 2048.c
-├── anki-2.1.13-linux-amd64
-│   ├── anki.1
-│   ├── anki.desktop
-│   ├── anki.png
-│   ├── anki.xml
-│   ├── anki.xpm
-│   ├── bin
-│   ├── Makefile
-│   └── README
-├── aria-ng
-│   ├── css
-│   ├── favicon.ico
-│   ├── favicon.png
-│   ├── fonts
-│   ├── index.html
-│   ├── index.manifest
-│   ├── js
-│   ├── langs
-│   ├── LICENSE
-│   ├── robots.txt
-│   ├── tileicon.png
-│   └── touchicon.png
-├── BaiduPCS-Go
-│   ├── BaiduPCS-Go
-│   └── README.md
+/home/heyrict/Programs/
+├── anki
+│   └── Makefile
 ├── bin
-│   ├── 2048 -> ../2048/2048
-│   ├── anki -> ../anki-2.1.13-linux-amd64/bin/anki
-│   ├── appetizer -> ../replaykit/bin/appetizer
-│   ├── BaiduPCS-Go
-│   ├── dust
-│   ├── exhaust
-│   ├── fasttext
-│   ├── githubdns
-│   ├── gotop
-│   ├── Marp -> ../marp/Marp
-│   ├── noeggs
-│   ├── nvim -> ../nvim/bin/nvim
-│   ├── PPSSPPSDL -> ../ppsspp/PPSSPPSDL
-│   ├── ranger -> ../ranger/ranger.py
-│   ├── starship
-│   ├── tocenter
-│   └── zotero -> ../Zotero_linux-x86_64/zotero
-├── blender-2.80-a1ad71304c2d-linux-glibc224-x86_64
-│   ├── 2.80
-│   ├── blender
-│   ├── blender.desktop
-│   ├── blender-softwaregl
-│   ├── blender.svg
-│   ├── blender-symbolic.svg
-│   ├── blender-thumbnailer.py
-│   ├── copyright.txt
-│   ├── GPL3-license.txt
-│   ├── GPL-license.txt
-│   ├── icons
-│   ├── jemalloc-license.txt
-│   ├── lib
-│   ├── LICENSE-bfont.ttf.txt
-│   ├── LICENSE-bmonofont-i18n.ttf.txt
-│   ├── LICENSE-droidsans.ttf.txt
-│   ├── ocio-license.txt
-│   ├── Python-license.txt
-│   └── readme.html
-├── draw_io
-│   └── draw.io-x86_64-12.2.2.AppImage
+│   ├── diagram-generator.lua -> ../diagram-generator.lua
+│   ├── html2text -> ../html2text/html2text.py
+│   ├── servefiles-cia -> ../FBI/servefiles/servefiles.py
+│   └── Slicer -> ../Slicer-4.11.0-2020-04-30-linux-amd64/Slicer
 ├── FBI
 │   ├── buildtools
 │   ├── LICENSE.txt
@@ -87,148 +26,23 @@
 │   ├── README.md
 │   ├── setup.py
 │   └── test
-├── java-jars
-│   ├── plantuml.jar
-│   └── shebang.txt
-├── linuxDoukutsu-1.01
-│   ├── Config.dat
-│   ├── data
-│   ├── doc
-│   ├── DoConfig.exe
-│   ├── doukutsu
-│   ├── doukutsu.bin
-│   ├── libSDL-1.2.so.0
-│   └── Profile.dat
-├── marp
-│   ├── blink_image_resources_200_percent.pak
-│   ├── content_resources_200_percent.pak
-│   ├── content_shell.pak
-│   ├── icudtl.dat
-│   ├── libffmpeg.so
-│   ├── libnode.so
-│   ├── LICENSE
-│   ├── LICENSES.chromium.html
-│   ├── locales
-│   ├── Marp
-│   ├── natives_blob.bin
-│   ├── pdf_viewer_resources.pak
-│   ├── resources
-│   ├── snapshot_blob.bin
-│   ├── ui_resources_200_percent.pak
-│   ├── version
-│   └── views_resources_200_percent.pak
 ├── mitmproxy-resource-override
 │   ├── LICENSE.md
 │   ├── mitmResourceOverride.py
-│   ├── no-redirect.py
-│   ├── Pubmed
-│   ├── README.md
-│   └── temp.txt
-├── nvim
-│   ├── bin
-│   ├── lib
-│   └── share
-├── ppsspp
-│   ├── assets
-│   └── PPSSPPSDL
-├── ranger
-│   ├── AUTHORS
-│   ├── CHANGELOG.md
-│   ├── CONTRIBUTING.md
-│   ├── doc
-│   ├── Dockerfile
-│   ├── examples
-│   ├── HACKING.md
-│   ├── LICENSE
-│   ├── Makefile
-│   ├── ranger
-│   ├── ranger.py
-│   ├── README.md
-│   ├── requirements.txt
-│   ├── setup.py
-│   └── tests
-├── redox-games
-│   ├── commie
-│   ├── dem
-│   ├── flappy
-│   ├── h4xx3r
-│   ├── ice
-│   ├── minesweeper
-│   ├── reblox
-│   ├── redoku
-│   ├── rusthello
-│   └── snake
-├── replaykit
-│   ├── bin
+│   ├── __pycache__
 │   └── README.md
 ├── rpcs3
-│   ├── rpcs3.png
-│   ├── rpcs3-v0.0.5-7694-e18e9909_linux64.AppImage
-│   └── rpcs3-v0.0.9-10097-3f559cd8_linux64.AppImage
-├── scel2txt.py
-├── TIM
-│   ├── %APPDATA%
-│   ├── TIM.AppImage
-│   ├── tim.desktop
-│   └── tim.png
-├── wewechat
-│   └── wewechat-1.1.7-linux-x86_64.AppImage
-└── Zotero_linux-x86_64
-    ├── application.ini
-    ├── chrome
-    ├── chrome.manifest
-    ├── components
-    ├── defaults
-    ├── dependentlibs.list
-    ├── dictionaries
-    ├── extensions
-    ├── firefox-bin.sig
-    ├── firefox.sig
-    ├── fonts
-    ├── gmp-clearkey
-    ├── gtk2
-    ├── icons
-    ├── libfreeblpriv3.chk
-    ├── libfreeblpriv3.so
-    ├── liblgpllibs.so
-    ├── libmozavcodec.so
-    ├── libmozavutil.so
-    ├── libmozgtk.so
-    ├── libmozsandbox.so
-    ├── libmozsqlite3.so
-    ├── libnspr4.so
-    ├── libnss3.so
-    ├── libnssckbi.so
-    ├── libnssdbm3.chk
-    ├── libnssdbm3.so
-    ├── libnssutil3.so
-    ├── libplc4.so
-    ├── libplds4.so
-    ├── libsmime3.so
-    ├── libsoftokn3.chk
-    ├── libsoftokn3.so
-    ├── libssl3.so
-    ├── libxul.so
-    ├── libxul.so.sig
-    ├── minidump-analyzer
-    ├── omni.ja
-    ├── pdfinfo
-    ├── pdftotext
-    ├── platform.ini
-    ├── plugin-container
-    ├── plugin-container.sig
-    ├── poppler-data
-    ├── precomplete
-    ├── removed-files
-    ├── set_launcher_icon
-    ├── Throbber-small.gif
-    ├── updater
-    ├── updater.ini
-    ├── updates
-    ├── updates.xml
-    ├── zotero
-    ├── zotero-bin
-    ├── zotero.desktop
-    └── zotero.jar
+│   └── rpcs3-v0.0.10-10383-b5dbb2eb_linux64.AppImage
+├── Slicer-4.11.0-2020-04-30-linux-amd64
+│   ├── bin
+│   ├── include
+│   ├── lib
+│   ├── libexec
+│   ├── resources
+│   ├── share
+│   └── Slicer
+└── TIM
+    ├── %APPDATA%
+    └── TIM-x86_64.AppImage
 
-64 directories, 167 files
+24 directories, 21 files

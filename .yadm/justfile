@@ -2,7 +2,7 @@
 all: sync packages other
 
 other:
-	tree -L 2 ~/Eric/Program_Files/ > other-programs.txt
+	tree -L 2 ~/Programs/ > other-programs.txt
 
 packages: pkg-npm pkg-yarn pkg-python
 
@@ -33,6 +33,8 @@ etc:
 	just pull_file /etc/hosts
 	just pull_file /etc/udhcpd.conf
 	just pull_file /etc/vsftpd.conf
+	just pull_file /etc/dhcpcd.conf
+	just pull_file /etc/X11
 
 udev:
 	just pull_file /lib/udev/rules.d/98-backlight.rules
@@ -41,7 +43,8 @@ udev:
 pull_file FILE:
 	#!/usr/bin/env sh
 	if [ ! -e "{{FILE}}" ]; then
-		echo "{{FILE}}" does not exist
+		echo [E]: "{{FILE}}" does not exist
+		exit 0
 	fi
 	
 	d=`dirname "{{FILE}}" | sed "s/^\///"`
