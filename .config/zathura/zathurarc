@@ -29,8 +29,14 @@ set default-bg \#eee8d5
 map [normal] <C-1> set "recolor-lightcolor \#002b36"
 map [normal] <C-2> set "recolor-lightcolor \#fdf6e3"
 
+map [normal] <C-!> set "set default-bg \#073642"
+map [normal] <C-@> set "set default-bg \#eee8d5"
+
 map [fullscreen] <C-1> set "recolor-lightcolor \#002b36"
 map [fullscreen] <C-2> set "recolor-lightcolor \#fdf6e3"
+
+map [fullscreen] <C-!> set "set default-bg \#073642"
+map [fullscreen] <C-@> set "set default-bg \#eee8d5"
 
 # enable theme
 set recolor true

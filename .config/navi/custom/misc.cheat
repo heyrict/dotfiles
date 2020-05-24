@@ -1,4 +1,4 @@
-% misc.qrcode
+% misc.qrcode.myqr
 
 # Generate a QR code
 if [ <colored> = true ]; then\
@@ -10,6 +10,14 @@ xdg-open /tmp/qrcode.png
 rm /tmp/qrcode.png
 
 $ colored: echo true false | tr " " "\n"
+
+
+
+% misc.qrcode.libqrencode
+
+# Print a QR code to terminal
+qrencode -o- -t ANSIUTF8 "<string>"
+
 
 
 % misc.i3.available-keys
