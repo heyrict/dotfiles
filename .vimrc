@@ -26,7 +26,7 @@ endif
 "Plug 'maralla/completor.vim'
 "Plug 'artur-shaik/vim-javacomplete2'
 " Previm
-Plug 'kannokanno/previm', { 'on': 'PrevimOpen' }
+Plug 'kannokanno/previm'
 " Tlist
 "Plug 'taglist-plus'
 Plug 'majutsushi/tagbar', { 'on': ['TlistToggle', 'TlistOpen'] }
