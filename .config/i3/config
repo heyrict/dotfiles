@@ -125,7 +125,7 @@ bindsym $mod+Shift+q kill
 set $rofi_mode Rofi: DRun Win Kao/Emoji Pow Combi = dIce
 mode "$rofi_mode" {
     # :drun (bash -e "{cmd}; read -n 1 -s ")
-    bindsym d mode "default"; exec --no-startup-id "rofi -show drun -run-shell-command '{terminal} -e \\" {cmd}; read -n 1 -s\\"'"
+    bindsym d mode "default"; exec --no-startup-id "rofi -show drun"
 
     # :window
     bindsym w mode "default"; exec --no-startup-id "rofi -show window"
@@ -313,6 +313,7 @@ mode "resize" {
         bindsym Escape mode "default"
         bindsym Control+bracketleft mode "default"
         bindsym $mod+r mode "default"
+        bindsym $mod+m mode "move"
 }
 
 bindsym $mod+r mode "resize"
@@ -355,7 +356,8 @@ mode "move" {
         bindsym Return mode "default"
         bindsym Escape mode "default"
         bindsym Control+bracketleft mode "default"
-        bindsym $mod+r mode "default"
+        bindsym $mod+m mode "default"
+        bindsym $mod+r mode "resize"
 }
 
 bindsym $mod+m mode "move"
@@ -363,7 +365,7 @@ bindsym $mod+m mode "move"
 
 # Screenshot
 bindsym Print exec "scrot ~/Pictures/Screenshot%Y-%m-%dT%H:%M:%S.png"
-bindsym Shift+Print exec "scrot -s ~/Pictures/Screenshot%Y-%m-%dT%H:%M:%S.png"
+bindsym Shift+Print exec "scrot -s ~/Pictures/Screenshot%Y-%m-%dT%H:%M:%S.png && true"
 bindsym Control+Print exec "scrot -bu ~/Pictures/Screenshot%Y-%m-%dT%H:%M:%S.png"
 
 # Start i3bar to display a workspace bar (plus the system information i3status

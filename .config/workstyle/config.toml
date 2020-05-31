@@ -74,5 +74,8 @@
 "music" = ""
 "disk" = ""
 "notebook" = ""
-".pdf" = ""
 "float" = "缾"
+
+# Extensions
+".pdf" = ""
+".mp3" = ""

@@ -56,7 +56,7 @@ export XMODIFIERS="@im=fcitx"
 nm-applet &
 
 ## Bluetooth Manager
-blueman-applet &
+#blueman-applet &
 
 ## Notification Manager
 dunst &
