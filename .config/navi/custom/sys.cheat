@@ -13,3 +13,9 @@ fuser <directory>
 
 # Run pulsemixer
 pulsemixer
+
+
+% sys.ip.inspect
+
+# Inspect current ip address
+ip addr | grep inet | sed "s/^ *//" | cut -d" " -f 1,2 | awk '{printf "\033[1m%-5s\033[0m \033[0;32m%s\033[0m\n", $1, $2}'

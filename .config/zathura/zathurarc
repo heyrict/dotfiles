@@ -27,16 +27,18 @@ set recolor-darkcolor \#002b36
 set default-bg \#eee8d5
 
 map [normal] <C-1> set "recolor-lightcolor \#002b36"
-map [normal] <C-2> set "recolor-lightcolor \#fdf6e3"
-
-map [normal] <C-!> set "set default-bg \#073642"
-map [normal] <C-@> set "set default-bg \#eee8d5"
+map [normal] <C-2> set "recolor-darkcolor \#eee8d5"
+map [normal] <C-3> set "default-bg \#073642"
+map [normal] <C-4> set "recolor-lightcolor \#fdf6e3"
+map [normal] <C-5> set "recolor-darkcolor \#002b36"
+map [normal] <C-6> set "default-bg \#eee8d5"
 
 map [fullscreen] <C-1> set "recolor-lightcolor \#002b36"
-map [fullscreen] <C-2> set "recolor-lightcolor \#fdf6e3"
-
-map [fullscreen] <C-!> set "set default-bg \#073642"
-map [fullscreen] <C-@> set "set default-bg \#eee8d5"
+map [fullscreen] <C-2> set "recolor-darkcolor \#eee8d5"
+map [fullscreen] <C-3> set "default-bg \#073642"
+map [fullscreen] <C-4> set "recolor-lightcolor \#fdf6e3"
+map [fullscreen] <C-5> set "recolor-darkcolor \#002b36"
+map [fullscreen] <C-6> set "default-bg \#eee8d5"
 
 # enable theme
 set recolor true
