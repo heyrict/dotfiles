@@ -24,3 +24,31 @@ qrencode -o- -t ANSIUTF8 "<string>"
 
 # Get available keys in i3 config
 xmodmap -pke | bat
+
+
+
+% misc.cheat
+
+# Ask cheat.sh for answer about linux
+_query_params=""
+_index="<index>"
+_comment="<comments>"
+_highlight="<highlight>"
+if [ $_index -gt 0 ]; then _query_params=${query_params}/$_index; fi
+_query_params=${query_params}\?
+if [ -f ~/.prev_theme ]; then
+  if [ `cat ~/.prev_theme` = light ]; then
+    _query_params=${query_params}style=solarized-light\&
+  else
+    _query_params=${query_params}style=solarized-dark\&
+  fi
+fi
+if [ $_comment = off ]; then _query_params=${query_params}Q; fi
+if [ $_highlight = off ]; then _query_params=${query_params}T; fi
+curl cht.sh/<lang_or_cmd>/`echo "<question>" | tr " " "+"`$_query_params | less -R
+unset _index _comment _highlight _query_params
+
+$ lang_or_cmd: if [ ! -f ~/.cache/cht-sh-list ]; then curl cht.sh/:list; fi; cat ~/.cache/cht-sh-list
+$ index: echo 0 1 2 3 4 5 6 7 8 9 | tr " " "\n"
+$ comments: echo on off | tr " " "\n"
+$ highlight: echo on off | tr " " "\n"
