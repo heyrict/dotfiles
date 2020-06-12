@@ -69,6 +69,7 @@ video/x-matroska=mpv.desktop
 video/webm=mpv.desktop
 image/jpeg=blender.desktop
 image/png=blender.desktop
+image/gif=gifview.desktop
 application/pdf=org.pwmt.zathura.desktop
 
 [Added Associations]
