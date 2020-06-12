@@ -4,7 +4,7 @@ all: sync packages other
 other:
 	tree -L 2 ~/Programs/ > other-programs.txt
 
-packages: pkg-npm pkg-yarn pkg-python
+packages: pkg-npm pkg-yarn pkg-python pkg-archlinux
 
 pkg-npm:
 	npm list -g --depth=0  2>/dev/null >npm-global.txt || return 0
@@ -17,6 +17,9 @@ pkg-python:
 
 pkg-rust:
 	ls ~/.cargo/bin > rust-global.txt
+
+pkg-archlinux:
+	pacman -Qe > archlinux-packages.txt
 
 sync: etc udev
 

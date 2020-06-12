@@ -1,0 +1,16 @@
+[Desktop Entry]
+Version=1.0
+Name=gifview
+GenericName=Gif viewer
+X-GNOME-FullName=Gif viewer
+#Comment=Download and share files over BitTorrent
+TryExec=gifview -a
+Exec=gifview -a %U
+#Icon=deluge
+Terminal=false
+Type=Application
+Categories=Image viewer;
+StartupWMClass=Gifview
+#StartupNotify=false
+#MimeType=application/x-bittorrent;x-scheme-handler/magnet;
+#X-GNOME-UsesNotifications=true

@@ -48,7 +48,7 @@ if [ $_highlight = off ]; then _query_params=${query_params}T; fi
 curl cht.sh/<lang_or_cmd>/`echo "<question>" | tr " " "+"`$_query_params | less -R
 unset _index _comment _highlight _query_params
 
-$ lang_or_cmd: if [ ! -f ~/.cache/cht-sh-list ]; then curl cht.sh/:list; fi; cat ~/.cache/cht-sh-list
+$ lang_or_cmd: if [ ! -f ~/.cache/cht-sh-list ]; then curl cht.sh/:list > ~/.cache/cht-sh-list; fi; cat ~/.cache/cht-sh-list
 $ index: echo 0 1 2 3 4 5 6 7 8 9 | tr " " "\n"
 $ comments: echo on off | tr " " "\n"
 $ highlight: echo on off | tr " " "\n"
