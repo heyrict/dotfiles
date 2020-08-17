@@ -656,7 +656,24 @@ key_bindings:
   # Custom mappings
   # Alt+Return -> Fullscreen
   #- { key: Return, mods: Alt, action: ToggleFullscreen }
-  - { key: P, mods: Alt, action: ScrollLineUp }
-  - { key: N, mods: Alt, action: ScrollLineDown }
-  - { key: P, mods: Alt|Shift, action: ScrollPageUp }
-  - { key: N, mods: Alt|Shift, action: ScrollPageDown }
+  - { key: K, mods: Super|Shift, action: ScrollLineUp }
+  - { key: J, mods: Super|Shift, action: ScrollLineDown }
+  - { key: P, mods: Super|Shift, action: ScrollPageUp }
+  - { key: N, mods: Super|Shift, action: ScrollPageDown }
+  - { key: T, mods: Super|Shift, action: ScrollToTop }
+  - { key: G, mods: Super|Shift, action: ScrollToBottom }
+
+  # Cursor key replacement
+  # ←↑↓→
+  - { key: H, mods: Super, chars: "\x1b[D" }
+  - { key: L, mods: Super, chars: "\x1b[C" }
+  - { key: K, mods: Super, chars: "\x1b[A" }
+  - { key: J, mods: Super, chars: "\x1b[B" }
+  # home and end
+  - { key: T, mods: Super, chars: "\x1b[H" }
+  - { key: G, mods: Super, chars: "\x1b[F" }
+  # pgup and pgdn
+  - { key: P, mods: Super, chars: "\x1b[5~" }
+  - { key: N, mods: Super, chars: "\x1b[6~" }
+  # delete
+  - { key: D, mods: Super, chars: "\x1b[3~" }

@@ -18,7 +18,7 @@ if getenv("NOCOMPL") == v:null
   "Plug 'Valloric/YouCompleteMe'
   "Plug 'Shougo/deoplete.nvim'
   "Plug 'tbodt/deoplete-tabnine'
-  Plug 'neoclide/coc.nvim'
+  Plug 'neoclide/coc.nvim', {'branch': 'release'}
 endif
 
 "Plug 'zxqfl/tabnine-vim'
@@ -29,7 +29,7 @@ endif
 Plug 'kannokanno/previm'
 " Tlist
 "Plug 'taglist-plus'
-Plug 'majutsushi/tagbar', { 'on': ['TlistToggle', 'TlistOpen'] }
+Plug 'majutsushi/tagbar', { 'on': ['TlistToggle', 'TlistOpen', 'TagbarToggle'] }
 " STL references
 "Plug 'stlrefvim'
 " autoswitch fcitx-remote
@@ -69,17 +69,20 @@ Plug 'dart-lang/dart-vim-plugin'
 " Color Schema
 Plug 'altercation/vim-colors-solarized'
 Plug 'vim-airline/vim-airline'
-Plug 'edkolev/tmuxline.vim'
+"Plug 'edkolev/tmuxline.vim'
 Plug 'vim-airline/vim-airline-themes'
 "
 " ALE
 "Plug 'w0rp/ale'
 
+" Folding
+Plug 'Konfekt/FastFold'
+
 " For markdown
 Plug 'godlygeek/tabular'
-Plug 'plasticboy/vim-markdown'
-"Plug 'vim-pandoc/vim-pandoc-syntax'
-"Plug 'vim-pandoc/vim-pandoc'
+"Plug 'plasticboy/vim-markdown'
+Plug 'vim-pandoc/vim-pandoc-syntax'
+Plug 'vim-pandoc/vim-pandoc'
 " For toml
 Plug 'cespare/vim-toml'
 
@@ -101,6 +104,9 @@ call plug#end()            " required
 filetype plugin indent on    " required
 " VUNDLE SETTINGS END
 
+" {{{1 fastfold configs
+let g:fastfold_fold_command_suffixes = []
+
 " {{{1 vim-markdown configs
 "let g:vim_markdown_folding_disabled = 1
 let g:vim_markdown_folding_level = 1
@@ -115,9 +121,19 @@ let g:vim_markdown_toc_autofit = 1
 "let g:vim_markdown_anchorexpr = "'<<'.v:anchor.'>>'"
 
 " {{{1 vim-pandoc configs
-let g:pandoc#filetypes#pandoc_markdown = 0
+"let g:pandoc#filetypes#pandoc_markdown = 1
+let g:pandoc#folding#fastfolds = 0
+let g:pandoc#folding#fdc = 0
 let g:pandoc#folding#fold_yaml = 1
-let g:pandoc#folding#mode = 'relative'
+let g:pandoc#folding#level = 1
+let g:pandoc#folding#mode = 'syntax'
+let g:pandoc#spell#enabled = 0
+"let g:pandoc#spell#default_langs = ['en_us', 'cjk']
+
+" Adding bullet support
+autocmd filetype pandoc,markdown set comments+=b:*,b:-,b:+
+autocmd filetype pandoc,markdown set formatoptions+=rmB
+autocmd filetype pandoc,markdown set nolinebreak
 
 " {{{1 vim-typescript configs
 autocmd BufNewFile,BufRead *.tsx set filetype=typescript.tsx
@@ -193,6 +209,7 @@ nmap <silent> <Leader>ca <Plug>(coc-codeaction)
 nmap <silent> <Leader>fj <Plug>(coc-float-jump)
 nmap <silent> <Leader>rf <Plug>(coc-refactor)
 nmap <Leader>fi <Plug>(coc-fix-current)
+nmap <Leader>fm :call CocAction('format')
 
 " Use K to show documentation in preview window
 nnoremap <silent> K :call <SID>show_documentation()<CR>
@@ -218,6 +235,7 @@ inoremap <silent><expr> <TAB>
       \ <SID>check_back_space() ? "\<TAB>" :
       \ coc#refresh()
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
 " Formatting
 command! -nargs=0 Fix :CocFix

@@ -366,7 +366,7 @@ bindsym $mod+m mode "move"
 
 # Screenshot
 bindsym Print exec "scrot ~/Pictures/Screenshot%Y-%m-%dT%H:%M:%S.png"
-bindsym Shift+Print exec "scrot -s ~/Pictures/Screenshot%Y-%m-%dT%H:%M:%S.png && true"
+bindsym Shift+Print exec "scrot -s ~/Pictures/Screenshot%Y-%m-%dT%H:%M:%S.png &"
 bindsym Control+Print exec "scrot -bu ~/Pictures/Screenshot%Y-%m-%dT%H:%M:%S.png"
 
 # Start i3bar to display a workspace bar (plus the system information i3status
