@@ -2,7 +2,7 @@
 
 # Pull Pictures and videos of a specific date
 for f in `adb shell ls '/sdcard/DCIM/Camera/<type>_<date>*'`; do
-    adb pull $f .;
+    adb pull "$f" .;
 done
 
 $ type: echo '*' VID IMG | tr " " "\n"
@@ -16,18 +16,18 @@ adb ls /sdcard/Android/data/com.tencent.mobileqq/Tencent/QQfile_recv | cut -d " 
 
 % android.qq.pull
 # Pull QQ received files
-adb pull /sdcard/Android/data/com.tencent.mobileqq/Tencent/QQfile_recv/<qq_recv_file>
+adb pull "/sdcard/Android/data/com.tencent.mobileqq/Tencent/QQfile_recv/<qq_recv_file>"
 
 $ qq_recv_file: adb ls /sdcard/Android/data/com.tencent.mobileqq/Tencent/QQfile_recv | cut -d " " -f 4
 
 
 % android.wechat.ls
 # List Wechat received files
-adb ls /sdcard/tencent/MicroMsg/Download
+adb ls /sdcard/Android/data/com.tencent.mm/MicroMsg/Download
 
 
 % android.wechat.pull
 # Pull Wechat received files
-adb pull /sdcard/tencent/MicroMsg/Download/<wechat_recv_file>
+adb pull "/sdcard/Android/data/com.tencent.mm/MicroMsg/Download/<wechat_recv_file>"
 
-$ wechat_recv_file: adb ls /sdcard/tencent/MicroMsg/Download | cut -d " " -f 4
+$ wechat_recv_file: adb ls /sdcard/Android/data/com.tencent.mm/MicroMsg/Download | cut -d " " -f 4

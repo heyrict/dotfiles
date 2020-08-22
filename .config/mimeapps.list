@@ -67,8 +67,8 @@ video/mp2t=mpv.desktop
 video/ogg=mpv.desktop
 video/x-matroska=mpv.desktop
 video/webm=mpv.desktop
-image/jpeg=blender.desktop
-image/png=blender.desktop
+image/jpeg=feh.desktop
+image/png=feh.desktop
 image/gif=gifview.desktop
 application/pdf=org.pwmt.zathura.desktop
 

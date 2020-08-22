@@ -7,7 +7,7 @@ udevadm control --reload-rules
 % sys.mount.blocking-process
 
 # Check the process blocking the mount point
-fuser <directory>
+fuser -m <directory>
 
 % sys.audio.equalizer
 
