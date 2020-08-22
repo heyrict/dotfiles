@@ -13,6 +13,6 @@ Section "Device"
 #   To get the BusID prop, run `lspci | egrep 'VGA|3D'` and input the data
 #   as you see in the commented example.
 #   This Setting is needed on Ubuntu 13.04.
-    BusID "PCI:04:00:0"
+#   BusID "PCI:01:00:0"
 
 EndSection

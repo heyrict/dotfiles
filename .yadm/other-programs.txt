@@ -2,10 +2,35 @@
 ├── anki
 │   └── Makefile
 ├── bin
-│   ├── diagram-generator.lua -> ../diagram-generator.lua
+│   ├── graphql-playground -> ../GraphqlPlayground/graphql-playground-electron-1.8.10-x86_64.AppImage
+│   ├── hasura
 │   ├── html2text -> ../html2text/html2text.py
 │   ├── servefiles-cia -> ../FBI/servefiles/servefiles.py
 │   └── Slicer -> ../Slicer-4.11.0-2020-04-30-linux-amd64/Slicer
+├── chineseocr_lite
+│   ├── android_demo
+│   ├── angle_class
+│   ├── apphelper
+│   ├── application
+│   ├── app.py
+│   ├── config.py
+│   ├── crnn
+│   ├── dbnet
+│   ├── Dockerfile
+│   ├── flask_app.py
+│   ├── LICENSE
+│   ├── model.py
+│   ├── models
+│   ├── ncnn_project
+│   ├── onnx
+│   ├── psenet
+│   ├── README.md
+│   ├── requirements.txt
+│   ├── static
+│   ├── templates
+│   ├── test_imgs
+│   ├── utils.py
+│   └── vertical_text_fonts
 ├── FBI
 │   ├── buildtools
 │   ├── LICENSE.txt
@@ -15,17 +40,12 @@
 │   ├── romfs
 │   ├── servefiles
 │   └── source
+├── GraphqlPlayground
+│   └── graphql-playground-electron-1.8.10-x86_64.AppImage
 ├── hosts
 │   ├── hosts-files
 │   ├── LICENSE
 │   └── README.md
-├── html2text
-│   ├── COPYING
-│   ├── html2text.py
-│   ├── MANIFEST.in
-│   ├── README.md
-│   ├── setup.py
-│   └── test
 ├── mitmproxy-resource-override
 │   ├── LICENSE.md
 │   ├── mitmResourceOverride.py
@@ -41,8 +61,15 @@
 │   ├── resources
 │   ├── share
 │   └── Slicer
-└── TIM
-    ├── %APPDATA%
-    └── TIM-x86_64.AppImage
+├── TIM
+│   ├── %APPDATA%
+│   └── TIM-x86_64.AppImage
+└── ventoy-1.0.15
+    ├── boot
+    ├── CreatePersistentImg.sh
+    ├── log.txt
+    ├── tool
+    ├── ventoy
+    └── Ventoy2Disk.sh
 
-24 directories, 21 files
+42 directories, 30 files
