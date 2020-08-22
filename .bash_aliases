@@ -6,6 +6,13 @@ fi
 
 export NLTK_DATA="/mnt/LENOVO/Data/NLTK"
 
+if [ "$SSH_CONNECTION" ]; then
+    SSH_SESSION=$(echo "$SSH_CONNECTION" | base64)
+    export P_THEME="/home/heyrict/.prev_theme_$SSH_SESSION"
+else
+    export P_THEME="/home/heyrict/.prev_theme"
+fi
+
 # Extension to git merge
 alias gmn="git merge --no-commit"
 alias gmnn="git merge --no-commit --no-ff"
@@ -81,14 +88,14 @@ alias hiber="wifi off; sudo systemctl hibernate"
 alias fetch_trackers='sed -i "s@^\(bt-tracker=\).*@\1$(curl -s -L https://raw.githubusercontent.com/ngosang/trackerslist/master/trackers_all_ip.txt | sed "/^\s*$/d" | tr "\n" ",")@" ~/.aria2/aria2.conf'
 
 # 8-bit color for fbterm
-alias eight-dark='export TERM=fbterm; export BACKLIGHT=dark; ~/MyPrograms/shell/solarized-dark-fbterm.sh; clear; echo $BACKLIGHT > ~/.prev_theme'
-alias eight-light='export TERM=fbterm; export BACKLIGHT=light; ~/MyPrograms/shell/solarized-light-fbterm.sh; clear; echo $BACKLIGHT > ~/.prev_theme'
+alias eight-dark='export TERM=fbterm; export BACKLIGHT=dark; ~/MyPrograms/shell/solarized-dark-fbterm.sh; clear; echo $BACKLIGHT > $P_THEME'
+alias eight-light='export TERM=fbterm; export BACKLIGHT=light; ~/MyPrograms/shell/solarized-light-fbterm.sh; clear; echo $BACKLIGHT > $P_THEME'
 alias eight='eight-dark'
-alias bg-dark="export BACKLIGHT=dark; vim --clean ~/.config/alacritty/alacritty.yml -c '%s/\*solarized_light/\*solarized_dark/' -c 'wq'; export BAT_THEME=OneHalfDark; echo dark > ~/.prev_theme"
-alias bg-light="export BACKLIGHT=light; vim --clean ~/.config/alacritty/alacritty.yml -c '%s/\*solarized_dark/\*solarized_light/' -c 'wq'; export BAT_THEME='Monokai Extended Light'; echo light > ~/.prev_theme"
+alias bg-dark="export BACKLIGHT=dark; vim --clean ~/.config/alacritty/alacritty.yml -c '%s/\*solarized_light/\*solarized_dark/' -c 'wq'; export BAT_THEME=OneHalfDark; echo dark > $P_THEME"
+alias bg-light="export BACKLIGHT=light; vim --clean ~/.config/alacritty/alacritty.yml -c '%s/\*solarized_dark/\*solarized_light/' -c 'wq'; export BAT_THEME='Monokai Extended Light'; echo light > $P_THEME"
 
-if [ -f ~/.prev_theme ]; then
-  if [ `cat ~/.prev_theme` = light ]; then
+if [ -f $P_THEME ]; then
+  if [ `cat $P_THEME` = light ]; then
     export BAT_THEME="Monokai Extended Light";
     export BACKLIGHT=light;
   else

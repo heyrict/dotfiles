@@ -1,4 +1,8 @@
-# vim:foldmethod=marker
+# vim:foldmethod=marker,ts=2,sw=2
+
+if [ "$SSH_CONNECTION" ]; then
+  SSH_SESSION=$(echo "$SSH_CONNECTION" | base64)
+fi
 
 # Language and IME {{{1
 export LANG=en_US.UTF-8
@@ -103,7 +107,7 @@ HIST_STAMPS="%Y-%M-%d %H:%m:%s"
 #source $ZSH/oh-my-zsh.sh
 
 # Preferred editor for local and remote sessions
-if [[ -n $SSH_CONNECTION ]]; then
+if [ $SSH_CONNECTION ]; then
   export EDITOR='vim'
 else
   export EDITOR='nvim'
@@ -113,7 +117,11 @@ fi
 export ARCHFLAGS="-arch x86_64"
 
 # History {{{1
-HISTFILE=~/.histfile
+if [ $SSH_CONNECTION ]; then
+  HISTFILE=~/.histfile_$SSH_SESSION
+else
+  HISTFILE=~/.histfile
+fi
 HISTSIZE=1000
 SAVEHIST=1000
 setopt EXTENDED_HISTORY

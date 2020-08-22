@@ -128,6 +128,7 @@ let g:pandoc#folding#fold_yaml = 1
 let g:pandoc#folding#level = 1
 let g:pandoc#folding#mode = 'syntax'
 let g:pandoc#spell#enabled = 0
+let g:pandoc#modules#disabled = ["bibliography"]
 "let g:pandoc#spell#default_langs = ['en_us', 'cjk']
 
 " Adding bullet support
@@ -219,6 +220,8 @@ function! s:show_documentation()
         execute 'h '.expand('<cword>')
     elseif (index(['css','text', 'markdown'], &filetype) >= 0)
         execute '! trans -d -no-ansi :zh '.expand("'<cword>'")
+    elseif (index(['pandoc'], &filetype) >= 0)
+        execute '! sdcv -n '.expand("'<cword>'")
     else
         call CocAction('doHover')
     endif
@@ -235,7 +238,7 @@ inoremap <silent><expr> <TAB>
       \ <SID>check_back_space() ? "\<TAB>" :
       \ coc#refresh()
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+inoremap <expr><cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
 " Formatting
 command! -nargs=0 Fix :CocFix
@@ -673,15 +676,15 @@ set timeout ttimeoutlen=10
 set backspace=indent,eol,start
 set title
 
-autocmd Filetype html,htmldjango,json,javascript,typescript,typescript.tsx,css,yaml,dart set tabstop=2 shiftwidth=2
-autocmd Filetype markdown,csv set keywordprg=dict
+autocmd Filetype html,htmldjango,json,javascript,typescript,typescript.tsx,css,yaml,dart setlocal tabstop=2 shiftwidth=2
+autocmd Filetype markdown,csv,pandoc setlocal keywordprg=dict
 "autocmd Filetype markdown,csv set keywordprg=trans\ -d\ -no-ansi\ :zh
-autocmd Filetype javascript,typescript,javascript.tsx,typescript.tsx set foldmethod=syntax
+autocmd Filetype javascript,typescript,javascript.tsx,typescript.tsx setlocal foldmethod=syntax
 
 set encoding=utf-8 fileencodings=ucs-bom,utf-8,shift-jis,cp936
 
 " {{{1 Custom filetype autocommands
-autocmd filetype typescript,javascript,typescript.jsx,javascript.jsx,python set foldmethod=marker
+autocmd filetype typescript,javascript,typescript.jsx,javascript.jsx,python setlocal foldmethod=marker
 
 " {{{1 Netrw
 let g:netrw_browsex_viewer= "xdg-open"

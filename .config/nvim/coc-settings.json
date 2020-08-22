@@ -11,7 +11,19 @@
   },
   "coc.preferences": {
     "extensionUpdateCheck": "weekly",
-    "formatOnSaveFiletypes": ["*"]
+    "formatOnSaveFiletypes": [
+      "python",
+      "javascript",
+      "javascript.jsx",
+      "typescript",
+      "typescript.tsx",
+      "vue",
+      "rust",
+      "dart",
+      "html",
+      "json",
+      "yaml"
+    ]
   },
   "prettier.disableLanguages": ["vue", "markdown", "rust", "python"],
   "tsserver.npm": "~/.nvm/versions/node/v12.16.3/bin/npm",
@@ -20,6 +32,7 @@
   "python": {
     "jediEnabled": false
   },
+  "sql.database": "postgresql",
   "suggest.completionItemKindLabels": {
     "keyword": "\uf1de",
     "variable": "\ue79b",
