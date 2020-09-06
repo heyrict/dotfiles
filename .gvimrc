@@ -13,6 +13,11 @@
 " http://www.cs.cmu.edu/~maverick/VimColorSchemeTest/ has examples and
 " downloads for the colorschemes on vim.org
 
+" Remove toolbar and menu
+set guioptions=agiLt
+
+set guifont=MesloLGS Nerd Font Mono 10
+
 " Source a global configuration file if available
 if filereadable("/etc/vim/gvimrc.local")
   source /etc/vim/gvimrc.local

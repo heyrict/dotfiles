@@ -1,0 +1,11 @@
+#!/usr/bin/env zsh
+
+selection=${NNN_SEL:-${XDG_CONFIG_HOME:-$HOME/.config}/nnn/.selection}
+
+if [ -f "$selection" ]; then
+    read -r files < "$selection"
+    for file in ${(0)files}; do echo $file; done;
+    croc send ${(0)files}
+else;
+    croc send $1
+fi;

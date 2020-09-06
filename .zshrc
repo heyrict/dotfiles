@@ -1,4 +1,4 @@
-# vim:foldmethod=marker,ts=2,sw=2
+# vim:foldmethod=marker ts=2 sw=2
 
 if [ "$SSH_CONNECTION" ]; then
   SSH_SESSION=$(echo "$SSH_CONNECTION" | base64)
@@ -217,7 +217,9 @@ path+=$HOME/Flutter/bin/cache/dart-sdk/bin
 # - t: /tmp
 export NNN_BMS="w:~/Eric/MyPrograms;c:~/pandoc_markdown/markdown/CliMed;m:/mnt/LENOVO/Eric/mov;u:/mnt;t:/tmp"
 
+# Light theme
 export NNN_COLORS='5234'
+export NNN_FCOLORS='04030c020001090e050ddc06'
 export NNN_ARCHIVE="\\.(7z|bz2|gz|tar|tgz|zip)$"
 export NNN_IDLE_TIMEOUT=180
 
@@ -229,7 +231,7 @@ export NNN_IDLE_TIMEOUT=180
 # - c: CD into directory found with fzf
 # - s: Organize
 # - b: Page the file with bat
-export NNN_PLUG='o:fzopen;p:-_feh -Z.;P:-_feh -Z. `ls|sort -n`;d:diffs;k:-chksum;c:fzcd;z:fzz;s:organize;b:-_bat $nnn'
+export NNN_PLUG='o:fzopen;p:-_feh -Z.;P:-_feh -Z. `ls|sort -n`;d:diffs;k:-chksum;c:fzcd;z:fzz;S:organize;b:-_bat $nnn;s:croc'
 ## Custom {{{2
 export TASKRC="~/.taskrc"
 
