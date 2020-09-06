@@ -31,8 +31,11 @@ include /usr/share/doc/task/rc/solarized-light-256.theme
 
 context.taskwarrior=project:learn.taskwarrior
 context.maskrcnn=project:learn.ml.model +maskrcnn
+context.postgraduate=project:exam.post-graduate
+
 taskd.server=freecinc.com:53589
 taskd.key=\/home\/heyrict\/.task\/freecinc_736fb58d.key.pem
 taskd.certificate=\/home\/heyrict\/.task\/freecinc_736fb58d.cert.pem
 taskd.ca=\/home\/heyrict\/.task\/freecinc_736fb58d.ca.pem
 taskd.credentials=FreeCinc\/freecinc_736fb58d\/c4842865-237a-4342-94ce-48eef6bf605d
+context=postgraduate
