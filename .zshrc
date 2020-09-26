@@ -42,15 +42,6 @@ zstyle ':completion:*:messages' format "%F{green}%d%f"
 zstyle ':completion:*' verbose yes
 zstyle ':completion:*' group-name ''
 
-# Antibody {{{1
-export ANTIBODY_HOME=~/.antibody
-source <(antibody init)
-antibody bundle < ~/.zsh_plugins.txt
-
-if [ ! "${TTY:5:3}" = "tty" ]; then
-    antibody bundle romkatv/powerlevel10k
-fi
-
 # Oh-my-zsh {{{1
 ## Path to your oh-my-zsh installation.
 #export ZSH="/home/heyrict/.oh-my-zsh"
@@ -107,7 +98,7 @@ HIST_STAMPS="%Y-%M-%d %H:%m:%s"
 #source $ZSH/oh-my-zsh.sh
 
 # Preferred editor for local and remote sessions
-if [ $SSH_CONNECTION ]; then
+if [[ -n $SSH_CONNECTION ]]; then
   export EDITOR='vim'
 else
   export EDITOR='nvim'
@@ -182,7 +173,7 @@ manpath=('/usr/local/man' '/usr/share/man' $manpath)
 #path+=/usr/local/texlive/2020/bin/x86_64-linux
 ## Nvm {{{2
 export NVM_DIR="$HOME/.nvm"
-source /usr/share/nvm/init-nvm.sh
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 
 ## Yarn {{{2
 path+=$HOME/.yarn/bin
@@ -232,6 +223,8 @@ export NNN_IDLE_TIMEOUT=180
 # - s: Organize
 # - b: Page the file with bat
 export NNN_PLUG='o:fzopen;p:-_feh -Z.;P:-_feh -Z. `ls|sort -n`;d:diffs;k:-chksum;c:fzcd;z:fzz;S:organize;b:-_bat $nnn;s:croc'
+## GTK {{{2
+export GTK2_RC_FILES=$HOME/.gtkrc-2.0
 ## Custom {{{2
 export TASKRC="~/.taskrc"
 
@@ -258,16 +251,16 @@ export LS_COLORS="$LS_COLORS:ow=1;36"
 export NAVI_PATH=~/.config/navi/custom/
 
 # Starship for zsh {{{1
-#case "$TERM" in
-#    xterm-color|*-256color) eval "$(starship init zsh)";;
-#esac
+case "$TERM" in
+    xterm-color|*-256color|alacritty) eval "$(starship init zsh)";;
+esac
 
 # Fuzzy finder {{{1
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # Powerlevel10k {{{1
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+#[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 # Navi {{{1
-[ -x `command -v navi` ] && source <(navi widget zsh)
+#[ -x `command -v navi` ] && source <(navi widget zsh)

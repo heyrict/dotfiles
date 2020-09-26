@@ -144,5 +144,5 @@ configuration {
 /*	me-accept-custom: "Control+MouseDPrimary";*/
 }
 
-@import "/usr/share/rofi/themes/gruvbox-light-soft.rasi"
-/*@import "/usr/share/rofi/themes/gruvbox-dark-soft.rasi"*/
+/*@import "/usr/share/rofi/themes/gruvbox-light-soft.rasi"*/
+@import "/usr/share/rofi/themes/gruvbox-dark-soft.rasi"

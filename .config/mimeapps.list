@@ -69,6 +69,7 @@ video/x-matroska=mpv.desktop
 video/webm=mpv.desktop
 image/jpeg=feh.desktop
 image/png=feh.desktop
+image/x-portable-pixmap=feh.desktop
 image/gif=gifview.desktop
 application/pdf=org.pwmt.zathura.desktop
 
