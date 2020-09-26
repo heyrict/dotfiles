@@ -241,7 +241,7 @@ path=(
 unsetopt beep
 
 ## Python {{{2
-source ~/pyenv/env/bin/activate
+source ~/pyenv/default/bin/activate
 export HASURA_GRAPHQL_ADMIN_SECRET="CINDYTHINK_HASURA_ADMIN_SECRET"
 
 ## Change ls colors {{{2
