@@ -277,7 +277,7 @@ elseif $TERM=="fbterm"
     let g:solarized_termcolors=256
     colorscheme solarized
 elseif $TERM=="alacritty"
-    let g:solarized_termtrans=1
+    let g:solarized_termtrans=0
     let g:solarized_termcolors=16
     colorscheme solarized
 endif
@@ -509,7 +509,7 @@ let g:previm_custom_css_path = '~/assets/css/solarized-light.min.css'
 "
 nnoremap <silent> <F9> :NERDTreeToggle<CR>
 let g:NERDTreeQuitOnOpen = 1
-let g:NERDTreeIndicatorMapCustom = {
+let g:NERDTreeGitStatusIndicatorMapCustom = {
     \ "Modified"  : "!",
     \ "Staged"    : "+",
     \ "Untracked" : "*",

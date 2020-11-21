@@ -74,6 +74,7 @@ for_window [title="float$"] floating enable
 for_window [title="mpv$"] floating enable
 for_window [class="^PCSX2"] floating enable
 for_window [title="^gifview: "] floating enable
+for_window [title="wihotspot"] floating enable
 
 # Border
 #default_border normal 1

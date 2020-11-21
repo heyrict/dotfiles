@@ -10,7 +10,7 @@ export LANG=en_US.UTF-8
 # The following lines were added by compinstall {{{1
 fpath=(~/.zsh/completion $fpath)
 
-zstyle :compinstall filename '/home/heyrict/.zshrc'
+zstyle :compinstall filename '/home/yrc/.zshrc'
 zstyle ':completion:*' menu select
 
 autoload -Uz compinit 
@@ -44,7 +44,7 @@ zstyle ':completion:*' group-name ''
 
 # Oh-my-zsh {{{1
 ## Path to your oh-my-zsh installation.
-#export ZSH="/home/heyrict/.oh-my-zsh"
+#export ZSH="/home/yrc/.oh-my-zsh"
 #
 #CASE_SENSITIVE=true
 #
@@ -187,10 +187,12 @@ export ANDROIDSDK="$HOME/Android"
 export APP_ANDROID_SDK_PATH="$HOME/Android"
 
 ## Rust {{{2
-export RUSTUP_DIST_SERVER=https://mirrors.ustc.edu.cn/rust-static
-export RUSTUP_UPDATE_ROOT=https://mirrors.ustc.edu.cn/rust-static/rustup
-export RUST_SRC_PATH=/home/heyrict/.rustup/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src
+export RUSTUP_DIST_SERVER=https://mirrors.tuna.tsinghua.edu.cn/rustup
+unset RUSTUP_UPDATE_ROOT
+unset RUST_SRC_PATH
 path+=$HOME/.cargo/bin
+path+=$HOME/.rustup/toolchains/nightly-x86_64-unknown-linux-gnu/bin
+
 ## Flutter {{{2
 #export PUB_HOSTED_URL=https://pub.flutter-io.cn
 #export FLUTTER_STORAGE_BASE_URL=https://storage.flutter-io.cn

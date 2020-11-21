@@ -8,9 +8,9 @@ export NLTK_DATA="/mnt/LENOVO/Data/NLTK"
 
 if [ "$SSH_CONNECTION" ]; then
     SSH_SESSION=$(echo "$SSH_CONNECTION" | base64)
-    export P_THEME="/home/heyrict/.prev_theme_$SSH_SESSION"
+    export P_THEME="/home/yrc/.prev_theme_$SSH_SESSION"
 else
-    export P_THEME="/home/heyrict/.prev_theme"
+    export P_THEME="/home/yrc/.prev_theme"
 fi
 
 # Extension to git merge
@@ -99,7 +99,7 @@ if [ -f $P_THEME ]; then
     export BAT_THEME="Monokai Extended Light";
     export BACKLIGHT=light;
   else
-    export BAT_THEME="OneHalfDark";
+    export BAT_THEME="Solarized (dark)";
     export BACKLIGHT=dark;
   fi
 fi

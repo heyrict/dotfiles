@@ -72,6 +72,7 @@ image/png=feh.desktop
 image/x-portable-pixmap=feh.desktop
 image/gif=gifview.desktop
 application/pdf=org.pwmt.zathura.desktop
+x-scheme-handler/baiduyunguanjia=baidunetdisk.desktop
 
 [Added Associations]
 x-scheme-handler/http=firefox.desktop

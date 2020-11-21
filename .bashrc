@@ -155,7 +155,6 @@ export PATH=$PATH:$HOME/.cargo/bin
 # - For Rust
 export RUSTUP_DIST_SERVER=https://mirrors.ustc.edu.cn/rust-static
 export RUSTUP_UPDATE_ROOT=https://mirrors.ustc.edu.cn/rust-static/rustup
-export RUST_SRC_PATH=/home/heyrict/.rustup/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src
 
 ## - For Flutter
 export PUB_HOSTED_URL=https://dart-pub.mirrors.sjtug.sjtu.edu.cn/

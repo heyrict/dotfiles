@@ -7,7 +7,7 @@ MENU="$(rofi -sep "|" -dmenu -font 'Meslo Nerd Font Mono 12' -i -p 'System' -loc
 
 case "$MENU" in
     *Lock) i3lock -c 002b36 ;;
-    *ScreenOff) sleep 1; xset dpms force off ;;
+    *ScreenOff) sleep 1; xset dpms force off && i3lock -p win -c 002b36 -u ;;
     *Suspend) systemctl suspend;;
     *Hibernate) systemctl hibernate;;
     *Reboot) systemctl reboot ;;
