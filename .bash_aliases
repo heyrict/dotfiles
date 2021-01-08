@@ -17,6 +17,25 @@ fi
 alias gmn="git merge --no-commit"
 alias gmnn="git merge --no-commit --no-ff"
 
+alias gaA="git add -A"
+alias gau="git add -u"
+alias gbD="git branch -D"
+alias gbd="git branch -d"
+alias gc="git commit -v"
+alias gcb="git checkout -b"
+alias gcmsg="git commit -m"
+alias gco="git checkout"
+alias gd="git diff"
+alias gds="git diff --staged"
+alias glola="git log --oneline --all --graph"
+alias gpf!="git push -f"
+alias gpoat="git push origin --all --tags"
+alias grb="git rebase"
+alias grbi="git rebase -i"
+alias gst="git status"
+alias gsta="git stage push"
+alias gup="git pull"
+
 ## Mimic xbox360 driver with SHANWAN Generic joystick using xboxdrv
 #alias mimic-xbox="sudo xboxdrv \
 #   --evdev /dev/input/by-id/usb-Sony_Interactive_Entertainment_Wireless_Controller-event-if03\
