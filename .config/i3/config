@@ -75,6 +75,9 @@ for_window [title="mpv$"] floating enable
 for_window [class="^PCSX2"] floating enable
 for_window [title="^gifview: "] floating enable
 
+# Config for steam games
+for_window [class="steam_app_405900"] floating enable
+
 # Border
 #default_border normal 1
 default_border pixel 2

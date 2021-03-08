@@ -19,3 +19,62 @@ pulsemixer
 
 # Inspect current ip address
 ip addr | grep inet | sed "s/^ *//" | cut -d" " -f 1,2 | awk '{printf "\033[1m%-5s\033[0m \033[0;32m%s\033[0m\n", $1, $2}'
+
+
+; ==================== Lenovo ideapad kernel module ====================
+; Refer to https://wiki.archlinux.org/index.php/Lenovo_IdeaPad_5_14are05
+; ======================================================================
+
+% sys.lenovo.conservation_mode
+
+# Turn on or off the conservation mode
+
+sudo tee /sys/bus/platform/drivers/ideapad_acpi/VPC2004:00/conservation_mode <<< <actual>
+
+$ state: echo -e "0: off\n1: on"
+$ actual: echo "<state>" | cut -d: -f1
+
+
+% sys.lenovo.rapid_charge
+
+# Turn on or off rapid charge
+
+echo "<actual>" | sudo tee /sys/bus/platform/drivers/ideapad_acpi/VPC2004:00/conservation_mode
+
+$ state: echo -e "on\noff"
+$ actual: [ "<state>" -e "on" ] && echo '\_SB.PCI0.LPC0.EC0.VPC0.SBMC 0x07' || echo '\_SB.PCI0.LPC0.EC0.VPC0.SBMC 0x08'
+
+
+% sys.cpupower.governor
+
+# Change cpu governor
+
+sudo bash -c "cpupower frequency-set -g <governor> && cpupower frequency-info"
+
+$ governor: echo "performance powersave" | tr " " "\n"
+
+
+% sys.cpupower.freq_set
+
+# Set CPU frequency
+
+sudo bash -c "cpupower frequency-set -g userspace && cpupower frequency-set -f <freq>M && cpupower frequency-info"
+
+$ freq: seq 500 200 2701
+
+
+% sys.cpupower.freq_limit
+
+# Change CPU frequency limit
+
+sudo bash -c "cpupower frequency-set -d <min>M -u <max>M && cpupower frequency-info"
+
+$ min: seq 500 200 2701
+$ max: seq 500 200 2701
+
+
+% sys.cpupower.info
+
+# Show CPU settings
+
+cpupower frequency-info

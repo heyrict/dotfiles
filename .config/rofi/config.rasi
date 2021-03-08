@@ -1,9 +1,9 @@
 configuration {
 	modi: "window,drun,ssh,combi";
-/*	width: 50;*/
-/*	lines: 15;*/
+  	width: 60;
+  	lines: 12;
   	columns: 2;
-	font: "MesloLGS Nerd Font Mono 10";
+	font: "Meslo LG S 12";
 /*	bw: 1;*/
 /*	location: 0;*/
 /*	padding: 5;*/

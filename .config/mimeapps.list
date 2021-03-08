@@ -71,6 +71,7 @@ image/jpeg=feh.desktop
 image/png=feh.desktop
 image/gif=gifview.desktop
 application/pdf=org.pwmt.zathura.desktop
+x-scheme-handler/discord-455712169795780630=discord-455712169795780630.desktop
 
 [Added Associations]
 x-scheme-handler/http=firefox.desktop

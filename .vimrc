@@ -732,7 +732,7 @@ autocmd Filetype markdown,csv,pandoc setlocal keywordprg=dict
 "autocmd Filetype markdown,csv set keywordprg=trans\ -d\ -no-ansi\ :zh
 autocmd Filetype javascript,typescript,javascript.tsx,typescript.tsx setlocal foldmethod=syntax
 
-set encoding=utf-8 fileencodings=ucs-bom,utf-8,shift-jis,cp936
+set encoding=utf-8 fileencodings=ucs-bom,utf-8,shift-jis,cp932,cp936
 
 " {{{1 Custom filetype autocommands
 autocmd filetype typescript,javascript,typescript.jsx,javascript.jsx,python setlocal foldmethod=marker

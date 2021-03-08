@@ -17,6 +17,9 @@ fi
 alias gmn="git merge --no-commit"
 alias gmnn="git merge --no-commit --no-ff"
 
+# 2048.c default theme
+alias 2048="2048 bluered"
+
 ## Mimic xbox360 driver with SHANWAN Generic joystick using xboxdrv
 #alias mimic-xbox="sudo xboxdrv \
 #   --evdev /dev/input/by-id/usb-Sony_Interactive_Entertainment_Wireless_Controller-event-if03\
