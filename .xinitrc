@@ -67,6 +67,9 @@ nm-applet &
 ## Notification Manager
 dunst &
 
+## Battery notification
+i3-battery-popup -n &
+
 # Polybar
 ( sleep 5s && . ~/.config/polybar/launch.sh ) &
 

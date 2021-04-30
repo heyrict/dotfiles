@@ -38,6 +38,22 @@ alias 2048="2048 bluered"
 #   --silent
 #"
 
+alias mimic-xbox="xboxdrv \
+    --evdev /dev/input/by-id/usb-Sony_Interactive_Entertainment_Wireless_Controller-if03-event-joystick \
+    --evdev-absmap ABS_X=x1,ABS_Y=y1                 \
+    --evdev-absmap ABS_Z=x2,ABS_RZ=y2                \
+    --evdev-absmap ABS_HAT0X=dpad_x,ABS_HAT0Y=dpad_y \
+    --evdev-keymap BTN_A=x,BTN_B=a                   \
+    --evdev-keymap BTN_C=b,BTN_X=y                   \
+    --evdev-keymap BTN_Y=lb,BTN_Z=rb                 \
+    --evdev-keymap BTN_TL=lt,BTN_TR=rt               \
+    --evdev-keymap BTN_SELECT=tl,BTN_START=tr        \
+    --evdev-keymap BTN_TL2=back,BTN_TR2=start        \
+    --evdev-keymap BTN_MODE=guide                    \
+    --axismap -y1=y1,-y2=y2                          \
+    --mimic-xpad                                     \
+    --silent"
+
 # virtualenv
 activate() {
     source ~/$1/bin/activate;
@@ -49,6 +65,9 @@ alias aria2cd="aria2c --enable-rpc"
 # vim without language server
 alias ncvim='NOCOMPL=true vim'
 alias ncnvim='NOCOMPL=true nvim'
+
+# nnn
+alias nnn='nnn -x'
 
 # ssh related
 alias ssh_through_proxy='ssh -o "ProxyCommand=nc -X connect -x localhost:8123 %h %p"'
@@ -90,6 +109,9 @@ alias hiber="wifi off; sudo systemctl hibernate"
 # aria2c bt trackers
 alias fetch_trackers='sed -i "s@^\(bt-tracker=\).*@\1$(curl -s -L https://raw.githubusercontent.com/ngosang/trackerslist/master/trackers_all_ip.txt | sed "/^\s*$/d" | tr "\n" ",")@" ~/.aria2/aria2.conf'
 
+# Colored ytop
+alias ytop='if [ $BACKLIGHT = light ]; then ytop -c default-dark; else ytop; fi'
+
 # 8-bit color for fbterm
 alias eight-dark='export TERM=fbterm; export BACKLIGHT=dark; ~/MyPrograms/shell/solarized-dark-fbterm.sh; clear; echo $BACKLIGHT > $P_THEME'
 alias eight-light='export TERM=fbterm; export BACKLIGHT=light; ~/MyPrograms/shell/solarized-light-fbterm.sh; clear; echo $BACKLIGHT > $P_THEME'
@@ -121,7 +143,8 @@ alias fbi='fbi -P'
 # pandoc template
 #eval "$(pandoc --bash-completion)"
 #alias pandoc2chspdf="pandoc --template=$HOME/模板/chs_template.tex --pdf-engine=xelatex -M 'CJKmainfont:WenQuanYi Micro Hei' --biblio $HOME/Tex/MyRef.bib"
-alias pandoc="pandoc --filter pandoc-tablenos -s"
+#alias pandoc="pandoc --filter pandoc-tablenos -s"
+alias pandoc="pandoc -s"
 alias pandoc2mermaid="pandoc -c ~/assets/css/github-pandoc.css --template ~/assets/css/mermaid_template.html5 --filter pandoc-mermaid"
 alias pandoc2mermaidpdf="pandoc --filter pandoc-imagine --pdf-engine=xelatex -M 'CJKmainfont:WenQuanYi Micro Hei'"
 alias pandoc2chs="pandoc --pdf-engine=xelatex -M 'CJKmainfont:WenQuanYi Micro Hei' --biblio $HOME/Tex/MyRef.bib"

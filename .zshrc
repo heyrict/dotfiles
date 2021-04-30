@@ -263,6 +263,9 @@ export LS_COLORS="$LS_COLORS:ow=1;36"
 ## Navi {{{2
 export NAVI_PATH=~/.config/navi/custom
 
+## Veloren {{{2
+export VELOREN_ASSETS=/usr/share/veloren
+
 # Starship for zsh {{{1
 #case "$TERM" in
 #    xterm-color|*-256color) eval "$(starship init zsh)";;

@@ -26,6 +26,12 @@ qrencode -o- -t ANSIUTF8 "<string>"
 xmodmap -pke | bat
 
 
+% misc.ds4drv.available-keys
+
+# Get available keys in linux header
+bat /usr/include/linux/input-event-codes.h
+
+
 
 % misc.cheat
 

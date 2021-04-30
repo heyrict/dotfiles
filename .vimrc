@@ -716,6 +716,7 @@ vnoremap _[ <esc>`>a]<esc>`<i[<esc>
 vnoremap _{ <esc>`>a}<esc>`<i{<esc>
 vnoremap _* <esc>`>a**<esc>`<i**<esc>
 vnoremap _+ <esc>`>a*<esc>`<i*<esc>
+vnoremap _! <esc>`>a --><esc>`<i<!-- <esc>
 
 " {{{1 General Configs
 set autoindent

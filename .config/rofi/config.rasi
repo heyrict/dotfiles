@@ -25,8 +25,8 @@ configuration {
 /*	drun-display-format: "{name} [<span weight='light' size='small'><i>({generic})</i></span>]";*/
 /*	disable-history: false;*/
 /*	ignored-prefixes: "";*/
-  	sort: true;
-/*	sorting-method: ;*/
+	sort: true;
+	sorting-method: "fzf";
 /*	case-sensitive: false;*/
 /*	cycle: true;*/
 /*	sidebar-mode: false;*/
@@ -144,5 +144,4 @@ configuration {
 /*	me-accept-custom: "Control+MouseDPrimary";*/
 }
 
-@import "/usr/share/rofi/themes/gruvbox-light-soft.rasi"
-/*@import "/usr/share/rofi/themes/gruvbox-dark-soft.rasi"*/
+@import "/usr/share/rofi/themes/Adapta-Nokto.rasi"

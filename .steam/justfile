@@ -33,7 +33,13 @@ rabi_ribi:
 	just _game "Rabi-Ribi" "rabiribi.exe" "400910" "WINEESYNC=0" ""
 
 atelier_firis:
+	just _game "Atelier Firis The Alchemist and the Mysterious Journey" "A18.exe" "527290"
+
+atelier_firis_config:
 	just _game "Atelier Firis The Alchemist and the Mysterious Journey" "A18Config.exe" "527290"
 
 disgaea:
 	just _game "Disgaea PC" "dis1_st.exe" 405900 "" "GAMEMODERUNEXEC=pvkrun gamemoderun" "/home/heyrict/.local/share/Steam/steamapps"
+
+atelier_ayesha:
+	just _game "Atelier Ayesha DX" "Atelier_AyeshaLauncher.exe" 1152300 "" "LC_ALL=ja_JP.utf-8 pvkrun" "/home/heyrict/.local/share/Steam/steamapps"

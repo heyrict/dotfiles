@@ -74,6 +74,9 @@ for_window [title="float$"] floating enable
 for_window [title="mpv$"] floating enable
 for_window [class="^PCSX2"] floating enable
 for_window [title="^gifview: "] floating enable
+for_window [title="^Ｋａｎｏｎ"] floating enable
+for_window [title="^QQ"] floating enable
+for_window [class="(?i)^Steam$"] floating enable
 
 # Config for steam games
 for_window [class="steam_app_405900"] floating enable
@@ -145,6 +148,9 @@ mode "$rofi_mode" {
 
     # :combi
     bindsym c mode "default"; exec --no-startup-id "rofi -show combi"
+
+    # :keys
+    bindsym c mode "default"; exec --no-startup-id "rofi -show keys"
 
     # :calc
     bindsym equal mode "default"; exec --no-startup-id "_exp=\\"$(rofi -dmenu -i -p calc -lines 0)\\"; notify-send \\"$_exp\\" \\"= $(echo \\"$_exp\\" | bc -l)\\" "
@@ -374,9 +380,9 @@ bindsym Control+Print exec "scrot -bu ~/Pictures/Screenshot%Y-%m-%dT%H:%M:%S.png
 
 # Multi-monitor
 ## Config
-workspace 1 output eDP-1
-workspace 6 output HDMI-1
-workspace 7 output DP-1
+workspace 1 output eDP1
+workspace 6 output HDMI1
+workspace 7 output DP1
 
 ## Marking
 bindsym $mod+g exec i3-input -F 'mark %s' -l 1 -P 'Mark: '
