@@ -89,8 +89,8 @@ configuration {
 /*	kb-accept-custom: "Control+Return";*/
 /*	kb-accept-alt: "Shift+Return";*/
 /*	kb-delete-entry: "Shift+Delete";*/
-/*	kb-mode-next: "Shift+Right,Control+Tab";*/
-/*	kb-mode-previous: "Shift+Left,Control+ISO_Left_Tab";*/
+	kb-mode-next: "Shift+Right,Control+Tab,Alt+l";
+	kb-mode-previous: "Shift+Left,Control+ISO_Left_Tab,Alt+h";
   	kb-row-left: "Control+h";
   	kb-row-right: "Control+l";
   	kb-row-up: "Up,Control+p,ISO_Left_Tab,Control+k";
@@ -144,4 +144,4 @@ configuration {
 /*	me-accept-custom: "Control+MouseDPrimary";*/
 }
 
-@import "/usr/share/rofi/themes/Adapta-Nokto.rasi"
+@import "/usr/share/rofi/themes/fancy.rasi"

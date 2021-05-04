@@ -32,12 +32,14 @@ etc:
 	just pull_file /etc/davfs2/davfs2.conf
 	just pull_file /etc/dictd
 	just pull_file /etc/fstab
-	just pull_file /etc/hostapd
+	just pull_file /etc/hostapd/hostapd.conf
 	just pull_file /etc/hosts
 	just pull_file /etc/udhcpd.conf
 	just pull_file /etc/vsftpd.conf
 	just pull_file /etc/dhcpcd.conf
 	just pull_file /etc/X11
+	just pull_file /etc/mkinitcpio.conf
+	just pull_file /etc/modprobe.d/vfio.conf
 
 udev:
 	just pull_file /lib/udev/rules.d/98-backlight.rules

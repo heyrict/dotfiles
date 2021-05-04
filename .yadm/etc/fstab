@@ -12,11 +12,11 @@ UUID=fc4f5666-2161-49d3-94a1-95ac923b4eb1	/         	ext4      	rw,relatime	0 1
 UUID=F607-5FF8      	/boot     	vfat      	rw,relatime,fmask=0022,dmask=0022,codepage=437,iocharset=iso8859-1,shortname=mixed,utf8,errors=remount-ro	0 2
 
 # /dev/sda5 LABEL=SWAP
-UUID=25af58d0-8c9e-4604-bb84-c61c37041993                 none    swap    sw        0       0
+UUID=7d15d8b9-6b5f-4464-b3a3-bbeac8b3a7b1                 none    swap    sw        0       0
 
 # NTFS Partitions
 UUID=9C484FA7484F7ED0   /mnt/LENOVO             ntfs    rw,user,exec,uid=1000,gid=1000,dmask=027,fmask=027,errors=remount-ro 0       1
-UUID=3E36091B3608D635   /mnt/Windows            ntfs    rw,user,exec,uid=1000,gid=1000,dmask=027,fmask=027,errors=remount-ro 0       1
+#UUID=3E36091B3608D635   /mnt/Windows            ntfs    rw,user,exec,uid=1000,gid=1000,dmask=027,fmask=027,errors=remount-ro 0       1
 #UUID=9C484FA7484F7ED0   /mnt/LENOVO             ntfs-3g  permissions             0       1
 #UUID=3E36091B3608D635   /mnt/Windows            ntfs-3g  permissions             0       1
 

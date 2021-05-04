@@ -66,6 +66,9 @@ alias aria2cd="aria2c --enable-rpc"
 alias ncvim='NOCOMPL=true vim'
 alias ncnvim='NOCOMPL=true nvim'
 
+# gifview
+alias gifview="gifview --min-delay=10 -a"
+
 # nnn
 alias nnn='nnn -x'
 
