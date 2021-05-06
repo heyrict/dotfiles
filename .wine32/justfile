@@ -1,0 +1,64 @@
+ROOT := "/home/heyrict/.wine32"
+HOME := "/home/heyrict/.wine32/drive_c/users/heyrict"
+
+run FILE:
+	LC_ALL=ja_JP.UTF-8 LANG=ja_JP.UTF-8 WINEARCH=win32 WINEPREFIX=~/.wine32 wine "{{FILE}}"
+
+_run_program_in FOLDER PROGRAM:
+	cd "{{FOLDER}}" && LC_ALL=ja_JP.UTF-8 LANG=ja_JP.UTF-8 WINEARCH=win32 WINEPREFIX=~/.wine32 wine "{{PROGRAM}}"
+
+reverse:
+	#just run {{HOME}}/Games/era/eratohoReverse1214/Emuera1824+v1.exe
+	just run {{HOME}}/Games/era/eratohoReverse1214/Emuera1824+v11+webp+test+fix.exe
+
+syokusyu:
+	just run {{HOME}}/Games/era/syokusyumiya1135/Emuera1824beta005.exe
+
+theworld:
+	just _run_program_in "{{HOME}}/Games/era/eraTW4.782/" Emuera1824+v11+webp+test+fix.exe
+
+j:
+	just _run_program_in "{{HOME}}/Games/era/eraJ1055/" Emuera1824+v1.exe
+
+k:
+	just _run_program_in "{{HOME}}/Games/era/eraK1293/" Emuera1824+v9.exe
+
+rsyokusyu:
+	just _run_program_in "{{HOME}}/Games/era/rsyokusyug289/" Emuera1823beta003.exe
+
+syokan:
+	just _run_program_in "{{HOME}}/Games/era/eraSyokan_20210219/" Emuera1824+v9.exe
+
+alk:
+	just _run_program_in "{{HOME}}/Games/era/eraAL K1.032" Emuera1824+v11+EE.exe
+	#just _run_program_in "{{HOME}}/Games/era/eraAL K1.032" Emuera1824+v11+webp+test+fix.exe
+
+era4X:
+	just _run_program_in "{{HOME}}/Games/era/era4X" Emuera1824+v8.exe
+
+th07:
+	just _run_program_in "{{HOME}}/Games/tohou/th07/" th07.exe
+
+th09:
+	just _run_program_in "{{HOME}}/Games/tohou/th09/" th09.exe
+
+elona:
+	just _run_program_in "{{HOME}}/Games/elona/" elona.exe
+
+HaremKingdom:
+	just _run_program_in "{{HOME}}/Games/HaremKingdom/" HaremKingdom.exe
+
+BabaIsYou:
+	just _run_program_in /mnt/LENOVO/Eric/pc/BabaIsYou/ "Baba Is You.exe"
+
+RewriteHF:
+	just _run_program_in "{{HOME}}/Games/RewriteHf/" SiglusEngine.exe
+
+#Ninokuni:
+#	#!/usr/bin/env bash
+#	cd {{HOME}}/Games/RewriteHf/
+#	LC_ALL=ja_JP.UTF-8 LANG=ja_JP.UTF-8 WINEPREFIX=~/.wine32 wine "/mnt/LENOVO/Eric/pc/Ni no Kuni Wrath of the White Witch Remastered/NinoKuni_WotWW_Remastered.exe"
+#	cd {{ROOT}}
+
+#syarin:
+#	just run "/mnt/Windows/Program Files (x86)/あかべぇそふとつぅ/車輪の国、向日葵の少女/syarin.exe"
