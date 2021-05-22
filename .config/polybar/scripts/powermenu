@@ -3,11 +3,11 @@
 ## Created By Aditya Shakya
 
 #MENU="$(rofi -sep "|" -dmenu -i -p 'System' -location 5 -xoffset -14 -yoffset -52 -width 10 -hide-scrollbar -line-padding 4 -padding 20 -lines 4 <<< " Lock| Logout| Reboot| Shutdown")"
-MENU="$(rofi -sep "|" -dmenu -font 'Meslo Nerd Font Mono 12' -i -p 'System' -location 5 -xoffset -4 -yoffset -25 -width 20 -hide-scrollbar -line-padding 4 -padding 20 -lines 6 <<< " Lock| ScreenOff| Suspend| Hibernate| Reboot|⏻ Shutdown")"
+MENU="$(rofi -sep "|" -dmenu -font 'Meslo Nerd Font Mono 12' -i -p 'System' -location 5 -xoffset -4 -yoffset -25 -width 20 -hide-scrollbar -line-padding 4 -padding 20 -lines 6 <<< " ScreenOff| Lock| Suspend| Hibernate| Reboot|⏻ Shutdown")"
 
 case "$MENU" in
-    *Lock) i3lock -c 002b36 ;;
     *ScreenOff) sleep 1; xset dpms force off ;;
+    *Lock) i3lock -c 002b36 ;;
     *Suspend) systemctl suspend;;
     *Hibernate) systemctl hibernate;;
     *Reboot) systemctl reboot ;;

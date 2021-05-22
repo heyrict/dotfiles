@@ -24,7 +24,7 @@ k:
 	just _run_program_in "{{HOME}}/Games/era/eraK1293/" Emuera1824+v9.exe
 
 rsyokusyu:
-	just _run_program_in "{{HOME}}/Games/era/rsyokusyug289/" Emuera1823beta003.exe
+	just _run_program_in "{{HOME}}/Games/era/rsyokusyug296/" Emuera1823beta003.exe
 
 syokan:
 	just _run_program_in "{{HOME}}/Games/era/eraSyokan_20210219/" Emuera1824+v9.exe
