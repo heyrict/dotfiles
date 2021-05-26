@@ -29,20 +29,28 @@ ip addr | grep inet | sed "s/^ *//" | cut -d" " -f 1,2 | awk '{printf "\033[1m%-
 
 # Turn on or off the conservation mode
 
-sudo tee /sys/bus/platform/drivers/ideapad_acpi/VPC2004:00/conservation_mode <<< <actual>
+echo '\_SB.PCI0.LPCB.EC0.VPC0.SBMC <actual>' | sudo tee /proc/acpi/call
 
-$ state: echo -e "0: off\n1: on"
+$ state: echo -e "1: off\n0: on"
 $ actual: echo "<state>" | cut -d: -f1
+
+; % sys.lenovo.show_conservation_mode
+; 
+; # Show current conservation mode
+; 
+; echo '\_SB.PCI0.LPCB.EC0.FCGM' | sudo tee /proc/acpi/call
+; sudo cat /proc/acpi/call
+; printf '\n'
 
 
 % sys.lenovo.rapid_charge
 
 # Turn on or off rapid charge
 
-echo "<actual>" | sudo tee /sys/bus/platform/drivers/ideapad_acpi/VPC2004:00/conservation_mode
+echo "<actual>" | sudo tee /proc/acpi/call
 
 $ state: echo -e "on\noff"
-$ actual: [ "<state>" -e "on" ] && echo '\_SB.PCI0.LPC0.EC0.VPC0.SBMC 0x07' || echo '\_SB.PCI0.LPC0.EC0.VPC0.SBMC 0x08'
+$ actual: [ "<state>" = "on" ] && echo '\_SB.PCI0.LPC0.EC0.VPC0.SBMC 0x07' || echo '\_SB.PCI0.LPC0.EC0.VPC0.SBMC 0x08'
 
 
 % sys.cpupower.governor
