@@ -128,9 +128,8 @@ bindsym $mod+Shift+q kill
 # start dmenu (a program launcher)
 #bindsym $mod+d exec dmenu_run
 
-# resize window (you can also use the mouse for that)
-set $rofi_mode Rofi: DRun Win Kao/Emoji Pow Combi = dIce
-mode "$rofi_mode" {
+set $launch_mode Rofi: DRun Nav Win Kao/Emoji Pow Combi = dIce
+mode "$launch_mode" {
     # :drun (bash -e "{cmd}; read -n 1 -s ")
     bindsym d mode "default"; exec --no-startup-id "rofi -show drun"
 
@@ -170,6 +169,9 @@ mode "$rofi_mode" {
     # rustdice
     bindsym i mode "default"; exec --no-startup-id "_exp=\\"$(rofi -dmenu -i -p dice -lines 0)\\"; notify-send \\"$(rustdice \\"$_exp\\")\\" "
 
+    # navi
+    bindsym n mode "default"; exec --no-startup-id "alacritty -t 'navi | float' -o window.dimensions.columns=150 -o window.dimensions.lines=38 -e bash -c 'navi && read -t60'"
+
     # back to normal: Enter or Escape or $mod+r
     bindsym q mode "default"
     bindsym Control+bracketleft mode "default"
@@ -177,7 +179,7 @@ mode "$rofi_mode" {
     bindsym Escape mode "default"
 }
 
-bindsym $mod+d mode "$rofi_mode"
+bindsym $mod+d mode "$launch_mode"
 
 
 # There also is the (new) i3-dmenu-desktop which only displays applications
@@ -281,6 +283,8 @@ bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
+# toggle polybar
+bindsym $mod+p exec "polybar-msg cmd toggle"
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
