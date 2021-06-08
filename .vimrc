@@ -261,7 +261,7 @@ nmap <silent> <Leader>ca <Plug>(coc-codeaction)
 nmap <silent> <Leader>fj <Plug>(coc-float-jump)
 nmap <silent> <Leader>rf <Plug>(coc-refactor)
 nmap <Leader>fi <Plug>(coc-fix-current)
-nmap <Leader>fm :call CocAction('format')
+nmap <Leader>fm :call CocActionAsync('format')
 
 " Use K to show documentation in preview window
 nnoremap <silent> K :call <SID>show_documentation()<CR>
@@ -274,7 +274,7 @@ function! s:show_documentation()
     elseif (index(['pandoc'], &filetype) >= 0)
         execute '! sdcv -n '.expand("'<cword>'")
     else
-        call CocAction('doHover')
+        call CocActionAsync('doHover')
     endif
 endfunction
 
@@ -293,8 +293,8 @@ inoremap <expr><cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
 " Formatting
 command! -nargs=0 Fix :CocFix
-command! -nargs=0 Fmt :call CocAction('format')
-command! -nargs=0 Organize   :call     CocAction('runCommand', 'editor.action.organizeImport')
+command! -nargs=0 Fmt :call CocActionAsync('format')
+command! -nargs=0 Organize   :call     CocActionAsync('runCommand', 'editor.action.organizeImport')
 
 " Diagnostics navigation
 nmap <silent> <space>[ <Plug>(coc-diagnostic-prev)
@@ -304,9 +304,9 @@ nmap <silent> <space>] <Plug>(coc-diagnostic-next)
 augroup coc_group
   autocmd!
   " Setup formatexpr specified filetype(s).
-  "autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
+  "autocmd FileType typescript,json setl formatexpr=CocActionAsync('formatSelected')
   " Update signature help on jump placeholder
-  autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+  autocmd User CocJumpPlaceholder call CocActionAsyncAsync('showSignatureHelp')
 augroup end
 
 " {{{1 Solarized Color Scheme Configs

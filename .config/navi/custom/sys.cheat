@@ -86,3 +86,10 @@ $ max: seq 500 200 2701
 # Show CPU settings
 
 cpupower frequency-info
+
+
+% sys.lid.no_sleep_on_close
+
+# Prevent sleep on lid close temporarily
+
+sudo systemd-inhibit --what=handle-lid-switch sleep 2592000
