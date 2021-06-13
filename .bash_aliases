@@ -13,6 +13,11 @@ else
     export P_THEME="/home/heyrict/.prev_theme"
 fi
 
+# 今日校园
+alias jr1="cd /home/heyrict/MyPrograms/spiders/auto-submit/今日校园; python index.py config.yml"
+alias jr2="cd /home/heyrict/MyPrograms/spiders/auto-submit/今日校园; python index.py config-dom.yml"
+
+
 # Extension to git merge
 alias gmn="git merge --no-commit"
 alias gmnn="git merge --no-commit --no-ff"

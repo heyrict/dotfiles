@@ -33,8 +33,11 @@ alk:
 	just _run_program_in "{{HOME}}/Games/era/eraAL K1.032" Emuera1824+v11+EE.exe
 	#just _run_program_in "{{HOME}}/Games/era/eraAL K1.032" Emuera1824+v11+webp+test+fix.exe
 
-era4X:
-	just _run_program_in "{{HOME}}/Games/era/era4X" Emuera1824+v8.exe
+#era4X:
+#	just _run_program_in "{{HOME}}/Games/era/era4X" Emuera1824+v8.exe
+
+erin:
+	just _run_program_in "{{HOME}}/Games/era/eraErinsan112" Emuera1821.exe
 
 th07:
 	just _run_program_in "{{HOME}}/Games/tohou/th07/" th07.exe
