@@ -59,7 +59,7 @@ $ actual: [ "<state>" = "on" ] && echo '\_SB.PCI0.LPC0.EC0.VPC0.SBMC 0x07' || ec
 
 sudo bash -c "cpupower frequency-set -g <governor> && cpupower frequency-info"
 
-$ governor: echo "performance powersave" | tr " " "\n"
+$ governor: echo "performance powersave conservative" | tr " " "\n"
 
 
 % sys.cpupower.freq_set

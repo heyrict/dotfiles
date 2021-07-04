@@ -17,14 +17,14 @@ set statusbar-fg \#fdf6e3
 set notification-fg \#073642
 
 # solarized dark
-#set recolor-lightcolor \#002b36
-#set recolor-darkcolor \#839496
-#set default-bg \#073642
+set recolor-lightcolor \#002b36
+set recolor-darkcolor \#839496
+set default-bg \#073642
 
 # solarized light
-set recolor-lightcolor \#fdf6e3
-set recolor-darkcolor \#002b36
-set default-bg \#eee8d5
+#set recolor-lightcolor \#fdf6e3
+#set recolor-darkcolor \#002b36
+#set default-bg \#eee8d5
 
 map [normal] <C-1> set "recolor-lightcolor \#002b36"
 map [normal] <C-2> set "recolor-darkcolor \#eee8d5"
