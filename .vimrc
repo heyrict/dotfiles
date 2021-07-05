@@ -64,7 +64,7 @@ Plug 'Vimjas/vim-python-pep8-indent'
 "Plug 'JuliaEditorSupport/julia-vim'
 
 " Flutter Environment
-Plug 'dart-lang/dart-vim-plugin'
+"Plug 'dart-lang/dart-vim-plugin'
 
 " Color Schema
 Plug 'altercation/vim-colors-solarized'
@@ -330,6 +330,7 @@ elseif $TERM=="fbterm"
 elseif $TERM=="alacritty"
     let g:solarized_termtrans=0
     let g:solarized_termcolors=16
+    let g:solarized_termtrans=1
     colorscheme solarized
 endif
 

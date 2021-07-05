@@ -235,6 +235,10 @@ export NNN_PLUG='o:fzopen;p:-_feh -Z.;P:-_feh -Z. `ls|sort -n`;d:diffs;k:-chksum
 ## GPG {{{2
 export GPG_TTY=$(tty)
 
+## Fcitx {{{2
+export XMODIFIERS="@im=fcitx"
+export QT_IM_MODULE="fcitx"
+
 ## Custom {{{2
 export TASKRC="~/.taskrc"
 
@@ -280,3 +284,8 @@ export VELOREN_ASSETS=/usr/share/veloren
 
 # Navi {{{1
 [ -x `command -v navi` ] && source <(navi widget zsh)
+
+# Start sway automatically {{{1
+if [ -z $DISPLAY ] && [ "$(tty)" = "/dev/tty1" ]; then
+  exec sway
+fi

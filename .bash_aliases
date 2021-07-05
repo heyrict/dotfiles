@@ -191,9 +191,9 @@ alias backlight_off="sleep 1; xset dpms force off"
 
 set_brightness() {
     if [ $# -eq 0 ]; then
-        vim /sys/class/backlight/intel_backlight/brightness
+        vim /sys/class/backlight/amdgpu_bl0/brightness
     else
-        echo "$1" > /sys/class/backlight/intel_backlight/brightness
+        echo "$1" > /sys/class/backlight/amdgpu_bl0/brightness
     fi
 }
 #show_brightness(){
@@ -201,7 +201,7 @@ set_brightness() {
 #}
 
 # battery preference
-alias show_capacity='echo $(cat /sys/class/power_supply/BAT1/capacity)%;'
+alias show_capacity='echo $(cat /sys/class/power_supply/BAT0/capacity)%;'
 
 # Change opacity of alacritty
 altrans() {
