@@ -80,4 +80,4 @@ i3-battery-popup -n &
 #xcompmgr -n &
 
 # Start WM
-i3
+exec i3

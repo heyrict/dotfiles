@@ -309,6 +309,8 @@ augroup coc_group
   autocmd User CocJumpPlaceholder call CocActionAsyncAsync('showSignatureHelp')
 augroup end
 
+autocmd BufNewFile,BufRead *.txt,*.md,*.tex let coc_disabled=0
+
 " {{{1 Solarized Color Scheme Configs
 let g:solarized_visibility="high"
 call togglebg#map("<F5>")
@@ -662,7 +664,8 @@ endfunction
 command FT :call FMTTable()
 
 " {{{1 Clean up white spaces before saving
-autocmd BufWritePre *.md,*.puml,*.tex %s/\s\+$//e
+autocmd BufWritePre *.puml,*.tex %s/\s\+$//e
+set lcs+=space:·
 
 " {{{1 auto pairs
 "au Filetype rust let b:AutoPairs = {'(':')', '[':']', '{':'}','"':'"', '`':'`', '```':'```'}

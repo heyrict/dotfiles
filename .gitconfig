@@ -1,9 +1,9 @@
 [user]
 	name = heyrict
 	email = xiezh0831@yahoo.co.jp
-	signingkey = 85D4F5391E021B35
+	signingkey = F164CB5BC7D313E98ABA2530C3B26C19CA5EED91
 [credential]
-	helper = cache --timeout=3600
+    helper = cache --timeout=3600
 [commit]
 	gpgsign = true
 [gpg]

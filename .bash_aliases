@@ -13,9 +13,9 @@ else
     export P_THEME="/home/heyrict/.prev_theme"
 fi
 
-# 今日校园
-alias jr1="cd /home/heyrict/MyPrograms/spiders/auto-submit/今日校园; python index.py config.yml"
-alias jr2="cd /home/heyrict/MyPrograms/spiders/auto-submit/今日校园; python index.py config-dom.yml"
+# SSLVPN
+alias easyconnect="docker run --device /dev/net/tun --cap-add NET_ADMIN -ti -p 127.0.0.1:1080:1080 -e EC_VER=7.6.7 hagb/docker-easyconnect:cli"
+alias px8123="export https_proxy=http://127.0.0.1:8123 http_proxy=http://127.0.0.1:8123"
 
 
 # Extension to git merge
