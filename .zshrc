@@ -270,6 +270,12 @@ export NAVI_PATH=~/.config/navi/custom
 ## Veloren {{{2
 export VELOREN_ASSETS=/usr/share/veloren
 
+## Qt {{{2
+export QT_QPA_PLATFORMTHEME=qt5ct
+
+# Network related {{{1
+export CURL_SSL_BACKEND=rustls
+
 # Starship for zsh {{{1
 #case "$TERM" in
 #    xterm-color|*-256color) eval "$(starship init zsh)";;

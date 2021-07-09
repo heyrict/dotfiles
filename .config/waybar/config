@@ -4,7 +4,7 @@
     "height": 30,
     "modules-left": ["sway/workspaces", "sway/mode"],
     "modules-center": ["sway/window"],
-    "modules-right": ["tray", "custom/weather", "backlight", "pulseaudio", "network", "idle_inhibitor", "battery", "temperature#cpu", "temperature#gpu", "clock"],
+    "modules-right": ["tray", "custom/weather", "backlight", "pulseaudio", "network", "memory", "idle_inhibitor", "battery", "temperature#cpu", "temperature#gpu", "clock"],
     "sway/mode": {
         "format": " {}"
     },
@@ -55,7 +55,7 @@
             "default": ["奄", "奔", "墳", ""]
         },
         "scroll-step": 1,
-        "on-click": "pulsemixer",
+        "on-click": "alacritty -e pulsemixer",
         "tooltip": false
     },
     "custom/spotify": {
@@ -81,6 +81,11 @@
         "on-scroll-down": "brightnessctl set 1-",
         "on-scroll-up": "brightnessctl set +1"
     },
+    "memory": {
+        "interval": 30,
+        "format": "{}% ",
+        "max-length": 10
+    },
     "custom/weather": {
         "format": "{}",
         "format-alt": "{alt}: {}",
@@ -93,8 +98,8 @@
     "idle_inhibitor": {
         "format": "{icon}",
         "format-icons": {
-            "activated": "",
-            "deactivated": ""
+            "deactivated": "",
+            "activated": ""
         },
         "tooltip": false
     },
@@ -120,13 +125,13 @@
         "thermal-zone": 2,
         "hwmon-path": "/sys/class/hwmon/hwmon1/temp1_input",
         "critical-threshold": 80,
-        "format-critical": "CPU[{temperatureC}°C]",
-        "format": "CPU[{temperatureC}°C]"
+        "format-critical": "{temperatureC}°C ﬙ ",
+        "format": "{temperatureC}°C ﬙ "
     },
     "temperature#gpu": {
         "hwmon-path": "/sys/class/hwmon/hwmon6/temp1_input",
         "critical-threshold": 80,
-        "format-critical": "GPU[{temperatureC}°C]",
-        "format": "GPU[{temperatureC}°C]"
+        "format-critical": "{temperatureC}°C ﴮ ",
+        "format": "{temperatureC}°C ﴮ "
     }
 }

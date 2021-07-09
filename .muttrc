@@ -14,7 +14,9 @@ set folder = "imaps://imap.mail.yahoo.co.jp/"
 set spoolfile=+INBOX
 mailboxes =INBOX
 
-set message_cachedir = "~/.cache/mutt"
+set header_cache = "~/.cache/mutt"
+source "~/.mutt/purgecache.sh '$message_cachedir'|"
+
 # Allow Mutt to open a new IMAP connection automatically.
 unset imap_passive
 #

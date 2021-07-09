@@ -144,4 +144,4 @@ configuration {
 /*	me-accept-custom: "Control+MouseDPrimary";*/
 }
 
-@import "/usr/share/rofi/themes/fancy.rasi"
+@import "~/.config/rofi/themes/fancy-heyrict-mod.rasi"

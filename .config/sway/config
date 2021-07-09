@@ -288,7 +288,7 @@ bindsym $mod+Shift+c reload
 # restart sway inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 # exit sway (logs you out of your X session)
-bindsym $mod+Shift+e exec "swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
+bindsym $mod+Shift+e exec "swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your X session.' -B 'Yes, exit sway' 'swaymsg exit'"
 # toggle waybar
 bindsym $mod+p exec "killall -SIGUSR1 waybar"
 
@@ -382,11 +382,15 @@ mode "move" {
 
 bindsym $mod+m mode "move"
 
+# Dunst config
+bindsym $sup+space exec dunstctl close
+bindsym $sup+Shift+space exec dunstctl close-all
+bindsym $sup+grave exec dunstctl history-pop
 
 # Screenshot
-bindsym Print exec "scrot ~/Pictures/Screenshot%Y-%m-%dT%H:%M:%S.png && notify-send -u low -c system 'Screenshot saved successfully'"
-bindsym --release Shift+Print exec "scrot -s ~/Pictures/Screenshot%Y-%m-%dT%H:%M:%S.png && notify-send -u low -c system 'Screenshot saved successfully'"
-bindsym Control+Print exec "scrot -bu ~/Pictures/Screenshot%Y-%m-%dT%H:%M:%S.png && notify-send -u low -c system 'Screenshot saved successfully'"
+bindsym Print exec "grim ~/Pictures/Screenshot-`date -Is | cut -d+ -f1`.png && notify-send -u low -c system 'Screenshot saved successfully'"
+bindsym --release Shift+Print exec 'grim -g "`slurp`" ~/Pictures/Screenshot-`date -Is | cut -d+ -f1`.png && notify-send -u low -c system "Screenshot saved successfully"'
+bindsym $sup+Print exec "~/.config/sway/scripts/screenshot-window.sh"
 
 # Multi-monitor
 ## Config
@@ -408,11 +412,11 @@ bindsym $mod+g exec i3-input -F 'mark %s' -l 1 -P 'Mark: '
 bindsym $mod+shift+g exec i3-input -F '[con_mark="%s"] focus' -l 1 -P 'Goto: '
 
 ## Notify
-bindsym $sup+b exec "notify-send 'Capacity = '$(cat /sys/class/power_supply/BAT1/capacity)%"
+bindsym $sup+b exec "notify-send 'Capacity = '$(cat /sys/class/power_supply/BAT0/capacity)%"
 
 # Wayland specific commands
 ## Wallpaper
-output "*" bg ~/Pictures/backgrounds/astize_cc0_split1.png fill
+output "*" bg ~/Pictures/backgrounds/astize_cc0_split1_alt.png fill
 
 ## Toggle backlight
 bindsym $mod+bracketright exec ~/.config/sway/scripts/backlight-toggle.sh
@@ -436,12 +440,14 @@ input type:touchpad {
 ## Swayidle
 exec swayidle -w \
     timeout 240 'swaymsg "output * dpms off"' \
-    timeout 600 'swaylock -c "#000000"' \
-    resume 'swaymsg "output * dpms on"'
+    timeout 600 'swaylock -c 000000' \
+    resume 'swaymsg "output * dpms on" && brightnessctl set `brightnessctl get`'
 
 exec ~/.config/waybar/waybar.sh
 
-exec fcitx
+exec --no-startup-id fcitx -d
+
+exec --no-startup-id gammastep
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)

@@ -62,3 +62,9 @@ dohnadohna:
 
 #ara_fell:
 #	just _run_in "{{ROOT}}/drive_c/Program Files (x86)/Ara Fell Enhanced Edition" "RPG_RT.exe"
+
+ciel_nosurge:
+	just _run_in "{{ROOT}}/drive_c/users/heyrict/Games/Ciel Nosurge DX" "CielnosurgeDX.exe"
+
+death_end_request:
+	just _run_in "{{ROOT}}/drive_c/users/heyrict/Games/Death end reQuest/resource/bin" "Application.exe"

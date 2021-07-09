@@ -59,7 +59,7 @@ $ actual: [ "<state>" = "on" ] && echo '\_SB.PCI0.LPC0.EC0.VPC0.SBMC 0x07' || ec
 
 sudo bash -c "cpupower frequency-set -g <governor> && cpupower frequency-info"
 
-$ governor: echo "performance powersave conservative" | tr " " "\n"
+$ governor: echo "schedutil powersave ondemand performance conservative" | tr " " "\n"
 
 
 % sys.cpupower.freq_set
@@ -77,8 +77,8 @@ $ freq: seq 500 200 2701
 
 sudo bash -c "cpupower frequency-set -d <min>M -u <max>M && cpupower frequency-info"
 
-$ min: seq 500 200 2701
-$ max: seq 500 200 2701
+$ min: seq 1200 400 4001
+$ max: seq 1200 400 4001
 
 
 % sys.cpupower.info
@@ -87,6 +87,13 @@ $ max: seq 500 200 2701
 
 cpupower frequency-info
 
+
+% sys.cpufan.set
+
+echo <fan_mode> | sudo tee /sys/devices/platform/asus-nb-wmi/hwmon/hwmon4/pwm1_enable
+
+$ fan_state: echo -e "2: auto\n1: off\n0: max"
+$ fan_mode: echo "<fan_mode>" | cut -d: -f1
 
 % sys.lid.no_sleep_on_close
 
