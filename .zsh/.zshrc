@@ -43,7 +43,7 @@ zstyle ':completion:*' group-name ''
 # Antibody {{{1
 export ANTIBODY_HOME=~/.antibody
 source <(antibody init)
-antibody bundle < ~/.zsh_plugins.txt
+antibody bundle < ~/.zsh/.zsh_plugins.txt
 
 if [ ! "${TTY:5:3}" = "tty" ]; then
     antibody bundle romkatv/powerlevel10k
@@ -280,11 +280,11 @@ export CURL_SSL_BACKEND=rustls
 #esac
 
 # Fuzzy finder {{{1
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+[ -f ~/.zsh/.fzf.zsh ] && source ~/.zsh/.fzf.zsh
 
 # Powerlevel10k {{{1
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+# To customize prompt, run `p10k configure` or edit ~/.zsh/.p10k.zsh.
+[[ ! -f ~/.zsh/.p10k.zsh ]] || source ~/.zsh/.p10k.zsh
 
 # Navi {{{1
 [ -x `command -v navi` ] && source <(navi widget zsh)
