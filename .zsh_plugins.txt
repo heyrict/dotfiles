@@ -6,8 +6,6 @@ ajeetdsouza/zoxide
 # Oh-my-zsh plugins
 ohmyzsh/ohmyzsh path:plugins/git
 ohmyzsh/ohmyzsh path:plugins/encode64
-ohmyzsh/ohmyzsh path:plugins/adb
-ohmyzsh/ohmyzsh path:plugins/docker
 
 # Additional completion scripts
 #zsh-users/zsh-completions

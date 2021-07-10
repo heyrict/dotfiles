@@ -152,7 +152,7 @@ mode "$launch_mode" {
     bindsym y mode "default"; exec --no-startup-id "rofi -show keys"
 
     # :calc
-    bindsym equal mode "default"; exec --no-startup-id "_exp=\\"$(rofi -dmenu -i -p calc -lines 0)\\"; notify-send \\"$_exp\\" \\"= $(echo \\"$_exp\\" | bc -l)\\" "
+    bindsym equal mode "default"; exec --no-startup-id '_exp="$(rofi -dmenu -i -p calc -lines 0)"; notify-send "$_exp" "= $(echo "$_exp" | bc -l)"'
 
     ## rofi-theme-selector
     #bindsym t mode "default"; exec --no-startup-id "rofi-theme-selector"
@@ -439,9 +439,9 @@ input type:touchpad {
 
 ## Swayidle
 exec swayidle -w \
-    timeout 240 'swaymsg "output * dpms off"' \
-    timeout 600 'swaylock -c 000000' \
-    resume 'swaymsg "output * dpms on" && brightnessctl set `brightnessctl get`'
+    timeout 240 'swaymsg "output * dpms off" && echo 0 > /tmp/oled' \
+    resume 'swaymsg "output * dpms on" && brightnessctl set `brightnessctl get` && echo 1 > /tmp/oled' \
+    timeout 600 'swaylock -f -c 000000'
 
 exec ~/.config/waybar/waybar.sh
 

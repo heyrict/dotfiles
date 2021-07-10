@@ -4,21 +4,19 @@ if [ "$SSH_CONNECTION" ]; then
   SSH_SESSION=$(echo "$SSH_CONNECTION" | base64)
 fi
 
+export ZDOTDIR=~/.zsh
+
 # Language and IME {{{1
 export LANG=en_US.UTF-8
 
 # The following lines were added by compinstall {{{1
-fpath=(~/.zsh/completion $fpath)
+fpath=(${ZDOTDIR:-$HOME/.zsh}/completion $fpath)
 
 zstyle :compinstall filename '/home/heyrict/.zshrc'
 zstyle ':completion:*' menu select
 
 autoload -Uz compinit 
-if [[ -n ${ZDOTDIR:-${HOME}}/.zcompdump(#qN.mh+24) ]]; then
-	compinit;
-else
-	compinit -C;
-fi;
+compinit
 
 # End of lines added by compinstall
 
