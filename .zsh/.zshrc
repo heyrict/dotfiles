@@ -4,8 +4,6 @@ if [ "$SSH_CONNECTION" ]; then
   SSH_SESSION=$(echo "$SSH_CONNECTION" | base64)
 fi
 
-export ZDOTDIR=~/.zsh
-
 # Language and IME {{{1
 export LANG=en_US.UTF-8
 

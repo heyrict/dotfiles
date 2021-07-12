@@ -441,7 +441,8 @@ input type:touchpad {
 exec swayidle -w \
     timeout 240 'swaymsg "output * dpms off" && echo 0 > /tmp/oled' \
     resume 'swaymsg "output * dpms on" && brightnessctl set `brightnessctl get` && echo 1 > /tmp/oled' \
-    timeout 600 'swaylock -f -c 000000'
+    timeout 600 'swaylock -f -c 000000' \
+    before-sleep 'swaylock -f -c 000000'
 
 exec ~/.config/waybar/waybar.sh
 

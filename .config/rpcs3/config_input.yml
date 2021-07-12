@@ -1,7 +1,7 @@
 Player 1 Input:
   Handler: DualShock 4
   Device: "DS4 Pad #1"
-  Profile: Default Profile
+  Profile: Default DS4
 Player 2 Input:
   Handler: "Null"
   Device: Default Null Device
