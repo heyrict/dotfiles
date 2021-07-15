@@ -173,9 +173,10 @@ path=('/usr/local/bin' '/usr/bin' $path)
 manpath=('/usr/local/man' '/usr/share/man' $manpath)
 
 ## Texlive {{{2
-#manpath+=/usr/local/texlive/2020/texmf-dist/doc/man
-#infopath+=/usr/local/texlive/2020/texmf-dist/doc/info
+manpath+=/usr/local/texlive/2021/texmf-dist/doc/man
+infopath+=/usr/local/texlive/2021/texmf-dist/doc/info
 path+=/usr/local/texlive/2021/bin/x86_64-linux
+
 ## Nvm {{{2
 export NVM_DIR="$HOME/.nvm"
 source /usr/share/nvm/init-nvm.sh

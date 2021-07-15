@@ -9,3 +9,6 @@ sync:
 bridge_constructor_twd:
 	#legendary launch --wine-prefix="{{ROOT}}" 998af0ab527c493baefb8049250c9a0e
 	legendary launch 998af0ab527c493baefb8049250c9a0e
+
+my_time_at_portia:
+	legendary launch Cobra

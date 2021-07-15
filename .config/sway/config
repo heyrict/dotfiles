@@ -59,10 +59,13 @@ set $mtr_brown       "#6d4c41"
 set $mtr_grey        "#757575"
 set $mtr_blue-gray   "#546e7a"
 
+# colors picked from the background
+set $bg_dark   "#10120f"
+
 # Colors
 # class                 border    bg        text      indicator  child_border
-client.focused          $base03   $base0    $base03   $base0     $base01 
-client.unfocused        $base02   $base02   $base1    $base02    $base02
+client.focused          $base03   $base03   $base1    $base0     $base01 
+client.unfocused        $bg_dark  $bg_dark  $base1    $base02    $base02
 client.focused_inactive $yellow   $yellow   $base03   $base02    $base02
 client.urgent           $red      $red      $base03   $base02    $base02
 client.placeholder      $base03   $base02   $base2    $base03    $base02

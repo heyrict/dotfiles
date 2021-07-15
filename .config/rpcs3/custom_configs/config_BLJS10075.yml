@@ -49,11 +49,11 @@ Core:
   Performance Report Threshold: 500
   Enable Performance Report: false
 Video:
-  Renderer: Vulkan
+  Renderer: OpenGL
   Resolution: 1280x720
   Aspect ratio: 16:9
-  Frame limit: 30
-  MSAA: Auto
+  Frame limit: 60
+  MSAA: Disabled
   Shader Mode: Async Shader Recompiler
   Write Color Buffers: false
   Write Depth Buffer: false
