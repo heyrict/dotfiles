@@ -1,14 +1,18 @@
 ROOT := "/home/heyrict/legendary/pfx"
 HOME := ROOT + "/drive_c/users/heyrict"
-PROTON := "/home/heyrict/.local/share/Steam/steamapps/common/Proton 5.13"
-PROTON_WINE64 := PROTON + "/dist/bin/wine64"
+#PROTON := "/home/heyrict/.local/share/Steam/steamapps/common/Proton 5.13"
+#PROTON_WINE64 := PROTON + "/dist/bin/wine64"
+PROTON := "/home/heyrict/.local/share/Steam/compatibilitytools.d/Proton-6.13-GE-1"
+PROTON_WINE64 := PROTON + "/files/bin/wine64"
 
 sync:
 	legendary sync-saves
 
-bridge_constructor_twd:
-	#legendary launch --wine-prefix="{{ROOT}}" 998af0ab527c493baefb8049250c9a0e
-	legendary launch 998af0ab527c493baefb8049250c9a0e
+bridge_constructor_twd +OPTIONS="":
+	WINE_FULLSCREEN_FSR=1 legendary launch {{OPTIONS}} 998af0ab527c493baefb8049250c9a0e
 
-my_time_at_portia:
-	legendary launch Cobra
+my_time_at_portia +OPTIONS="":
+	WINE_FULLSCREEN_FSR=1 legendary launch {{OPTIONS}} Cobra
+
+stranded_deep +OPTIONS="":
+	WINE_FULLSCREEN_FSR=1 legendary launch {{OPTIONS}} 02107cba432c4551a027d25d597adc49

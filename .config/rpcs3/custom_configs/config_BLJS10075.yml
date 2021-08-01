@@ -14,7 +14,7 @@ Core:
   SPU GETLLAR polling detection: false
   SPU Debug: false
   MFC Debug: false
-  Preferred SPU Threads: 0
+  Preferred SPU Threads: 1
   SPU delay penalty: 3
   SPU loop detection: true
   Max SPURS Threads: 6
@@ -52,7 +52,7 @@ Video:
   Renderer: OpenGL
   Resolution: 1280x720
   Aspect ratio: 16:9
-  Frame limit: 60
+  Frame limit: 30
   MSAA: Disabled
   Shader Mode: Async Shader Recompiler
   Write Color Buffers: false

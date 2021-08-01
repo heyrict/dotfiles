@@ -9,11 +9,6 @@ udevadm control --reload-rules
 # Check the process blocking the mount point
 fuser -m <directory>
 
-% sys.audio.equalizer
-
-# Run pulsemixer
-pulsemixer
-
 
 % sys.ip.inspect
 
@@ -25,7 +20,7 @@ ip addr | grep inet | sed "s/^ *//" | cut -d" " -f 1,2 | awk '{printf "\033[1m%-
 ; Refer to https://wiki.archlinux.org/index.php/Lenovo_IdeaPad_5_14are05
 ; ======================================================================
 
-% sys.lenovo.conservation_mode
+% sys.lenovo_u31-70.conservation_mode
 
 # Turn on or off the conservation mode
 
@@ -34,7 +29,7 @@ echo '\_SB.PCI0.LPCB.EC0.VPC0.SBMC <actual>' | sudo tee /proc/acpi/call
 $ state: echo -e "1: off\n0: on"
 $ actual: echo "<state>" | cut -d: -f1
 
-; % sys.lenovo.show_conservation_mode
+; % sys.lenovo_u31-70.show_conservation_mode
 ; 
 ; # Show current conservation mode
 ; 
@@ -43,7 +38,7 @@ $ actual: echo "<state>" | cut -d: -f1
 ; printf '\n'
 
 
-% sys.lenovo.rapid_charge
+% sys.lenovo_u31-70.rapid_charge
 
 # Turn on or off rapid charge
 
@@ -52,6 +47,29 @@ echo "<actual>" | sudo tee /proc/acpi/call
 $ state: echo -e "on\noff"
 $ actual: [ "<state>" = "on" ] && echo '\_SB.PCI0.LPC0.EC0.VPC0.SBMC 0x07' || echo '\_SB.PCI0.LPC0.EC0.VPC0.SBMC 0x08'
 
+
+; ============================ Asus settings ===========================
+
+% sys.asus_vivobook_m3400.battery_threshold
+
+# Set battery threshold for asus vivobook m3400
+
+echo <threshold> | sudo tee /sys/class/power_supply/BAT0/charge_control_end_threshold
+
+$ threshold: seq 40 10 101
+
+
+% sys.asus_cpufan.set
+
+# Set cpu fan mode for asus vivobook m3400
+
+echo <fan_mode> | sudo tee /sys/devices/platform/asus-nb-wmi/hwmon/hwmon4/pwm1_enable
+
+$ fan_state: echo -e "2: auto\n1: off\n0: max"
+$ fan_mode: echo "<fan_state>" | cut -d: -f1
+
+
+; ============================ CPU settings ============================
 
 % sys.cpupower.governor
 
@@ -88,15 +106,37 @@ $ max: seq 1200 400 4001
 cpupower frequency-info
 
 
-% sys.cpufan.set
-
-echo <fan_mode> | sudo tee /sys/devices/platform/asus-nb-wmi/hwmon/hwmon4/pwm1_enable
-
-$ fan_state: echo -e "2: auto\n1: off\n0: max"
-$ fan_mode: echo "<fan_mode>" | cut -d: -f1
-
 % sys.lid.no_sleep_on_close
 
 # Prevent sleep on lid close temporarily
 
 sudo systemd-inhibit --what=handle-lid-switch sleep 2592000
+
+
+; ============================ dualshock4 settings ============================
+
+% sys.dualshock4.set_led_light
+
+# Set LED light of usb connected dualshock4 (ds4)
+
+red=`echo "<rgb>" | sed -E 's/^(..).*/\1/'`; \
+green=`echo "<rgb>" | sed -E 's/^..(..).*/\1/'`; \
+blue=`echo "<rgb>" | sed -E 's/^....(..).*/\1/'`; \
+ds4_device=`brightnessctl -l | grep '0003:054C:09CC' | head -1 | cut -d"'" -f2 | cut -d: -f1-3`; \
+brightnessctl -d "$ds4_device:red" set `printf "%d" "0x$red"`; \
+brightnessctl -d "$ds4_device:green" set `printf "%d" "0x$green"`; \
+brightnessctl -d "$ds4_device:blue" set `printf "%d" "0x$blue"`;
+
+$ ds4_device: 
+
+
+; ============================ Sway monitor settings ============================
+
+% sys.sway.set_monitor_resolution
+
+# Set monitor resolution in swaywm
+
+swaymsg output "<monitor>" mode "<resolution>" && brightnessctl set `brightnessctl get`
+
+$ monitor: swaymsg -t get_outputs | jq '.[].name'
+$ resolution: swaymsg -t get_outputs | jq '(.[] | select(.name == "<monitor>")).modes[] | [.width, .height | tostring] | join("x")'

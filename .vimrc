@@ -67,7 +67,8 @@ Plug 'Vimjas/vim-python-pep8-indent'
 "Plug 'dart-lang/dart-vim-plugin'
 
 " Color Schema
-Plug 'altercation/vim-colors-solarized'
+"Plug 'altercation/vim-colors-solarized'
+Plug 'lifepillar/vim-solarized8'
 Plug 'vim-airline/vim-airline'
 "Plug 'edkolev/tmuxline.vim'
 Plug 'vim-airline/vim-airline-themes'
@@ -312,28 +313,30 @@ augroup end
 autocmd BufNewFile,BufRead *.txt,*.md,*.tex let coc_disabled=0
 
 " {{{1 Solarized Color Scheme Configs
-let g:solarized_visibility="high"
-call togglebg#map("<F5>")
+"let g:solarized_visibility="high"
+"call togglebg#map("<F5>")
 syntax enable
 if $TERM=="xterm-256color"
     let g:solarized_termtrans=1
-    colorscheme solarized
+    colorscheme solarized8
 elseif $TERM=="xterm"
     let g:solarized_termtrans=1
     let g:solarized_termcolors=256
     let g:solarized_contrast="high"
-    colorscheme solarized
+    colorscheme solarized8
 elseif $TERM=="linux"
     let g:solarized_termcolors=16
-    colorscheme solarized
+    colorscheme solarized8
 elseif $TERM=="fbterm"
     let g:solarized_termcolors=256
-    colorscheme solarized
+    colorscheme solarized8
 elseif $TERM=="alacritty"
     let g:solarized_termtrans=0
     let g:solarized_termcolors=16
     let g:solarized_termtrans=1
-    colorscheme solarized
+    colorscheme solarized8
+else
+    colorscheme solarized8
 endif
 
 if $BACKLIGHT=="light"

@@ -15,6 +15,9 @@ set $mod Mod1
 # The super key
 set $sup Mod4
 
+# Use super key for moving floating windows
+floating_modifier $sup
+
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
 font pango:WenQuanYi Micro Hei 8
@@ -60,16 +63,16 @@ set $mtr_grey        "#757575"
 set $mtr_blue-gray   "#546e7a"
 
 # colors picked from the background
-set $bg_dark   "#10120f"
+set $bg_dark   "#10120f00"
 
 # Colors
 # class                 border    bg        text      indicator  child_border
-client.focused          $base03   $base03   $base1    $base0     $base01 
-client.unfocused        $bg_dark  $bg_dark  $base1    $base02    $base02
-client.focused_inactive $yellow   $yellow   $base03   $base02    $base02
+client.focused          $base03   $base03   $base0    $base00    $base00
+client.unfocused        $bg_dark  $bg_dark  $base0    $base02    $base02
+client.focused_inactive $base03   $base03   $base0    $base0     $base01
 client.urgent           $red      $red      $base03   $base02    $base02
 client.placeholder      $base03   $base02   $base2    $base03    $base02
-client.background                 $base2
+client.background                 $bg_dark
 
 # Make config floating
 for_window [class="(?i)config"] floating enable
@@ -80,6 +83,8 @@ for_window [title="^gifview: "] floating enable
 for_window [title="^Ｋａｎｏｎ"] floating enable
 for_window [title="^QQ"] floating enable
 for_window [class="(?i)^Steam$"] floating enable
+for_window [class="(?i)^Steam$"] floating enable
+for_window [title="^Choose a "] resize set 1200 720
 
 # Config for steam games
 for_window [class="steam_app_405900"] floating enable
@@ -115,14 +120,11 @@ bindsym $mod+F1 exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle
 bindsym $mod+F2 exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -4%
 bindsym $mod+F3 exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +4%
 
-# Use Mouse+$mod to drag floating windows to their wanted position
-floating_modifier $mod
-
 # start a terminal
 bindsym $mod+Return exec alacritty
 
 # look up in dict
-bindsym $mod+i exec "alacritty -t 'dict_lookup | float' -o window.dimensions.columns=72 -o window.dimensions.lines=12 -o window.position.x=200 -o window.position.y=200 -e bash -c 'sdcv -cn \\"$(xclip -o)\\" | less -R'"
+bindsym $mod+i exec alacritty -t "dict_lookup | float" -o window.dimensions.columns=72 -o window.dimensions.lines=12 -o window.position.x=200 -o window.position.y=200 -e bash -c 'sdcv -cn "$(wl-paste -p)" | less -R'
 bindsym $mod+Shift+i exec "alacritty -t 'dict_lookup | float' -o window.dimensions.columns=72 -o window.dimensions.lines=12 -o window.position.x=200 -o window.position.y=200 -e bash -c 'sdcv -c'"
 
 # kill focused window
@@ -411,8 +413,8 @@ workspace $wsminus output HDMI1
 workspace $wsplus output HDMI1
 
 ## Marking
-bindsym $mod+g exec i3-input -F 'mark %s' -l 1 -P 'Mark: '
-bindsym $mod+shift+g exec i3-input -F '[con_mark="%s"] focus' -l 1 -P 'Goto: '
+#bindsym $mod+g exec i3-input -F 'mark %s' -l 1 -P 'Mark: '
+#bindsym $mod+shift+g exec i3-input -F '[con_mark="%s"] focus' -l 1 -P 'Goto: '
 
 ## Notify
 bindsym $sup+b exec "notify-send 'Capacity = '$(cat /sys/class/power_supply/BAT0/capacity)%"
@@ -427,8 +429,8 @@ bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +3%
 bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -3%
 bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
 bindsym XF86AudioMicMute exec pactl set-source-mute @DEFAULT_SOURCE@ toggle
-bindsym XF86MonBrightnessDown exec brightnessctl set 3-
-bindsym XF86MonBrightnessUp exec brightnessctl set +3
+bindsym XF86MonBrightnessDown exec brightnessctl set 2-
+bindsym XF86MonBrightnessUp exec brightnessctl set +2
 
 ## HiDPI
 output eDP-1 mode 1920x1200
