@@ -16,3 +16,6 @@ my_time_at_portia +OPTIONS="":
 
 stranded_deep +OPTIONS="":
 	WINE_FULLSCREEN_FSR=1 legendary launch {{OPTIONS}} 02107cba432c4551a027d25d597adc49
+
+sonic_mania +OPTIONS="":
+	WINE_FULLSCREEN_FSR=1 legendary launch {{OPTIONS}} 818447bb519b46d48d365d5753362796

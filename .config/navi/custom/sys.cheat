@@ -122,7 +122,7 @@ sudo systemd-inhibit --what=handle-lid-switch sleep 2592000
 red=`echo "<rgb>" | sed -E 's/^(..).*/\1/'`; \
 green=`echo "<rgb>" | sed -E 's/^..(..).*/\1/'`; \
 blue=`echo "<rgb>" | sed -E 's/^....(..).*/\1/'`; \
-ds4_device=`brightnessctl -l | grep '0003:054C:09CC' | head -1 | cut -d"'" -f2 | cut -d: -f1-3`; \
+ds4_device=`brightnessctl -l | grep '054C:09CC' | head -1 | cut -d"'" -f2 | cut -d: -f1-3`; \
 brightnessctl -d "$ds4_device:red" set `printf "%d" "0x$red"`; \
 brightnessctl -d "$ds4_device:green" set `printf "%d" "0x$green"`; \
 brightnessctl -d "$ds4_device:blue" set `printf "%d" "0x$blue"`;
@@ -136,7 +136,7 @@ $ ds4_device:
 
 # Set monitor resolution in swaywm
 
-swaymsg output "<monitor>" mode "<resolution>" && brightnessctl set `brightnessctl get`
+swaymsg output <monitor> mode <resolution> && brightnessctl set `brightnessctl get`
 
 $ monitor: swaymsg -t get_outputs | jq '.[].name'
-$ resolution: swaymsg -t get_outputs | jq '(.[] | select(.name == "<monitor>")).modes[] | [.width, .height | tostring] | join("x")'
+$ resolution: swaymsg -t get_outputs | jq '(.[] | select(.name == <monitor>)).modes[] | ((.width | tostring) + "x" + (.height | tostring)) + "@" + ((.refresh / 1000) | tostring) + "Hz"'

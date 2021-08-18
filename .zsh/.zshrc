@@ -228,7 +228,8 @@ export NNN_IDLE_TIMEOUT=180
 # - c: CD into directory found with fzf
 # - s: Organize
 # - b: Page the file with bat
-export NNN_PLUG='o:fzopen;p:-_feh -Z.;P:-_feh -Z. `ls|sort -n`;d:diffs;k:-chksum;c:fzcd;z:fzz;S:organize;b:-_bat $nnn;s:croc'
+export NNN_PLUG='o:fzopen;p:-!feh -Z.*;P:-!feh -Z. `ls|sort -n`*;d:diffs;k:!chksum;c:fzcd;z:fzz;S:organize;b:-!bat $nnn;s:croc'
+
 ## GPG {{{2
 export GPG_TTY=$(tty)
 

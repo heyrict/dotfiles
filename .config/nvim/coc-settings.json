@@ -10,7 +10,8 @@
     "previousKeymap": "<C-P>"
   },
   "coc.preferences": {
-    "extensionUpdateCheck": "weekly",
+    "silentAutoupdate": false,
+    "extensionUpdateCheck": "never",
     "formatOnSaveFiletypes": [
       "python",
       "javascript",
@@ -28,7 +29,7 @@
   "prettier.disableLanguages": ["vue", "markdown", "rust", "python"],
   "tsserver.npm": "~/.nvm/versions/node/v12.16.3/bin/npm",
   "tsserver.enablejavascript": false,
-  "rust-analyzer.serverPath": "~/.cargo/bin/rust-analyzer",
+  "rust-analyzer.serverPath": "~/.rustup/toolchains/nightly-x86_64-unknown-linux-gnu/bin/rust-analyzer",
   "python": {
     "jediEnabled": false
   },

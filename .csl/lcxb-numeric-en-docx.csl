@@ -175,7 +175,7 @@
   </macro>
   <macro name="access">
     <choose>
-      <if variable="URL">
+      <if variable="URL" type="webpage">
         <text variable="URL"/>
       </if>
     </choose>

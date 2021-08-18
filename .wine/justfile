@@ -1,7 +1,9 @@
 ROOT := "/home/heyrict/.wine"
 HOME := ROOT + "/drive_c/users/heyrict"
-PROTON := "/home/heyrict/.local/share/Steam/steamapps/common/Proton 5.13"
-PROTON_WINE64 := PROTON + "/dist/bin/wine64"
+#PROTON := "/home/heyrict/.local/share/Steam/steamapps/common/Proton 5.13"
+#PROTON_WINE64 := PROTON + "/dist/bin/wine64"
+PROTON := "/home/heyrict/.local/share/Steam/compatibilitytools.d/Proton-6.13-GE-1"
+PROTON_WINE64 := PROTON + "/files/bin/wine64"
 
 run FILE:
 	LC_ALL=ja_JP.UTF-8 LANG=ja_JP.UTF-8 wine64 "{{FILE}}"
@@ -10,10 +12,10 @@ _run_in FOLDER PROGRAM:
 	cd "{{FOLDER}}" && LC_ALL=ja_JP.UTF-8 LANG=ja_JP.UTF-8 wine64 "{{PROGRAM}}"
 
 proton_run FILE:
-	LC_ALL=ja_JP.UTF-8 LANG=ja_JP.UTF-8 "{{PROTON_WINE64}}" "{{FILE}}"
+	WINE_FULLSCREEN_FSR=1 LC_ALL=ja_JP.UTF-8 LANG=ja_JP.UTF-8 "{{PROTON_WINE64}}" "{{FILE}}"
 
 _proton_run_in FOLDER FILE:
-	cd "{{FOLDER}}" && LC_ALL=ja_JP.UTF-8 LANG=ja_JP.UTF-8 "{{PROTON_WINE64}}" "{{FILE}}"
+	cd "{{FOLDER}}" && WINE_FULLSCREEN_FSR=1 LC_ALL=ja_JP.UTF-8 LANG=ja_JP.UTF-8 "{{PROTON_WINE64}}" "{{FILE}}"
 
 th07:
 	just _run_in "{{HOME}}/Games/touhou/th07/" th07.exe
@@ -64,7 +66,7 @@ dohnadohna:
 #	just _run_in "{{ROOT}}/drive_c/Program Files (x86)/Ara Fell Enhanced Edition" "RPG_RT.exe"
 
 ciel_nosurge:
-	just _run_in "{{ROOT}}/drive_c/users/heyrict/Games/Ciel Nosurge DX" "CielnosurgeDX.exe"
+	just _proton_run_in "{{HOME}}/Games/Ciel Nosurge DX" "CielnosurgeDX.exe"
 
 death_end_request:
-	just _run_in "{{ROOT}}/drive_c/users/heyrict/Games/Death end reQuest/resource/bin" "Application.exe"
+	just _proton_run_in "/mnt/windows/Users/heyrict/Games/Death end reQuest/resource/bin" "Application.exe"
