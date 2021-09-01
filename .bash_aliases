@@ -68,8 +68,10 @@ activate() {
 alias aria2cd="aria2c --enable-rpc"
 
 # vim without language server
+alias nv='neovide'
 alias ncvim='NOCOMPL=true vim'
 alias ncnvim='NOCOMPL=true nvim'
+alias ncnv='NOCOMPL=true neovide'
 
 # gifview
 alias gifview="gifview --min-delay=10 -a"

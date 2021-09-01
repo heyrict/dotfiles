@@ -109,6 +109,9 @@ map [fullscreen] <C-5> set "recolor-darkcolor \#002b36"
 map [fullscreen] <C-6> set "default-bg \#eee8d5"
 
 # Other config {{{1
+# set title
+
+set window-title-basename true
 
 # enable theme
 set recolor true

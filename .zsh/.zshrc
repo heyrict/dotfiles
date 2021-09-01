@@ -237,6 +237,9 @@ export GPG_TTY=$(tty)
 export XMODIFIERS="@im=fcitx"
 export QT_IM_MODULE="fcitx"
 
+## Neovide {{{2
+export NEOVIDE_MULTIGRID=1
+
 ## Custom {{{2
 export TASKRC="~/.taskrc"
 

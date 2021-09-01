@@ -2,7 +2,7 @@ ROOT := "/home/heyrict/legendary/pfx"
 HOME := ROOT + "/drive_c/users/heyrict"
 #PROTON := "/home/heyrict/.local/share/Steam/steamapps/common/Proton 5.13"
 #PROTON_WINE64 := PROTON + "/dist/bin/wine64"
-PROTON := "/home/heyrict/.local/share/Steam/compatibilitytools.d/Proton-6.13-GE-1"
+PROTON := "/home/heyrict/.local/share/Steam/compatibilitytools.d/Proton-6.16-GE-1"
 PROTON_WINE64 := PROTON + "/files/bin/wine64"
 
 sync:

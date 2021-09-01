@@ -34,14 +34,16 @@ Plug 'majutsushi/tagbar', { 'on': ['TlistToggle', 'TlistOpen', 'TagbarToggle'] }
 "Plug 'stlrefvim'
 " autoswitch fcitx-remote
 Plug 'vim-scripts/fcitx.vim'
-" syntax highlight for .qml files
-Plug 'peterhoeg/vim-qml'
 " NERD_tree
 Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
-" kivy syntax highlight
+
+" Programming languages and Syntax highlights
+
+" .qml files
+Plug 'peterhoeg/vim-qml'
+" kivy
 "Plug 'farfanoide/vim-kivy'
-"Plug 'file://home/ericx/.vim/bundle/custom_vim_kivy'
 
 " Javascript Environment
 Plug 'pangloss/vim-javascript'
@@ -52,12 +54,9 @@ Plug 'jparise/vim-graphql'
 "Plug 'leafgarland/typescript-vim'
 "Plug 'peitalin/vim-jsx-typescript'
 
-"Plug 'alvan/vim-closetag'
-
 " Python Environment
 Plug 'Vimjas/vim-python-pep8-indent'
-
-" For htmldjango
+" htmldjango
 "Plug 'mjbrownie/vim-htmldjango_omnicomplete'
 
 " Julia Environment
@@ -72,9 +71,6 @@ Plug 'lifepillar/vim-solarized8'
 Plug 'vim-airline/vim-airline'
 "Plug 'edkolev/tmuxline.vim'
 Plug 'vim-airline/vim-airline-themes'
-"
-" ALE
-"Plug 'w0rp/ale'
 
 " Folding
 Plug 'Konfekt/FastFold'
