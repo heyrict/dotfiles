@@ -2,7 +2,7 @@
   "diagnostic": {
     "warningSign": "!>",
     "errorSign": ">>",
-    "infoSign": "#>",
+    "infoSign": "i>",
     "hintSign": "*>"
   },
   "list": {

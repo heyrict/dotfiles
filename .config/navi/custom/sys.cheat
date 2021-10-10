@@ -127,7 +127,14 @@ brightnessctl -d "$ds4_device:red" set `printf "%d" "0x$red"`; \
 brightnessctl -d "$ds4_device:green" set `printf "%d" "0x$green"`; \
 brightnessctl -d "$ds4_device:blue" set `printf "%d" "0x$blue"`;
 
-$ ds4_device: 
+
+% sys.dualshock4.touchpad_as_mouse
+
+# Enable touchpad on ds4 as mouse (regular) or disable the behavior (for gaming purpose)
+
+swaymsg input 1356:2508:Sony_Interactive_Entertainment_Wireless_Controller_Touchpad events <state>
+
+$ state: echo -e "toggle\nenabled\ndisabled\ndisabled_on_external_mouse"
 
 
 ; ============================ Sway monitor settings ============================

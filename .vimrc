@@ -67,7 +67,8 @@ Plug 'Vimjas/vim-python-pep8-indent'
 
 " Color Schema
 "Plug 'altercation/vim-colors-solarized'
-Plug 'lifepillar/vim-solarized8'
+"Plug 'lifepillar/vim-solarized8'
+Plug 'morhetz/gruvbox'
 Plug 'vim-airline/vim-airline'
 "Plug 'edkolev/tmuxline.vim'
 Plug 'vim-airline/vim-airline-themes'
@@ -307,32 +308,62 @@ augroup coc_group
 augroup end
 
 autocmd BufNewFile,BufRead *.txt,*.md,*.tex let coc_disabled=0
+autocmd FileType python let b:coc_root_patterns = ['.git', '.env']
 
-" {{{1 Solarized Color Scheme Configs
+" {{{1 Color Scheme Configs
+
+" {{{2 Solarized Color Scheme Configs
+"let g:solarized_visibility="high"
+"call togglebg#map("<F5>")
+"syntax enable
+"if $TERM=="xterm-256color"
+"    let g:solarized_termtrans=1
+"    colorscheme solarized8
+"elseif $TERM=="xterm"
+"    let g:solarized_termtrans=1
+"    let g:solarized_termcolors=256
+"    let g:solarized_contrast="high"
+"    colorscheme solarized8
+"elseif $TERM=="linux"
+"    let g:solarized_termcolors=16
+"    colorscheme solarized8
+"elseif $TERM=="fbterm"
+"    let g:solarized_termcolors=256
+"    colorscheme solarized8
+"elseif $TERM=="alacritty"
+"    let g:solarized_termtrans=0
+"    let g:solarized_termcolors=16
+"    let g:solarized_termtrans=1
+"    colorscheme solarized8
+"else
+"    colorscheme solarized8
+"endif
+
+" {{{2 Gruvbox Color Scheme Configs
 "let g:solarized_visibility="high"
 "call togglebg#map("<F5>")
 syntax enable
 if $TERM=="xterm-256color"
-    let g:solarized_termtrans=1
-    colorscheme solarized8
+    let g:gruvbox_transparent_bg=1
+    colorscheme gruvbox
 elseif $TERM=="xterm"
-    let g:solarized_termtrans=1
-    let g:solarized_termcolors=256
-    let g:solarized_contrast="high"
-    colorscheme solarized8
+    let g:gruvbox_transparent_bg=1
+    let g:gruvbox_termcolors=256
+    let g:gruvbox_contrast_dark="hard"
+    let g:gruvbox_contrast_light="hard"
+    colorscheme gruvbox
 elseif $TERM=="linux"
-    let g:solarized_termcolors=16
-    colorscheme solarized8
+    let g:gruvbox_termcolors=16
+    colorscheme gruvbox
 elseif $TERM=="fbterm"
-    let g:solarized_termcolors=256
-    colorscheme solarized8
+    let g:gruvbox_termcolors=256
+    colorscheme gruvbox
 elseif $TERM=="alacritty"
-    let g:solarized_termtrans=0
-    let g:solarized_termcolors=16
-    let g:solarized_termtrans=1
-    colorscheme solarized8
+    let g:gruvbox_termcolors=256
+    let g:gruvbox_transparent_bg=1
+    colorscheme gruvbox
 else
-    colorscheme solarized8
+    colorscheme gruvbox
 endif
 
 if $BACKLIGHT=="light"
@@ -364,9 +395,9 @@ if $TERM=="linux"
 elseif $TERM=="xterm"
     set t_Co=16
     set t_BE=
-    let g:airline_theme='solarized'
+    let g:airline_theme='gruvbox'
 else
-    let g:airline_theme='solarized'
+    let g:airline_theme='gruvbox'
 endif
 
 "if $TERM=="linux"
@@ -719,7 +750,15 @@ vnoremap _[ <esc>`>a]<esc>`<i[<esc>
 vnoremap _{ <esc>`>a}<esc>`<i{<esc>
 vnoremap _* <esc>`>a**<esc>`<i**<esc>
 vnoremap _+ <esc>`>a*<esc>`<i*<esc>
-vnoremap _! <esc>`>a --><esc>`<i<!-- <esc>
+vnoremap _" <esc>`>a"<esc>`<i"<esc>
+vnoremap _' <esc>`>a'<esc>`<i'<esc>
+vnoremap _` <esc>`>a`<esc>`<i`<esc>
+autocmd filetype pandoc,markdown,html vnoremap _! <esc>`>a --><esc>`<i<!-- <esc>
+
+" Anki related
+autocmd filetype yaml vnoremap _1 <esc>`>a}}<esc>`<i{{c1::<esc>
+autocmd filetype yaml vnoremap _2 <esc>`>a}}<esc>`<i{{c2::<esc>
+autocmd filetype yaml vnoremap _3 <esc>`>a}}<esc>`<i{{c3::<esc>
 
 " {{{1 General Configs
 set autoindent

@@ -15,7 +15,7 @@ syokusyu:
 	just run {{HOME}}/Games/era/syokusyumiya1135/Emuera1824beta005.exe
 
 theworld:
-	just _run_in "{{HOME}}/Games/era/eraTW4791/" Emuera1824+v11+webp+test+fix.exe
+	just _run_in "{{HOME}}/Games/era/eraTW4800/" Emuera1824+v11+webp+test+fix.exe
 
 j:
 	just _run_in "{{HOME}}/Games/era/eraJ1055/" Emuera1824+v1.exe

@@ -65,13 +65,13 @@ nm-applet &
 #blueman-applet &
 
 ## Notification Manager
-dunst &
+#dunst &
 
 ## Battery notification
-i3-battery-popup -n &
+#i3-battery-popup -n &
 
 # Polybar
-( sleep 5s && . ~/.config/polybar/launch.sh ) &
+#( sleep 5s && . ~/.config/polybar/launch.sh ) &
 
 # composition manager
 #

@@ -126,8 +126,8 @@ alias ytop='if [ $BACKLIGHT = light ]; then ytop -c default-dark; else ytop; fi'
 alias eight-dark='export TERM=fbterm; export BACKLIGHT=dark; ~/MyPrograms/shell/solarized-dark-fbterm.sh; clear; echo $BACKLIGHT > $P_THEME'
 alias eight-light='export TERM=fbterm; export BACKLIGHT=light; ~/MyPrograms/shell/solarized-light-fbterm.sh; clear; echo $BACKLIGHT > $P_THEME'
 alias eight='eight-dark'
-alias bg-dark="export BACKLIGHT=dark; vim --clean ~/.config/alacritty/alacritty.yml -c '%s/\*solarized_light/\*solarized_dark/' -c 'wq'; export BAT_THEME=OneHalfDark; echo dark > $P_THEME"
-alias bg-light="export BACKLIGHT=light; vim --clean ~/.config/alacritty/alacritty.yml -c '%s/\*solarized_dark/\*solarized_light/' -c 'wq'; export BAT_THEME='Monokai Extended Light'; echo light > $P_THEME"
+alias bg-dark="export BACKLIGHT=dark; vim --clean ~/.config/alacritty/alacritty.yml -c '%s/\*gruvbox_light/\*gruvbox_dark/' -c 'wq'; export BAT_THEME=OneHalfDark; echo dark > $P_THEME"
+alias bg-light="export BACKLIGHT=light; vim --clean ~/.config/alacritty/alacritty.yml -c '%s/\*gruvbox_dark/\*gruvbox_light/' -c 'wq'; export BAT_THEME='Monokai Extended Light'; echo light > $P_THEME"
 
 if [ -f $P_THEME ]; then
   if [ `cat $P_THEME` = light ]; then

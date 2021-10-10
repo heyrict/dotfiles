@@ -3,6 +3,7 @@ Version=1.0
 Name=nnn
 GenericName=nnn File Manager
 X-GNOME-FullName=nnn File Manager
+TryExec=nnn
 Exec=alacritty -e nnn
 Icon=system-file-manager
 Terminal=false

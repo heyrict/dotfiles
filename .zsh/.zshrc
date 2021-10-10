@@ -252,6 +252,11 @@ path=(
 )
 
 # Other configs {{{1
+## Vulkan {{{2
+
+# Use RADV vulkan driver
+export AMD_VULKAN_ICD=RADV
+
 ## Zsh {{{2
 unsetopt beep
 
@@ -296,3 +301,19 @@ export CURL_SSL_BACKEND=rustls
 if [ -z $DISPLAY ] && [ "$(tty)" = "/dev/tty1" ]; then
   exec sway
 fi
+
+# Countdown
+local TARGET=`date -d "Dec 25" +%j`
+local TODAY=`date +%j`
+local DAYS=$(($TARGET - $TODAY))
+local COUNTDOWN="
+\e[1mCountdown\e[0m
+
+\e[1;31m$DAYS\e[0m days until test
+"
+
+case $DAYS in
+  [0-9]*)
+    echo $COUNTDOWN | cowsay -n -p
+esac
+

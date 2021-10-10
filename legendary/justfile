@@ -11,11 +11,14 @@ sync:
 bridge_constructor_twd +OPTIONS="":
 	WINE_FULLSCREEN_FSR=1 legendary launch {{OPTIONS}} 998af0ab527c493baefb8049250c9a0e
 
-my_time_at_portia +OPTIONS="":
-	WINE_FULLSCREEN_FSR=1 legendary launch {{OPTIONS}} Cobra
+#my_time_at_portia +OPTIONS="":
+#	WINE_FULLSCREEN_FSR=1 legendary launch {{OPTIONS}} Cobra
 
-stranded_deep +OPTIONS="":
-	WINE_FULLSCREEN_FSR=1 legendary launch {{OPTIONS}} 02107cba432c4551a027d25d597adc49
+#stranded_deep +OPTIONS="":
+#	WINE_FULLSCREEN_FSR=1 legendary launch {{OPTIONS}} 02107cba432c4551a027d25d597adc49
 
 sonic_mania +OPTIONS="":
 	WINE_FULLSCREEN_FSR=1 legendary launch {{OPTIONS}} 818447bb519b46d48d365d5753362796
+
+overcooked +OPTIONS="":
+	WINE_FULLSCREEN_FSR=1 legendary launch {{OPTIONS}} Sage

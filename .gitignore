@@ -1,8 +1,77 @@
 # elinks history file
-.elinks/*hist*
-.elinks/cookies
+/.elinks/*hist*
+/.elinks/cookies
 
 # mocp temporary files
-.moc/cache
-.moc/pid
-.moc/playlist.m3u
+/.moc/cache
+/.moc/pid
+/.moc/playlist.m3u
+
+# non-dot files should not be tracked
+/*
+!/.*
+
+# other folders that should not be tracked
+# - cache
+/.cache
+*.cache
+
+# - wine
+/.wine*
+
+# - zsh
+/.zsh/.zcompdump
+/.zsh/completion
+
+# - node
+/.npm
+/.nvm
+/.yarn
+/.yarnrc
+
+# - secrets
+/.ssh
+/.task
+/.netrc
+/.kdb
+/.pulse-cookie
+/.gnupg
+/.davfs2
+/.bash_passwords
+/.android
+/.cipher
+/.kaggle
+
+# - history files
+/.*_history
+/.histfile*
+/.lesshst
+/.local/share/recently-used.xbel
+/.local/share/sdcv_history
+
+# - desktop files
+/.local/state
+/.local/share/*/
+!/.local/share/applications
+/.local/share/applications/wine*
+/.local/share/applications/discord*
+
+# - others
+/.texlive*
+/.steam*
+/.viminfo
+/.vim
+/.wget-hsts
+/.rnd
+/.pulze-cookie
+/.prev_theme
+/.pki
+/.rustup
+/.cargo
+/.zotero
+/.mitmproxy
+/.ipython
+/.jupyter
+/.Xauthority
+/.mozilla
+/.antibody
