@@ -23,6 +23,9 @@ j:
 k:
 	just _run_in "{{HOME}}/Games/era/eraK1293/" Emuera1824+v9.exe
 
+jk:
+	just _run_in "{{HOME}}/Games/era/eraJK/" Emuera1821.exe
+
 rsyokusyu:
 	just _run_in "{{HOME}}/Games/era/rsyokusyuG308/" Emuera1823beta003.exe
 
@@ -32,6 +35,9 @@ syokan:
 alk:
 	just _run_in "{{HOME}}/Games/era/eraAL K1.032" Emuera1824+v11+EE.exe
 	#just _run_in "{{HOME}}/Games/era/eraAL K1.032" Emuera1824+v11+webp+test+fix.exe
+
+ymaem:
+	just _run_in "{{HOME}}/Games/era/eraYMAEM4261/" Emuera1824+v11+webp+test+fix.exe
 
 #era4X:
 #	just _run_in "{{HOME}}/Games/era/era4X" Emuera1824+v8.exe

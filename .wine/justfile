@@ -83,5 +83,20 @@ angel_beats:
 amayui:
 	just _proton_run_in /mnt/windows/Users/heyrict/Games/Eushully/AMAYUI AGE.exe
 
-custom_order_maid:
-	WINEDLLOVERRIDES="opengl32=n,b" just _proton_run_in "{{HOME}}/Games/KISS/COM3D2" "COM3D2x64.exe"
+tengu:
+	just _proton_run_in "{{HOME}}/Games/tengu" adv.exe
+
+majonoie:
+	just _proton_run_in "{{HOME}}/Games/majonoie1_09a" "Game.exe"
+
+bukifreem:
+	miniserve "{{HOME}}/Games/BukiFreem/www"
+
+gumao:
+	just _proton_run_in "{{HOME}}/Games/Gumao7_12" "Game.exe"
+
+#custom_order_maid:
+#	WINEDLLOVERRIDES="opengl32=n,b" just _proton_run_in "{{HOME}}/Games/KISS/COM3D2" "COM3D2x64.exe"
+
+#ideologue:
+#	just _proton_run_in "{{HOME}}/Games/軋轢のイデオローグAppend" Game.exe

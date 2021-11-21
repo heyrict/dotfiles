@@ -14,8 +14,12 @@ else
 fi
 
 # SSLVPN
-alias easyconnect="docker run --device /dev/net/tun --cap-add NET_ADMIN -ti -p 127.0.0.1:1080:1080 -e EC_VER=7.6.7 hagb/docker-easyconnect:cli"
+#alias easyconnect="docker run --device /dev/net/tun --cap-add NET_ADMIN -ti -p 127.0.0.1:1080:1080 -e EC_VER=7.6.7 hagb/docker-easyconnect:cli"
 alias px8123="export https_proxy=http://127.0.0.1:8123 http_proxy=http://127.0.0.1:8123"
+
+# bluetooth
+alias bton="bluetoothctl power on"
+alias btoff="bluetoothctl power off"
 
 
 # Extension to git merge

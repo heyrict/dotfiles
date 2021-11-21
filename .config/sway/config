@@ -68,8 +68,8 @@ set $bg_dark   "#10120f00"
 # Colors
 # class                 border    bg        text      indicator  child_border
 client.focused          $base03   $base03   $base0    $base00    $base00
-client.unfocused        $bg_dark  $bg_dark  $base0    $base02    $base02
-client.focused_inactive $base03   $base03   $base0    $base0     $base01
+client.unfocused        $bg_dark  $bg_dark  $base0    $base02    $bg_dark
+client.focused_inactive $base03   $base03   $base0    $base0     $base02
 client.urgent           $red      $red      $base03   $base02    $base02
 client.placeholder      $base03   $base02   $base2    $base03    $base02
 client.background                 $bg_dark
@@ -91,8 +91,8 @@ for_window [class="steam_app_405900"] floating enable
 
 # Border
 #default_border normal 1
-default_border pixel 2
-#hide_edge_borders both
+default_border pixel 3
+hide_edge_borders both
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
