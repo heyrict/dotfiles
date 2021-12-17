@@ -106,6 +106,22 @@ $ max: seq 1200 400 4001
 cpupower frequency-info
 
 
+% sys.ryzen.tctl_temp.set
+
+# Set CPU (Ryzen 3 Cezanne) temperature limit
+
+sudo ryzenadj --tctl-temp <max_temp>
+
+$ max_temp: echo '65 70 75 80 85 90 95 98 100' | tr " " "\n"
+
+
+% sys.ryzen.tctl_temp.show
+
+# Show CPU (Ryzen 3 Cezanne) temperature limit
+
+sudo ryzenadj -i | grep tctl-temp | grep -oE '[0-9.]+'
+
+
 % sys.lid.no_sleep_on_close
 
 # Prevent sleep on lid close temporarily

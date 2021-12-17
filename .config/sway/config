@@ -22,57 +22,63 @@ floating_modifier $sup
 # is used in the bar {} block below.
 font pango:WenQuanYi Micro Hei 8
 
-# Styles
-set $base03   "#002b36"
-set $base02   "#073642"
-set $base01   "#586e75"
-set $base00   "#657b83"
-set $base0    "#839496"
-set $base1    "#93a1a1"
-set $base2    "#eee8d5"
-set $base3    "#fdf6e3"
-set $yellow   "#b58900"
-set $orange   "#cb4b16"
-set $red      "#dc322f"
-set $magenta  "#d33682"
-set $violet   "#6c71c4"
-set $blue     "#268bd2"
-set $cyan     "#2aa198"
-set $green    "#859900"
+# Gruvbox Colors
 
-# Material Colors
+set $gb_dark0_hard    '#1d2021'
+set $gb_dark0         '#282828'
+set $gb_dark0_soft    '#32302f'
+set $gb_dark1         '#3c3836'
+set $gb_dark2         '#504945'
+set $gb_dark3         '#665c54'
+set $gb_dark4         '#7c6f64'
+set $gb_dark4_256     '#7c6f64'
 
-set $mtr_red         "#e53935"
-set $mtr_pink        "#d81b60"
-set $mtr_purple      "#8e24aa"
-set $mtr_deep-purple "#5e35b1"
-set $mtr_indigo      "#3949ab"
-set $mtr_blue        "#1e88e5"
-set $mtr_light-blue  "#039be5"
-set $mtr_cyan        "#00acc1"
-set $mtr_teal        "#00897b"
-set $mtr_green       "#43a047"
-set $mtr_light-green "#7cb342"
-set $mtr_lime        "#c0ca33"
-set $mtr_yellow      "#fdd835"
-set $mtr_amber       "#ffb300"
-set $mtr_orange      "#fb8c00"
-set $mtr_deep-orange "#f4511e"
-set $mtr_brown       "#6d4c41"
-set $mtr_grey        "#757575"
-set $mtr_blue-gray   "#546e7a"
+set $gb_gray          '#928374'
 
-# colors picked from the background
-set $bg_dark   "#10120f00"
+set $gb_light0_hard   '#f9f5d7'
+set $gb_light0        '#fbf1c7'
+set $gb_light0_soft   '#f2e5bc'
+set $gb_light1        '#ebdbb2'
+set $gb_light2        '#d5c4a1'
+set $gb_light3        '#bdae93'
+set $gb_light4        '#a89984'
+set $gb_light4_256    '#a89984'
+
+set $gb_bright_red       '#fb4934'
+set $gb_bright_green     '#b8bb26'
+set $gb_bright_yellow    '#fabd2f'
+set $gb_bright_blue      '#83a598'
+set $gb_bright_purple    '#d3869b'
+set $gb_bright_aqua      '#8ec07c'
+set $gb_bright_orange    '#fe8019'
+
+set $gb_neutral_red      '#cc241d'
+set $gb_neutral_green    '#98971a'
+set $gb_neutral_yellow   '#d79921'
+set $gb_neutral_blue     '#458588'
+set $gb_neutral_purple   '#b16286'
+set $gb_neutral_aqua     '#689d6a'
+set $gb_neutral_orange   '#d65d0e'
+
+set $gb_faded_red        '#9d0006'
+set $gb_faded_green      '#79740e'
+set $gb_faded_yellow     '#b57614'
+set $gb_faded_blue       '#076678'
+set $gb_faded_purple     '#8f3f71'
+set $gb_faded_aqua       '#427b58'
+set $gb_faded_orange     '#af3a03'
+
+
+set $bg_dark   "#00000000"
 
 # Colors
-# class                 border    bg        text      indicator  child_border
-client.focused          $base03   $base03   $base0    $base00    $base00
-client.unfocused        $bg_dark  $bg_dark  $base0    $base02    $bg_dark
-client.focused_inactive $base03   $base03   $base0    $base0     $base02
-client.urgent           $red      $red      $base03   $base02    $base02
-client.placeholder      $base03   $base02   $base2    $base03    $base02
-client.background                 $bg_dark
+# class                 border        bg            text         indicator      child_border
+client.focused          $gb_dark0     $gb_dark0     $gb_gray     $gb_light0     $gb_gray
+client.unfocused        $bg_dark      $bg_dark      $gb_gray     $gb_gray       $bg_dark
+client.focused_inactive $gb_dark0     $gb_dark0     $gb_gray     $gb_light0     $gb_dark3
+client.urgent           $gb_faded_red $gb_faded_red $gb_dark0    $gb_light1     $gb_faded_red
+client.placeholder      $bg_dark      $gb_dark1     $gb_gray     $gb_faded_blue $gb_dark0
+client.background                     $bg_dark
 
 # Make config floating
 for_window [class="(?i)config"] floating enable
@@ -83,7 +89,6 @@ for_window [title="^gifview: "] floating enable
 for_window [title="^Ｋａｎｏｎ"] floating enable
 for_window [title="^QQ"] floating enable
 for_window [class="(?i)^Steam$"] floating enable
-for_window [class="(?i)^Steam$"] floating enable
 for_window [title="^Choose a "] resize set 1200 720
 
 # Config for steam games
@@ -91,7 +96,7 @@ for_window [class="steam_app_405900"] floating enable
 
 # Border
 #default_border normal 1
-default_border pixel 3
+default_border pixel 2
 hide_edge_borders both
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
@@ -125,7 +130,7 @@ bindsym $mod+Return exec alacritty
 
 # look up in dict
 bindsym $mod+i exec alacritty -t "dict_lookup | float" -o window.dimensions.columns=72 -o window.dimensions.lines=12 -o window.position.x=200 -o window.position.y=200 -e bash -c 'sdcv -cn "$(wl-paste -p)" | less -R'
-bindsym $mod+Shift+i exec "alacritty -t 'dict_lookup | float' -o window.dimensions.columns=72 -o window.dimensions.lines=12 -o window.position.x=200 -o window.position.y=200 -e bash -c 'sdcv -c'"
+bindsym $mod+Shift+i exec "env WAYLAND_DISPLAY= alacritty -t 'dict_lookup | float' -o font.size=7 -o window.dimensions.columns=72 -o window.dimensions.lines=12 -o window.position.x=200 -o window.position.y=200 -e bash -c 'sdcv -c'"
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -421,7 +426,8 @@ bindsym $sup+b exec "notify-send 'Capacity = '$(cat /sys/class/power_supply/BAT0
 
 # Wayland specific commands
 ## Wallpaper
-output "*" bg ~/Pictures/backgrounds/astize_cc0_split1_alt.png fill
+#output "*" bg ~/Pictures/backgrounds/astize_cc0_split1_alt.png fill
+output "*" bg ~/Pictures/backgrounds/edna_dark.jpeg fill
 
 ## Toggle backlight
 bindsym $mod+bracketright exec ~/.config/sway/scripts/backlight-toggle.sh

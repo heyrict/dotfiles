@@ -177,6 +177,9 @@ manpath+=/usr/local/texlive/2021/texmf-dist/doc/man
 infopath+=/usr/local/texlive/2021/texmf-dist/doc/info
 path+=/usr/local/texlive/2021/bin/x86_64-linux
 
+## Anki {{{2
+export ANKI_WAYLAND=1
+
 ## Nvm {{{2
 export NVM_DIR="$HOME/.nvm"
 source /usr/share/nvm/init-nvm.sh
@@ -204,32 +207,6 @@ export PUB_HOSTED_URL="https://mirrors.tuna.tsinghua.edu.cn/dart-pub/"
 export FLUTTER_STORAGE_BASE_URL="https://mirrors.tuna.tsinghua.edu.cn/flutter"
 path+=$HOME/Flutter/bin
 path+=$HOME/Flutter/bin/cache/dart-sdk/bin
-## NNN {{{2
-
-# Book marks
-# - w: working directory
-# - c: notes for clinical medicine
-# - m: Multimedia
-# - u: Mount point
-# - t: /tmp
-export NNN_BMS="w:~/MyPrograms;c:~/pandoc_markdown/markdown/CliMed;m:/mnt/LENOVO/Eric/mov;u:/mnt;t:/tmp"
-
-# Light theme
-export NNN_COLORS='5234'
-export NNN_FCOLORS='04030c020001090e050ddc06'
-export NNN_ARCHIVE="\\.(7z|bz2|gz|tar|tgz|zip|zst)$"
-export NNN_IDLE_TIMEOUT=180
-
-# Plugins
-# - o: Open file found with fzf
-# - p: View photos in this folder
-# - P: View photos in this folder in numeric order
-# - d: Show diffs between two files
-# - c: CD into directory found with fzf
-# - s: Organize
-# - b: Page the file with bat
-export NNN_PLUG='o:fzopen;p:-!feh -Z.*;P:-!feh -Z. `ls|sort -n`*;d:diffs;k:!chksum;c:fzcd;z:fzz;S:organize;b:-!bat $nnn;s:croc'
-
 ## GPG {{{2
 export GPG_TTY=$(tty)
 
@@ -250,6 +227,7 @@ path=(
     $HOME/Programs/Slicer-4.11.0-2020-04-30-linux-amd64/bin
     $HOME/Android/platform-tools
 )
+
 
 # Other configs {{{1
 ## Vulkan {{{2
@@ -273,6 +251,9 @@ export LS_COLORS="$LS_COLORS:ow=1;36"
 ## Navi {{{2
 export NAVI_PATH=~/.config/navi/custom
 
+## Firefox {{2
+export MOZ_ENABLE_WAYLAND=1
+
 ## Veloren {{{2
 export VELOREN_ASSETS=/usr/share/veloren
 
@@ -295,7 +276,34 @@ export CURL_SSL_BACKEND=rustls
 [[ ! -f ~/.zsh/.p10k.zsh ]] || source ~/.zsh/.p10k.zsh
 
 # Navi {{{1
+#Change shortcut to '^y' to avoid conflicts
 [ -x `command -v navi` ] && source <(navi widget zsh)
+
+# NNN {{{1
+
+# Book marks
+# - w: working directory
+# - c: notes for clinical medicine
+# - m: Multimedia
+# - u: Mount point
+# - t: /tmp
+export NNN_BMS="w:~/MyPrograms;c:~/pandoc_markdown/markdown/CliMed;m:/mnt/LENOVO/Eric/mov;u:/run/media;t:/tmp"
+
+# Light theme
+export NNN_COLORS='5234'
+export NNN_FCOLORS='04030c020001090e050ddc06'
+export NNN_ARCHIVE="\\.(7z|bz2|gz|tar|tgz|zip|zst)$"
+export NNN_IDLE_TIMEOUT=180
+
+# Plugins
+# - o: Open file found with fzf
+# - p: View photos in this folder
+# - P: View photos in this folder in numeric order
+# - d: Show diffs between two files
+# - c: CD into directory found with fzf
+# - s: Organize
+# - b: Page the file with bat
+export NNN_PLUG='o:fzopen;p:-!feh -Z.*;P:-!feh -Z. `ls|sort -n`*;d:diffs;k:!chksum;c:fzcd;z:fzz;S:organize;b:-!bat $nnn;s:croc'
 
 # Start sway automatically {{{1
 if [ -z $DISPLAY ] && [ "$(tty)" = "/dev/tty1" ]; then

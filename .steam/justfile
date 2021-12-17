@@ -2,20 +2,19 @@
 
 _game FOLDER EXE ID ENV="" START_PREFIX="" PREFIX="/home/heyrict/.steam/steam/steamapps" PROTON="/home/heyrict/.steam/steam/compatibilitytools.d/Proton-6.16-GE-1/files":
 	#!/bin/bash
-
 	cd "{{PREFIX}}/common/{{FOLDER}}"
 	DEF_CMD=("{{PREFIX}}/common/{{FOLDER}}/{{EXE}}")
 	PATH="{{PROTON}}/bin/:/usr/bin:/bin" \
 	TERM="xterm" \
 	WINEDEBUG="-all" \
 	WINEDLLPATH="{{PROTON}}/lib64//wine:{{PROTON}}/lib//wine" \
-	LD_LIBRARY_PATH="{{PROTON}}/lib64/:{{PROTON}}/lib/:/overrides/lib/x86_64-linux-gnu:/overrides/lib/i386-linux-gnu" \
+	LD_LIBRARY_PATH="{{PROTON}}/lib64/:{{PROTON}}/lib/:/usr/lib/pressure-vessel/overrides/lib/x86_64-linux-gnu/aliases:/usr/lib/pressure-vessel/overrides/lib/i386-linux-gnu/aliases" \
 	WINEPREFIX="{{PREFIX}}/compatdata/{{ID}}/pfx/" \
 	WINEESYNC="1" \
 	WINEFSYNC="1" \
 	SteamGameId="{{ID}}" \
 	SteamAppId="{{ID}}" \
-	WINEDLLOVERRIDES="steam.exe=b;dotnetfx35.exe=b;mfplay=n;dxvk_config=n;d3d11=n;d3d10=n;d3d10core=n;d3d10_1=n;d3d9=n" \
+	WINEDLLOVERRIDES="steam.exe=b;dotnetfx35.exe=b;dxvk_config=n;d3d11=n;d3d10=n;d3d10core=n;d3d10_1=n;d3d9=n;dxgi=n" \
 	STEAM_COMPAT_CLIENT_INSTALL_PATH="/home/heyrict/.local/share/Steam" \
 	WINE_LARGE_ADDRESS_AWARE="1" \
 	GST_PLUGIN_SYSTEM_PATH_1_0="{{PROTON}}/lib64/gstreamer-1.0:{{PROTON}}/lib/gstreamer-1.0" \
@@ -24,7 +23,7 @@ _game FOLDER EXE ID ENV="" START_PREFIX="" PREFIX="/home/heyrict/.steam/steam/st
 	MEDIACONV_AUDIO_TRANSCODED_FILE="{{PREFIX}}/shadercache/{{ID}}/swarm/transcoded_audio.foz" \
 	MEDIACONV_VIDEO_DUMP_FILE="{{PREFIX}}/shadercache/{{ID}}/fozmediav1/video.foz" \
 	MEDIACONV_VIDEO_TRANSCODED_FILE="{{PREFIX}}/shadercache/{{ID}}/swarm/transcoded_video.foz" \
-	{{ENV}} {{START_PREFIX}} "{{PROTON}}/bin/wine" steam.exe "${@:-${DEF_CMD[@]}}"
+	{{ENV}} {{START_PREFIX}} "{{PROTON}}/bin/wine64" steam.exe "${@:-${DEF_CMD[@]}}"
 
 tales_of_berseria:
 	just _game "Tales of Berseria" "Tales of Berseria.exe" "429660" "PULSE_LATENCY_MSEC=30"
@@ -43,3 +42,6 @@ disgaea:
 
 atelier_ayesha:
 	just _game "Atelier Ayesha DX" "Atelier_AyeshaLauncher.exe" 1152300 "LC_ALL=ja_JP.utf-8 WINE_FULLSCREEN_FSR=1"
+
+atelier_escha_logy:
+	just _game "Atelier Escha and Logy DX" "Atelier_Escha_and_Logy.exe" 1152310 "LANG=ja_JP.UTF-8 WINE_FULLSCREEN_FSR=1"

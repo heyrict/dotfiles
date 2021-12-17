@@ -346,6 +346,10 @@ syntax enable
 if $TERM=="xterm-256color"
     let g:gruvbox_transparent_bg=1
     colorscheme gruvbox
+elseif exists('g:neovide')
+    let g:gruvbox_transparent_bg=1
+    let g:gruvbox_termcolors=256
+    colorscheme gruvbox
 elseif $TERM=="xterm"
     let g:gruvbox_transparent_bg=1
     let g:gruvbox_termcolors=256
@@ -359,6 +363,7 @@ elseif $TERM=="fbterm"
     let g:gruvbox_termcolors=256
     colorscheme gruvbox
 elseif $TERM=="alacritty"
+    autocmd VimEnter * hi Normal ctermbg=NONE
     let g:gruvbox_termcolors=256
     let g:gruvbox_transparent_bg=1
     colorscheme gruvbox

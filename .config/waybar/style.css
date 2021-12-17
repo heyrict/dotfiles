@@ -14,7 +14,7 @@ window {
 }
 
 window#waybar.solo {
-  background: alpha(@theme_base_color, 0.6);
+  background: alpha(@theme_base_color, 0.51);
 }
 
 #workspaces {

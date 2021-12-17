@@ -89,14 +89,14 @@ tengu:
 majonoie:
 	just _proton_run_in "{{HOME}}/Games/majonoie1_09a" "Game.exe"
 
-bukifreem:
-	miniserve "{{HOME}}/Games/BukiFreem/www"
-
 gumao:
-	just _proton_run_in "{{HOME}}/Games/Gumao7_12" "Game.exe"
+	just _proton_run_in "{{HOME}}/Games/Gumao7_12" "Game.exe" 2>/dev/null
 
 #custom_order_maid:
 #	WINEDLLOVERRIDES="opengl32=n,b" just _proton_run_in "{{HOME}}/Games/KISS/COM3D2" "COM3D2x64.exe"
 
 #ideologue:
 #	just _proton_run_in "{{HOME}}/Games/軋轢のイデオローグAppend" Game.exe
+
+mary_skelter:
+	just _proton_run_in "{{HOME}}/Games/Mary Skelter - Nightmare" "MarySkelter.exe" >/dev/null 2>&1

@@ -8,6 +8,9 @@ PROTON_WINE64 := PROTON + "/files/bin/wine64"
 sync:
 	legendary sync-saves
 
+killall:
+	{{PROTON}}/files/bin/wineserver -k
+
 bridge_constructor_twd +OPTIONS="":
 	WINE_FULLSCREEN_FSR=1 legendary launch {{OPTIONS}} 998af0ab527c493baefb8049250c9a0e
 
