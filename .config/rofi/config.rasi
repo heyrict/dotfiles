@@ -91,6 +91,7 @@ configuration {
 /*	kb-delete-entry: "Shift+Delete";*/
 	kb-mode-next: "Shift+Right,Control+Tab,Alt+l";
 	kb-mode-previous: "Shift+Left,Control+ISO_Left_Tab,Alt+h";
+    kb-mode-complete: "Control+o";
 	kb-row-left: "Control+h";
 	kb-row-right: "Control+l";
 	kb-row-up: "Up,Control+p,ISO_Left_Tab,Control+k";
