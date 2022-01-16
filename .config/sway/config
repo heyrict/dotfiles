@@ -90,6 +90,14 @@ for_window [title="^Ｋａｎｏｎ"] floating enable
 for_window [title="^QQ"] floating enable
 for_window [class="(?i)^Steam$"] floating enable
 for_window [title="^Choose a "] resize set 1200 720
+for_window [title="^Extension: .*TJDict"] floating enable
+for_window [title="^Extension: .*TJDict"] resize set 600 800
+
+for_window [class="^(?i)emuera"] floating enable
+for_window [class="^emuera"] border pixel 0
+for_window [class="^emuera"] move position 0 -30
+for_window [class="^emuera"] floating_maximum_size 1940 x 1240
+for_window [class="^emuera"] resize set 1940 1240 30 0
 
 # Config for steam games
 for_window [class="steam_app_405900"] floating enable
@@ -127,6 +135,7 @@ bindsym $mod+F3 exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +4%
 
 # start a terminal
 bindsym $mod+Return exec alacritty
+bindsym $mod+Shift+Return exec "env WAYLAND_DISPLAY= alacritty -o font.size=7"
 
 # look up in dict
 bindsym $mod+i exec alacritty -t "dict_lookup | float" -o window.dimensions.columns=72 -o window.dimensions.lines=12 -o window.position.x=200 -o window.position.y=200 -e bash -c 'sdcv -cn "$(wl-paste -p)" | less -R'
@@ -138,13 +147,10 @@ bindsym $mod+Shift+q kill
 # start dmenu (a program launcher)
 #bindsym $mod+d exec dmenu_run
 
-set $launch_mode Rofi: DRun Nav Win Kao/Emoji Pow Combi = dIce
+set $launch_mode Rofi: DRun Kao/Emoji Pow Combi = dIce
 mode "$launch_mode" {
     # :drun (bash -e "{cmd}; read -n 1 -s ")
     bindsym d mode "default"; exec --no-startup-id "rofi -show drun"
-
-    # :window
-    bindsym w mode "default"; exec --no-startup-id "rofi -show window"
 
     # :ssh
     #bindsym s mode "default"; exec --no-startup-id "rofi -show ssh"
@@ -180,7 +186,10 @@ mode "$launch_mode" {
     bindsym i mode "default"; exec --no-startup-id "_exp=\\"$(rofi -dmenu -i -p dice -lines 0)\\"; notify-send \\"$(rustdice \\"$_exp\\")\\" "
 
     # navi
-    bindsym n mode "default"; exec --no-startup-id "alacritty -t 'navi | float' -o window.dimensions.columns=150 -o window.dimensions.lines=38 -e bash -c 'navi && read -t60'"
+    bindsym g mode "default"; exec --no-startup-id "alacritty -t 'navi | float' -o window.dimensions.columns=150 -o window.dimensions.lines=38 -e bash -c 'navi && read -t60'"
+
+    # nnn
+    bindsym n mode "default"; exec --no-startup-id "alacritty --class nnn -e nnn"
 
     # back to normal: Enter or Escape or $mod+r
     bindsym q mode "default"
@@ -427,7 +436,8 @@ bindsym $sup+b exec "notify-send 'Capacity = '$(cat /sys/class/power_supply/BAT0
 # Wayland specific commands
 ## Wallpaper
 #output "*" bg ~/Pictures/backgrounds/astize_cc0_split1_alt.png fill
-output "*" bg ~/Pictures/backgrounds/edna_dark.jpeg fill
+output eDP-1 bg ~/Pictures/backgrounds/edna_dark.jpeg fill
+output HDMI-1 bg ~/Pictures/backgrounds/black.png fill
 
 ## Toggle backlight
 bindsym $mod+bracketright exec ~/.config/sway/scripts/backlight-toggle.sh

@@ -1,7 +1,7 @@
 # color theme {{{1
 # dark {{{2
 set recolor-lightcolor \#000000
-set recolor-darkcolor \#93a1a1
+set recolor-darkcolor \#ebdbb2
 set default-bg \#000000
 
 set completion-bg \#002b36

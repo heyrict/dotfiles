@@ -31,3 +31,20 @@ adb ls /sdcard/Android/data/com.tencent.mm/MicroMsg/Download
 adb pull "/sdcard/Android/data/com.tencent.mm/MicroMsg/Download/<wechat_recv_file>"
 
 $ wechat_recv_file: adb ls /sdcard/Android/data/com.tencent.mm/MicroMsg/Download | cut -d " " -f 4
+
+
+% android.backlight.get
+# Get brightness for connected android phone
+adb shell settings get system screen_brightness
+
+% android.backlight.set
+# Set brightness for connected android phone
+adb shell settings put system screen_brightness <brightness>
+
+$ brightness: seq 0 10 100
+
+% android.auto_backlight.set
+# Set brightness for connected android phone
+adb shell settings put system screen_brightness_auto <auto_brightness>
+
+$ auto_brightness: seq 0 1 1

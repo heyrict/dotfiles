@@ -3,11 +3,13 @@
 . "$(dirname "$0")"/.nnn-plugin-helper
 
 if which zoxide >/dev/null 2>&1; then
-    sel=$(zoxide query -i)
+    sel=$(zoxide query -s --list | rg -v '^\s*0' | fzf --tiebreak=end --preview='exa -hl --no-permissions --no-user --icons {2} | head -n $LINES' | sed 's/^[ 0-9]*//')
 else
     exit 1
 fi
 
-nnn_cd "$sel"
+if [ -n "$sel" ]; then
+    nnn_cd "$sel"
+fi
 
 #printf "%s" "0$sel" > "$NNN_PIPE"

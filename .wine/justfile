@@ -2,7 +2,7 @@ ROOT := "/home/heyrict/.wine"
 HOME := ROOT + "/drive_c/users/heyrict"
 #PROTON := "/home/heyrict/.local/share/Steam/steamapps/common/Proton 5.13"
 #PROTON_WINE64 := PROTON + "/dist/bin/wine64"
-PROTON := "/home/heyrict/.local/share/Steam/compatibilitytools.d/Proton-6.16-GE-1"
+PROTON := "/home/heyrict/.local/share/Steam/compatibilitytools.d/Proton-7.0rc3-GE-1"
 PROTON_WINE64 := PROTON + "/files/bin/wine64"
 
 run FILE:
@@ -17,57 +17,6 @@ proton_run FILE:
 _proton_run_in FOLDER FILE:
 	cd "{{FOLDER}}" && WINE_FULLSCREEN_FSR=1 LC_ALL=ja_JP.UTF-8 LANG=ja_JP.UTF-8 "{{PROTON_WINE64}}" "{{FILE}}"
 
-#cemu:
-#	vblank_mode=0 mesa_glthread=true R600_DEBUG=nohyperz just _proton_run_in "{{HOME}}/Games/cemu_1.23.1/" Cemu.exe
-
-#th07:
-#	just _run_in "{{HOME}}/Games/touhou/th07/" th07.exe
-
-#th09:
-#	just _run_in "{{HOME}}/Games/touhou/th09/" th09.exe
-
-#elona:
-#	just _run_in "{{HOME}}/Games/elona/" elona.exe
-
-#HaremKingdom:
-#	just _run_in "{{HOME}}/Games/HaremKingdom/" HaremKingdom.exe
-
-#BabaIsYou:
-#	just _run_in /mnt/LENOVO/Eric/pc/BabaIsYou/ "Baba Is You.exe"
-
-#RewriteHF:
-#	just _run_in "{{HOME}}/Games/RewriteHf/" SiglusEngine.exe
-
-#Ninokuni:
-#	just _run_in "/mnt/LENOVO/Eric/pc/Ni no Kuni Wrath of the White Witch Remastered" "NinoKuni_WotWW_Remastered.exe"
-
-#syarin:
-#	just run "/mnt/Windows/Program Files (x86)/あかべぇそふとつぅ/車輪の国、向日葵の少女/syarin.exe"
-
-#Dragonia:
-#	just _run_in /mnt/LENOVO/Eric/pc/Dragonia/ Dragonia.exe
-
-#PCBS:
-#	just _run_in "{{ROOT}}/drive_c/Program Files (x86)/PC Building Simulator" PCBS.exe
-
-#aokana:
-#	just _run_in "{{ROOT}}/drive_c/Program Files/AokanaPE" "蒼の彼方のフォーリズムPerfect Edition.exe"
-
-#totori:
-#	just _run_in "{{ROOT}}/drive_c/Program Files (x86)/Atelier Totori The Adventurer of Arland DX" "ArlandDXLauncher.exe"
-
-#kanon:
-#	just _run_in "{{ROOT}}/drive_c/Program Files (x86)/KEY/KANON_SE" "REALLIVE.EXE"
-
-#fushigen:
-#	just _run_in /mnt/LENOVO/Eric/pc/FushigenOrigin LotusLandOrigin.exe
-
-#dohnadohna:
-#	just _run_in "{{ROOT}}/drive_c/Program Files (x86)/DohnaDohna" "dohnadohna.exe"
-
-#ara_fell:
-#	just _run_in "{{ROOT}}/drive_c/Program Files (x86)/Ara Fell Enhanced Edition" "RPG_RT.exe"
-
 ciel_nosurge:
 	just _proton_run_in "{{HOME}}/Games/Ciel Nosurge DX" "CielnosurgeDX.exe"
 
@@ -77,26 +26,14 @@ death_end_request:
 angel_beats:
 	cd "{{ROOT}}/drive_c/Program Files (x86)/Key/AngelBeats!" && LC_ALL=ja_JP.UTF-8 LANG=ja_JP.UTF-8 "{{PROTON_WINE64}}" "{{HOME}}/Tools/AlphaROMdiE/AlphaROMdiE.exe" "SiglusEngine.exe"
 
-#cute_resort:
-#	just _proton_run_in "{{ROOT}}/drive_c/Program Files (x86)/DigitalCute/cuteresort" "pix.exe"
-
 amayui:
 	just _proton_run_in /mnt/windows/Users/heyrict/Games/Eushully/AMAYUI AGE.exe
-
-tengu:
-	just _proton_run_in "{{HOME}}/Games/tengu" adv.exe
-
-majonoie:
-	just _proton_run_in "{{HOME}}/Games/majonoie1_09a" "Game.exe"
 
 gumao:
 	just _proton_run_in "{{HOME}}/Games/Gumao7_12" "Game.exe" 2>/dev/null
 
-#custom_order_maid:
-#	WINEDLLOVERRIDES="opengl32=n,b" just _proton_run_in "{{HOME}}/Games/KISS/COM3D2" "COM3D2x64.exe"
+th10:
+	just _proton_run_in "{{HOME}}/Games/th10" th10.exe >/dev/null 2>&1
 
-#ideologue:
-#	just _proton_run_in "{{HOME}}/Games/軋轢のイデオローグAppend" Game.exe
-
-mary_skelter:
-	just _proton_run_in "{{HOME}}/Games/Mary Skelter - Nightmare" "MarySkelter.exe" >/dev/null 2>&1
+mekuiro:
+	WINEDLLOVERRIDES="d3d11,dxgi,d3d9=b" just _proton_run_in "{{HOME}}/Games/CRYSTALiA/絆きらめく恋いろは/" mekuiro.exe

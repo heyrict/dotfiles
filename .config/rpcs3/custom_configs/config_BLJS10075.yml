@@ -2,6 +2,7 @@ Core:
   PPU Decoder: Recompiler (LLVM)
   PPU Threads: 2
   PPU Debug: false
+  PPU Calling History: false
   Save LLVM logs: false
   Use LLVM CPU: ""
   Max LLVM Compile Threads: 0
@@ -10,7 +11,6 @@ Core:
   Thread Scheduler Mode: Operating System
   Set DAZ and FTZ: false
   SPU Decoder: Recompiler (LLVM)
-  Lower SPU thread priority: false
   SPU GETLLAR polling detection: false
   SPU Debug: false
   MFC Debug: false
@@ -26,6 +26,9 @@ Core:
   SPU Verification: true
   SPU Cache: true
   SPU Profiler: false
+  MFC Commands Shuffling Limit: 0
+  MFC Commands Timeout: 0
+  MFC Commands Shuffling In Steps: false
   Enable TSX: Disabled
   Accurate xfloat: false
   Approximate xfloat: true
@@ -48,8 +51,13 @@ Core:
   Sleep Timers Accuracy: Usleep Only
   Performance Report Threshold: 500
   Enable Performance Report: false
+VFS:
+  Enable /host_root/: false
+  Initialize Directories: true
+  Limit disk cache size: false
+  Disk cache maximum size (MB): 5120
 Video:
-  Renderer: OpenGL
+  Renderer: Vulkan
   Resolution: 1280x720
   Aspect ratio: 16:9
   Frame limit: 30
@@ -82,6 +90,7 @@ Video:
   Relaxed ZCULL Sync: false
   Enable 3D: false
   Debug Program Analyser: false
+  Accurate ZCULL stats: true
   Consecutive Frames To Draw: 1
   Consecutive Frames To Skip: 1
   Resolution Scale: 100
@@ -92,13 +101,16 @@ Video:
   Driver Recovery Timeout: 1000000
   Driver Wake-Up Delay: 1
   Vblank Rate: 60
+  Vblank NTSC Fixup: false
   DECR memory layout: false
   Vulkan:
-    Adapter: Unknown AMD GPU
+    Adapter: AMD RADV RENOIR
     Force FIFO present mode: false
     Force primitive restart flag: false
     Force Disable Exclusive Fullscreen Mode: false
     Asynchronous Texture Streaming 2: false
+    Enable FidelityFX Super Resolution Upscaling: false
+    FidelityFX CAS Sharpening Intensity: 50
     Asynchronous Queue Scheduler: Device
   Performance Overlay:
     Enabled: false
@@ -130,15 +142,14 @@ Video:
     Darkening effect strength: 30
     Blur effect strength: 0
 Audio:
-  Renderer: OpenAL
+  Renderer: Cubeb
+  Audio provider: CellAudio
   Dump to file: false
   Convert to 16 bit: false
   Audio Channels: Downmix to Stereo
-  Start Threshold: 1
   Master Volume: 100
   Enable Buffering: true
   Desired Audio Buffer Duration: 100
-  Sampling Period Multiplier: 100
   Enable Time Stretching: false
   Time Stretching Threshold: 75
   Microphone Type: "Null"
@@ -148,8 +159,12 @@ Input/Output:
   Mouse: Basic
   Camera: "Null"
   Camera type: Unknown
+  Camera flip: None
+  Camera ID: Default
   Move: "Null"
   Buzz emulated controller: "Null"
+  Turntable emulated controller: "Null"
+  GHLtar emulated controller: "Null"
 System:
   License Area: SCEJ
   Language: Japanese

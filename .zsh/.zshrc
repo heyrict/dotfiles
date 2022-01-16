@@ -217,6 +217,9 @@ export QT_IM_MODULE="fcitx"
 ## Neovide {{{2
 export NEOVIDE_MULTIGRID=1
 
+## Zoxide {{{2
+export _ZO_EXCLUDE_DIRS=$HOME:$HOME/Private/:/tmp*
+
 ## Custom {{{2
 export TASKRC="~/.taskrc"
 
@@ -311,13 +314,13 @@ if [ -z $DISPLAY ] && [ "$(tty)" = "/dev/tty1" ]; then
 fi
 
 # Countdown
-local TARGET=`date -d "Dec 25" +%j`
+local TARGET=`date -d "Feb 21" +%j`
 local TODAY=`date +%j`
 local DAYS=$(($TARGET - $TODAY))
 local COUNTDOWN="
 \e[1mCountdown\e[0m
 
-\e[1;31m$DAYS\e[0m days until test
+\e[1;31m$DAYS\e[0m days until score disclosure
 "
 
 case $DAYS in

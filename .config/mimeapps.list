@@ -73,6 +73,8 @@ image/gif=gifview.desktop
 application/pdf=org.pwmt.zathura.desktop
 x-scheme-handler/discord-455712169795780630=discord-455712169795780630.desktop
 x-scheme-handler/discord-712465656758665259=discord-712465656758665259.desktop
+text/plain=gvim.desktop
+text/csv=gvim.desktop
 
 [Added Associations]
 x-scheme-handler/ftp=firefox.desktop

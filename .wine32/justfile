@@ -15,13 +15,13 @@ syokusyu:
 	just run {{HOME}}/Games/era/syokusyumiya1135/Emuera1824beta005.exe
 
 theworld:
-	just _run_in "{{HOME}}/Games/era/eraTW4800/" Emuera1824+v11+webp+test+fix.exe
+	just _run_in "{{HOME}}/Games/era/eraTW4820/" Emuera1824+v11+webp+test+fix.exe
 
 j:
 	just _run_in "{{HOME}}/Games/era/eraJ1055/" Emuera1824+v1.exe
 
 k:
-	just _run_in "{{HOME}}/Games/era/eraK1293/" Emuera1824+v9.exe
+	just _run_in "{{HOME}}/Games/era/eratohoK1293/" Emuera1824+v9.exe
 
 jk:
 	just _run_in "{{HOME}}/Games/era/eraJK/" Emuera1821.exe
@@ -37,19 +37,16 @@ alk:
 	#just _run_in "{{HOME}}/Games/era/eraAL K1.032" Emuera1824+v11+webp+test+fix.exe
 
 ymaem:
-	just _run_in "{{HOME}}/Games/era/eraYMAEM4261/" Emuera1824+v11+webp+test+fix.exe
+	just _run_in "{{HOME}}/Games/era/eraYMAEM4263/" Emuera1824+v11+webp+test+fix.exe
+
+lig:
+	just _run_in "{{HOME}}/Games/era/eratohoLIGテスト版ver0.9修正" Emuera1824+v11+webp+test+fix.exe
 
 #era4X:
 #	just _run_in "{{HOME}}/Games/era/era4X" Emuera1824+v8.exe
 
 erin:
 	just _run_in "{{HOME}}/Games/era/eraErinsan112" Emuera1821.exe
-
-th07:
-	just _run_in "{{HOME}}/Games/tohou/th07/" th07.exe
-
-th09:
-	just _run_in "{{HOME}}/Games/tohou/th09/" th09.exe
 
 elona:
 	just _run_in "{{HOME}}/Games/elona/" elona.exe
