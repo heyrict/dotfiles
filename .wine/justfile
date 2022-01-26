@@ -37,3 +37,15 @@ th10:
 
 mekuiro:
 	WINEDLLOVERRIDES="d3d11,dxgi,d3d9=b" just _proton_run_in "{{HOME}}/Games/CRYSTALiA/絆きらめく恋いろは/" mekuiro.exe
+
+gg2:
+	just _proton_run_in "{{HOME}}/Games/GalGun Double Peace/Binaries/Win64" GG2Game.exe
+
+girlcard1:
+	just _proton_run_in "{{HOME}}/Games/GirlCard_1_32" Game.exe
+
+boushi:
+	just _proton_run_in "{{HOME}}/Games/Boushi" Game.exe
+
+ninth_existence:
+	just _proton_run_in "{{HOME}}/Games/9th_Existence_ver.3.01" Game.exe

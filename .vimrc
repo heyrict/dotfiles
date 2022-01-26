@@ -45,6 +45,9 @@ Plug 'peterhoeg/vim-qml'
 " kivy
 "Plug 'farfanoide/vim-kivy'
 
+" Justfile
+Plug 'NoahTheDuke/vim-just'
+
 " Javascript Environment
 Plug 'pangloss/vim-javascript'
 Plug 'MaxMEllon/vim-jsx-pretty'
@@ -630,9 +633,6 @@ let g:NERDTreeGitStatusIndicatorMapCustom = {
 " {{{1 Rust Configs
 let g:rust_fold = 1
 
-" {{{1 Justfile
-autocmd BufNewFile,BufRead justfile set filetype=make
-
 " {{{1 Custom Commands
 "
 " Run Command
@@ -776,6 +776,7 @@ set backspace=indent,eol,start
 set title
 
 autocmd Filetype html,htmldjango,json,javascript,typescript,typescript.tsx,css,yaml,dart setlocal tabstop=2 shiftwidth=2
+autocmd Filetype just setlocal noexpandtab
 autocmd Filetype markdown,csv,pandoc setlocal keywordprg=dict
 "autocmd Filetype markdown,csv set keywordprg=trans\ -d\ -no-ansi\ :zh
 autocmd Filetype javascript,typescript,javascript.tsx,typescript.tsx setlocal foldmethod=syntax
