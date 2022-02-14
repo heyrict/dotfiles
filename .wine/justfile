@@ -49,3 +49,6 @@ boushi:
 
 ninth_existence:
 	just _proton_run_in "{{HOME}}/Games/9th_Existence_ver.3.01" Game.exe
+
+vbs:
+	just _proton_run_in "{{HOME}}/Games/VenusBlood SAVIOR ver1.2" VenusBloodSavior.exe

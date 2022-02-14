@@ -765,6 +765,12 @@ autocmd filetype yaml vnoremap _1 <esc>`>a}}<esc>`<i{{c1::<esc>
 autocmd filetype yaml vnoremap _2 <esc>`>a}}<esc>`<i{{c2::<esc>
 autocmd filetype yaml vnoremap _3 <esc>`>a}}<esc>`<i{{c3::<esc>
 
+" Wayland clipboard support
+" https://github.com/vim/vim/issues/5157
+xnoremap "+y y:call system("wl-copy", @")<cr>
+nnoremap "+p :let @"=substitute(system("wl-paste --no-newline"), '<C-v><C-m>', '', 'g')<cr>p
+nnoremap "*p :let @"=substitute(system("wl-paste --no-newline --primary"), '<C-v><C-m>', '', 'g')<cr>p
+
 " {{{1 General Configs
 set autoindent
 set tabstop=4

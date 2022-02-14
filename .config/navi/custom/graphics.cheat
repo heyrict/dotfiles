@@ -1,0 +1,6 @@
+% graphics.colors.invert
+
+# Invert picgure black/white color
+magick mogrify -negate <file>;
+
+$ file: fd -d1 --type f

@@ -84,7 +84,7 @@ client.background                     $bg_dark
 for_window [class="(?i)config"] floating enable
 for_window [title="float$"] floating enable
 for_window [title="mpv$"] floating enable
-for_window [class="^PCSX2"] floating enable
+for_window [class="^Pcsx2$"] floating enable
 for_window [title="^gifview: "] floating enable
 for_window [title="^Ｋａｎｏｎ"] floating enable
 for_window [title="^QQ"] floating enable
@@ -184,7 +184,7 @@ mode "$launch_mode" {
     bindsym p mode "default"; exec --no-startup-id "~/.config/sway/scripts/powermenu"
 
     # rustdice
-    bindsym i mode "default"; exec --no-startup-id "_exp=\\"$(rofi -dmenu -i -p dice -lines 0)\\"; notify-send \\"$(rustdice \\"$_exp\\")\\" "
+    bindsym i mode "default"; exec --no-startup-id '_exp="$(rofi -dmenu -i -p dice -lines 0)"; notify-send "$(rustdice "$_exp")" '
 
     # navi
     bindsym g mode "default"; exec --no-startup-id "alacritty -t 'navi | float' -o window.dimensions.columns=150 -o window.dimensions.lines=38 -e bash -c 'navi && read -t60'"
@@ -486,11 +486,16 @@ exec swayidle -w \
     timeout 600 'swaylock -f -i /home/heyrict/Pictures/backgrounds/astize_cc0_split1_alt.png' \
     before-sleep 'swaylock -f -i /home/heyrict/Pictures/backgrounds/astize_cc0_split1_alt.png'
 
+for_window [class="^steam_app.*"] inhibit_idle fullscreen
+for_window [class="^yuzu |"] inhibit_idle fullscreen
+for_window [class="^RPCS3 "] inhibit_idle fullscreen
+for_window [class="^RetroArch"] inhibit_idle fullscreen
+
 exec ~/.config/waybar/waybar.sh
 
 exec --no-startup-id fcitx -d
 
-exec --no-startup-id gammastep
+exec --no-startup-id redshift-gtk
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)

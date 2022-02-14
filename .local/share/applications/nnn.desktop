@@ -10,3 +10,8 @@ Terminal=false
 Type=Application
 Categories=FileManager;
 StartupWMClass=nnn
+Actions=XWayland
+
+[Desktop Action XWayland]
+Name=XWayland
+Exec=env WAYLAND_DISPLAY= alacritty --class nnn -e nnn

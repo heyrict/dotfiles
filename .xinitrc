@@ -52,7 +52,7 @@ export XMODIFIERS="@im=fcitx"
 . ~/.fehbg &
 
 # Set color temperature
-redshift &
+#redshift &
 
 # Applets
 ## Pulseaudio

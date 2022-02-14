@@ -419,6 +419,9 @@ bar {
 # Rename service
 #exec --no-startup-id workstyle
 
+# Reset resolution
+exec xrandr --output eDP1-1 --mode 1920x1200
+
 # Applets
 #exec --no-startup-id nm-applet
 #exec --no-startup-id dunst
