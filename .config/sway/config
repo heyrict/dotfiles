@@ -139,8 +139,8 @@ bindsym $mod+Return exec alacritty
 bindsym $mod+Shift+Return exec "env WAYLAND_DISPLAY= alacritty -o font.size=7"
 
 # look up in dict
-bindsym $mod+i exec alacritty -t "dict_lookup | float" -o window.dimensions.columns=72 -o window.dimensions.lines=12 -o window.position.x=200 -o window.position.y=200 -e bash -c 'sdcv -cn "$(wl-paste -p)" | less -R'
-bindsym $mod+Shift+i exec "env WAYLAND_DISPLAY= alacritty -t 'dict_lookup | float' -o font.size=7 -o window.dimensions.columns=72 -o window.dimensions.lines=12 -o window.position.x=200 -o window.position.y=200 -e bash -c 'sdcv -c'"
+bindsym $mod+i exec alacritty -t "dict_lookup | float" -o window.dimensions.columns=72 -o window.dimensions.lines=32 -o window.position.x=200 -o window.position.y=200 -e bash -c 'sdcv -cn "$(wl-paste -p)" | less -R'
+bindsym $mod+Shift+i exec "env WAYLAND_DISPLAY= alacritty -t 'dict_lookup | float' -o font.size=7 -o window.dimensions.columns=72 -o window.dimensions.lines=32 -o window.position.x=200 -o window.position.y=200 -e bash -c 'sdcv -c'"
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -422,15 +422,21 @@ mode "move" {
 
 bindsym $mod+m mode "move"
 
+# Ignoring all keys for gaming purposes
+mode "Raw" {
+    bindsym $mod+Escape mode "default"
+}
+bindsym $mod+Escape mode "Raw"
+
 # Dunst config
 bindsym $sup+space exec dunstctl close
 bindsym $sup+Shift+space exec dunstctl close-all
 bindsym $sup+grave exec dunstctl history-pop
 
 # Screenshot
-bindsym Print exec "grim ~/Pictures/Screenshot-`date -Is | cut -d+ -f1`.png && notify-send -u low -c system 'Screenshot saved successfully'"
-bindsym --release Shift+Print exec 'grim -g "`slurp`" ~/Pictures/Screenshot-`date -Is | cut -d+ -f1`.png && notify-send -u low -c system "Screenshot saved successfully"'
-bindsym $sup+Print exec "~/.config/sway/scripts/screenshot-window.sh"
+bindsym Print exec '~/.config/sway/scripts/screenshot.sh Full'
+bindsym --release Shift+Print exec '~/.config/sway/scripts/screenshot.sh Select'
+bindsym Control+Print exec '~/.config/sway/scripts/screenshot.sh Window'
 
 # Multi-monitor
 ## Config
@@ -493,7 +499,7 @@ for_window [class="^RetroArch"] inhibit_idle fullscreen
 
 exec ~/.config/waybar/waybar.sh
 
-exec --no-startup-id fcitx -d
+exec --no-startup-id fcitx5 -d
 
 exec --no-startup-id redshift-gtk
 

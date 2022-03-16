@@ -7,7 +7,12 @@
   },
   "list": {
     "nextKeymap": "<C-N>",
-    "previousKeymap": "<C-P>"
+    "previousKeymap": "<C-P>",
+    "source": {
+      "bibtex": {
+        "files": ["*.bib"]
+      }
+    }
   },
   "coc.preferences": {
     "silentAutoupdate": false,
@@ -26,13 +31,16 @@
       "yaml"
     ]
   },
+  "bibtex.truncate": 15,
   "prettier.disableLanguages": ["vue", "markdown", "rust", "python"],
   "prettier.ignorePath": ".prettierignore",
   "tsserver.npm": "~/.nvm/versions/node/v12.16.3/bin/npm",
   "tsserver.enablejavascript": false,
   "rust-analyzer.serverPath": "~/.rustup/toolchains/nightly-x86_64-unknown-linux-gnu/bin/rust-analyzer",
   "python": {
-    "jediEnabled": false
+    "jediEnabled": false,
+    "autoUpdateLanguageServer": false,
+    "autoComplete.extraPaths": ["."]
   },
   "sql.database": "postgresql",
   "suggest.completionItemKindLabels": {

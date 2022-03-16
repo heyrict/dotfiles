@@ -43,9 +43,9 @@ export ANTIBODY_HOME=~/.antibody
 source <(antibody init)
 antibody bundle < ~/.zsh/.zsh_plugins.txt
 
-if [ ! "${TTY:5:3}" = "tty" ]; then
-    antibody bundle romkatv/powerlevel10k
-fi
+#if [ ! "${TTY:5:3}" = "tty" ]; then
+#    antibody bundle romkatv/powerlevel10k
+#fi
 
 # Oh-my-zsh {{{1
 ## Path to your oh-my-zsh installation.
@@ -267,9 +267,12 @@ export QT_QPA_PLATFORMTHEME=qt5ct
 export CURL_SSL_BACKEND=rustls
 
 # Starship for zsh {{{1
-#case "$TERM" in
-#    xterm-color|*-256color) eval "$(starship init zsh)";;
-#esac
+case "$TERM" in
+    alacritty|xterm-color|*-256color) unset STARSHIP_CONFIG;
+      eval "$(starship init zsh)";;
+    *) export STARSHIP_CONFIG=/home/heyrict/.config/starship-plain.toml;
+      eval "$(starship init zsh)";;
+esac
 
 # Fuzzy finder {{{1
 [ -f ~/.zsh/.fzf.zsh ] && source ~/.zsh/.fzf.zsh
@@ -313,18 +316,20 @@ if [ -z $DISPLAY ] && [ "$(tty)" = "/dev/tty1" ]; then
   exec sway
 fi
 
-# Countdown
-local TARGET=`date -d "Feb 21" +%j`
-local TODAY=`date +%j`
-local DAYS=$(($TARGET - $TODAY))
-local COUNTDOWN="
-\e[1mCountdown\e[0m
+# Countdown in alacritty
+if [ "$TERM" = "alacritty" ]; then
+  local TARGET=`date -d "March 13" +%j`
+  local TODAY=`date +%j`
+  local DAYS=$(($TARGET - $TODAY))
+  local COUNTDOWN="\
+   \e[1m== 倒计时 ==\e[0m
 
-\e[1;31m$DAYS\e[0m days until score disclosure
+距离复试还有约 \e[1;31m$DAYS\e[0m 天
 "
 
-case $DAYS in
-  [0-9]*)
-    echo $COUNTDOWN | cowsay -n -p
-esac
-
+  case $DAYS in
+    [0-9]*)
+      echo
+      echo $COUNTDOWN | ponythink -b unicode -f $HOME/.config/ponysay/eevee.pony;;
+  esac
+fi

@@ -10,6 +10,12 @@ udevadm control --reload-rules
 fuser -m <directory>
 
 
+% sys.ports.inspect
+
+# Inspect current open/listening ports
+sudo netstat -tnlp | grep 'LISTEN'
+
+
 % sys.ip.inspect
 
 # Inspect current ip address

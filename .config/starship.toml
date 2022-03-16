@@ -1,3 +1,173 @@
 add_newline=true
+
+format = """
+[$username\
+$hostname\
+$localip\
+$shlvl\
+$singularity\
+$kubernetes\
+$directory\
+$vcsh\
+$git_branch\
+$git_commit\
+$git_state\
+$git_metrics\
+$git_status\
+$hg_branch\
+$docker_context\
+$package\
+$cmake\
+$cobol\
+$container\
+$dart\
+$deno\
+$dotnet\
+$elixir\
+$elm\
+$erlang\
+$golang\
+$helm\
+$java\
+$julia\
+$kotlin\
+$lua\
+$nim\
+$nodejs\
+$ocaml\
+$perl\
+$php\
+$pulumi\
+$purescript\
+$rlang\
+$red\
+$ruby\
+$rust\
+$scala\
+$swift\
+$terraform\
+$vlang\
+$vagrant\
+$zig\
+$nix_shell\
+$conda\
+$memory_usage\
+$aws\
+$gcloud\
+$openstack\
+$azure\
+$crystal\
+$custom\
+$sudo\
+$cmd_duration\
+$fill\
+$env_var\
+$time\
+$python\
+$line_break\
+$jobs\
+$battery\
+$status\
+$shell\
+$character](#928374)"""
+
+[fill]
+symbol = "⋅"
+style = "#3c3836"
+
 [git_status]
-format = '[\[$all_status$ahead_behind\]](red bold) '
+format = '([$all_status](purple bold) )'
+ignore_submodules=true
+ahead=""
+behind=""
+untracked=""
+
+[aws]
+symbol = "  "
+
+[conda]
+symbol = " "
+
+[dart]
+symbol = " "
+
+[directory]
+read_only = ""
+format = "[  $path](bg:#3c3836 fg:#bdae93 bold)[$read_only](bg:#3c3836 fg:#9d0006)[](#3c3836) "
+
+[docker_context]
+symbol = " "
+
+[elixir]
+symbol = " "
+
+[elm]
+symbol = " "
+
+[env_var.nnn]
+variable = "nnn"
+format = '([\$nnn:$env_value ](#b16286))'
+
+[git_branch]
+symbol = " "
+format = "[$symbol$branch ]($style)"
+
+[golang]
+symbol = " "
+
+[hg_branch]
+symbol = " "
+
+[java]
+symbol = " "
+
+[julia]
+symbol = " "
+
+[memory_usage]
+symbol = " "
+
+[nim]
+symbol = " "
+
+[nix_shell]
+symbol = " "
+
+[nodejs]
+disabled = true
+symbol = " "
+
+[package]
+symbol = " "
+
+[perl]
+symbol = " "
+
+[php]
+symbol = " "
+
+[python]
+symbol = ""
+format = '([](fg:#3c3836 bg:#282828)[($symbol $virtualenv $version)](bg:#3c3836 fg:#689d6a))'
+version_format = "v$major.$minor"
+
+[ruby]
+symbol = " "
+
+[rust]
+disabled = true
+symbol = " "
+
+[scala]
+symbol = " "
+
+[shlvl]
+symbol = " "
+
+[swift]
+symbol = "ﯣ "
+
+[time]
+disabled = false
+format = "[](#282828)[ $time](bg:#282828 fg:#d79921)"
+time_format = "%Y-%m-%d %H:%M %a"

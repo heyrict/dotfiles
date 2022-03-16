@@ -357,7 +357,7 @@ schemes:
       # soft contrast background - '#32302f'
       # default background - '#282828'
       # Use abs. dark instead for OLED screen
-      background:        &gruvbox_dark_bg '#1d2021'
+      background:        &gruvbox_dark_bg '#000000'
       foreground:        '#ebdbb2'
       bright_foreground: '#fbf1c7'
       dim_foreground:    '#a89984'
