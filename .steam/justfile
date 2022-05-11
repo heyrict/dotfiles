@@ -1,6 +1,6 @@
 # run files dumped with PROTON_DUMP_DEBUG_COMMANDS=1
 
-_game FOLDER EXE ID ENV="" START_PREFIX="" PREFIX="/home/heyrict/.steam/steam/steamapps" PROTON="/home/heyrict/.steam/steam/compatibilitytools.d/Proton-6.16-GE-1/files":
+_game FOLDER EXE ID ENV="" START_PREFIX="" PREFIX="/home/heyrict/.steam/steam/steamapps" PROTON="/home/heyrict/.steam/steam/compatibilitytools.d/GE-Proton7-16/files":
 	#!/bin/bash
 	cd "{{PREFIX}}/common/{{FOLDER}}"
 	DEF_CMD=("{{PREFIX}}/common/{{FOLDER}}/{{EXE}}")

@@ -7,12 +7,7 @@
   },
   "list": {
     "nextKeymap": "<C-N>",
-    "previousKeymap": "<C-P>",
-    "source": {
-      "bibtex": {
-        "files": ["*.bib"]
-      }
-    }
+    "previousKeymap": "<C-P>"
   },
   "coc.preferences": {
     "silentAutoupdate": false,
@@ -31,7 +26,6 @@
       "yaml"
     ]
   },
-  "bibtex.truncate": 15,
   "prettier.disableLanguages": ["vue", "markdown", "rust", "python"],
   "prettier.ignorePath": ".prettierignore",
   "tsserver.npm": "~/.nvm/versions/node/v12.16.3/bin/npm",
@@ -43,6 +37,12 @@
     "autoComplete.extraPaths": ["."]
   },
   "sql.database": "postgresql",
+  "bibtex": {
+    "truncate": 15,
+    "files": ["*.bib"],
+    "triggerCharacters": ["@", "^"],
+    "triggerPatterns": ["\\\\cite\\{"]
+  },
   "suggest.completionItemKindLabels": {
     "keyword": "\uf1de",
     "variable": "\ue79b",

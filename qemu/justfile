@@ -1,0 +1,31 @@
+imcreate QCOW2PATH:
+    qemu-img create -f qcow2 QCOW2PATH
+
+# 
+xp +ARGS="":
+	qemu-system-x86_64 -enable-kvm -hda win_xp.qcow2 -m 512 \
+		-netdev user,id=n0 -device rtl8139,netdev=n0 \
+		-audiodev pa,id=snd0 \
+		-device AC97,audiodev=snd0 \
+		{{ARGS}}
+
+xp_bt +ARGS="":
+	just xp -usb -device usb-host:productid=0x8087,vendorid=0x0029 {{ARGS}}
+
+xp_usb +ARGS="":
+	just xp -usb -device usb-host,hostbus=1,hostport=3.2.1.0 {{ARGS}}
+
+xp_boot ROMPATH:
+	just xp -cdrom {{ROMPATH}}
+
+mount QCOW2PATH="win_xp.qcow2" MOUNTPOINT="xp_admin_vmshare":
+	if [[ ! -n `lsmod | grep nbd` ]]; then \
+	    modprobe nbd max_part=1; \
+	fi;
+	qemu-nbd --connect=/dev/nbd0 {{QCOW2PATH}}
+	mount /dev/nbd0p1 -o uid=1000 {{MOUNTPOINT}}
+
+unmount MOUNTPOINT="xp_admin_vmshare":
+	umount {{MOUNTPOINT}}
+	qemu-nbd --disconnect /dev/nbd0
+	sleep 1 && rmmod nbd

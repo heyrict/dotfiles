@@ -24,6 +24,9 @@ fi
 #alias easyconnect="docker run --device /dev/net/tun --cap-add NET_ADMIN -ti -p 127.0.0.1:1080:1080 -e EC_VER=7.6.7 hagb/docker-easyconnect:cli"
 alias px8123="env https_proxy=http://127.0.0.1:8123 http_proxy=http://127.0.0.1:8123"
 
+# Syncthing
+alias syncthing-cindy-connect="ssh -N -L 8385:127.0.0.1:8384 cindy"
+
 # bluetooth
 alias bton="bluetoothctl power on"
 alias btoff="bluetoothctl power off"

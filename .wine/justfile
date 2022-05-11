@@ -2,53 +2,63 @@ ROOT := "/home/heyrict/.wine"
 HOME := ROOT + "/drive_c/users/heyrict"
 #PROTON := "/home/heyrict/.local/share/Steam/steamapps/common/Proton 5.13"
 #PROTON_WINE64 := PROTON + "/dist/bin/wine64"
-PROTON := "/home/heyrict/.local/share/Steam/compatibilitytools.d/Proton-7.0rc3-GE-1"
+PROTON := "/home/heyrict/.local/share/Steam/compatibilitytools.d/GE-Proton7-16"
 PROTON_WINE64 := PROTON + "/files/bin/wine64"
+DEFAULT_ENV := 'LC_ALL=ja_JP.UTF-8 LANG=ja_JP.UTF-8 WINEPREFIX="' + ROOT + '"'
+PROTON_ENV := "DXVK_ASYNC=1 WINE_FULLSCREEN_FSR=1"
+EXTRA_ENV := ""
+ALPHAROMDIE := HOME + "/Tools/AlphaROMdiE/AlphaROMdiE.exe"
+
+# Fake resolution for wine
+#WINE_FULLSCREEN_FAKE_CURRENT_RES=
 
 run FILE:
-	LC_ALL=ja_JP.UTF-8 LANG=ja_JP.UTF-8 wine64 "{{FILE}}"
-
-_run_in FOLDER PROGRAM:
-	cd "{{FOLDER}}" && LC_ALL=ja_JP.UTF-8 LANG=ja_JP.UTF-8 wine64 "{{PROGRAM}}"
+	cd "$(dirname '{{FILE}}')" && env {{DEFAULT_ENV}} {{PROTON_ENV}} {{EXTRA_ENV}} wine64 "$(basename '{{FILE}}')"
 
 proton_run FILE:
-	WINE_FULLSCREEN_FSR=1 LC_ALL=ja_JP.UTF-8 LANG=ja_JP.UTF-8 "{{PROTON_WINE64}}" "{{FILE}}"
+	cd "$(dirname '{{FILE}}')" && env {{DEFAULT_ENV}} {{PROTON_ENV}} {{EXTRA_ENV}} "{{PROTON_WINE64}}" "$(basename '{{FILE}}')"
 
-_proton_run_in FOLDER FILE:
-	cd "{{FOLDER}}" && WINE_FULLSCREEN_FSR=1 LC_ALL=ja_JP.UTF-8 LANG=ja_JP.UTF-8 "{{PROTON_WINE64}}" "{{FILE}}"
+_siglus_run FILE:
+	cd "$(dirname '{{FILE}}')" && env {{DEFAULT_ENV}} {{PROTON_ENV}} {{EXTRA_ENV}} "{{PROTON_WINE64}}" "{{ALPHAROMDIE}}" "$(basename '{{FILE}}')"
 
 ciel_nosurge:
-	just _proton_run_in "{{HOME}}/Games/Ciel Nosurge DX" "CielnosurgeDX.exe"
+	just proton_run "{{HOME}}/Games/Ciel Nosurge DX/CielnosurgeDX.exe"
 
 death_end_request:
-	just _proton_run_in "/mnt/windows/Users/heyrict/Games/Death end reQuest/resource/bin" "Application.exe"
+	just proton_run "/mnt/windows/Users/heyrict/Games/Death end reQuest/resource/bin/Application.exe"
 
 angel_beats:
-	cd "{{ROOT}}/drive_c/Program Files (x86)/Key/AngelBeats!" && LC_ALL=ja_JP.UTF-8 LANG=ja_JP.UTF-8 "{{PROTON_WINE64}}" "{{HOME}}/Tools/AlphaROMdiE/AlphaROMdiE.exe" "SiglusEngine.exe"
+	just _siglus_run "{{ROOT}}/drive_c/Program Files (x86)/Key/AngelBeats!/SiglusEngine.exe"
 
 amayui:
-	just _proton_run_in /mnt/windows/Users/heyrict/Games/Eushully/AMAYUI AGE.exe
+	just proton_run "/mnt/windows/Users/heyrict/Games/Eushully/AMAYUI/AGE.exe"
 
 gumao:
-	just _proton_run_in "{{HOME}}/Games/Gumao7_12" "Game.exe" 2>/dev/null
+	just proton_run "{{HOME}}/Games/Gumao7_12/Game.exe" 2>/dev/null
 
 th10:
-	just _proton_run_in "{{HOME}}/Games/th10" th10.exe >/dev/null 2>&1
-
-mekuiro:
-	WINEDLLOVERRIDES="d3d11,dxgi,d3d9=b" just _proton_run_in "{{HOME}}/Games/CRYSTALiA/絆きらめく恋いろは/" mekuiro.exe
-
-gg2:
-	just _proton_run_in "{{HOME}}/Games/GalGun Double Peace/Binaries/Win64" GG2Game.exe
-
-girlcard1:
-	just _proton_run_in "{{HOME}}/Games/GirlCard_1_32" Game.exe
+	just proton_run "{{HOME}}/Games/th10/th10.exe" >/dev/null 2>&1
 
 boushi:
-	just _proton_run_in "{{HOME}}/Games/Boushi" Game.exe
+	just proton_run "{{HOME}}/Games/Boushi/Game.exe"
 
 ninth_existence:
-	just _proton_run_in "{{HOME}}/Games/9th_Existence_ver.3.01" Game.exe
+	just proton_run "{{HOME}}/Games/9th_Existence_ver.3.01/Game.exe"
 
-vbs:
-	just _proton_run_in "{{HOME}}/Games/VenusBlood SAVIOR ver1.2" VenusBloodSavior.exe
+imo2:
+	just proton_run "{{HOME}}/Games/122216/Game.exe"
+
+kinkoi:
+	just _siglus_run "{{ROOT}}/drive_c/Program Files (x86)/SAGAPLANETS/金色ラブリッチェ/SiglusEngine.exe"
+
+kanon:
+	rlvm "{{ROOT}}/drive_c/users/heyrict/Games/KEY/KANON_SE"
+
+dohna:
+	just proton_run "{{ROOT}}/drive_c/Program Files (x86)/DohnaDohna/dohnadohna.exe"
+
+unless_terminalia:
+	just proton_run "{{ROOT}}/drive_c/users/heyrict/Games/Whirlpool/unless_luminalia/unless_terminalia.exe"
+
+vbb:
+	just proton_run "{{ROOT}}/drive_c/users/heyrict/Games/VenusBlood-BRAVE-/VBB.exe"

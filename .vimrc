@@ -33,40 +33,55 @@ Plug 'majutsushi/tagbar', { 'on': ['TlistToggle', 'TlistOpen', 'TagbarToggle'] }
 " STL references
 "Plug 'stlrefvim'
 " autoswitch fcitx-remote
-Plug 'vim-scripts/fcitx.vim'
+let g:fcitx5_remote = '/usr/bin/fcitx5-remote'
+Plug 'lilydjwg/fcitx.vim'
 " NERD_tree
 Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 
 " Programming languages and Syntax highlights
 
-" .qml files
-Plug 'peterhoeg/vim-qml'
-" kivy
-"Plug 'farfanoide/vim-kivy'
+" For neovim, use treesitter
+if has('nvim')
+    Plug 'nvim-treesitter/nvim-treesitter'
+    Plug 'IndianBoy42/tree-sitter-just'
+else
+    " .qml files
+    Plug 'peterhoeg/vim-qml'
+    " kivy
+    "Plug 'farfanoide/vim-kivy'
 
-" Justfile
-Plug 'NoahTheDuke/vim-just'
+    " Justfile
+    Plug 'NoahTheDuke/vim-just'
 
-" Javascript Environment
-Plug 'pangloss/vim-javascript'
-Plug 'MaxMEllon/vim-jsx-pretty'
-"Plug 'mxw/vim-jsx'
-Plug 'jparise/vim-graphql'
-" For Typescript
-"Plug 'leafgarland/typescript-vim'
-"Plug 'peitalin/vim-jsx-typescript'
+    " Javascript Environment
+    Plug 'pangloss/vim-javascript'
+    Plug 'MaxMEllon/vim-jsx-pretty'
+    "Plug 'mxw/vim-jsx'
+    Plug 'jparise/vim-graphql'
+    " For Typescript
+    "Plug 'leafgarland/typescript-vim'
+    "Plug 'peitalin/vim-jsx-typescript'
 
-" Python Environment
-Plug 'Vimjas/vim-python-pep8-indent'
-" htmldjango
-"Plug 'mjbrownie/vim-htmldjango_omnicomplete'
+    " Python Environment
+    Plug 'Vimjas/vim-python-pep8-indent'
+    " htmldjango
+    "Plug 'mjbrownie/vim-htmldjango_omnicomplete'
 
-" Julia Environment
-"Plug 'JuliaEditorSupport/julia-vim'
+    " Julia Environment
+    "Plug 'JuliaEditorSupport/julia-vim'
 
-" Flutter Environment
-"Plug 'dart-lang/dart-vim-plugin'
+    " Flutter Environment
+    "Plug 'dart-lang/dart-vim-plugin'
+    " For toml
+    Plug 'cespare/vim-toml'
+endif
+
+" For markdown
+Plug 'godlygeek/tabular'
+"Plug 'plasticboy/vim-markdown'
+Plug 'vim-pandoc/vim-pandoc-syntax'
+Plug 'vim-pandoc/vim-pandoc'
 
 " Color Schema
 "Plug 'altercation/vim-colors-solarized'
@@ -78,14 +93,6 @@ Plug 'vim-airline/vim-airline-themes'
 
 " Folding
 Plug 'Konfekt/FastFold'
-
-" For markdown
-Plug 'godlygeek/tabular'
-"Plug 'plasticboy/vim-markdown'
-Plug 'vim-pandoc/vim-pandoc-syntax'
-Plug 'vim-pandoc/vim-pandoc'
-" For toml
-Plug 'cespare/vim-toml'
 
 " Orgmod
 "Plug 'jceb/vim-orgmode'
@@ -128,65 +135,18 @@ let g:pandoc#folding#fdc = 0
 let g:pandoc#folding#fold_yaml = 1
 let g:pandoc#folding#level = 1
 let g:pandoc#folding#mode = 'syntax'
-let g:pandoc#spell#enabled = 0
-let g:pandoc#modules#disabled = ["bibliography"]
+let g:pandoc#modules#disabled = ['bibliographies', 'completion', 'spell']
 "let g:pandoc#spell#default_langs = ['en_us', 'cjk']
-let g:pandoc#keyboard#use_default_mappings = 0
-
-" Keyboard mappings
-" > Styles
-autocmd filetype pandoc,markdown nnoremap <localleader>i <Plug>(pandoc-keyboard-emphasis)
-autocmd filetype pandoc,markdown vnoremap <localleader>i <Plug>(pandoc-keyboard-emphasis)
-autocmd filetype pandoc,markdown nnoremap <localleader>b <Plug>(pandoc-keyboard-strong)
-autocmd filetype pandoc,markdown vnoremap <localleader>b <Plug>(pandoc-keyboard-strong)
-autocmd filetype pandoc,markdown nnoremap <localleader>' <Plug>(pandoc-keyboard-verbatim)
-autocmd filetype pandoc,markdown vnoremap <localleader>' <Plug>(pandoc-keyboard-verbatim)
-autocmd filetype pandoc,markdown nnoremap <localleader>~ <Plug>(pandoc-keyboard-strikeout)
-autocmd filetype pandoc,markdown vnoremap <localleader>~ <Plug>(pandoc-keyboard-strikeout)
-autocmd filetype pandoc,markdown nnoremap <localleader>^ <Plug>(pandoc-keyboard-superscript)
-autocmd filetype pandoc,markdown vnoremap <localleader>^ <Plug>(pandoc-keyboard-superscript)
-autocmd filetype pandoc,markdown nnoremap <localleader>_ <Plug>(pandoc-keyboard-subscript)
-autocmd filetype pandoc,markdown vnoremap <localleader>_ <Plug>(pandoc-keyboard-subscript)
-
-" > Checkbox
-autocmd filetype pandoc,markdown nnoremap <localleader>cb <Plug>(pandoc-keyboard-toggle-cb)
-autocmd filetype pandoc,markdown vnoremap <localleader>cb <Plug>(pandoc-keyboard-toggle-cb)
-autocmd filetype pandoc,markdown nnoremap <localleader>cd <Plug>(pandoc-keyboard-delete-cb)
-autocmd filetype pandoc,markdown vnoremap <localleader>cd <Plug>(pandoc-keyboard-delete-cb)
-
-" > Paragraph
-autocmd filetype pandoc,markdown noremap <localleader>o }o<esc>O
-autocmd filetype pandoc,markdown noremap <localleader>O {O<esc>o
-
-" > Header
-autocmd filetype pandoc,markdown nnoremap <localleader>hn <Plug>(pandoc-keyboard-next-header)
-autocmd filetype pandoc,markdown nnoremap <localleader>hb <Plug>(pandoc-keyboard-prev-header)
-autocmd filetype pandoc,markdown nnoremap <localleader>hh <Plug>(pandoc-keyboard-cur-header)
-autocmd filetype pandoc,markdown nnoremap <localleader>hp <Plug>(pandoc-keyboard-cur-header-parent)
-autocmd filetype pandoc,markdown nnoremap <localleader>hsn <Plug>(pandoc-keyboard-next-header-sibling)
-autocmd filetype pandoc,markdown nnoremap <localleader>hsb <Plug>(pandoc-keyboard-prev-header-sibling)
-autocmd filetype pandoc,markdown nnoremap <localleader>hcf <Plug>(pandoc-keyboard-first-header-child)
-autocmd filetype pandoc,markdown nnoremap <localleader>hcl <Plug>(pandoc-keyboard-last-header-child)
-autocmd filetype pandoc,markdown nnoremap <localleader>hcn <Plug>(pandoc-keyboard-nth-header-child)
-autocmd filetype pandoc,markdown nnoremap ]] <Plug>(pandoc-keyboard-ff-header)
-autocmd filetype pandoc,markdown nnoremap [[ <Plug>(pandoc-keyboard-rw-header)
-autocmd filetype pandoc,markdown nnoremap ][ <Plug>(pandoc-keyboard-ff-sect-end)
-autocmd filetype pandoc,markdown nnoremap [] <Plug>(pandoc-keyboard-rw-sect-end)
-autocmd filetype pandoc,markdown vnoremap aS <Plug>(pandoc-keyboard-select-section-inclusive)
-autocmd filetype pandoc,markdown onoremap aS :normal VaS<cr>
-autocmd filetype pandoc,markdown vnoremap iS <Plug>(pandoc-keyboard-select-section-exclusive)
-autocmd filetype pandoc,markdown onoremap iS :normal ViS<cr>
-
-" > FileLink
-autocmd filetype pandoc,markdown nnoremap <localleader>gl <Plug>(pandoc-keyboard-links-open)
-autocmd filetype pandoc,markdown nnoremap <localleader>sl <Plug>(pandoc-keyboard-links-split)
-autocmd filetype pandoc,markdown nnoremap <localleader>gb <Plug>(pandoc-keyboard-links-back)
-autocmd filetype pandoc,markdown nnoremap <localleader>gB <Plug>(pandoc-keyboard-links-file-back)
 
 " Adding bullet support
 autocmd filetype pandoc,markdown set comments+=b:*,b:-,b:+
 autocmd filetype pandoc,markdown set formatoptions+=rmB
 autocmd filetype pandoc,markdown set nolinebreak
+
+" Update folding in nvim
+if has('nvim')
+    nnoremap zuz :PandocFolding syntax<CR>
+endif
 
 " {{{1 vim-typescript configs
 autocmd BufNewFile,BufRead *.tsx set filetype=typescript.tsx
@@ -270,8 +230,6 @@ nnoremap <silent> K :call <SID>show_documentation()<CR>
 function! s:show_documentation()
     if (index(['vim','help'], &filetype) >= 0)
         execute 'h '.expand('<cword>')
-    elseif (index(['css','text', 'markdown'], &filetype) >= 0)
-        execute '! trans -d -no-ansi :zh '.expand("'<cword>'")
     elseif (index(['pandoc'], &filetype) >= 0)
         execute '! sdcv -n '.expand("'<cword>'")
     else
@@ -345,7 +303,12 @@ autocmd FileType python let b:coc_root_patterns = ['.git', '.env']
 " {{{2 Gruvbox Color Scheme Configs
 "let g:solarized_visibility="high"
 "call togglebg#map("<F5>")
-syntax enable
+
+" Don't use syntax highlighting for nvim
+if !has('nvim')
+    syntax enable
+endif
+
 if $TERM=="xterm-256color"
     let g:gruvbox_transparent_bg=1
     colorscheme gruvbox
@@ -649,7 +612,17 @@ function RunFile()
     elseif &ft == "rust"
         :exec '! cargo run'
     elseif &ft == "tex"
-        :exec '! xelatex ' . @% . ";evince " . expand('%:r') . ".pdf"
+        if filereadable("justfile")
+            :exec "! just"
+		else
+			:exec '! xelatex ' . @%
+		endif
+	elseif &ft == "pandoc" || &ft == "markdown"
+        if filereadable("justfile")
+            :exec "! just"
+		else
+			:exec '! pandoc ' . @% . ' -o ' . expand('%:r') . ".html"
+		endif
     elseif expand('%:e') == "kv"  "python kivy template file
         if filereadable("main.py")
             :exec "! python3 main.py"
@@ -767,9 +740,11 @@ autocmd filetype yaml vnoremap _3 <esc>`>a}}<esc>`<i{{c3::<esc>
 
 " Wayland clipboard support
 " https://github.com/vim/vim/issues/5157
-xnoremap "+y y:call system("wl-copy", @")<cr>
-nnoremap "+p :let @"=substitute(system("wl-paste --no-newline"), '<C-v><C-m>', '', 'g')<cr>p
-nnoremap "*p :let @"=substitute(system("wl-paste --no-newline --primary"), '<C-v><C-m>', '', 'g')<cr>p
+if getenv("NOCOMPL") != v:null
+    xnoremap "+y y:call system("wl-copy", @")<cr>
+    nnoremap "+p :let @+=substitute(system("wl-paste --no-newline"), '<C-v><C-m>', '', 'g')<cr>"+p
+    nnoremap "*p :let @*=substitute(system("wl-paste --no-newline --primary"), '<C-v><C-m>', '', 'g')<cr>"*p
+endif
 
 " {{{1 General Configs
 set autoindent
@@ -783,7 +758,8 @@ set title
 
 autocmd Filetype html,htmldjango,json,javascript,typescript,typescript.tsx,css,yaml,dart setlocal tabstop=2 shiftwidth=2
 autocmd Filetype just setlocal noexpandtab
-autocmd Filetype markdown,csv,pandoc setlocal keywordprg=dict
+autocmd Filetype markdown,csv,pandoc setlocal keywordprg=sdcv\ -n
+"autocmd Filetype markdown,csv,pandoc setlocal keywordprg=dict
 "autocmd Filetype markdown,csv set keywordprg=trans\ -d\ -no-ansi\ :zh
 autocmd Filetype javascript,typescript,javascript.tsx,typescript.tsx setlocal foldmethod=syntax
 

@@ -2,28 +2,25 @@ ROOT := "/home/heyrict/.wine32"
 HOME := "/home/heyrict/.wine32/drive_c/users/heyrict"
 
 run FILE:
-	LC_ALL=ja_JP.UTF-8 LANG=ja_JP.UTF-8 WINEARCH=win32 WINEPREFIX=~/.wine32 wine "{{FILE}}"
-
-_run_in FOLDER PROGRAM:
-	cd "{{FOLDER}}" && LC_ALL=ja_JP.UTF-8 LANG=ja_JP.UTF-8 WINEARCH=win32 WINEPREFIX=~/.wine32 wine "{{PROGRAM}}"
+	cd "$(dirname '{{FILE}}')" && LC_ALL=ja_JP.UTF-8 LANG=ja_JP.UTF-8 WINEARCH=win32 WINEPREFIX="{{ROOT}}" wine "$(basename '{{FILE}}')"
 
 reverse:
-	just _run_in "{{HOME}}/Games/era/eraReverse1214" Emuera1824+v1.exe
+	just run "{{HOME}}/Games/era/eraReverse1214/Emuera1824+v1.exe"
 
 syokusyu:
-	just _run_in "{{HOME}}/Games/era/syokusyu1150" Emuera1824+v10.exe
+	just run "{{HOME}}/Games/era/syokusyu1150/Emuera1824+v10.exe"
 
 theworld:
-	just _run_in "{{HOME}}/Games/era/eraTW4820/" Emuera1824+v11+webp+test+fix.exe
+	just run "{{HOME}}/Games/era/eraTW4840/Emuera1824+v11+webp+test+fix.exe"
 
 k:
-	just _run_in "{{HOME}}/Games/era/eratohoK1293/" Emuera1824+v9.exe
+	just run "{{HOME}}/Games/era/eratohoK1293/Emuera1824+v9.exe"
 
 rsyokusyu:
-	just _run_in "{{HOME}}/Games/era/rsyokusyuG308/" Emuera1823beta003.exe
+	just run "{{HOME}}/Games/era/rsyokusyuV322/Emuera1823beta003.exe"
 
 ymaem:
-	just _run_in "{{HOME}}/Games/era/eraYMAEM4263/" Emuera1824+v11+webp+test+fix.exe
+	just run "{{HOME}}/Games/era/eraYMAEM4263/Emuera1824+v11+webp+test+fix.exe"
 
 gvt:
-	just _run_in "{{HOME}}/Games/era/eraGVT220121/" Emuera1824+v10.exe
+	just run "{{HOME}}/Games/era/eraGVT220121/Emuera1824+v10.exe"

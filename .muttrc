@@ -8,8 +8,10 @@ bind attach,index g first-entry
 bind attach,index G last-entry
 
 # mailbox setup
-set imap_user = "xiezh0831"
-set folder = "imaps://imap.mail.yahoo.co.jp/"
+#set imap_user = "xiezh0831"
+#set folder = "imaps://imap.mail.yahoo.co.jp/"
+set imap_user = "heyrict"
+set folder = "imaps://imap.yandex.ru/"
 
 set spoolfile=+INBOX
 mailboxes =INBOX

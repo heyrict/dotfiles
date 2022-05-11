@@ -148,7 +148,7 @@ symbol = " "
 
 [python]
 symbol = ""
-format = '([](fg:#3c3836 bg:#282828)[($symbol $virtualenv $version)](bg:#3c3836 fg:#689d6a))'
+format = '([╱ ](fg:#bdae93 bg:#3c3836)[($symbol $virtualenv $version)](bg:#3c3836 fg:#689d6a))'
 version_format = "v$major.$minor"
 
 [ruby]
@@ -169,5 +169,5 @@ symbol = "ﯣ "
 
 [time]
 disabled = false
-format = "[](#282828)[ $time](bg:#282828 fg:#d79921)"
+format = "[](#3c3836)[ $time ](bg:#3c3836 fg:#d79921)"
 time_format = "%Y-%m-%d %H:%M %a"
