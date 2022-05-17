@@ -118,7 +118,7 @@ export ARCHFLAGS="-arch x86_64"
 
 # History {{{1
 if [ $SSH_CONNECTION ]; then
-  HISTFILE=~/.histfile_$SSH_SESSION
+  unset HISTFILE
 else
   HISTFILE=~/.histfile
 fi

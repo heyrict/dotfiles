@@ -331,7 +331,7 @@ elseif $TERM=="fbterm"
     colorscheme solarized
 elseif $TERM=="alacritty"
     let g:solarized_termtrans=0
-    let g:solarized_termcolors=16
+    let g:solarized_termcolors=256
     colorscheme solarized
 endif
 

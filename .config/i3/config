@@ -419,6 +419,9 @@ bindsym $sup+b exec "notify-send 'Capacity = '$(cat /sys/class/power_supply/BAT1
 # Rename service
 #exec --no-startup-id workstyle
 
+# polybar
+exec --no-startup-id bash -c 'sleep 5s && /home/heyrict/.config/polybar/launch.sh'
+
 # Applets
 #exec --no-startup-id nm-applet
 #exec --no-startup-id dunst

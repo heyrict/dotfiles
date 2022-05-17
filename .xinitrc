@@ -71,7 +71,7 @@ dunst &
 i3-battery-popup -n &
 
 # Polybar
-( sleep 5s && . ~/.config/polybar/launch.sh ) &
+#( sleep 5s && bash /home/heyrict/.config/polybar/launch.sh ) &
 
 # composition manager
 #
