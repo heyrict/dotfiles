@@ -72,19 +72,12 @@ image/png=feh.desktop
 image/gif=gifview.desktop
 application/pdf=org.pwmt.zathura.desktop
 x-scheme-handler/discord-455712169795780630=discord-455712169795780630.desktop
+x-scheme-handler/discord-712465656758665259=discord-712465656758665259.desktop
+text/plain=gvim.desktop
+text/csv=gvim.desktop
 
 [Added Associations]
-x-scheme-handler/http=firefox.desktop
-x-scheme-handler/https=firefox.desktop
 x-scheme-handler/ftp=firefox.desktop
-x-scheme-handler/chrome=firefox.desktop
-text/html=firefox.desktop
-application/x-extension-htm=firefox.desktop
-application/x-extension-html=firefox.desktop
-application/x-extension-shtml=firefox.desktop
-application/xhtml+xml=firefox.desktop
-application/x-extension-xhtml=firefox.desktop
-application/x-extension-xht=firefox.desktop
 audio/x-ape=mpv.desktop;
 image/svg+xml=inkscape.desktop;
 application/zip=gnome-software-local-file.desktop;

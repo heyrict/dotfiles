@@ -1,0 +1,5 @@
+% audio.convert.mid_to_mp3
+
+# Convert .mid files to mp3 format
+
+fd '\.mid$' -x bash -c 'echo "converting {} to mp3 format..." && ffmpeg -loglevel warning -i {} {.}.mp3 && mv {.}.mp3 {}'

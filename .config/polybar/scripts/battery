@@ -5,11 +5,12 @@ DISPLAY_DISCHARGING="power remain"
 DISPLAY_UNKNOWN=""
 DISPLAY_FULL=""
 
+BAT=$(ls /sys/class/power_supply/ | grep BAT | head -1)
 
-POWER_NOW=$(cat /sys/class/power_supply/BAT1/power_now)
-ENERGY_FULL=$(cat /sys/class/power_supply/BAT1/energy_full)
-ENERGY_NOW=$(cat /sys/class/power_supply/BAT1/energy_now)
-STATUS=$(cat /sys/class/power_supply/BAT1/status)
+POWER_NOW=$(cat /sys/class/power_supply/$BAT/power_now)
+ENERGY_FULL=$(cat /sys/class/power_supply/$BAT/energy_full)
+ENERGY_NOW=$(cat /sys/class/power_supply/$BAT/energy_now)
+STATUS=$(cat /sys/class/power_supply/$BAT/status)
 
 power() {
     echo -n " $POWER_NOW" | sed "s/0\{1,3\}$//"

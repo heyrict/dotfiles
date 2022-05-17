@@ -8,17 +8,13 @@ fi
 export LANG=en_US.UTF-8
 
 # The following lines were added by compinstall {{{1
-fpath=(~/.zsh/completion $fpath)
+fpath=(${ZDOTDIR:-$HOME/.zsh}/completion $fpath)
 
 zstyle :compinstall filename '/home/heyrict/.zshrc'
 zstyle ':completion:*' menu select
 
 autoload -Uz compinit 
-if [[ -n ${ZDOTDIR:-${HOME}}/.zcompdump(#qN.mh+24) ]]; then
-	compinit;
-else
-	compinit -C;
-fi;
+compinit
 
 # End of lines added by compinstall
 
@@ -45,11 +41,11 @@ zstyle ':completion:*' group-name ''
 # Antibody {{{1
 export ANTIBODY_HOME=~/.antibody
 source <(antibody init)
-antibody bundle < ~/.zsh_plugins.txt
+antibody bundle < ~/.zsh/.zsh_plugins.txt
 
-if [ ! "${TTY:5:3}" = "tty" ]; then
-    antibody bundle romkatv/powerlevel10k
-fi
+#if [ ! "${TTY:5:3}" = "tty" ]; then
+#    antibody bundle romkatv/powerlevel10k
+#fi
 
 # Oh-my-zsh {{{1
 ## Path to your oh-my-zsh installation.
@@ -159,7 +155,7 @@ fi
 ## some more ls aliases {{{2
 alias ll='ls -alF'
 alias la='ls -A'
-alias l='ls -CF'
+alias l='ls -F'
 ## "alert" alias for long running commands {{{2
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
@@ -177,9 +173,13 @@ path=('/usr/local/bin' '/usr/bin' $path)
 manpath=('/usr/local/man' '/usr/share/man' $manpath)
 
 ## Texlive {{{2
-#manpath+=/usr/local/texlive/2020/texmf-dist/doc/man
-#infopath+=/usr/local/texlive/2020/texmf-dist/doc/info
+manpath+=/usr/local/texlive/2021/texmf-dist/doc/man
+infopath+=/usr/local/texlive/2021/texmf-dist/doc/info
 path+=/usr/local/texlive/2021/bin/x86_64-linux
+
+## Anki {{{2
+export ANKI_WAYLAND=1
+
 ## Nvm {{{2
 export NVM_DIR="$HOME/.nvm"
 source /usr/share/nvm/init-nvm.sh
@@ -207,33 +207,18 @@ export PUB_HOSTED_URL="https://mirrors.tuna.tsinghua.edu.cn/dart-pub/"
 export FLUTTER_STORAGE_BASE_URL="https://mirrors.tuna.tsinghua.edu.cn/flutter"
 path+=$HOME/Flutter/bin
 path+=$HOME/Flutter/bin/cache/dart-sdk/bin
-## NNN {{{2
-
-# Book marks
-# - w: working directory
-# - c: notes for clinical medicine
-# - m: Multimedia
-# - u: Mount point
-# - t: /tmp
-export NNN_BMS="w:~/MyPrograms;c:~/pandoc_markdown/markdown/CliMed;m:/mnt/LENOVO/Eric/mov;u:/mnt;t:/tmp"
-
-# Light theme
-export NNN_COLORS='5234'
-export NNN_FCOLORS='04030c020001090e050ddc06'
-export NNN_ARCHIVE="\\.(7z|bz2|gz|tar|tgz|zip|zst)$"
-export NNN_IDLE_TIMEOUT=180
-
-# Plugins
-# - o: Open file found with fzf
-# - p: View photos in this folder
-# - P: View photos in this folder in numeric order
-# - d: Show diffs between two files
-# - c: CD into directory found with fzf
-# - s: Organize
-# - b: Page the file with bat
-export NNN_PLUG='o:fzopen;p:-_feh -Z.;P:-_feh -Z. `ls|sort -n`;d:diffs;k:-chksum;c:fzcd;z:fzz;S:organize;b:-_bat $nnn;s:croc'
 ## GPG {{{2
 export GPG_TTY=$(tty)
+
+## Fcitx {{{2
+export XMODIFIERS="@im=fcitx"
+export QT_IM_MODULE="fcitx"
+
+## Neovide {{{2
+export NEOVIDE_MULTIGRID=1
+
+## Zoxide {{{2
+export _ZO_EXCLUDE_DIRS=$HOME:$HOME/Private/:/tmp*
 
 ## Custom {{{2
 export TASKRC="~/.taskrc"
@@ -246,7 +231,13 @@ path=(
     $HOME/Android/platform-tools
 )
 
+
 # Other configs {{{1
+## Vulkan {{{2
+
+# Use RADV vulkan driver
+export AMD_VULKAN_ICD=RADV
+
 ## Zsh {{{2
 unsetopt beep
 
@@ -263,20 +254,82 @@ export LS_COLORS="$LS_COLORS:ow=1;36"
 ## Navi {{{2
 export NAVI_PATH=~/.config/navi/custom
 
+## Firefox {{2
+export MOZ_ENABLE_WAYLAND=1
+
 ## Veloren {{{2
 export VELOREN_ASSETS=/usr/share/veloren
 
+## Qt {{{2
+export QT_QPA_PLATFORMTHEME=qt5ct
+
+# Network related {{{1
+export CURL_SSL_BACKEND=rustls
+
 # Starship for zsh {{{1
-#case "$TERM" in
-#    xterm-color|*-256color) eval "$(starship init zsh)";;
-#esac
+case "$TERM" in
+    alacritty|xterm-color|*-256color) unset STARSHIP_CONFIG;
+      eval "$(starship init zsh)";;
+    *) export STARSHIP_CONFIG=/home/heyrict/.config/starship-plain.toml;
+      eval "$(starship init zsh)";;
+esac
 
 # Fuzzy finder {{{1
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+[ -f ~/.zsh/.fzf.zsh ] && source ~/.zsh/.fzf.zsh
 
 # Powerlevel10k {{{1
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+# To customize prompt, run `p10k configure` or edit ~/.zsh/.p10k.zsh.
+[[ ! -f ~/.zsh/.p10k.zsh ]] || source ~/.zsh/.p10k.zsh
 
 # Navi {{{1
+#Change shortcut to '^y' to avoid conflicts
 [ -x `command -v navi` ] && source <(navi widget zsh)
+
+# NNN {{{1
+
+# Book marks
+# - w: working directory
+# - c: notes for clinical medicine
+# - m: Multimedia
+# - u: Mount point
+# - t: /tmp
+export NNN_BMS="w:~/MyPrograms;c:~/pandoc_markdown/markdown/CliMed;m:/mnt/LENOVO/Eric/mov;u:/run/media;t:/tmp"
+
+# Light theme
+export NNN_COLORS='5234'
+export NNN_FCOLORS='04030c020001090e050ddc06'
+export NNN_ARCHIVE="\\.(7z|bz2|gz|tar|tgz|zip|zst)$"
+export NNN_IDLE_TIMEOUT=180
+
+# Plugins
+# - o: Open file found with fzf
+# - p: View photos in this folder
+# - P: View photos in this folder in numeric order
+# - d: Show diffs between two files
+# - c: CD into directory found with fzf
+# - s: Organize
+# - b: Page the file with bat
+export NNN_PLUG='o:fzopen;p:-!feh -Z.*;P:-!feh -Z. `ls|sort -n`*;d:diffs;k:!chksum;c:fzcd;z:fzz;S:organize;b:-!bat $nnn;s:croc'
+
+# Start sway automatically {{{1
+if [ -z $DISPLAY ] && [ "$(tty)" = "/dev/tty1" ]; then
+  exec sway
+fi
+
+# Countdown in alacritty
+if [ "$TERM" = "alacritty" ]; then
+  local TARGET=`date -d "March 13" +%j`
+  local TODAY=`date +%j`
+  local DAYS=$(($TARGET - $TODAY))
+  local COUNTDOWN="\
+   \e[1m== 倒计时 ==\e[0m
+
+距离复试还有约 \e[1;31m$DAYS\e[0m 天
+"
+
+  case $DAYS in
+    [0-9]*)
+      echo
+      echo $COUNTDOWN | ponythink -b unicode -f $HOME/.config/ponysay/eevee.pony;;
+  esac
+fi

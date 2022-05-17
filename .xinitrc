@@ -41,6 +41,9 @@ fi
 #xterm -geometry 80x20+494-0 &
 #exec xterm -geometry 80x66+0+0 -name login
 
+# Zsh
+export ZDOTDIR=~/.zsh
+
 # Fcitx
 export XIM=fcitx
 export GTK_IM_MODULE=fcitx
@@ -52,7 +55,7 @@ export XMODIFIERS="@im=fcitx"
 . ~/.fehbg &
 
 # Set color temperature
-redshift &
+#redshift &
 
 # Applets
 ## Pulseaudio
@@ -65,13 +68,13 @@ nm-applet &
 #blueman-applet &
 
 ## Notification Manager
-dunst &
+#dunst &
 
 ## Battery notification
-i3-battery-popup -n &
+#i3-battery-popup -n &
 
 # Polybar
-#( sleep 5s && bash /home/heyrict/.config/polybar/launch.sh ) &
+#( sleep 5s && . ~/.config/polybar/launch.sh ) &
 
 # composition manager
 #

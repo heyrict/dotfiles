@@ -34,7 +34,7 @@ configuration {
 /*	auto-select: false;*/
 /*	parse-hosts: false;*/
 /*	parse-known-hosts: true;*/
-	combi-modi: "window,drun,ssh";
+	combi-modi: "drun,ssh";
 	matching: "fuzzy";
 /*	tokenize: true;*/
 /*	m: "-5";*/
@@ -91,7 +91,7 @@ configuration {
 /*	kb-delete-entry: "Shift+Delete";*/
 	kb-mode-next: "Shift+Right,Control+Tab,Alt+l";
 	kb-mode-previous: "Shift+Left,Control+ISO_Left_Tab,Alt+h";
-    kb-mode-complete: "Control+o";
+	kb-mode-complete: "Control+o";
 	kb-row-left: "Control+h";
 	kb-row-right: "Control+l";
 	kb-row-up: "Up,Control+p,ISO_Left_Tab,Control+k";
@@ -145,4 +145,7 @@ configuration {
 /*	me-accept-custom: "Control+MouseDPrimary";*/
 }
 
-@import "/usr/share/rofi/themes/fancy.rasi"
+@import "~/.config/rofi/themes/fancy-heyrict-mod.rasi"
+//@theme "/usr/share/rofi/themes/docu.rasi"
+//@theme "/usr/share/rofi/themes/Arc-Dark.rasi"
+@theme "/usr/share/rofi/themes/Monokai.rasi"

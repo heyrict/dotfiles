@@ -1,0 +1,10 @@
+
+[Software\\Enterbrain\\RGSS3] 1642686867
+#time=1d80e053d510c8c
+"ButtonAssign"=hex:0c,0d,0f,0e,10,10,11,12,00,00,0d,0d,0c,0c,0b,0d,0c,00,00,00,\
+  0e,0f,10,11,12
+"LaunchInFullScreen"=dword:00000001
+"PlayMusic"=dword:00000001
+"PlaySound"=dword:00000001
+"WaitForVsync"=dword:00000000
+

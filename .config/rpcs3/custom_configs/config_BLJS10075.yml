@@ -2,42 +2,56 @@ Core:
   PPU Decoder: Recompiler (LLVM)
   PPU Threads: 2
   PPU Debug: false
+  PPU Calling History: false
   Save LLVM logs: false
   Use LLVM CPU: ""
   Max LLVM Compile Threads: 0
-  Enable thread scheduler: false
+  PPU LLVM Greedy Mode: false
+  PPU LLVM Precompilation: true
+  Thread Scheduler Mode: Operating System
   Set DAZ and FTZ: false
   SPU Decoder: Recompiler (LLVM)
-  Lower SPU thread priority: false
+  SPU GETLLAR polling detection: false
   SPU Debug: false
-  Preferred SPU Threads: 0
+  MFC Debug: false
+  Preferred SPU Threads: 1
   SPU delay penalty: 3
   SPU loop detection: true
   Max SPURS Threads: 6
   SPU Block Size: Safe
   Accurate GETLLAR: false
-  Accurate PUTLLUC: false
+  Accurate SPU DMA: false
+  Accurate Cache Line Stores: false
+  Accurate RSX reservation access: false
   SPU Verification: true
   SPU Cache: true
-  Enable TSX: Enabled
+  SPU Profiler: false
+  MFC Commands Shuffling Limit: 0
+  MFC Commands Timeout: 0
+  MFC Commands Shuffling In Steps: false
+  Enable TSX: Disabled
   Accurate xfloat: false
   Approximate xfloat: true
+  LLVM Accurate DFMA: true
+  PPU LLVM Java Mode Handling: false
+  Accurate PPU 128-byte Reservation Op Max Length: 0
+  PPU LLVM Accurate Vector NaN values: false
+  Stub PPU Traps: 0
+  Full Width AVX-512: false
   Debug Console Mode: false
-  Lib Loader: Load liblv2.sprx only
   Hook static functions: false
-  Load libraries:
+  Libraries Control:
     []
   HLE lwmutex: false
-  Accurate PUTLLC: false
-  SPU Shared Runtime: true
+  SPU LLVM Lower Bound: 0
+  SPU LLVM Upper Bound: 18446744073709551615
+  TSX Transaction First Limit: 800
+  TSX Transaction Second Limit: 2000
+  Clocks scale: 100
+  Sleep Timers Accuracy: Usleep Only
+  Performance Report Threshold: 500
+  Enable Performance Report: false
 VFS:
-  $(EmulatorDir): ""
-  /dev_hdd0/: $(EmulatorDir)dev_hdd0/
-  /dev_hdd1/: $(EmulatorDir)dev_hdd1/
-  /dev_flash/: ""
-  /dev_usb000/: $(EmulatorDir)dev_usb000/
-  /dev_bdvd/: ""
-  /app_home/: ""
   Enable /host_root/: false
   Initialize Directories: true
   Limit disk cache size: false
@@ -47,7 +61,8 @@ Video:
   Resolution: 1280x720
   Aspect ratio: 16:9
   Frame limit: 30
-  MSAA: Auto
+  MSAA: Disabled
+  Shader Mode: Async Shader Recompiler
   Write Color Buffers: false
   Write Depth Buffer: false
   Read Color Buffers: false
@@ -56,7 +71,7 @@ Video:
   VSync: false
   Debug output: false
   Debug overlay: false
-  Use Legacy OpenGL Buffers: false
+  Renderdoc Compatibility Mode: false
   Use GPU texture scaling: true
   Stretch To Display Area: false
   Force High Precision Z buffer: false
@@ -69,25 +84,43 @@ Video:
   Disable On-Disk Shader Cache: false
   Disable Vulkan Memory Allocator: false
   Use full RGB output range: true
-  Disable Asynchronous Shader Compiler: false
   Strict Texture Flushing: false
   Disable native float16 support: false
-  Multithreaded RSX: false
+  Multithreaded RSX: true
+  Relaxed ZCULL Sync: false
+  Enable 3D: false
+  Debug Program Analyser: false
+  Accurate ZCULL stats: true
   Consecutive Frames To Draw: 1
   Consecutive Frames To Skip: 1
   Resolution Scale: 100
   Anisotropic Filter Override: 0
+  Texture LOD Bias Addend: 0
   Minimum Scalable Dimension: 16
+  Shader Compiler Threads: 0
   Driver Recovery Timeout: 1000000
-  D3D12:
-    Adapter: ""
+  Driver Wake-Up Delay: 1
+  Vblank Rate: 60
+  Vblank NTSC Fixup: false
+  DECR memory layout: false
   Vulkan:
-    Adapter: GeForce 920M
+    Adapter: AMD RADV RENOIR
     Force FIFO present mode: false
     Force primitive restart flag: false
+    Force Disable Exclusive Fullscreen Mode: false
+    Asynchronous Texture Streaming 2: false
+    Enable FidelityFX Super Resolution Upscaling: false
+    FidelityFX CAS Sharpening Intensity: 50
+    Asynchronous Queue Scheduler: Device
   Performance Overlay:
     Enabled: false
+    Enable Framerate Graph: false
+    Enable Frametime Graph: false
+    Framerate datapoints: 50
+    Frametime datapoints: 170
     Detail level: High
+    Framerate graph detail level: All
+    Frametime graph detail level: All
     Metrics update interval (ms): 350
     Font size (px): 10
     Position: Top Left
@@ -109,38 +142,50 @@ Video:
     Darkening effect strength: 30
     Blur effect strength: 0
 Audio:
-  Renderer: PulseAudio
+  Renderer: Cubeb
+  Audio provider: CellAudio
   Dump to file: false
   Convert to 16 bit: false
-  Downmix to Stereo: true
-  Start Threshold: 1
+  Audio Channels: Downmix to Stereo
   Master Volume: 100
   Enable Buffering: true
   Desired Audio Buffer Duration: 100
-  Sampling Period Multiplier: 100
   Enable Time Stretching: false
   Time Stretching Threshold: 75
-  Buffer Count: 32
+  Microphone Type: "Null"
+  Microphone Devices: "@@@@@@@@@@@@"
 Input/Output:
   Keyboard: "Null"
   Mouse: Basic
-  Pad: Keyboard
   Camera: "Null"
   Camera type: Unknown
+  Camera flip: None
+  Camera ID: Default
   Move: "Null"
+  Buzz emulated controller: "Null"
+  Turntable emulated controller: "Null"
+  GHLtar emulated controller: "Null"
 System:
+  License Area: SCEJ
   Language: Japanese
+  Keyboard Type: English keyboard (US standard)
   Enter button assignment: Enter with circle
+  Console time offset (s): 0
 Net:
-  Connection status: Disconnected
+  Internet enabled: Disconnected
   IP address: 192.168.1.1
+  DNS address: 8.8.8.8
+  IP swap list: ""
+  PSN status: Disconnected
 Miscellaneous:
   Automatically start games after boot: true
   Exit RPCS3 when process finishes: false
   Start games in fullscreen mode: false
-  Show FPS counter in window title: true
+  Prevent display sleep while running games: true
   Show trophy popups: true
   Show shader compilation hint: true
-  Use native user interface: false
-  Port: 2345
+  Use native user interface: true
+  GDB Server: 127.0.0.1:2345
+  Silence All Logs: false
+  Window Title Format: "FPS: %F | %R | %V | %T [%t]"
 Log: {}

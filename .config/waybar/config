@@ -1,0 +1,160 @@
+{
+  "layer": "bottom",
+  "position": "top",
+  "height": 30,
+  "modules-left": ["custom/pixel_swift", "sway/workspaces", "sway/mode"],
+  "modules-center": ["sway/window"],
+  "modules-right": [
+    "tray",
+    "backlight",
+    "pulseaudio",
+    "network",
+    "memory",
+    "idle_inhibitor",
+    "battery",
+    "temperature#cpu",
+    "temperature#gpu",
+    "clock",
+    "custom/pixel_swift"
+  ],
+  "sway/mode": {
+    "format": " {}"
+  },
+  "sway/workspaces": {
+    "format": "{name}",
+    "disable-scroll": true
+  },
+  "sway/window": {
+    "max-length": 80,
+    "tooltip": false
+  },
+  "clock": {
+    "interval": 23,
+    "format": "{:%H:%M}",
+    "tooltip-format": "{:%Y-%m-%d %H:%M %a}",
+    "on-click": "alacritty -t 'calendar-float' -o window.dimensions.columns=68 -o window.dimensions.lines=35 -e bash -c 'cal -y; sleep 24h' &"
+  },
+  "battery": {
+    "bat": "BAT0",
+    "interval": 30,
+    "format": "{icon}  {capacity}%",
+    "format-alt": "{icon}  {time}",
+    "format-icons": ["", "", "", "", ""],
+    "format-charging": "{icon}  {capacity}%",
+    "states": {
+      "warning": 25,
+      "critical": 10
+    },
+    "tooltip": false
+  },
+  "network": {
+    "format": "{icon}",
+    "format-alt": "{icon} {ipaddr}/{cidr}",
+    "format-alt-click": "click-right",
+    "format-icons": {
+      "wifi": [""],
+      "ethernet": ["ﯱ"],
+      "disconnected": ["睊"]
+    },
+    "on-click": "alacritty -t 'iwctl-float' -o window.dimensions.columns=105 -o window.dimensions.lines=35 -e iwctl",
+    "tooltip": false
+  },
+  "pulseaudio": {
+    "format": "{icon} {volume}",
+    "format-alt": "{icon}",
+    "format-alt-click": "click-right",
+    "format-muted": "ﱝ",
+    "format-icons": {
+      "phone": [" 奄", " 奔", " 墳", " "],
+      "default": ["奄", "奔", "墳", ""]
+    },
+    "scroll-step": 1,
+    "on-click": "alacritty -t 'pactl-float' -o window.dimensions.columns=105 -o window.dimensions.lines=35 -e pulsemixer",
+    "tooltip": false
+  },
+  "custom/spotify": {
+    "interval": 1,
+    "return-type": "json",
+    "exec": "~/.config/waybar/modules/spotify.sh",
+    "exec-if": "pgrep spotify",
+    "escape": true
+  },
+  "custom/pixel_swift": {
+    "format": " ",
+    "return-type": "json",
+    "interval": 60,
+    "exec": "echo -e '{\"class\": \"px-'$(echo \"$(od -vAn -N1 -tu1 < /dev/urandom) % 8\" | bc)'\"}'"
+  },
+  "custom/storage": {
+    "format": "{} ",
+    "format-alt": " {percentage}%",
+    "format-alt-click": "click-right",
+    "return-type": "json",
+    "interval": 60,
+    "exec": "~/.config/waybar/modules/storage.sh"
+  },
+  "backlight": {
+    "format": "{icon} {percent}%",
+    "format-alt": "{icon}",
+    "format-alt-click": "click-right",
+    "on-click": "alacritty -t 'backglith-float' -o window.dimensions.columns=68 -o window.dimensions.lines=20 -e vim /sys/class/backlight/amdgpu_bl0/brightness",
+    "format-icons": ["", "ﯧ"],
+    "on-scroll-down": "brightnessctl set 1-",
+    "on-scroll-up": "brightnessctl set +1"
+  },
+  "memory": {
+    "interval": 30,
+    "format": " {}%",
+    "max-length": 10
+  },
+  "custom/weather": {
+    "format": "{}",
+    "format-alt": "{alt}: {}",
+    "format-alt-click": "click-right",
+    "interval": 1800,
+    "return-type": "json",
+    "exec": "~/.config/waybar/modules/weather.sh",
+    "exec-if": "ping wttr.in -c1"
+  },
+  "idle_inhibitor": {
+    "format": "{icon}",
+    "format-icons": {
+      "deactivated": "",
+      "activated": ""
+    },
+    "tooltip": false
+  },
+  "custom/mail": {
+    "format": "",
+    "format-alt": " {alt}",
+    "format-alt-click": "click-right",
+    "interval": 60,
+    "return-type": "json",
+    "exec": "~/.config/waybar/modules/mail.py",
+    "tooltip": false
+  },
+  "custom/test": {
+    "format": "{}",
+    "exec": "/tmp/test blub",
+    "param": "blah",
+    "interval": 5
+  },
+  "tray": {
+    "icon-size": 16,
+    "spacing": 10
+  },
+  "temperature#cpu": {
+    "hwmon-path": "/sys/class/hwmon/hwmon1/temp1_input",
+    "critical-threshold": 90,
+    "format-critical": "﬙ {temperatureC}℃",
+    "format": "﬙ {temperatureC}℃",
+    "format-alt": "﬙"
+  },
+  "temperature#gpu": {
+    "hwmon-path": "/sys/class/hwmon/hwmon6/temp1_input",
+    "critical-threshold": 90,
+    "format-critical": "礪 {temperatureC}℃",
+    "format": "礪 {temperatureC}℃",
+    "format-alt": "礪"
+  }
+}

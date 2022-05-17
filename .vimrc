@@ -34,14 +34,19 @@ Plug 'majutsushi/tagbar', { 'on': ['TlistToggle', 'TlistOpen', 'TagbarToggle'] }
 "Plug 'stlrefvim'
 " autoswitch fcitx-remote
 Plug 'vim-scripts/fcitx.vim'
-" syntax highlight for .qml files
-Plug 'peterhoeg/vim-qml'
 " NERD_tree
 Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
-" kivy syntax highlight
+
+" Programming languages and Syntax highlights
+
+" .qml files
+Plug 'peterhoeg/vim-qml'
+" kivy
 "Plug 'farfanoide/vim-kivy'
-"Plug 'file://home/ericx/.vim/bundle/custom_vim_kivy'
+
+" Justfile
+Plug 'NoahTheDuke/vim-just'
 
 " Javascript Environment
 Plug 'pangloss/vim-javascript'
@@ -52,28 +57,24 @@ Plug 'jparise/vim-graphql'
 "Plug 'leafgarland/typescript-vim'
 "Plug 'peitalin/vim-jsx-typescript'
 
-"Plug 'alvan/vim-closetag'
-
 " Python Environment
 Plug 'Vimjas/vim-python-pep8-indent'
-
-" For htmldjango
+" htmldjango
 "Plug 'mjbrownie/vim-htmldjango_omnicomplete'
 
 " Julia Environment
 "Plug 'JuliaEditorSupport/julia-vim'
 
 " Flutter Environment
-Plug 'dart-lang/dart-vim-plugin'
+"Plug 'dart-lang/dart-vim-plugin'
 
 " Color Schema
-Plug 'altercation/vim-colors-solarized'
+"Plug 'altercation/vim-colors-solarized'
+"Plug 'lifepillar/vim-solarized8'
+Plug 'morhetz/gruvbox'
 Plug 'vim-airline/vim-airline'
 "Plug 'edkolev/tmuxline.vim'
 Plug 'vim-airline/vim-airline-themes'
-"
-" ALE
-"Plug 'w0rp/ale'
 
 " Folding
 Plug 'Konfekt/FastFold'
@@ -310,29 +311,67 @@ augroup coc_group
 augroup end
 
 autocmd BufNewFile,BufRead *.txt,*.md,*.tex let coc_disabled=0
+autocmd FileType python let b:coc_root_patterns = ['.git', '.env']
 
-" {{{1 Solarized Color Scheme Configs
-let g:solarized_visibility="high"
-call togglebg#map("<F5>")
+" {{{1 Color Scheme Configs
+
+" {{{2 Solarized Color Scheme Configs
+"let g:solarized_visibility="high"
+"call togglebg#map("<F5>")
+"syntax enable
+"if $TERM=="xterm-256color"
+"    let g:solarized_termtrans=1
+"    colorscheme solarized8
+"elseif $TERM=="xterm"
+"    let g:solarized_termtrans=1
+"    let g:solarized_termcolors=256
+"    let g:solarized_contrast="high"
+"    colorscheme solarized8
+"elseif $TERM=="linux"
+"    let g:solarized_termcolors=16
+"    colorscheme solarized8
+"elseif $TERM=="fbterm"
+"    let g:solarized_termcolors=256
+"    colorscheme solarized8
+"elseif $TERM=="alacritty"
+"    let g:solarized_termtrans=0
+"    let g:solarized_termcolors=16
+"    let g:solarized_termtrans=1
+"    colorscheme solarized8
+"else
+"    colorscheme solarized8
+"endif
+
+" {{{2 Gruvbox Color Scheme Configs
+"let g:solarized_visibility="high"
+"call togglebg#map("<F5>")
 syntax enable
 if $TERM=="xterm-256color"
-    let g:solarized_termtrans=1
-    colorscheme solarized
+    let g:gruvbox_transparent_bg=1
+    colorscheme gruvbox
+elseif exists('g:neovide')
+    let g:gruvbox_transparent_bg=1
+    let g:gruvbox_termcolors=256
+    colorscheme gruvbox
 elseif $TERM=="xterm"
-    let g:solarized_termtrans=1
-    let g:solarized_termcolors=256
-    let g:solarized_contrast="high"
-    colorscheme solarized
+    let g:gruvbox_transparent_bg=1
+    let g:gruvbox_termcolors=256
+    let g:gruvbox_contrast_dark="hard"
+    let g:gruvbox_contrast_light="hard"
+    colorscheme gruvbox
 elseif $TERM=="linux"
-    let g:solarized_termcolors=16
-    colorscheme solarized
+    let g:gruvbox_termcolors=16
+    colorscheme gruvbox
 elseif $TERM=="fbterm"
-    let g:solarized_termcolors=256
-    colorscheme solarized
+    let g:gruvbox_termcolors=256
+    colorscheme gruvbox
 elseif $TERM=="alacritty"
-    let g:solarized_termtrans=0
-    let g:solarized_termcolors=256
-    colorscheme solarized
+    autocmd VimEnter * hi Normal ctermbg=NONE
+    let g:gruvbox_termcolors=256
+    let g:gruvbox_transparent_bg=1
+    colorscheme gruvbox
+else
+    colorscheme gruvbox
 endif
 
 if $BACKLIGHT=="light"
@@ -364,9 +403,9 @@ if $TERM=="linux"
 elseif $TERM=="xterm"
     set t_Co=16
     set t_BE=
-    let g:airline_theme='solarized'
+    let g:airline_theme='gruvbox'
 else
-    let g:airline_theme='solarized'
+    let g:airline_theme='gruvbox'
 endif
 
 "if $TERM=="linux"
@@ -610,9 +649,6 @@ let g:NERDTreeGitStatusIndicatorMapCustom = {
 " {{{1 Rust Configs
 let g:rust_fold = 1
 
-" {{{1 Justfile
-autocmd BufNewFile,BufRead justfile set filetype=make
-
 " {{{1 Custom Commands
 "
 " Run Command
@@ -735,7 +771,21 @@ vnoremap _[ <esc>`>a]<esc>`<i[<esc>
 vnoremap _{ <esc>`>a}<esc>`<i{<esc>
 vnoremap _* <esc>`>a**<esc>`<i**<esc>
 vnoremap _+ <esc>`>a*<esc>`<i*<esc>
-vnoremap _! <esc>`>a --><esc>`<i<!-- <esc>
+vnoremap _" <esc>`>a"<esc>`<i"<esc>
+vnoremap _' <esc>`>a'<esc>`<i'<esc>
+vnoremap _` <esc>`>a`<esc>`<i`<esc>
+autocmd filetype pandoc,markdown,html vnoremap _! <esc>`>a --><esc>`<i<!-- <esc>
+
+" Anki related
+autocmd filetype yaml vnoremap _1 <esc>`>a}}<esc>`<i{{c1::<esc>
+autocmd filetype yaml vnoremap _2 <esc>`>a}}<esc>`<i{{c2::<esc>
+autocmd filetype yaml vnoremap _3 <esc>`>a}}<esc>`<i{{c3::<esc>
+
+" Wayland clipboard support
+" https://github.com/vim/vim/issues/5157
+xnoremap "+y y:call system("wl-copy", @")<cr>
+nnoremap "+p :let @"=substitute(system("wl-paste --no-newline"), '<C-v><C-m>', '', 'g')<cr>p
+nnoremap "*p :let @"=substitute(system("wl-paste --no-newline --primary"), '<C-v><C-m>', '', 'g')<cr>p
 
 " {{{1 General Configs
 set autoindent
@@ -748,6 +798,7 @@ set backspace=indent,eol,start
 set title
 
 autocmd Filetype html,htmldjango,json,javascript,typescript,typescript.tsx,css,yaml,dart setlocal tabstop=2 shiftwidth=2
+autocmd Filetype just setlocal noexpandtab
 autocmd Filetype markdown,csv,pandoc setlocal keywordprg=dict
 "autocmd Filetype markdown,csv set keywordprg=trans\ -d\ -no-ansi\ :zh
 autocmd Filetype javascript,typescript,javascript.tsx,typescript.tsx setlocal foldmethod=syntax

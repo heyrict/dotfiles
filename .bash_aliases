@@ -13,9 +13,20 @@ else
     export P_THEME="/home/heyrict/.prev_theme"
 fi
 
+# exa
+if `which exa >/dev/null`; then
+    alias ls="exa"
+    alias ll="exa -hl --git"
+    alias la="exa -a"
+fi
+
 # SSLVPN
-alias easyconnect="docker run --device /dev/net/tun --cap-add NET_ADMIN -ti -p 127.0.0.1:1080:1080 -e EC_VER=7.6.7 hagb/docker-easyconnect:cli"
-alias px8123="export https_proxy=http://127.0.0.1:8123 http_proxy=http://127.0.0.1:8123"
+#alias easyconnect="docker run --device /dev/net/tun --cap-add NET_ADMIN -ti -p 127.0.0.1:1080:1080 -e EC_VER=7.6.7 hagb/docker-easyconnect:cli"
+alias px8123="env https_proxy=http://127.0.0.1:8123 http_proxy=http://127.0.0.1:8123"
+
+# bluetooth
+alias bton="bluetoothctl power on"
+alias btoff="bluetoothctl power off"
 
 
 # Extension to git merge
@@ -24,6 +35,9 @@ alias gmnn="git merge --no-commit --no-ff"
 
 # 2048.c default theme
 alias 2048="2048 bluered"
+
+# RTSP server
+alias rtspd="rtsp-simple-server ~/.config/rtsp-simple-server.yml"
 
 ## Mimic xbox360 driver with SHANWAN Generic joystick using xboxdrv
 #alias mimic-xbox="sudo xboxdrv \
@@ -68,8 +82,11 @@ activate() {
 alias aria2cd="aria2c --enable-rpc"
 
 # vim without language server
-alias ncvim='NOCOMPL=true vim'
-alias ncnvim='NOCOMPL=true nvim'
+alias vi='nvim'
+alias nv='neovide'
+alias ncvim='NOCOMPL=1 vim'
+alias ncvi='NOCOMPL=1 nvim'
+alias ncnv='NOCOMPL=1 neovide'
 
 # gifview
 alias gifview="gifview --min-delay=10 -a"
@@ -124,8 +141,8 @@ alias ytop='if [ $BACKLIGHT = light ]; then ytop -c default-dark; else ytop; fi'
 alias eight-dark='export TERM=fbterm; export BACKLIGHT=dark; ~/MyPrograms/shell/solarized-dark-fbterm.sh; clear; echo $BACKLIGHT > $P_THEME'
 alias eight-light='export TERM=fbterm; export BACKLIGHT=light; ~/MyPrograms/shell/solarized-light-fbterm.sh; clear; echo $BACKLIGHT > $P_THEME'
 alias eight='eight-dark'
-alias bg-dark="export BACKLIGHT=dark; vim --clean ~/.config/alacritty/alacritty.yml -c '%s/\*solarized_light/\*solarized_dark/' -c 'wq'; export BAT_THEME=OneHalfDark; echo dark > $P_THEME"
-alias bg-light="export BACKLIGHT=light; vim --clean ~/.config/alacritty/alacritty.yml -c '%s/\*solarized_dark/\*solarized_light/' -c 'wq'; export BAT_THEME='Monokai Extended Light'; echo light > $P_THEME"
+alias bg-dark="export BACKLIGHT=dark; vim --clean ~/.config/alacritty/alacritty.yml -c '%s/\*gruvbox_light/\*gruvbox_dark/' -c 'wq'; export BAT_THEME=OneHalfDark; echo dark > $P_THEME"
+alias bg-light="export BACKLIGHT=light; vim --clean ~/.config/alacritty/alacritty.yml -c '%s/\*gruvbox_dark/\*gruvbox_light/' -c 'wq'; export BAT_THEME='Monokai Extended Light'; echo light > $P_THEME"
 
 if [ -f $P_THEME ]; then
   if [ `cat $P_THEME` = light ]; then
@@ -191,9 +208,9 @@ alias backlight_off="sleep 1; xset dpms force off"
 
 set_brightness() {
     if [ $# -eq 0 ]; then
-        vim /sys/class/backlight/intel_backlight/brightness
+        vim /sys/class/backlight/amdgpu_bl0/brightness
     else
-        echo "$1" > /sys/class/backlight/intel_backlight/brightness
+        echo "$1" > /sys/class/backlight/amdgpu_bl0/brightness
     fi
 }
 #show_brightness(){
@@ -201,7 +218,7 @@ set_brightness() {
 #}
 
 # battery preference
-alias show_capacity='echo $(cat /sys/class/power_supply/BAT1/capacity)%;'
+alias show_capacity='echo $(cat /sys/class/power_supply/BAT0/capacity)%;'
 
 # Change opacity of alacritty
 altrans() {

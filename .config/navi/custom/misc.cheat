@@ -51,7 +51,7 @@ if [ -f ~/.prev_theme ]; then
 fi
 if [ $_comment = off ]; then _query_params=${query_params}Q; fi
 if [ $_highlight = off ]; then _query_params=${query_params}T; fi
-curl cht.sh/<lang_or_cmd>/`echo "<question>" | tr " " "+"`$_query_params | less -R
+curl cht.sh/<lang_or_cmd>/`echo "<question>" | tr " " "+"`"?"$_query_params
 unset _index _comment _highlight _query_params
 
 $ lang_or_cmd: if [ ! -f ~/.cache/cht-sh-list ]; then curl cht.sh/:list > ~/.cache/cht-sh-list; fi; cat ~/.cache/cht-sh-list
