@@ -24,7 +24,7 @@ ip addr | grep inet | sed "s/^ *//" | cut -d" " -f 1,2 | awk '{printf "\033[1m%-
 
 % sys.file-descriptor.increase
 
-% Increase maximum amount of available file descriptor
+# Increase maximum amount of available file descriptor
 sudo sysctl -w fs.file-max=1000000
 
 

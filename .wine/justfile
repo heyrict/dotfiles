@@ -2,7 +2,7 @@ ROOT := "/home/heyrict/.wine"
 HOME := ROOT + "/drive_c/users/heyrict"
 #PROTON := "/home/heyrict/.local/share/Steam/steamapps/common/Proton 5.13"
 #PROTON_WINE64 := PROTON + "/dist/bin/wine64"
-PROTON := "/home/heyrict/.local/share/Steam/compatibilitytools.d/GE-Proton7-16"
+PROTON := "/home/heyrict/.local/share/Steam/compatibilitytools.d/GE-Proton7-18"
 PROTON_WINE64 := PROTON + "/files/bin/wine64"
 DEFAULT_ENV := 'LC_ALL=ja_JP.UTF-8 LANG=ja_JP.UTF-8 WINEPREFIX="' + ROOT + '"'
 PROTON_ENV := "DXVK_ASYNC=1 WINE_FULLSCREEN_FSR=1"
@@ -24,17 +24,11 @@ _siglus_run FILE:
 ciel_nosurge:
 	just proton_run "{{HOME}}/Games/Ciel Nosurge DX/CielnosurgeDX.exe"
 
-death_end_request:
-	just proton_run "/mnt/windows/Users/heyrict/Games/Death end reQuest/resource/bin/Application.exe"
-
 angel_beats:
 	just _siglus_run "{{ROOT}}/drive_c/Program Files (x86)/Key/AngelBeats!/SiglusEngine.exe"
 
 amayui:
 	just proton_run "/mnt/windows/Users/heyrict/Games/Eushully/AMAYUI/AGE.exe"
-
-gumao:
-	just proton_run "{{HOME}}/Games/Gumao7_12/Game.exe" 2>/dev/null
 
 th10:
 	just proton_run "{{HOME}}/Games/th10/th10.exe" >/dev/null 2>&1
@@ -52,13 +46,25 @@ kinkoi:
 	just _siglus_run "{{ROOT}}/drive_c/Program Files (x86)/SAGAPLANETS/金色ラブリッチェ/SiglusEngine.exe"
 
 kanon:
-	rlvm "{{ROOT}}/drive_c/users/heyrict/Games/KEY/KANON_SE"
+	rlvm "{{HOME}}/Games/KEY/KANON_SE"
 
 dohna:
 	just proton_run "{{ROOT}}/drive_c/Program Files (x86)/DohnaDohna/dohnadohna.exe"
 
 unless_terminalia:
-	just proton_run "{{ROOT}}/drive_c/users/heyrict/Games/Whirlpool/unless_luminalia/unless_terminalia.exe"
+	just proton_run "{{HOME}}/Games/Whirlpool/unless_luminalia/unless_terminalia.exe"
 
 vbb:
-	just proton_run "{{ROOT}}/drive_c/users/heyrict/Games/VenusBlood-BRAVE-/VBB.exe"
+	just proton_run "{{HOME}}/Games/VenusBlood-BRAVE-/VBB.exe"
+
+nepnin:
+	just proton_run "{{HOME}}/Games/Neptunia x SENRAN KAGURA/GameData/Neptunia x SENRAN KAGURA Ninja Wars.exe"
+
+evenicle:
+	just proton_run "{{HOME}}/Games/イブニクル/Evenicle.exe"
+
+returns:
+	just proton_run "{{HOME}}/Games/Gal Gun Returns/game.exe"
+
+sistrvl:
+	just proton_run "{{HOME}}/Games/G-RJ179801-Ver1.1.3/Game.exe"

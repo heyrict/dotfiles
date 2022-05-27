@@ -4,6 +4,9 @@ HOME := "/home/heyrict/.wine32/drive_c/users/heyrict"
 run FILE:
 	cd "$(dirname '{{FILE}}')" && LC_ALL=ja_JP.UTF-8 LANG=ja_JP.UTF-8 WINEARCH=win32 WINEPREFIX="{{ROOT}}" wine "$(basename '{{FILE}}')"
 
+kill:
+	LC_ALL=ja_JP.UTF-8 LANG=ja_JP.UTF-8 WINEARCH=win32 WINEPREFIX="{{ROOT}}" wineserver -k
+
 reverse:
 	just run "{{HOME}}/Games/era/eraReverse1214/Emuera1824+v1.exe"
 
@@ -11,7 +14,7 @@ syokusyu:
 	just run "{{HOME}}/Games/era/syokusyu1150/Emuera1824+v10.exe"
 
 theworld:
-	just run "{{HOME}}/Games/era/eraTW4840/Emuera1824+v11+webp+test+fix.exe"
+	just run "{{HOME}}/Games/era/eraTW4842/Emuera1824+v11+webp+test+fix.exe"
 
 k:
 	just run "{{HOME}}/Games/era/eratohoK1293/Emuera1824+v9.exe"
@@ -22,5 +25,5 @@ rsyokusyu:
 ymaem:
 	just run "{{HOME}}/Games/era/eraYMAEM4263/Emuera1824+v11+webp+test+fix.exe"
 
-gvt:
-	just run "{{HOME}}/Games/era/eraGVT220121/Emuera1824+v10.exe"
+awt:
+	just run "{{HOME}}/Games/era/eraAWT1004/Emuera1824+v5.exe"

@@ -177,8 +177,10 @@ manpath+=/usr/local/texlive/2021/texmf-dist/doc/man
 infopath+=/usr/local/texlive/2021/texmf-dist/doc/info
 path+=/usr/local/texlive/2021/bin/x86_64-linux
 
-## Anki {{{2
+## XWayland and Wayland related {{{2
 export ANKI_WAYLAND=1
+export MOZ_ENABLE_WAYLAND=1
+export WINIT_X11_SCALE_FACTOR=1 # No upscaling in XWayland
 
 ## Nvm {{{2
 export NVM_DIR="$HOME/.nvm"
@@ -253,9 +255,6 @@ export LS_COLORS="$LS_COLORS:ow=1;36"
 
 ## Navi {{{2
 export NAVI_PATH=~/.config/navi/custom
-
-## Firefox {{2
-export MOZ_ENABLE_WAYLAND=1
 
 ## Veloren {{{2
 export VELOREN_ASSETS=/usr/share/veloren
