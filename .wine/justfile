@@ -68,3 +68,6 @@ returns:
 
 sistrvl:
 	just proton_run "{{HOME}}/Games/G-RJ179801-Ver1.1.3/Game.exe"
+
+testament:
+	just proton_run drive_c/users/heyrict/Games/Test/Testament/testament.exe
