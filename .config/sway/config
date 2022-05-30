@@ -151,25 +151,28 @@ bindsym $mod+Shift+q kill
 set $launch_mode Rofi: DRun Kao/Emoji Pow Combi = dIce
 mode "$launch_mode" {
     # :drun (bash -e "{cmd}; read -n 1 -s ")
-    bindsym d mode "default"; exec --no-startup-id "rofi -show drun"
+    bindsym d mode "default"; exec --no-startup-id "wofi --show drun"
 
     # :ssh
-    #bindsym s mode "default"; exec --no-startup-id "rofi -show ssh"
+    #bindsym s mode "default"; exec --no-startup-id "wofi --show ssh"
 
     # :run
-    bindsym r mode "default"; exec --no-startup-id "_res=\\"$(rofi -show run)\\"; if [ -n \\"$_res\\" ]; then notify-send Result $_res; fi"
+    bindsym r mode "default"; exec --no-startup-id "_res=\\"$(wofi --show run)\\"; if [ -n \\"$_res\\" ]; then notify-send Result $_res; fi"
+
+    # :window
+    bindsym w mode "default"; exec --no-startup-id "~/.config/rofi/switch-window.sh"
 
     # :ssh
     bindsym f mode "default"; exec --no-startup-id firefox
 
     # :combi
-    bindsym c mode "default"; exec --no-startup-id "rofi -show combi"
+    bindsym c mode "default"; exec --no-startup-id "wofi --show combi"
 
     # :keys
-    bindsym y mode "default"; exec --no-startup-id "rofi -show keys"
+    bindsym y mode "default"; exec --no-startup-id "wofi --show keys"
 
     # :calc
-    bindsym equal mode "default"; exec --no-startup-id '_exp="$(rofi -dmenu -i -p calc -lines 0)"; notify-send "$_exp" "= $(echo "$_exp" | bc -l)"'
+    bindsym equal mode "default"; exec --no-startup-id '_exp="$(wofi --dmenu -i -p calc -lines 0)"; notify-send "$_exp" "= $(echo "$_exp" | bc -l)"'
 
     ## rofi-theme-selector
     #bindsym t mode "default"; exec --no-startup-id "rofi-theme-selector"
@@ -184,7 +187,7 @@ mode "$launch_mode" {
     bindsym p mode "default"; exec --no-startup-id "~/.config/sway/scripts/powermenu"
 
     # rustdice
-    bindsym i mode "default"; exec --no-startup-id '_exp="$(rofi -dmenu -i -p dice -lines 0)"; notify-send "$(rustdice "$_exp")" '
+    bindsym i mode "default"; exec --no-startup-id '_exp="$(wofi --dmenu -i -p dice -lines 0)"; notify-send "$(rustdice "$_exp")" '
 
     # navi
     bindsym g mode "default"; exec --no-startup-id "alacritty -t 'navi | float' -o window.dimensions.columns=150 -o window.dimensions.lines=38 -e bash -c 'navi && read -t60'"
