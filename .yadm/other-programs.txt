@@ -1,37 +1,24 @@
 /home/heyrict/Programs/
+├── ariang.html
 ├── ascf
+├── battery-notify
+│   ├── alert.mp3
+│   ├── battery-critical.png
+│   ├── battery-low.png
+│   ├── battery-notify.sh
+│   ├── LICENSE
+│   └── README.md
 ├── bin
 │   ├── ascf -> ../ascf
-│   ├── graphql-playground -> ../GraphqlPlayground/graphql-playground-electron-1.8.10-x86_64.AppImage
-│   ├── hasura
-│   ├── html2text -> ../html2text/html2text.py
-│   ├── servefiles-cia -> ../FBI/servefiles/servefiles.py
-│   ├── Slicer -> ../Slicer-4.11.0-2020-04-30-linux-amd64/Slicer
-│   └── tokei
-├── chineseocr_lite
-│   ├── android_demo
-│   ├── angle_class
-│   ├── apphelper
-│   ├── application
-│   ├── app.py
-│   ├── config.py
-│   ├── crnn
-│   ├── dbnet
-│   ├── Dockerfile
-│   ├── flask_app.py
-│   ├── LICENSE
-│   ├── model.py
-│   ├── models
-│   ├── ncnn_project
-│   ├── onnx
-│   ├── psenet
-│   ├── README.md
-│   ├── requirements.txt
-│   ├── static
-│   ├── templates
-│   ├── test_imgs
-│   ├── utils.py
-│   └── vertical_text_fonts
+│   ├── go-mtpfs -> ../go-mtpfs.x86_64
+│   ├── ludusavi -> ../ludusavi
+│   ├── protontricks -> ../protontricks
+│   ├── replaykit -> ../replaykit
+│   ├── rpcs3 -> ../rpcs3/rpcs3-v0.0.22-13782-26425375_linux64.AppImage
+│   ├── rtsp-simple-server -> ../rtsp-simple-server
+│   ├── send-to-kodi.sh -> ../send-to-kodi.sh
+│   ├── sndrec -> ../sndcpy/sndrec
+│   └── tun2socks -> ../tun2socks-linux-amd64
 ├── FBI
 │   ├── buildtools
 │   ├── LICENSE.txt
@@ -41,28 +28,41 @@
 │   ├── romfs
 │   ├── servefiles
 │   └── source
-├── GraphqlPlayground
-│   └── graphql-playground-electron-1.8.10-x86_64.AppImage
-├── hosts
-│   ├── hosts-files
-│   ├── LICENSE
-│   └── README.md
-├── mitmproxy-resource-override
-│   ├── LICENSE.md
-│   ├── mitmResourceOverride.py
-│   ├── __pycache__
-│   └── README.md
-├── proton
-│   ├── proton_5.13
-│   └── proton_6.3
+├── go-mtpfs.x86_64
+├── graphql-playground-electron-1.8.10-x86_64.AppImage
+├── ludusavi
+├── noeggs
+├── protontricks
+├── replaykit
 ├── rpcs3
-│   └── rpcs3-v0.0.13-11371-7a015b6f_linux64.AppImage
-└── ventoy-1.0.15
+│   ├── rpcs3-v0.0.22-13650-345bda69_linux64.AppImage
+│   └── rpcs3-v0.0.22-13782-26425375_linux64.AppImage
+├── rtsp-simple-server
+├── send-to-kodi.sh
+├── sndcpy
+│   ├── sndcpy
+│   └── sndrec
+├── steam_plus
+│   ├── Exit.sh
+│   ├── libe_sqlite3.so
+│   ├── libHarfBuzzSharp.so
+│   ├── libSkiaSharp.so
+│   ├── Steam++
+│   ├── Steam++.ico
+│   └── Steam++.sh
+├── tun2socks-linux-amd64
+└── ventoy-1.0.44
     ├── boot
     ├── CreatePersistentImg.sh
     ├── log.txt
+    ├── plugin
+    ├── README
     ├── tool
     ├── ventoy
-    └── Ventoy2Disk.sh
+    ├── Ventoy2Disk.ini
+    ├── Ventoy2Disk.sh
+    ├── VentoyWebDeepin.sh
+    ├── VentoyWeb.sh
+    └── WebUI
 
-33 directories, 32 files
+17 directories, 48 files

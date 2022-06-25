@@ -292,7 +292,7 @@ esac
 # - m: Multimedia
 # - u: Mount point
 # - t: /tmp
-export NNN_BMS="w:~/MyPrograms;c:~/pandoc_markdown/markdown/CliMed;m:/mnt/LENOVO/Eric/mov;u:/run/media;t:/tmp"
+export NNN_BMS="w:~/MyPrograms;c:~/pandoc_markdown/CliMed;m:/mnt/windows;u:/run/media;t:/tmp"
 
 # Light theme
 export NNN_COLORS='5234'

@@ -175,3 +175,25 @@ swaymsg output <monitor> mode <resolution> && brightnessctl set `brightnessctl g
 
 $ monitor: swaymsg -t get_outputs | jq '.[].name'
 $ resolution: swaymsg -t get_outputs | jq '(.[] | select(.name == <monitor>)).modes[] | ((.width | tostring) + "x" + (.height | tostring)) + "@" + ((.refresh / 1000) | tostring) + "Hz"'
+
+
+; ============================== IPtables settings ==============================
+
+% sys.iptables.cleanup, sys.redsocks.cleanup
+
+# Clean iptables
+
+sudo iptables -F
+sudo iptables -t nat -F
+sudo iptables -t mangle -F
+sudo iptables -X
+sudo systemctl stop iptables redsocks2
+
+
+% sys.redsocks2.start
+
+# Start redsocks service
+
+sudo systemctl restart redsocks2 iptables
+sudo iptables-restore /etc/iptables/redsocks2.rules
+echo "Potential query loop is expected. Try adding local ip to /etc/iptables/redsocks2.rules then."

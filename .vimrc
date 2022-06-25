@@ -767,6 +767,7 @@ set encoding=utf-8 fileencodings=ucs-bom,utf-8,shift-jis,cp932,cp936
 
 " {{{1 Custom filetype autocommands
 autocmd filetype typescript,javascript,typescript.jsx,javascript.jsx,python setlocal foldmethod=marker
+autocmd BufNewFile,BufRead *.ERH,*.ERB set filetype=freebasic
 
 " {{{1 Netrw
 let g:netrw_browsex_viewer= "xdg-open"

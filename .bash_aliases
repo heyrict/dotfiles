@@ -137,8 +137,8 @@ alias hiber="wifi off; sudo systemctl hibernate"
 # aria2c bt trackers
 alias fetch_trackers='sed -i "s@^\(bt-tracker=\).*@\1$(curl -s -L https://raw.githubusercontent.com/ngosang/trackerslist/master/trackers_all_ip.txt | sed "/^\s*$/d" | tr "\n" ",")@" ~/.aria2/aria2.conf'
 
-# Colored ytop
-alias ytop='if [ $BACKLIGHT = light ]; then ytop -c default-dark; else ytop; fi'
+# Colored bottom
+alias btm='if [ $BACKLIGHT = light ]; then btm --color gruvbox-light; else btm --color gruvbox; fi'
 
 # 8-bit color for fbterm
 alias eight-dark='export TERM=fbterm; export BACKLIGHT=dark; ~/MyPrograms/shell/solarized-dark-fbterm.sh; clear; echo $BACKLIGHT > $P_THEME'

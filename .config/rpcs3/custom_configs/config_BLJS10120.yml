@@ -62,6 +62,7 @@ VFS:
   Initialize Directories: true
   Limit disk cache size: false
   Disk cache maximum size (MB): 5120
+  Empty /dev_hdd0/tmp/: true
 Video:
   Renderer: Vulkan
   Resolution: 1280x720

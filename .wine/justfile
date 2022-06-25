@@ -57,17 +57,14 @@ unless_terminalia:
 vbb:
 	just proton_run "{{HOME}}/Games/VenusBlood-BRAVE-/VBB.exe"
 
-nepnin:
-	just proton_run "{{HOME}}/Games/Neptunia x SENRAN KAGURA/GameData/Neptunia x SENRAN KAGURA Ninja Wars.exe"
-
 evenicle:
 	just proton_run "{{HOME}}/Games/イブニクル/Evenicle.exe"
 
-returns:
-	just proton_run "{{HOME}}/Games/Gal Gun Returns/game.exe"
+pmpk:
+	miniserve "{{HOME}}/Games/pmpk055/www"
 
-sistrvl:
-	just proton_run "{{HOME}}/Games/G-RJ179801-Ver1.1.3/Game.exe"
+kirasarafe:
+	just proton_run "{{HOME}}/Games/pandadanpa/魔法少女きららとさららFE/kirasarafe.exe"
 
-testament:
-	just proton_run drive_c/users/heyrict/Games/Test/Testament/testament.exe
+bullet_girls:
+	just proton_run "{{HOME}}/Games/Bullet Girls Phantasia/game.exe"

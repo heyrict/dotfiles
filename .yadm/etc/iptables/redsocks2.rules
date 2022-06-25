@@ -1,0 +1,36 @@
+# Transparent SOCKS proxy
+# See: http://darkk.net.ru/redsocks/
+
+*nat
+:PREROUTING ACCEPT [0:0]
+:INPUT ACCEPT [0:0]
+:OUTPUT ACCEPT [0:0]
+:POSTROUTING ACCEPT [0:0]
+:REDSOCKS - [0:0]
+
+# Redirect all output through redsocks
+-A OUTPUT -p tcp -j REDSOCKS
+-A OUTPUT -p udp -j REDSOCKS
+
+# Whitelist LANs and some other reserved addresses.
+# https://en.wikipedia.org/wiki/Reserved_IP_addresses#Reserved_IPv4_addresses
+-A REDSOCKS -d 0.0.0.0/8 -j RETURN
+-A REDSOCKS -d 10.0.0.0/8 -j RETURN
+-A REDSOCKS -d 127.0.0.0/8 -j RETURN
+-A REDSOCKS -d 169.254.0.0/16 -j RETURN
+-A REDSOCKS -d 172.16.0.0/12 -j RETURN
+-A REDSOCKS -d 192.168.0.0/16 -j RETURN
+-A REDSOCKS -d 224.0.0.0/4 -j RETURN
+-A REDSOCKS -d 240.0.0.0/4 -j RETURN
+
+# Whitelist remote server
+-A REDSOCKS -d 159.203.93.54 -j RETURN
+-A REDSOCKS -d 8.8.8.8 -j RETURN
+# Whitelist local ip
+-A REDSOCKS -d 121.228.196.98 -j RETURN
+
+# Redirect everything else to redsocks port
+-A REDSOCKS -p tcp -j REDIRECT --to-ports 31338
+-A REDSOCKS -p udp -j REDIRECT --to-ports 10053
+
+COMMIT
