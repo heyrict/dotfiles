@@ -14,27 +14,27 @@ call plug#begin('~/.vim/plugged')
 Plug 'tpope/vim-fugitive'
 
 " Auto Complete
-if getenv("NOCOMPL") == v:null
-  "Plug 'Valloric/YouCompleteMe'
-  "Plug 'Shougo/deoplete.nvim'
-  "Plug 'tbodt/deoplete-tabnine'
-  Plug 'neoclide/coc.nvim', {'branch': 'release'}
-endif
+"if getenv("NOCOMPL") == v:null
+"  "Plug 'Valloric/YouCompleteMe'
+"  "Plug 'Shougo/deoplete.nvim'
+"  "Plug 'tbodt/deoplete-tabnine'
+"  Plug 'neoclide/coc.nvim', {'branch': 'release'}
+"endif
 
 "Plug 'zxqfl/tabnine-vim'
 "Plug 'davidhalter/jedi-vim'
 "Plug 'maralla/completor.vim'
 "Plug 'artur-shaik/vim-javacomplete2'
 " Previm
-Plug 'kannokanno/previm'
+"Plug 'kannokanno/previm'
 " Tlist
 "Plug 'taglist-plus'
 Plug 'majutsushi/tagbar', { 'on': ['TlistToggle', 'TlistOpen', 'TagbarToggle'] }
 " STL references
 "Plug 'stlrefvim'
 " autoswitch fcitx-remote
-let g:fcitx5_remote = '/usr/bin/fcitx5-remote'
-Plug 'lilydjwg/fcitx.vim'
+"let g:fcitx5_remote = '/usr/bin/fcitx5-remote'
+"Plug 'lilydjwg/fcitx.vim'
 " NERD_tree
 Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
@@ -47,7 +47,7 @@ if has('nvim')
     Plug 'IndianBoy42/tree-sitter-just'
 else
     " .qml files
-    Plug 'peterhoeg/vim-qml'
+    "Plug 'peterhoeg/vim-qml'
     " kivy
     "Plug 'farfanoide/vim-kivy'
 
@@ -98,7 +98,7 @@ Plug 'Konfekt/FastFold'
 "Plug 'jceb/vim-orgmode'
 "Plug 'tpope/vim-speeddating'
 " Organized Text
-Plug 'vimoutliner/vimoutliner'
+"Plug 'vimoutliner/vimoutliner'
 " Task warrior
 "Plug 'farseer90718/vim-taskwarrior'
 
