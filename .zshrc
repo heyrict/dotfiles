@@ -108,11 +108,8 @@ fi
 export ARCHFLAGS="-arch x86_64"
 
 # History {{{1
-if [ $SSH_CONNECTION ]; then
-  HISTFILE=~/.histfile_$SSH_SESSION
-else
-  HISTFILE=~/.histfile
-fi
+HISTFILE=~/.histfile
+
 HISTSIZE=1000
 SAVEHIST=1000
 setopt EXTENDED_HISTORY
@@ -164,7 +161,7 @@ typeset -U path
 export -TU INFOPATH infopath
 export -TU CLASSPATH classpath
 
-path=('/usr/local/bin' '/usr/bin' $path)
+path=('/usr/local/bin' '/usr/bin' '/home/heyrict/bin' '/home/heyrict/.local/bin' $path)
 manpath=('/usr/local/man' '/usr/share/man' $manpath)
 
 ## Texlive {{{2

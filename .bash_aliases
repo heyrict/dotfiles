@@ -13,6 +13,9 @@ else
     export P_THEME="/home/yrc/.prev_theme"
 fi
 
+# Bat
+alias bat="batcat"
+
 # Extension to git merge
 alias gmn="git merge --no-commit"
 alias gmnn="git merge --no-commit --no-ff"
@@ -33,8 +36,9 @@ alias gpoat="git push origin --all --tags"
 alias grb="git rebase"
 alias grbi="git rebase -i"
 alias gst="git status"
-alias gsta="git stage push"
+alias gsta="git stash push"
 alias gup="git pull"
+alias ga="git add"
 
 ## Mimic xbox360 driver with SHANWAN Generic joystick using xboxdrv
 #alias mimic-xbox="sudo xboxdrv \

@@ -6,3 +6,7 @@
 .moc/cache
 .moc/pid
 .moc/playlist.m3u
+
+# Secret files
+.netrc
+.ssh
