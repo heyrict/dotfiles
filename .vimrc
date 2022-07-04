@@ -47,7 +47,7 @@ if has('nvim')
     Plug 'IndianBoy42/tree-sitter-just'
 else
     " .qml files
-    Plug 'peterhoeg/vim-qml'
+    "Plug 'peterhoeg/vim-qml'
     " kivy
     "Plug 'farfanoide/vim-kivy'
 
@@ -98,7 +98,7 @@ Plug 'Konfekt/FastFold'
 "Plug 'jceb/vim-orgmode'
 "Plug 'tpope/vim-speeddating'
 " Organized Text
-Plug 'vimoutliner/vimoutliner'
+"Plug 'vimoutliner/vimoutliner'
 " Task warrior
 "Plug 'farseer90718/vim-taskwarrior'
 

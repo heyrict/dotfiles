@@ -4,6 +4,9 @@ HOME := "/home/heyrict/.wine32/drive_c/users/heyrict"
 run FILE:
 	cd "$(dirname '{{FILE}}')" && LC_ALL=ja_JP.UTF-8 LANG=ja_JP.UTF-8 WINEARCH=win32 WINEPREFIX="{{ROOT}}" wine "$(basename '{{FILE}}')"
 
+winetricks +ARGS="":
+	LC_ALL=ja_JP.UTF-8 LANG=ja_JP.UTF-8 WINEARCH=win32 WINEPREFIX="{{ROOT}}" winetricks {{ARGS}}
+
 kill:
 	LC_ALL=ja_JP.UTF-8 LANG=ja_JP.UTF-8 WINEARCH=win32 WINEPREFIX="{{ROOT}}" wineserver -k
 
@@ -23,7 +26,10 @@ rsyokusyu:
 	just run "{{HOME}}/Games/era/rsyokusyuV322/Emuera1823beta003.exe"
 
 ymaem:
-	just run "{{HOME}}/Games/era/eraYMAEM4263/Emuera1824+v11+webp+test+fix.exe"
+	just run "{{HOME}}/Games/era/eraYMAEM4269/Emuera1824+v13.exe"
 
 awt:
 	just run "{{HOME}}/Games/era/eraAWT1004/Emuera1824+v5.exe"
+
+akumaMaid:
+	just run "{{HOME}}/Games/era/eraAkumaMaid 2022_06_22/Emuera1824+v13.exe"

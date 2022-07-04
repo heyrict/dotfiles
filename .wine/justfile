@@ -2,7 +2,7 @@ ROOT := "/home/heyrict/.wine"
 HOME := ROOT + "/drive_c/users/heyrict"
 #PROTON := "/home/heyrict/.local/share/Steam/steamapps/common/Proton 5.13"
 #PROTON_WINE64 := PROTON + "/dist/bin/wine64"
-PROTON := "/home/heyrict/.local/share/Steam/compatibilitytools.d/GE-Proton7-18"
+PROTON := "/home/heyrict/.local/share/Steam/compatibilitytools.d/GE-Proton7-21"
 PROTON_WINE64 := PROTON + "/files/bin/wine64"
 DEFAULT_ENV := 'LC_ALL=ja_JP.UTF-8 LANG=ja_JP.UTF-8 WINEPREFIX="' + ROOT + '"'
 PROTON_ENV := "DXVK_ASYNC=1 WINE_FULLSCREEN_FSR=1"
@@ -68,3 +68,6 @@ kirasarafe:
 
 bullet_girls:
 	just proton_run "{{HOME}}/Games/Bullet Girls Phantasia/game.exe"
+
+nier_replicant:
+	just proton_run "/run/media/heyrict/SG20E/pc/NieR Replicant ver.1.22474487139/NieR Replicant ver.1.22474487139.exe"

@@ -179,10 +179,8 @@ $ resolution: swaymsg -t get_outputs | jq '(.[] | select(.name == <monitor>)).mo
 
 ; ============================== IPtables settings ==============================
 
-% sys.iptables.cleanup, sys.redsocks.cleanup
-
+% sys.redsocks2.stop
 # Clean iptables
-
 sudo iptables -F
 sudo iptables -t nat -F
 sudo iptables -t mangle -F
@@ -190,10 +188,17 @@ sudo iptables -X
 sudo systemctl stop iptables redsocks2
 
 
+% sys.redsocks2.reload-rules
+# Reload iptable rules for redsocks2
+sudo iptables -F
+sudo iptables -t nat -F
+sudo iptables -t mangle -F
+sudo iptables -X
+sudo iptables-restore /etc/iptables/redsocks2.rules
+
+
 % sys.redsocks2.start
-
 # Start redsocks service
-
 sudo systemctl restart redsocks2 iptables
 sudo iptables-restore /etc/iptables/redsocks2.rules
 echo "Potential query loop is expected. Try adding local ip to /etc/iptables/redsocks2.rules then."
