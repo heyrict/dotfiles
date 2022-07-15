@@ -271,6 +271,9 @@ augroup end
 autocmd BufNewFile,BufRead *.txt,*.md,*.tex let coc_disabled=0
 autocmd FileType python let b:coc_root_patterns = ['.git', '.env']
 
+" Ltex spell check
+let g:coc_filetype_map = {'tex': 'latex'}
+
 " {{{1 Color Scheme Configs
 
 " {{{2 Solarized Color Scheme Configs

@@ -2,15 +2,12 @@ ROOT := "/home/heyrict/.wine"
 HOME := ROOT + "/drive_c/users/heyrict"
 #PROTON := "/home/heyrict/.local/share/Steam/steamapps/common/Proton 5.13"
 #PROTON_WINE64 := PROTON + "/dist/bin/wine64"
-PROTON := "/home/heyrict/.local/share/Steam/compatibilitytools.d/GE-Proton7-21"
+PROTON := "/home/heyrict/.local/share/Steam/compatibilitytools.d/GE-Proton7-24"
 PROTON_WINE64 := PROTON + "/files/bin/wine64"
 DEFAULT_ENV := 'LC_ALL=ja_JP.UTF-8 LANG=ja_JP.UTF-8 WINEPREFIX="' + ROOT + '"'
-PROTON_ENV := "DXVK_ASYNC=1 WINE_FULLSCREEN_FSR=1"
+PROTON_ENV := "DXVK_ASYNC=1 WINE_FULLSCREEN_FSR=1 WINE_FULLSCREEN_FSR_MODE=performance"
 EXTRA_ENV := ""
 ALPHAROMDIE := HOME + "/Tools/AlphaROMdiE/AlphaROMdiE.exe"
-
-# Fake resolution for wine
-#WINE_FULLSCREEN_FAKE_CURRENT_RES=
 
 run FILE:
 	cd "$(dirname '{{FILE}}')" && env {{DEFAULT_ENV}} {{PROTON_ENV}} {{EXTRA_ENV}} wine64 "$(basename '{{FILE}}')"
