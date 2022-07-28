@@ -5,7 +5,7 @@
 # /dev/nvme0n1p6 Arch linux
 UUID="6461af49-9baa-4809-8ae3-286f88cdc3fe"	/	ext4	defaults,noatime,nodiratime,errors=remount-ro
 # /dev/nvme0n1p1 Efi boot partition
-UUID="3217-71AE"	/efi	vfat	defaults,noatime,nodiratime
+UUID="3217-71AE"	/boot	vfat	defaults,noatime,nodiratime
 
 # /dev/nvme0n1p3 Windows C:\ partition
 UUID="D8FA476DFA4746CA"	/mnt/windows	ntfs	defaults,noatime,nodiratime,nosuid

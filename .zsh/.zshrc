@@ -6,6 +6,10 @@ fi
 
 # Language and IME {{{1
 export LANG=en_US.UTF-8
+export GTK_IM_MODULE=fcitx
+export QT_IM_MODULE=fcitx
+export XMODIFIERS=@im=fcitx
+export SDL_IM_MODULE=fcitx
 
 # The following lines were added by compinstall {{{1
 fpath=(${ZDOTDIR:-$HOME/.zsh}/completion $fpath)
@@ -193,9 +197,9 @@ export JAVA_HOME=/usr/lib/jvm/java-18-openjdk
 classpath=(. $JAVA_HOME/lib/dt.jar $JAVA_HOME/lib/tools.jar)
 path=($JAVA_HOME/bin $JAVA_HOME/jre/bin $path)
 ## Android {{{2
-export ANDROID_HOME="$HOME/Android"
-export ANDROIDSDK="$HOME/Android"
-export APP_ANDROID_SDK_PATH="$HOME/Android"
+export ANDROID_SDK_ROOT="/opt/android-sdk"
+export ANDROID_HOME="/opt/android-sdk"
+path+=$ANDROID_SDK_ROOT/platform-tools
 
 ## Rust {{{2
 export RUSTUP_DIST_SERVER=https://mirrors.ustc.edu.cn/rust-static

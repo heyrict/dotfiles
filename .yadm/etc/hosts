@@ -5,7 +5,8 @@
 127.0.0.1 heyrict
 ::1	localhost ip6-localhost ip6-loopback
 
-159.203.93.54	pxy.cindythink.com netdisk.cindythink.com www.cindythink.com static.cindythink.com
+159.203.93.54	pxy.cindythink.com 
+149.28.46.74	static.cindythink.com www.cindythink.com
 
 
 # github
@@ -25,8 +26,8 @@
 104.21.10.198	nyaa.iss.one
 
 # Steam
-#23.208.45.68	steamcommunity.com
-#23.52.160.142	store.steampowered.com
+104.102.129.112	steamcommunity.com
+23.50.124.114	store.steampowered.com
 
 # Cloudflare
 

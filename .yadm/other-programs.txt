@@ -17,8 +17,7 @@
 │   ├── rpcs3 -> ../rpcs3/rpcs3-v0.0.22-13782-26425375_linux64.AppImage
 │   ├── rtsp-simple-server -> ../rtsp-simple-server
 │   ├── send-to-kodi.sh -> ../send-to-kodi.sh
-│   ├── sndrec -> ../sndcpy/sndrec
-│   └── tun2socks -> ../tun2socks-linux-amd64
+│   └── sndrec -> ../sndcpy/sndrec
 ├── FBI
 │   ├── buildtools
 │   ├── LICENSE.txt
@@ -42,15 +41,6 @@
 ├── sndcpy
 │   ├── sndcpy
 │   └── sndrec
-├── steam_plus
-│   ├── Exit.sh
-│   ├── libe_sqlite3.so
-│   ├── libHarfBuzzSharp.so
-│   ├── libSkiaSharp.so
-│   ├── Steam++
-│   ├── Steam++.ico
-│   └── Steam++.sh
-├── tun2socks-linux-amd64
 └── ventoy-1.0.44
     ├── boot
     ├── CreatePersistentImg.sh
@@ -65,4 +55,4 @@
     ├── VentoyWeb.sh
     └── WebUI
 
-17 directories, 48 files
+16 directories, 39 files
