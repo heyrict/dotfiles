@@ -33,3 +33,6 @@ awt:
 
 akumaMaid:
 	just run "{{HOME}}/Games/era/eraAkumaMaid 2022_06_22/Emuera1824+v13.exe"
+
+t:
+	just run "{{HOME}}/Games/era/eratohoT3300/Emuera1824.exe"

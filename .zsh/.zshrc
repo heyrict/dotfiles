@@ -177,9 +177,9 @@ path=('/usr/local/bin' '/usr/bin' $path)
 manpath=('/usr/local/man' '/usr/share/man' $manpath)
 
 ## Texlive {{{2
-manpath+=/usr/local/texlive/2021/texmf-dist/doc/man
-infopath+=/usr/local/texlive/2021/texmf-dist/doc/info
-path+=/usr/local/texlive/2021/bin/x86_64-linux
+manpath+=/usr/local/texlive/2022/texmf-dist/doc/man
+infopath+=/usr/local/texlive/2022/texmf-dist/doc/info
+path+=/usr/local/texlive/2022/bin/x86_64-linux
 
 ## XWayland and Wayland related {{{2
 export ANKI_WAYLAND=1

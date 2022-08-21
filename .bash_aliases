@@ -13,6 +13,33 @@ else
     export P_THEME="/home/heyrict/.prev_theme"
 fi
 
+# fmriprep
+function fmriprep-docker {
+    local data=$(realpath $1)
+    local out=$(realpath $2)
+    shift 2
+    docker run -it --rm \
+        -u $(id -u) \
+        -v $data:/data -v $out:/out \
+        -v /tmp/fmriprep-work:/work \
+        -v /home/heyrict/.local/share/freesurfer:/freesurfer \
+        nipreps/fmriprep:22.0.0 /data /out $@ \
+        -w /work --fs-license-file /freesurfer/license.txt
+}
+
+function fmriprep-docker-bash {
+    local data=$(realpath $1)
+    local out=$(realpath $2)
+    shift 2
+    docker run -it --rm \
+        --entrypoint /bin/bash \
+        -u $(id -u) \
+        -v $data:/data -v $out:/out \
+        -v /tmp/fmriprep-work:/work \
+        -v /home/heyrict/.local/share/freesurfer:/freesurfer \
+        nipreps/fmriprep:22.0.0 $@
+}
+
 # exa
 if `which exa >/dev/null`; then
     alias ls="exa"

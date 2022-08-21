@@ -202,3 +202,19 @@ sudo iptables-restore /etc/iptables/redsocks2.rules
 sudo systemctl restart redsocks2 iptables
 sudo iptables-restore /etc/iptables/redsocks2.rules
 echo "Potential query loop is expected. Try adding local ip to /etc/iptables/redsocks2.rules then."
+
+
+% sys.ipsec.start
+# Start ipsec VPN
+sudo ipsec start
+sleep 2
+sudo ipsec up "<config>"
+
+$ config: echo -e "sjtu-student"
+
+
+% sys.ipsec.stop
+@ sys.ipsec.start
+# Stop ipsec VPN
+sudo ipsec down "<config>"
+sudo ipsec stop
