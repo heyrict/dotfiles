@@ -178,7 +178,7 @@ mode "$launch_mode" {
     #bindsym t mode "default"; exec --no-startup-id "rofi-theme-selector"
 
     # :emoji
-    bindsym e mode "default"; exec --no-startup-id "rofimoji"
+    bindsym e mode "default"; exec --no-startup-id "/home/heyrict/pyenv/env/bin/rofimoji"
 
     # :kaomoji
     bindsym k mode "default"; exec --no-startup-id "~/.config/rofi/kaomoji/kaomoji.sh"
@@ -500,7 +500,18 @@ for_window [class="^yuzu |"] inhibit_idle fullscreen
 for_window [class="^RPCS3 "] inhibit_idle fullscreen
 for_window [class="^RetroArch"] inhibit_idle fullscreen
 
+# GTK theme workaround
+set $gnome-schema org.gnome.desktop.interface
+exec_always {
+    gsettings set $gnome-schema gtk-theme 'Nordic-darker'
+    gsettings set $gnome-schema icon-theme 'Tela-orange-dark'
+}
+
 exec ~/.config/waybar/waybar.sh
+
+exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
+# exec /usr/lib/xdg-desktop-portal -r -v & /usr/lib/xdg-desktop-portal-wlr -r
+# exec sudo modprobe v4l2loopback
 
 exec --no-startup-id fcitx5 -d
 

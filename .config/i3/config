@@ -15,68 +15,90 @@ set $mod Mod1
 # The super key
 set $sup Mod4
 
+# Use super key for moving floating windows
+floating_modifier $sup
+
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
 font pango:WenQuanYi Micro Hei 8
 
-# Styles
-set $base03   "#002b36"
-set $base02   "#073642"
-set $base01   "#586e75"
-set $base00   "#657b83"
-set $base0    "#839496"
-set $base1    "#93a1a1"
-set $base2    "#eee8d5"
-set $base3    "#fdf6e3"
-set $yellow   "#b58900"
-set $orange   "#cb4b16"
-set $red      "#dc322f"
-set $magenta  "#d33682"
-set $violet   "#6c71c4"
-set $blue     "#268bd2"
-set $cyan     "#2aa198"
-set $green    "#859900"
+# Gruvbox Colors
 
-# Material Colors
+set $gb_dark0_hard    '#1d2021'
+set $gb_dark0         '#282828'
+set $gb_dark0_soft    '#32302f'
+set $gb_dark1         '#3c3836'
+set $gb_dark2         '#504945'
+set $gb_dark3         '#665c54'
+set $gb_dark4         '#7c6f64'
+set $gb_dark4_256     '#7c6f64'
 
-set $mtr_red         "#e53935"
-set $mtr_pink        "#d81b60"
-set $mtr_purple      "#8e24aa"
-set $mtr_deep-purple "#5e35b1"
-set $mtr_indigo      "#3949ab"
-set $mtr_blue        "#1e88e5"
-set $mtr_light-blue  "#039be5"
-set $mtr_cyan        "#00acc1"
-set $mtr_teal        "#00897b"
-set $mtr_green       "#43a047"
-set $mtr_light-green "#7cb342"
-set $mtr_lime        "#c0ca33"
-set $mtr_yellow      "#fdd835"
-set $mtr_amber       "#ffb300"
-set $mtr_orange      "#fb8c00"
-set $mtr_deep-orange "#f4511e"
-set $mtr_brown       "#6d4c41"
-set $mtr_grey        "#757575"
-set $mtr_blue-gray   "#546e7a"
+set $gb_gray          '#928374'
+
+set $gb_light0_hard   '#f9f5d7'
+set $gb_light0        '#fbf1c7'
+set $gb_light0_soft   '#f2e5bc'
+set $gb_light1        '#ebdbb2'
+set $gb_light2        '#d5c4a1'
+set $gb_light3        '#bdae93'
+set $gb_light4        '#a89984'
+set $gb_light4_256    '#a89984'
+
+set $gb_bright_red       '#fb4934'
+set $gb_bright_green     '#b8bb26'
+set $gb_bright_yellow    '#fabd2f'
+set $gb_bright_blue      '#83a598'
+set $gb_bright_purple    '#d3869b'
+set $gb_bright_aqua      '#8ec07c'
+set $gb_bright_orange    '#fe8019'
+
+set $gb_neutral_red      '#cc241d'
+set $gb_neutral_green    '#98971a'
+set $gb_neutral_yellow   '#d79921'
+set $gb_neutral_blue     '#458588'
+set $gb_neutral_purple   '#b16286'
+set $gb_neutral_aqua     '#689d6a'
+set $gb_neutral_orange   '#d65d0e'
+
+set $gb_faded_red        '#9d0006'
+set $gb_faded_green      '#79740e'
+set $gb_faded_yellow     '#b57614'
+set $gb_faded_blue       '#076678'
+set $gb_faded_purple     '#8f3f71'
+set $gb_faded_aqua       '#427b58'
+set $gb_faded_orange     '#af3a03'
+
+
+set $bg_dark   "#00000000"
 
 # Colors
-# class                 border    bg        text      indicator  child_border
-client.focused          $base03   $green    $base3    $green     $green 
-client.unfocused        $base01   $base01   $base2    $base01    $base02
-client.focused_inactive $yellow   $yellow   $base2    $base01    $base02
-client.urgent           $red      $red      $base3    $base01    $base02
-client.placeholder      $base03   $base02   $base2    $base03    $base02
-client.background                 $base2
+# class                 border        bg            text         indicator      child_border
+client.focused          $gb_dark0     $gb_dark0     $gb_gray     $gb_light0     $gb_gray
+client.unfocused        $bg_dark      $bg_dark      $gb_gray     $gb_gray       $bg_dark
+client.focused_inactive $gb_dark0     $gb_dark0     $gb_gray     $gb_light0     $gb_dark3
+client.urgent           $gb_faded_red $gb_faded_red $gb_dark0    $gb_light1     $gb_faded_red
+client.placeholder      $bg_dark      $gb_dark1     $gb_gray     $gb_faded_blue $gb_dark0
+client.background                     $bg_dark
 
 # Make config floating
 for_window [class="(?i)config"] floating enable
 for_window [title="float$"] floating enable
 for_window [title="mpv$"] floating enable
-for_window [class="^PCSX2"] floating enable
+for_window [class="^Pcsx2$"] floating enable
 for_window [title="^gifview: "] floating enable
 for_window [title="^Ｋａｎｏｎ"] floating enable
 for_window [title="^QQ"] floating enable
 for_window [class="(?i)^Steam$"] floating enable
+for_window [title="^Choose a "] resize set 1200 720
+for_window [title="^Extension: .*TJDict"] floating enable
+for_window [title="^Extension: .*TJDict"] resize set 600 800
+for_window [title="^Extension: \(Aria2"] floating enable
+
+for_window [class="^(?i)emuera"] floating enable
+for_window [class="^emuera"] border pixel 0
+for_window [class="^emuera"] move position 0 -30
+for_window [class="^emuera"] floating_maximum_size 1940 x 1240
+for_window [class="^emuera"] resize set 1940 1240 30 0
 
 # Config for steam games
 for_window [class="steam_app_405900"] floating enable
@@ -112,11 +134,9 @@ bindsym $mod+F1 exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle
 bindsym $mod+F2 exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -4%
 bindsym $mod+F3 exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +4%
 
-# Use Mouse+$mod to drag floating windows to their wanted position
-floating_modifier $mod
-
 # start a terminal
 bindsym $mod+Return exec alacritty
+bindsym $mod+Shift+Return exec alacritty
 
 # look up in dict
 bindsym $mod+i exec "alacritty -t 'dict_lookup | float' -o window.dimensions.columns=72 -o window.dimensions.lines=12 -o window.position.x=200 -o window.position.y=200 -e bash -c 'sdcv -cn \\"$(xclip -o)\\" | less -R'"
@@ -128,7 +148,7 @@ bindsym $mod+Shift+q kill
 # start dmenu (a program launcher)
 #bindsym $mod+d exec dmenu_run
 
-set $launch_mode Rofi: DRun Nav Win Kao/Emoji Pow Combi = dIce
+set $launch_mode Rofi: DRun Kao/Emoji Pow Combi = dIce
 mode "$launch_mode" {
     # :drun (bash -e "{cmd}; read -n 1 -s ")
     bindsym d mode "default"; exec --no-startup-id "rofi -show drun"
@@ -152,13 +172,13 @@ mode "$launch_mode" {
     bindsym y mode "default"; exec --no-startup-id "rofi -show keys"
 
     # :calc
-    bindsym equal mode "default"; exec --no-startup-id "_exp=\\"$(rofi -dmenu -i -p calc -lines 0)\\"; notify-send \\"$_exp\\" \\"= $(echo \\"$_exp\\" | bc -l)\\" "
+    bindsym equal mode "default"; exec --no-startup-id 'rofi -show calc -modi calc -no-show-match -no-sort'
 
     ## rofi-theme-selector
     #bindsym t mode "default"; exec --no-startup-id "rofi-theme-selector"
 
     # :emoji
-    bindsym e mode "default"; exec --no-startup-id "rofimoji"
+    bindsym e mode "default"; exec --no-startup-id "/home/heyrict/pyenv/env/bin/rofimoji"
 
     # :kaomoji
     bindsym k mode "default"; exec --no-startup-id "~/.config/rofi/kaomoji/kaomoji.sh"
@@ -170,7 +190,10 @@ mode "$launch_mode" {
     bindsym i mode "default"; exec --no-startup-id "_exp=\\"$(rofi -dmenu -i -p dice -lines 0)\\"; notify-send \\"$(rustdice \\"$_exp\\")\\" "
 
     # navi
-    bindsym n mode "default"; exec --no-startup-id "alacritty -t 'navi | float' -o window.dimensions.columns=150 -o window.dimensions.lines=38 -e bash -c 'navi && read -t60'"
+    bindsym g mode "default"; exec --no-startup-id "alacritty -t 'navi | float' -o window.dimensions.columns=150 -o window.dimensions.lines=38 -e bash -c 'navi && read -t60'"
+
+    # nnn
+    bindsym n mode "default"; exec --no-startup-id "env WAYLAND_DISPLAY= alacritty --class nnn -e nnn"
 
     # back to normal: Enter or Escape or $mod+r
     bindsym q mode "default"
@@ -267,7 +290,7 @@ bindsym $mod+8 workspace number $ws8
 bindsym $mod+9 workspace number $ws9
 bindsym $mod+0 workspace number $ws10
 bindsym $mod+minus workspace number $wsminus
-bindsym $mod+plus workspace number $wsplus
+bindsym $mod+equal workspace number $wsplus
 
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace number $ws1
@@ -280,8 +303,8 @@ bindsym $mod+Shift+7 move container to workspace number $ws7
 bindsym $mod+Shift+8 move container to workspace number $ws8
 bindsym $mod+Shift+9 move container to workspace number $ws9
 bindsym $mod+Shift+0 move container to workspace number $ws10
-bindsym $mod+Shift+minus workspace number $wsminus
-bindsym $mod+Shift+plus workspace number $wsplus
+bindsym $mod+underscore move container to workspace number $wsminus
+bindsym $mod+plus move container to workspace number $wsplus
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -313,19 +336,25 @@ mode "resize" {
         bindsym 4 resize set 640 480
         bindsym 5 resize set 800 600
         bindsym 6 resize set 1024 768
+        bindsym 7 resize set 1200 900
 
         bindsym Shift+1 resize set 480 270
         bindsym Shift+2 resize set 640 360
         bindsym Shift+3 resize set 900 450
         bindsym Shift+4 resize set 1060 540
-        bindsym Shift+5 resize set 1220 630
+        bindsym Shift+5 resize set 1280 720
         bindsym Shift+6 resize set 1366 768
+        bindsym Shift+7 resize set 1600 900
 
         # same bindings, but for the arrow keys
         bindsym Left resize shrink width 10 px or 10 ppt
         bindsym Down resize grow height 10 px or 10 ppt
         bindsym Up resize shrink height 10 px or 10 ppt
         bindsym Right resize grow width 10 px or 10 ppt
+
+        # move window to other workspace
+        bindsym minus move container to workspace number $wsminus
+        bindsym equal move container to workspace number $wsplus
 
         # back to normal: Enter or Escape or $mod+r
         bindsym q mode "default"
@@ -371,6 +400,20 @@ mode "move" {
         bindsym Up    move up    10 px
         bindsym Right move right 10 px
 
+        # move window to other workspace
+        bindsym 1 move container to workspace number $ws1
+        bindsym 2 move container to workspace number $ws2
+        bindsym 3 move container to workspace number $ws3
+        bindsym 4 move container to workspace number $ws4
+        bindsym 5 move container to workspace number $ws5
+        bindsym 6 move container to workspace number $ws6
+        bindsym 7 move container to workspace number $ws7
+        bindsym 8 move container to workspace number $ws8
+        bindsym 9 move container to workspace number $ws9
+        bindsym 0 move container to workspace number $ws10
+        bindsym minus move container to workspace number $wsminus
+        bindsym equal move container to workspace number $wsplus
+
         # back to normal: Enter or Escape or $mod+r
         bindsym q mode "default"
         bindsym Return mode "default"
@@ -382,6 +425,16 @@ mode "move" {
 
 bindsym $mod+m mode "move"
 
+# Ignoring all keys for gaming purposes
+mode "Raw" {
+    bindsym $mod+Escape mode "default"
+}
+bindsym $mod+Escape mode "Raw"
+
+# Dunst config
+bindsym $sup+space exec dunstctl close
+bindsym $sup+Shift+space exec dunstctl close-all
+bindsym $sup+grave exec dunstctl history-pop
 
 # Screenshot
 bindsym Print exec "scrot ~/Pictures/Screenshot%Y-%m-%dT%H:%M:%S.png && notify-send -u low -c system 'Screenshot saved successfully'"
@@ -390,18 +443,18 @@ bindsym Control+Print exec "scrot -bu ~/Pictures/Screenshot%Y-%m-%dT%H:%M:%S.png
 
 # Multi-monitor
 ## Config
-workspace $ws1 output eDP1
-workspace $ws2 output eDP1
-workspace $ws3 output eDP1
-workspace $ws4 output eDP1
-workspace $ws5 output eDP1
-workspace $ws6 output eDP1
-workspace $ws7 output eDP1
-workspace $ws8 output eDP1
-workspace $ws9 output eDP1
-workspace $ws10 output eDP1
-workspace $wsminus output HDMI1
-workspace $wsplus output HDMI1
+workspace $ws1 output eDP-1
+workspace $ws2 output eDP-1
+workspace $ws3 output eDP-1
+workspace $ws4 output eDP-1
+workspace $ws5 output eDP-1
+workspace $ws6 output eDP-1
+workspace $ws7 output eDP-1
+workspace $ws8 output eDP-1
+workspace $ws9 output eDP-1
+workspace $ws10 output eDP-1
+workspace $wsminus output HDMI-A-1
+workspace $wsplus output HDMI-A-1
 
 ## Marking
 bindsym $mod+g exec i3-input -F 'mark %s' -l 1 -P 'Mark: '
@@ -409,6 +462,15 @@ bindsym $mod+shift+g exec i3-input -F '[con_mark="%s"] focus' -l 1 -P 'Goto: '
 
 ## Notify
 bindsym $sup+b exec "notify-send 'Capacity = '$(cat /sys/class/power_supply/BAT1/capacity)%"
+
+## Toggle backlight
+bindsym $mod+bracketright exec ~/.config/sway/scripts/backlight-toggle.sh
+bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +3%
+bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -3%
+bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
+bindsym XF86AudioMicMute exec pactl set-source-mute @DEFAULT_SOURCE@ toggle
+bindsym XF86MonBrightnessDown exec brightnessctl set 2-
+bindsym XF86MonBrightnessUp exec brightnessctl set +2
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
@@ -420,9 +482,9 @@ bar {
 #exec --no-startup-id workstyle
 
 # Reset resolution
-exec xrandr --output eDP1-1 --mode 1920x1200
+exec xrandr --output eDP-1 --mode 1920x1200
 
 # Applets
 #exec --no-startup-id nm-applet
-#exec --no-startup-id dunst
+exec --no-startup-id dunst
 #exec --no-startup-id blueman-applet
