@@ -28,6 +28,16 @@ ip addr | grep inet | sed "s/^ *//" | cut -d" " -f 1,2 | awk '{printf "\033[1m%-
 sudo sysctl -w fs.file-max=1000000
 
 
+% sys.udisksctl.mount
+udisksctl mount -b <partition>
+$ partition: ls /dev/sd??
+
+
+% sys.udisksctl.unmount
+udisksctl unmount -b <partition>
+udisksctl power-off -b <partition>
+$ partition: ls /dev/sd??
+
 ; ==================== Lenovo ideapad kernel module ====================
 ; Refer to https://wiki.archlinux.org/index.php/Lenovo_IdeaPad_5_14are05
 ; ======================================================================

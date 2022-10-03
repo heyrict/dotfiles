@@ -2,7 +2,7 @@ ROOT := "/home/heyrict/legendary/pfx"
 HOME := ROOT + "/drive_c/users/heyrict"
 #PROTON := "/home/heyrict/.local/share/Steam/steamapps/common/Proton 5.13"
 #PROTON_WINE64 := PROTON + "/dist/bin/wine64"
-PROTON := "/home/heyrict/.local/share/Steam/compatibilitytools.d/GE-Proton7-29"
+PROTON := "/home/heyrict/.local/share/Steam/compatibilitytools.d/current"
 PROTON_WINE64 := PROTON + "/files/bin/wine64"
 FSR_MODE := "performance"
 PROTON_ENV := "DXVK_ASYNC=1 WINE_FULLSCREEN_FSR=1 WINE_FULLSCREEN_FSR_MODE=" + FSR_MODE
@@ -21,3 +21,6 @@ run FILE:
 
 sonic_mania +OPTIONS="":
 	{{PROTON_ENV}} legendary launch {{OPTIONS}} 818447bb519b46d48d365d5753362796
+
+overcooked +OPTIONS="":
+	{{PROTON_ENV}} legendary launch {{OPTIONS}} Sage

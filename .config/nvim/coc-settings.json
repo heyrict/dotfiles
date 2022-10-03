@@ -26,6 +26,10 @@
       "yaml"
     ]
   },
+  "suggest": {
+    "noselect": true,
+    "minTriggerInputLength": 2
+  },
   "prettier.disableLanguages": ["vue", "markdown", "rust", "python"],
   "prettier.ignorePath": ".prettierignore",
   "tsserver.npm": "~/.nvm/versions/node/v12.16.3/bin/npm",

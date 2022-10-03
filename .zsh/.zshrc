@@ -1,15 +1,15 @@
 # vim:foldmethod=marker ts=2 sw=2
 
 if [ "$SSH_CONNECTION" ]; then
-  SSH_SESSION=$(echo "$SSH_CONNECTION" | base64)
+  SSH_SESSION=$(echo "$SSH_CONNECTION" | cut -d' ' -f1 | base64)
 fi
 
 # Language and IME {{{1
 export LANG=en_US.UTF-8
-export GTK_IM_MODULE=fcitx
-export QT_IM_MODULE=fcitx
-export XMODIFIERS=@im=fcitx
-export SDL_IM_MODULE=fcitx
+export XMODIFIERS="@im=fcitx"
+export GTK_IM_MODULE="fcitx"
+export QT_IM_MODULE="fcitx"
+export SDL_IM_MODULE="fcitx"
 
 # The following lines were added by compinstall {{{1
 fpath=(${ZDOTDIR:-$HOME/.zsh}/completion $fpath)
@@ -216,10 +216,6 @@ path+=$HOME/Flutter/bin/cache/dart-sdk/bin
 ## GPG {{{2
 export GPG_TTY=$(tty)
 
-## Fcitx {{{2
-export XMODIFIERS="@im=fcitx"
-export QT_IM_MODULE="fcitx"
-
 ## Neovide {{{2
 export NEOVIDE_MULTIGRID=1
 
@@ -320,19 +316,19 @@ if [ -z $DISPLAY ] && [ "$(tty)" = "/dev/tty1" ]; then
 fi
 
 # Countdown in alacritty
-if [ "$TERM" = "alacritty" ]; then
-  local TARGET=`date -d "March 13" +%j`
-  local TODAY=`date +%j`
-  local DAYS=$(($TARGET - $TODAY))
-  local COUNTDOWN="\
-   \e[1m== 倒计时 ==\e[0m
-
-距离复试还有约 \e[1;31m$DAYS\e[0m 天
-"
-
-  case $DAYS in
-    [0-9]*)
-      echo
-      echo $COUNTDOWN | ponythink -b unicode -f $HOME/.config/ponysay/eevee.pony;;
-  esac
-fi
+#if [ "$TERM" = "alacritty" ]; then
+#  local TARGET=`date -d "March 13" +%j`
+#  local TODAY=`date +%j`
+#  local DAYS=$(($TARGET - $TODAY))
+#  local COUNTDOWN="\
+#   \e[1m== 倒计时 ==\e[0m
+#
+#距离复试还有约 \e[1;31m$DAYS\e[0m 天
+#"
+#
+#  case $DAYS in
+#    [0-9]*)
+#      echo
+#      echo $COUNTDOWN | ponythink -b unicode -f $HOME/.config/ponysay/eevee.pony;;
+#  esac
+#fi
