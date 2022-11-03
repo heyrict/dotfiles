@@ -43,6 +43,7 @@ etc:
 	just pull_file /etc/redsocks2.conf
 	just pull_file /etc/iptables/redsocks2.rules
 	just pull_file /etc/ipsec.conf
+	just pull_file /etc/udisks2/mount_options.conf
 
 udev:
 	just pull_file /lib/udev/rules.d/98-backlight.rules

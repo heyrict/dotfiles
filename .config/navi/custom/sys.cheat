@@ -28,15 +28,18 @@ ip addr | grep inet | sed "s/^ *//" | cut -d" " -f 1,2 | awk '{printf "\033[1m%-
 sudo sysctl -w fs.file-max=1000000
 
 
+# mount disk
 % sys.udisksctl.mount
-udisksctl mount -b <partition>
+udisksctl mount -o noatime -b <partition>
 $ partition: ls /dev/sd??
 
 
+# unmount disk
 % sys.udisksctl.unmount
 udisksctl unmount -b <partition>
-udisksctl power-off -b <partition>
+if [[ "<power-off>" = "true" ]]; then udisksctl power-off -b <partition>; fi
 $ partition: ls /dev/sd??
+$ power-off: echo -e "true\nfalse"
 
 ; ==================== Lenovo ideapad kernel module ====================
 ; Refer to https://wiki.archlinux.org/index.php/Lenovo_IdeaPad_5_14are05

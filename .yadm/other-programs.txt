@@ -11,7 +11,7 @@
 ├── bin
 │   ├── ascf -> ../ascf
 │   ├── go-mtpfs -> ../go-mtpfs.x86_64
-│   ├── ludusavi -> ../ludusavi
+│   ├── ludusavi
 │   ├── protontricks -> ../protontricks
 │   ├── replaykit -> ../replaykit
 │   ├── rpcs3 -> ../rpcs3/rpcs3-v0.0.22-13782-26425375_linux64.AppImage
