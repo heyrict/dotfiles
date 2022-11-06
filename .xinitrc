@@ -59,7 +59,7 @@ export XMODIFIERS="@im=fcitx"
 # pasystrait &
 
 ## Network Manager
-nm-applet &
+#nm-applet &
 
 ## Bluetooth Manager
 #blueman-applet &

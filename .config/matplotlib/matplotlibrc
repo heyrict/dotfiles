@@ -204,8 +204,8 @@ font.family         : sans-serif
 # relative to font.size, using the following values: xx-small, x-small,
 # small, medium, large, x-large, xx-large, larger, or smaller
 #font.size           : 10.0
-font.serif          : Microsoft YaHei, STXihei
-font.sans-serif     : Microsoft YaHei, STXihei
+font.serif          : WenQuanYi Micro Hei, Meslo LG S
+font.sans-serif     : WenQuanYi Micro Hei, Meslo LG S
 #font.cursive        : Apple Chancery, Textile, Zapf Chancery, Sand, Script MT, Felipa, cursive
 #font.fantasy        : Comic Sans MS, Chicago, Charcoal, Impact, Western, Humor Sans, xkcd, fantasy
 font.monospace      : WenQuanYi Micro Hei, DejaVu Sans Mono, Bitstream Vera Sans Mono, Andale Mono, Nimbus Mono L, Courier New, Courier, Fixed, Terminal, monospace
