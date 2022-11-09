@@ -4,6 +4,9 @@ set runtimepath^=~/.vim runtimepath+=~/.vim/after
 let &packpath = &runtimepath
 source ~/.vimrc
 
+" Nvim specific config
+set mouse=""
+
 " Lua configuration
 lua << EOF
 require'nvim-treesitter.configs'.setup {

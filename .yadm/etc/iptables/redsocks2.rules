@@ -39,6 +39,8 @@
 -A REDSOCKS -d 218.76.79.0/4 -j RETURN
 -A REDSOCKS -d 220.181.0.0/8 -j RETURN
 -A REDSOCKS -d 221.219.176.38 -j RETURN
+-A REDSOCKS -d 23.50.124.114 -j RETURN
+-A REDSOCKS -d 140.82.9.156 -j RETURN
 
 # Redirect everything else to redsocks port
 -A REDSOCKS -p tcp -j REDIRECT --to-ports 31338

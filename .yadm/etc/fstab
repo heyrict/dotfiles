@@ -3,12 +3,19 @@
 
 # <file system> <dir> <type> <options> <dump> <pass>
 # /dev/nvme0n1p6 Arch linux
-UUID="6461af49-9baa-4809-8ae3-286f88cdc3fe"	/	ext4	defaults,noatime,nodiratime,errors=remount-ro
+UUID="6461af49-9baa-4809-8ae3-286f88cdc3fe"	/	ext4	defaults,noatime,errors=remount-ro  0  1
 # /dev/nvme0n1p1 Efi boot partition
-UUID="3217-71AE"	/boot	vfat	defaults,noatime,nodiratime
+UUID="3217-71AE"	/boot	vfat	defaults,noatime  0  2
 
 # /dev/nvme0n1p3 Windows C:\ partition
-UUID="D8FA476DFA4746CA"	/mnt/windows	ntfs	defaults,noatime,nodiratime,nosuid
+UUID="D8FA476DFA4746CA"	/mnt/windows	ntfs	defaults,noatime,nosuid  0  2
+
+##################
+# External Disks #
+##################
+
+# WD22B 4TB Disk
+#UUID="64acdb67-f5e1-4f03-903c-f9a4d3ca442b" /mnt/wd22b  btrfs  noatime,compress=zstd   0   0
 
 # Swap
 #/mnt/windows/swapfile	none	swap	defaults 0 0
