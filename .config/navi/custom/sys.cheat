@@ -31,14 +31,15 @@ sudo sysctl -w fs.file-max=1000000
 # mount disk
 % sys.udisksctl.mount
 udisksctl mount -o noatime -b <partition>
-$ partition: ls /dev/sd??
+$ partition: ls /dev/sd?? /dev/disk/by-label/*
 
 
 # unmount disk
 % sys.udisksctl.unmount
 udisksctl unmount -b <partition>
 if [[ "<power-off>" = "true" ]]; then udisksctl power-off -b <partition>; fi
-$ partition: ls /dev/sd??
+$ partition-name: mount | grep udisks | cut -d' ' -f1,3
+$ partition: echo <partition-name> | cut -d' ' -f1
 $ power-off: echo -e "true\nfalse"
 
 ; ==================== Lenovo ideapad kernel module ====================
