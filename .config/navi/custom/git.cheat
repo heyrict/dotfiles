@@ -8,3 +8,18 @@ if [ <hard_reset_the_git_repo_to_master> = yes ]; then
 fi
 
 $ hard_reset_the_git_repo_to_master: echo yes no | tr " " "\n"
+
+
+% git.httpserve
+
+# Serve repository in a temporary mesure, current branch only
+git --bare clone --no-single-branch <repo_path> <dest>
+cd <dest>/.git && \
+git --bare update-server-info && \
+mv hooks/post-update.sample hooks/post-update && \
+cd .. && \
+miniserve -q .
+
+$ repo: ls -d */
+$ repo_path: realpath <repo>
+$ dest: echo /tmp/$(basename <repo_path>)

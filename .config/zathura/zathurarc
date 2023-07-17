@@ -121,9 +121,11 @@ set vertical-center true
 
 map [normal] . navigate next
 map [fullscreen] . navigate next
+map [presentation] . navigate next
 
 map [normal] , navigate previous
 map [fullscreen] , navigate previous
+map [presentation] , navigate previous
 
 #map [normal] n navigate next
 #map [fullscreen] n navigate next

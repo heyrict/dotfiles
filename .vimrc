@@ -735,6 +735,7 @@ vnoremap _+ <esc>`>a*<esc>`<i*<esc>
 vnoremap _" <esc>`>a"<esc>`<i"<esc>
 vnoremap _' <esc>`>a'<esc>`<i'<esc>
 vnoremap _` <esc>`>a`<esc>`<i`<esc>
+vnoremap _c <esc>`>a}}<esc>`<i{{c1::<esc>hh
 autocmd filetype pandoc,markdown,html vnoremap _! <esc>`>a --><esc>`<i<!-- <esc>
 
 " Anki related

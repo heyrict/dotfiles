@@ -112,6 +112,8 @@ application/x-abiword=libreoffice-writer.desktop;
 application/x-iwork-pages-sffpages=libreoffice-writer.desktop;
 application/x-mswrite=libreoffice-writer.desktop;
 application/x-starwriter=libreoffice-writer.desktop;
+x-scheme-handler/baiduyunguanjia=baidunetdisk.desktop
+x-scheme-handler/discord-460807638964371468=discord-460807638964371468.desktop
 
 [Added Associations]
 x-scheme-handler/ftp=firefox.desktop

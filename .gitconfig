@@ -16,3 +16,7 @@
 #    proxy = http://127.0.0.1:8123
 [init]
 	defaultBranch = master
+[core]
+    sshCommand = ssh -i ~/.ssh/id_ed25519_nopass
+[safe]
+	directory = /mnt/windows/Users/xiezh/MyPrograms/renji360

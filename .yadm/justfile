@@ -21,7 +21,7 @@ pkg-rust:
 pkg-archlinux:
 	pacman -Qe > archlinux-packages.txt
 
-sync: etc udev
+sync: etc udev bin
 
 etc:
 	just pull_file /etc/X11/xorg.conf.d
@@ -48,6 +48,9 @@ etc:
 udev:
 	just pull_file /lib/udev/rules.d/98-backlight.rules
 	just pull_file /lib/udev/rules.d/99-ds4-controllers.rules
+
+bin:
+	just pull_file /usr/local/bin/suspend-bat-low.sh
 
 pull_file FILE:
 	#!/usr/bin/env sh

@@ -35,6 +35,7 @@
   "tsserver.npm": "~/.nvm/versions/node/v12.16.3/bin/npm",
   "tsserver.enablejavascript": false,
   "rust-analyzer.serverPath": "~/.rustup/toolchains/nightly-x86_64-unknown-linux-gnu/bin/rust-analyzer",
+  "rust-analyzer.procMacro.attributes.enable": true,
   "python": {
     "jediEnabled": false,
     "autoUpdateLanguageServer": false,

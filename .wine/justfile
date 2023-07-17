@@ -1,12 +1,15 @@
 ROOT := "/home/heyrict/.wine"
-HOME := ROOT + "/drive_c/users/heyrict"
+HOME := "/home/heyrict/.wine/drive_c/users/heyrict"
 #PROTON := "/home/heyrict/.local/share/Steam/steamapps/common/Proton 5.13"
 #PROTON_WINE64 := PROTON + "/dist/bin/wine64"
-PROTON := "/home/heyrict/.local/share/Steam/compatibilitytools.d/GE-Proton7-29"
+PROTON_VERSION := "current"
+PROTON := "/home/heyrict/Proton/" + PROTON_VERSION
 PROTON_WINE64 := PROTON + "/files/bin/wine64"
-DEFAULT_ENV := 'LC_ALL=ja_JP.UTF-8 LANG=ja_JP.UTF-8 WINEPREFIX="' + ROOT + '"'
+LANG := "ja_JP.UTF-8"
+DEFAULT_ENV := 'LC_ALL=' + LANG + ' LANG=' + LANG + ' WINEPREFIX="' + ROOT + '"'
 FSR_MODE := "performance"
-PROTON_ENV := "DXVK_ASYNC=1 WINE_FULLSCREEN_FSR=1 WINE_FULLSCREEN_FSR_MODE=" + FSR_MODE
+FSR_ENABLE := "1"
+PROTON_ENV := "DXVK_ASYNC=1 WINE_FULLSCREEN_FSR=" + FSR_ENABLE + " WINE_FULLSCREEN_FSR_MODE=" + FSR_MODE
 EXTRA_ENV := ""
 ALPHAROMDIE := HOME + "/Tools/AlphaROMdiE/AlphaROMdiE.exe"
 
@@ -26,7 +29,7 @@ angel_beats:
 	just _siglus_run "{{ROOT}}/drive_c/Program Files (x86)/Key/AngelBeats!/SiglusEngine.exe"
 
 amayui:
-	just proton_run "/mnt/windows/Users/heyrict/Games/Eushully/AMAYUI/AGE.exe"
+	just FSR_ENABLE=0 proton_run "/mnt/windows/Users/xiezh/Games/Eushully/AMAYUI/AGE.exe"
 
 th10:
 	just proton_run "{{HOME}}/Games/th10/th10.exe" >/dev/null 2>&1
@@ -44,16 +47,10 @@ kinkoi:
 	just _siglus_run "{{ROOT}}/drive_c/Program Files (x86)/SAGAPLANETS/金色ラブリッチェ/SiglusEngine.exe"
 
 kanon:
-	rlvm "{{HOME}}/Games/KEY/KANON_SE"
+	gamescope -U -H 1200 just FSR_ENABLE=0 _siglus_run "{{HOME}}/Games/KEY/KANON_SE/REALLIVE.EXE"
 
 dohna:
 	just proton_run "{{ROOT}}/drive_c/Program Files (x86)/DohnaDohna/dohnadohna.exe"
-
-unless_terminalia:
-	just proton_run "{{HOME}}/Games/Whirlpool/unless_luminalia/unless_terminalia.exe"
-
-vbb:
-	just proton_run "{{HOME}}/Games/VenusBlood-BRAVE-/VBB.exe"
 
 evenicle:
 	just proton_run "{{HOME}}/Games/イブニクル/Evenicle.exe"
@@ -65,10 +62,53 @@ nier_replicant:
 	just proton_run "/run/media/heyrict/SG20E/pc/NieR Replicant ver.1.22474487139/NieR Replicant ver.1.22474487139.exe"
 
 rewrite_hf:
-	just _siglus_run "{{HOME}}/Games/KEY/RewriteHf/SiglusEngine.exe"
+	just FSR_ENABLE=0 _siglus_run "{{HOME}}/Games/KEY/RewriteHf/SiglusEngine.exe"
 
-prism_ark:
-	just proton_run "{{HOME}}/Games/PrismArk/p_ark/P_ARK.exe"
+#rf5:
+#	just FSR_ENABLE=0 proton_run "{{HOME}}/Games/Rune Factory 5/Rune Factory 5.exe"
 
-rf5:
-	just FSR_MODE=balanced proton_run "{{HOME}}/Games/Rune Factory 5/Rune Factory 5.exe"
+seirei:
+	just proton_run "{{HOME}}/Games/SeireiDensyo_2_0_4/game.exe"
+
+seorin:
+    just proton_run "{{ROOT}}/drive_c/Program Files (x86)/CHAOS-R/神聖昂燐ダクリュオン・ルナ/神聖昂燐ダクリュオン・ルナ.exe"
+
+#haitenai:
+#	just proton_run "{{HOME}}/Games/HAITENAIRPG/Game.exe"
+
+#virnemelet:
+#	just proton_run "{{HOME}}/Games/ヴィルネーメレト ver1.07d4(windows)//Game.exe"
+
+ff12:
+	gamescope -U -w 1280 -h 720 just run "/run/media/heyrict/wd22b/heyrict/pc/Final Fantasy XII - The Zodiac Age/x64/FFXII_TZA.exe"
+
+ff12_plain:
+	just run "/run/media/heyrict/wd22b/heyrict/pc/Final Fantasy XII - The Zodiac Age/x64/FFXII_TZA.exe"
+
+soukoku:
+	#just FSR_MODE=quality proton_run "/mnt/windows/Users/xiezh/Games/Eushully/創刻のアテリアル/AGE.EXE"
+	gamescope -U -W 1920 -H 1200 -w 1024 -h 640 just FSR_ENABLE=0 proton_run "/mnt/windows/Users/xiezh/Games/Eushully/創刻のアテリアル/AGE.EXE"
+
+tyouR:
+	gamescope -U -W 1920 -H 1200 just FSR_ENABLE=0 proton_run "{{HOME}}/Games/tyouR/tyouR.exe"
+
+monobeno:
+	just proton_run "{{HOME}}/Games/ものべの/ものべの.exe"
+
+brave:
+	just proton_run "{{HOME}}/Games/VenusBlood-BRAVE-/VBB.exe"
+
+enc:
+	just proton_run "{{HOME}}/Games/EnC/Ecchi&Craft.exe"
+
+riko:
+	just proton_run "{{HOME}}/Games/220310_Riko/Game.exe"
+
+shellil:
+	just proton_run "{{HOME}}/Games/311136_Shellil/Game.exe"
+
+mobi:
+	just proton_run "{{HOME}}/Games/RJ01042745_mobi_kazamachi/Game.exe"
+
+sakura_moyu:
+	gamescope -U -W 1920 -H 1200 just FSR_ENABLE=0 proton_run "{{HOME}}/Games/さくら、もゆ。/Sakura.exe"

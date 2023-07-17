@@ -5,6 +5,8 @@
 127.0.0.1 heyrict
 ::1	localhost ip6-localhost ip6-loopback
 
+10.10.10.12	securelogin.arubanetworks.com
+
 159.203.93.54	pxy.cindythink.com 
 149.28.46.74	static.cindythink.com www.cindythink.com
 #192.168.3.52	home-ddns.cindythink.com
@@ -13,6 +15,9 @@
 # github
 #140.82.112.3	github.com
 #185.199.108.133	raw.githubusercontent.com
+
+# Bing
+#13.107.21.200	bing.com
 
 # Digitalocean
 205.185.216.10	cds.b5g9b8e4.hwcdn.net
@@ -27,8 +32,8 @@
 104.21.10.198	nyaa.iss.one
 
 # Steam
-104.102.129.112	steamcommunity.com
-23.50.124.114	store.steampowered.com
+#104.102.129.112	steamcommunity.com
+#23.50.124.114	store.steampowered.com
 
 # Cloudflare
 

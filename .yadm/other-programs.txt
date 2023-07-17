@@ -14,7 +14,7 @@
 │   ├── ludusavi
 │   ├── protontricks -> ../protontricks
 │   ├── replaykit -> ../replaykit
-│   ├── rpcs3 -> ../rpcs3/rpcs3-v0.0.22-13782-26425375_linux64.AppImage
+│   ├── rpcs3 -> ../rpcs3/rpcs3-v0.0.27-14979-5c0113ce_linux64.AppImage
 │   ├── rtsp-simple-server -> ../rtsp-simple-server
 │   ├── send-to-kodi.sh -> ../send-to-kodi.sh
 │   └── sndrec -> ../sndcpy/sndrec
@@ -34,8 +34,8 @@
 ├── protontricks
 ├── replaykit
 ├── rpcs3
-│   ├── rpcs3-v0.0.22-13650-345bda69_linux64.AppImage
-│   └── rpcs3-v0.0.22-13782-26425375_linux64.AppImage
+│   ├── rpcs3-v0.0.27-14854-6fbca1ac_linux64.AppImage
+│   └── rpcs3-v0.0.27-14979-5c0113ce_linux64.AppImage
 ├── rtsp-simple-server
 ├── send-to-kodi.sh
 ├── sndcpy
@@ -55,4 +55,4 @@
     ├── VentoyWeb.sh
     └── WebUI
 
-16 directories, 39 files
+17 directories, 39 files

@@ -17,13 +17,13 @@ syokusyu:
 	just run "{{HOME}}/Games/era/syokusyu1150/Emuera1824+v10.exe"
 
 theworld:
-	just run "{{HOME}}/Games/era/eraTW4842/Emuera1824+v11+webp+test+fix.exe"
+	just run "{{HOME}}/Games/era/eraTW4891/Emuera.exe"
 
 k:
 	just run "{{HOME}}/Games/era/eratohoK1293/Emuera1824+v9.exe"
 
 rsyokusyu:
-	just run "{{HOME}}/Games/era/rsyokusyuV322/Emuera1823beta003.exe"
+	just run "{{HOME}}/Games/era/rsyokusyuV337/Emuera1823beta003.exe"
 
 ymaem:
 	just run "{{HOME}}/Games/era/eraYMAEM4269/Emuera1824+v13.exe"
@@ -36,3 +36,6 @@ akumaMaid:
 
 t:
 	just run "{{HOME}}/Games/era/eratohoT3300/Emuera1824.exe"
+
+as:
+	just run "{{HOME}}/Games/era/eraAS_0.665/Emuera1824+v5.exe"

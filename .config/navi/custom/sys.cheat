@@ -42,6 +42,12 @@ $ partition-name: mount | grep udisks | cut -d' ' -f1,3
 $ partition: echo <partition-name> | cut -d' ' -f1
 $ power-off: echo -e "true\nfalse"
 
+# Reload bluetooth module
+% sys.bluetooth.reload
+sudo rmmod btusb
+sudo modprobe btusb
+sudo systemctl restart bluetooth.service
+
 ; ==================== Lenovo ideapad kernel module ====================
 ; Refer to https://wiki.archlinux.org/index.php/Lenovo_IdeaPad_5_14are05
 ; ======================================================================
@@ -89,7 +95,7 @@ $ threshold: seq 40 10 101
 
 # Set cpu fan mode for asus vivobook m3400
 
-echo <fan_mode> | sudo tee /sys/devices/platform/asus-nb-wmi/hwmon/hwmon4/pwm1_enable
+echo <fan_mode> | sudo tee /sys/devices/platform/asus-nb-wmi/hwmon/hwmon?/pwm1_enable
 
 $ fan_state: echo -e "2: auto\n1: off\n0: max"
 $ fan_mode: echo "<fan_state>" | cut -d: -f1

@@ -81,6 +81,8 @@ client.placeholder      $bg_dark      $gb_dark1     $gb_gray     $gb_faded_blue 
 client.background                     $bg_dark
 
 # Make config floating
+for_window [window_role="pop-up"] floating enable
+for_window [window_role="task_dialog"] floating enable
 for_window [class="(?i)config"] floating enable
 for_window [title="float$"] floating enable
 for_window [title="mpv$"] floating enable
@@ -93,6 +95,7 @@ for_window [title="^Choose a "] resize set 1200 720
 for_window [title="^Extension: .*TJDict"] floating enable
 for_window [title="^Extension: .*TJDict"] resize set 600 800
 for_window [title="^Extension: \(Aria2"] floating enable
+for_window [class="^wemeetapp$"] floating enable
 
 for_window [class="^(?i)emuera"] floating enable
 for_window [class="^emuera"] border pixel 0
@@ -479,7 +482,8 @@ bindsym XF86MonBrightnessDown exec brightnessctl set 2-
 bindsym XF86MonBrightnessUp exec brightnessctl set +2
 
 ## HiDPI
-output eDP-1 mode 1920x1200
+#output eDP-1 mode 1920x1200
+output eDP-1 mode 2880x1800@90.001Hz scale 1.5
 
 ## Input
 input type:touchpad {
@@ -515,7 +519,7 @@ exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DE
 
 exec --no-startup-id fcitx5 -d
 
-exec --no-startup-id redshift-gtk
+exec --no-startup-id gammastep-indicator
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
@@ -525,6 +529,9 @@ exec --no-startup-id redshift-gtk
 
 # Rename service
 #exec --no-startup-id workstyle
+
+# Reset backlight
+exec --no-startup-id echo 12 > /sys/class/backlight/amdgpu_bl0/brightness
 
 # Applets
 #exec --no-startup-id nm-applet

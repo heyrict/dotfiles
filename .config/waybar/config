@@ -52,9 +52,9 @@
     "format-alt": "{icon} {ipaddr}/{cidr}",
     "format-alt-click": "click-right",
     "format-icons": {
-      "wifi": [""],
-      "ethernet": ["ﯱ"],
-      "disconnected": ["睊"]
+      "wifi": ["󰖩"],
+      "ethernet": ["󰈀"],
+      "disconnected": [""]
     },
     "on-click": "alacritty -t 'iwctl-float' -o window.dimensions.columns=105 -o window.dimensions.lines=35 -e iwctl",
     "tooltip": false
@@ -63,10 +63,10 @@
     "format": "{icon} {volume}",
     "format-alt": "{icon}",
     "format-alt-click": "click-right",
-    "format-muted": "ﱝ",
+    "format-muted": "󰸈",
     "format-icons": {
-      "phone": [" 奄", " 奔", " 墳", " "],
-      "default": ["奄", "奔", "墳", ""]
+      "phone": ["", "", "󰕾", ""],
+      "default": ["", "", "󰕾", ""]
     },
     "scroll-step": 1,
     "on-click": "alacritty -t 'pactl-float' -o window.dimensions.columns=105 -o window.dimensions.lines=35 -e pulsemixer",
@@ -98,13 +98,13 @@
     "format-alt": "{icon}",
     "format-alt-click": "click-right",
     "on-click": "alacritty -t 'backglith-float' -o window.dimensions.columns=68 -o window.dimensions.lines=20 -e vim /sys/class/backlight/amdgpu_bl0/brightness",
-    "format-icons": ["", "ﯧ"],
+    "format-icons": ["󰌵", "󱧡"],
     "on-scroll-down": "brightnessctl set 1-",
     "on-scroll-up": "brightnessctl set +1"
   },
   "memory": {
     "interval": 30,
-    "format": " {}%",
+    "format": "󰍛 {}%",
     "max-length": 10
   },
   "custom/weather": {
@@ -146,15 +146,15 @@
   "temperature#cpu": {
     "hwmon-path": "/sys/class/hwmon/hwmon1/temp1_input",
     "critical-threshold": 90,
-    "format-critical": "﬙ {temperatureC}℃",
-    "format": "﬙ {temperatureC}℃",
-    "format-alt": "﬙"
+    "format-critical": " {temperatureC}℃",
+    "format": " {temperatureC}℃",
+    "format-alt": ""
   },
   "temperature#gpu": {
     "hwmon-path": "/sys/class/hwmon/hwmon6/temp1_input",
     "critical-threshold": 90,
-    "format-critical": "礪 {temperatureC}℃",
-    "format": "礪 {temperatureC}℃",
-    "format-alt": "礪"
+    "format-critical": "󰊭 {temperatureC}℃",
+    "format": "󰊭 {temperatureC}℃",
+    "format-alt": "󰊭"
   }
 }
