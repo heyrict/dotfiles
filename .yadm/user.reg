@@ -1,0 +1,18 @@
+[Software\\Enterbrain\\RGSS2] 1642870340
+#time=1d80fb06bc4e1ea
+"ButtonAssign"=hex:0c,0d,0f,0e,11,12,0b,10,00,00,0d,0d,0c,0c,0b,0c,0d,00,00,00,\
+  0f,0e,10,11,12
+"LaunchInFullScreen"=dword:00000001
+"PlayMusic"=dword:00000001
+"PlaySound"=dword:00000001
+"WaitForVsync"=dword:00000000
+
+[Software\\Enterbrain\\RGSS3] 1683724509
+#time=1d9834171f83502
+"ButtonAssign"=hex:0c,0d,11,12,10,0e,0b,0c,00,00,0d,0d,0c,0c,0b,0c,0d,00,00,00,\
+  0f,0e,10,11,12
+"LaunchInFullScreen"=dword:00000000
+"PlayMusic"=dword:00000001
+"PlaySound"=dword:00000001
+"WaitForVsync"=dword:00000000
+

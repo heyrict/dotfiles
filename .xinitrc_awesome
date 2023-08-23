@@ -49,7 +49,7 @@ export XMODIFIERS="@im=fcitx"
 ( sleep 2s && GLOG_minloglevel=2 fcitx -d -r ) &
 
 # Set color temperature
-redshift &
+#redshift &
 
 # Applets
 ## Pulseaudio

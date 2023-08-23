@@ -204,11 +204,11 @@ font.family         : sans-serif
 # relative to font.size, using the following values: xx-small, x-small,
 # small, medium, large, x-large, xx-large, larger, or smaller
 #font.size           : 10.0
-font.serif          : Microsoft YaHei, STXihei
-font.sans-serif     : Microsoft YaHei, STXihei
+font.serif          : Noto Serif CJK SC, Meslo LG M
+font.sans-serif     : Noto Sans CJK SC, Meslo LG M
 #font.cursive        : Apple Chancery, Textile, Zapf Chancery, Sand, Script MT, Felipa, cursive
 #font.fantasy        : Comic Sans MS, Chicago, Charcoal, Impact, Western, Humor Sans, xkcd, fantasy
-font.monospace      : WenQuanYi Micro Hei, DejaVu Sans Mono, Bitstream Vera Sans Mono, Andale Mono, Nimbus Mono L, Courier New, Courier, Fixed, Terminal, monospace
+font.monospace      : Noto Sans Mono CJK SC, DejaVu Sans Mono, Bitstream Vera Sans Mono, Andale Mono, Nimbus Mono L, Courier New, Courier, Fixed, Terminal, monospace
 
 ### TEXT
 # text properties used by text.Text.  See

@@ -531,7 +531,7 @@ exec --no-startup-id gammastep-indicator
 #exec --no-startup-id workstyle
 
 # Reset backlight
-exec --no-startup-id echo 12 > /sys/class/backlight/amdgpu_bl0/brightness
+exec --no-startup-id echo 12 > /sys/class/backlight/amdgpu_bl1/brightness
 
 # Applets
 #exec --no-startup-id nm-applet

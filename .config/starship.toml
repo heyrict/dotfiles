@@ -124,21 +124,12 @@ symbol = " "
 [julia]
 symbol = " "
 
-[memory_usage]
-symbol = " "
-
-[nim]
-symbol = " "
-
 [nix_shell]
 symbol = " "
 
 [nodejs]
 disabled = true
 symbol = " "
-
-[package]
-symbol = " "
 
 [perl]
 symbol = " "
