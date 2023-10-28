@@ -1,0 +1,6 @@
+# This file adds trim support to external SSD
+#
+# Reference: https://wiki.archlinux.org/title/Solid_state_drive#External_SSD_with_TRIM_support
+
+# Zhitai Ti5000Pro
+ACTION=="add|change", ATTRS{idVendor}=="0bda", ATTRS{idProduct}=="9210", SUBSYSTEM=="scsi_disk", ATTR{provisioning_mode}="unmap"

@@ -1,0 +1,126 @@
+---
+manifest:
+  url: "https://raw.githubusercontent.com/mtkennerly/ludusavi-manifest/master/data/manifest.yaml"
+  etag: "\"964e2c9305a2b3e9aa2ef8eaf695d1d4a7d63f11fdc8dedc145eebb9f182f6fc\""
+language: en-US
+theme: dark
+roots:
+  - path: ~/.steam/steam
+    store: steam
+  - path: ~/.wine
+    store: otherWine
+  - path: ~/legendary/pfx
+    store: otherWine
+  - path: /run/media/heyrict/wd23e/heyrict/wine
+    store: otherWine
+  - path: /run/media/heyrict/wd22b/heyrict/steam/
+    store: steam
+  - path: /run/media/heyrict/SG20E/SteamLibrary
+    store: steam
+backup:
+  path: /home/heyrict/Sync/backup/ludusavi
+  ignoredGames:
+    - "AI: The Somnium Files"
+    - Autonauts
+    - "Bridge Constructor: The Walking Dead"
+    - Disgaea PC
+    - Epistory - Typing Chronicles
+    - "Hyperdimension Neptunia Re;Birth 2: Sisters Generation"
+    - Lego Bricktales
+    - Lego The Lord of the Rings
+    - "Mary Skelter: Nightmares"
+    - "Monster Hunter Stories 2: Wings of Ruin"
+    - My Time at Portia
+    - Orwell
+    - Phantom Brave PC
+    - RPG Fighter League
+    - RetroArch
+    - Shining Resonance Refrain
+    - Stranded Deep
+    - Supraland
+    - "Sword Art Online: Lost Song"
+    - Tales of Berseria
+    - Tales of Zestiria
+    - Tales of the Neon Sea
+    - "The Legend of Heroes: Trails of Cold Steel II"
+    - This War of Mine
+    - Tokyo Xanadu eX+
+    - "Utawarerumono: Prelude to the Fallen"
+    - Worms Clan Wars
+  recentGames:
+    - A Short Hike
+    - "AI: The Somnium Files"
+    - "Atelier Firis: The Alchemist and the Mysterious Journey"
+    - Baba Is You
+    - "Bridge Constructor: The Walking Dead"
+    - Bullet Girls Phantasia
+    - Celeste
+    - Chaos;Child
+    - Cosmic Express
+    - Disgaea PC
+    - Epistory - Typing Chronicles
+    - "Final Fantasy XII: The Zodiac Age"
+    - Gal*Gun Returns
+    - Hidden Folks
+    - "Hyperdimension Neptunia Re;Birth 2: Sisters Generation"
+    - Lego The Lord of the Rings
+    - "Monster Hunter Stories 2: Wings of Ruin"
+    - My Time at Portia
+    - Nekomimi Sweet Housemates
+    - "Neptunia x Senran Kagura: Ninja Wars"
+    - NieR Replicant
+    - Orwell
+    - Overcooked!
+    - Phantom Brave PC
+    - RPG Fighter League
+    - RetroArch
+    - Rune Factory 5
+    - Shining Resonance Refrain
+    - Sonic Mania
+    - Supraland
+    - "Sword Art Online: Lost Song"
+    - Tales of Berseria
+    - Tales of Zestiria
+    - Tales of the Neon Sea
+    - "The Legend of Heroes: Trails of Cold Steel II"
+    - This War of Mine
+    - Tokyo Xanadu eX+
+    - Tomb Raider (2013)
+    - Unrailed!
+    - "Utawarerumono: Prelude to the Fallen"
+    - Worms Clan Wars
+    - Yakuza Kiwami
+  merge: true
+  filter:
+    excludeStoreScreenshots: true
+    ignoredPaths: []
+    ignoredRegistry: []
+  toggledPaths: {}
+  toggledRegistry: {}
+  sort:
+    key: name
+    reversed: false
+  retention:
+    full: 1
+    differential: 0
+  format:
+    chosen: simple
+    zip:
+      compression: deflate
+restore:
+  path: /home/heyrict/Sync/backup/ludusavi
+  ignoredGames: []
+  recentGames: []
+  redirects: []
+  sort:
+    key: name
+    reversed: false
+customGames:
+  - name: "Monochrome Mobius: Rights and Wrongs Forgotten"
+    files:
+      - /home/heyrict/.local/share/Steam/steamapps/compatdata/1962430/pfx/drive_c/users/steamuser/Documents/AQUAPLUS/MonochromeMobius Rights and Wrongs Forgotten
+    registry: []
+  - name: Nekomimi Sweet Housemates
+    files:
+      - /home/heyrict/.local/share/Steam/steamapps/compatdata/1789650/pfx/drive_c/users/steamuser/AppData/LocalLow/AnimalHerb/Nekomimi Sweet Housemates
+    registry: []

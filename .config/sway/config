@@ -95,13 +95,14 @@ for_window [title="^Choose a "] resize set 1200 720
 for_window [title="^Extension: .*TJDict"] floating enable
 for_window [title="^Extension: .*TJDict"] resize set 600 800
 for_window [title="^Extension: \(Aria2"] floating enable
-for_window [class="^wemeetapp$"] floating enable
+for_window [title="^wemeetapp$"] floating enable
 
 for_window [class="^(?i)emuera"] floating enable
 for_window [class="^emuera"] border pixel 0
 for_window [class="^emuera"] move position 0 -30
 for_window [class="^emuera"] floating_maximum_size 1940 x 1240
 for_window [class="^emuera"] resize set 1940 1240 30 0
+for_window [class="^org-weasis-launcher-AppLauncher$"] floating enable
 
 # Config for steam games
 for_window [class="steam_app_405900"] floating enable
@@ -480,10 +481,11 @@ bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
 bindsym XF86AudioMicMute exec pactl set-source-mute @DEFAULT_SOURCE@ toggle
 bindsym XF86MonBrightnessDown exec brightnessctl set 2-
 bindsym XF86MonBrightnessUp exec brightnessctl set +2
+bindsym $sup+p exec swaymsg output eDP-1 toggle
 
 ## HiDPI
-#output eDP-1 mode 1920x1200
-output eDP-1 mode 2880x1800@90.001Hz scale 1.5
+output eDP-1 mode 1920x1200@90.001Hz scale 1
+#output eDP-1 mode 2880x1800@90.001Hz scale 1.5
 
 ## Input
 input type:touchpad {
@@ -492,7 +494,7 @@ input type:touchpad {
     drag_lock enabled
 }
 
-## Swayidle
+# Swayidle
 exec swayidle -w \
     timeout 240 'swaymsg "output * dpms off" && echo 0 > /tmp/oled' \
     resume 'swaymsg "output * dpms on" && brightnessctl set `brightnessctl get` && echo 1 > /tmp/oled' \

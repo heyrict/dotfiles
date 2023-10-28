@@ -17,7 +17,7 @@ syokusyu:
 	just run "{{HOME}}/Games/era/syokusyu1150/Emuera1824+v10.exe"
 
 theworld:
-	just run "{{HOME}}/Games/era/eraTW4891/Emuera.exe"
+	just run "{{HOME}}/Games/era/eraTW4.903/Emuera.exe"
 
 k:
 	just run "{{HOME}}/Games/era/eratohoK1293/Emuera1824+v9.exe"

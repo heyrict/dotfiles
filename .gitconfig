@@ -20,3 +20,5 @@
     sshCommand = ssh -i ~/.ssh/id_ed25519_nopass
 [safe]
 	directory = /mnt/windows/Users/xiezh/MyPrograms/renji360
+[protocol "file"]
+	allow = always

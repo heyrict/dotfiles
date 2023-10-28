@@ -1,5 +1,5 @@
-ROOT := "/home/heyrict/.wine"
-HOME := "/home/heyrict/.wine/drive_c/users/heyrict"
+ROOT := justfile_directory()
+HOME := ROOT + "/drive_c/users/heyrict"
 #PROTON := "/home/heyrict/.local/share/Steam/steamapps/common/Proton 5.13"
 #PROTON_WINE64 := PROTON + "/dist/bin/wine64"
 PROTON_VERSION := "current"
@@ -15,6 +15,10 @@ FSR_ENABLE := "1"
 PROTON_ENV := "DXVK_ASYNC=1 WINE_FULLSCREEN_FSR=" + FSR_ENABLE + " WINE_FULLSCREEN_FSR_MODE=" + FSR_MODE
 EXTRA_ENV := ""
 ALPHAROMDIE := HOME + "/Tools/AlphaROMdiE/AlphaROMdiE.exe"
+
+DISPLAY := "0"
+W := '$(swaymsg -t get_outputs | jq ".[' + DISPLAY + '].rect.width")'
+H := '$(swaymsg -t get_outputs | jq ".[' + DISPLAY + '].rect.height")'
 
 run FILE:
 	cd "$(dirname '{{FILE}}')" && env {{DEFAULT_ENV}} {{PROTON_ENV}} {{EXTRA_ENV}} wine64 "$(basename '{{FILE}}')"
@@ -35,7 +39,16 @@ angel_beats:
 	just _siglus_run "{{ROOT}}/drive_c/Program Files (x86)/Key/AngelBeats!/SiglusEngine.exe"
 
 amayui:
-	just FSR_ENABLE=0 ge_run "/mnt/windows/Users/xiezh/Games/Eushully/AMAYUI/AGE.exe"
+	gamescope -F fsr -W 1920 -H 1080 -w 1280 -h 720 just FSR_ENABLE=0 ge_run "/mnt/windows/Users/xiezh/Games/Eushully/AMAYUI/AGE.exe"
+
+soukoku:
+	gamescope -F fsr -W 1920 -H 1080 -w 1280 -h 720 just FSR_ENABLE=0 ge_run "/mnt/windows/Users/xiezh/Games/Eushully/創刻のアテリアル/AGE.EXE"
+
+tenmei:
+	gamescope -F fsr -W 1920 -H 1080 -w 1280 -h 720 just FSR_ENABLE=0 ge_run "/mnt/windows/Users/xiezh/Games/Eushully/天冥のコンキスタ/AGE.EXE"
+
+fuukan:
+	gamescope -F fsr -W 1920 -H 1080 -w 1280 -h 720 just FSR_ENABLE=0 ge_run "/mnt/windows/Users/xiezh/Games/Eushully/封緘のグラセスタ/AGE.EXE"
 
 th10:
 	just ge_run "{{HOME}}/Games/th10/th10.exe" >/dev/null 2>&1
@@ -59,7 +72,7 @@ dohna:
 	just ge_run "{{ROOT}}/drive_c/Program Files (x86)/DohnaDohna/dohnadohna.exe"
 
 evenicle:
-	just ge_run "{{HOME}}/Games/イブニクル/Evenicle.exe"
+	gamescope -F fsr -W {{W}} -H {{H}} just FSR_ENABLE=0 ge_run "{{HOME}}/Games/イブニクル/Evenicle.exe"
 
 kirasarafe:
 	just ge_run "{{HOME}}/Games/pandadanpa/魔法少女きららとさららFE/kirasarafe.exe"
@@ -79,9 +92,6 @@ seirei:
 seorin:
     just ge_run "{{ROOT}}/drive_c/Program Files (x86)/CHAOS-R/神聖昂燐ダクリュオン・ルナ/神聖昂燐ダクリュオン・ルナ.exe"
 
-#haitenai:
-#	just ge_run "{{HOME}}/Games/HAITENAIRPG/Game.exe"
-
 #virnemelet:
 #	just ge_run "{{HOME}}/Games/ヴィルネーメレト ver1.07d4(windows)//Game.exe"
 
@@ -91,10 +101,6 @@ ff12:
 ff12_plain:
 	just run "/run/media/heyrict/wd22b/heyrict/pc/Final Fantasy XII - The Zodiac Age/x64/FFXII_TZA.exe"
 
-soukoku:
-	#just FSR_MODE=quality ge_run "/mnt/windows/Users/xiezh/Games/Eushully/創刻のアテリアル/AGE.EXE"
-	gamescope -F fsr -W 1920 -H 1200 -w 1024 -h 640 just FSR_ENABLE=0 ge_run "/mnt/windows/Users/xiezh/Games/Eushully/創刻のアテリアル/AGE.EXE"
-
 tyouR:
 	gamescope -F fsr -W 1920 -H 1200 just FSR_ENABLE=0 ge_run "{{HOME}}/Games/tyouR/tyouR.exe"
 
@@ -103,9 +109,6 @@ monobeno:
 
 brave:
 	just ge_run "{{HOME}}/Games/VenusBlood-BRAVE-/VBB.exe"
-
-enc:
-	just ge_run "{{HOME}}/Games/EnC/Ecchi&Craft.exe"
 
 riko:
 	just ge_run "{{HOME}}/Games/220310_Riko/Game.exe"
@@ -118,3 +121,6 @@ mobi:
 
 sakura_moyu:
 	gamescope -F fsr -W 1920 -H 1200 just FSR_ENABLE=0 ge_run "{{HOME}}/Games/さくら、もゆ。/Sakura.exe"
+
+god2:
+	gamescope -F fsr -W {{W}} -H {{H}} just FSR_ENABLE=0 ge_run "{{HOME}}/Games/GEARS of DRAGOON 2/GoD2.exe"

@@ -92,7 +92,7 @@ symbol = " "
 symbol = " "
 
 [directory]
-read_only = ""
+read_only = ""
 format = "[  $path](bg:#3c3836 fg:#bdae93 bold)[$read_only](bg:#3c3836 fg:#9d0006)[](#3c3836) "
 
 [docker_context]

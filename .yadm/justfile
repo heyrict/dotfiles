@@ -44,10 +44,15 @@ etc:
 	just pull_file /etc/iptables/redsocks2.rules
 	just pull_file /etc/ipsec.conf
 	just pull_file /etc/udisks2/mount_options.conf
+	just pull_file /etc/default/grub
+	just pull_file /etc/tlp.conf
+	just pull_file /etc/fuse.conf
+	just pull_file /etc/retroarch.cfg
 
 udev:
 	just pull_file /lib/udev/rules.d/98-backlight.rules
 	just pull_file /lib/udev/rules.d/99-ds4-controllers.rules
+	just pull_file /lib/udev/rules.d/10-uas-discard.rules
 
 bin:
 	just pull_file /usr/local/bin/suspend-bat-low.sh

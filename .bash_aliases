@@ -238,9 +238,9 @@ alias backlight_off="sleep 1; xset dpms force off"
 
 set_brightness() {
     if [ $# -eq 0 ]; then
-        vim /sys/class/backlight/amdgpu_bl0/brightness
+        vim /sys/class/backlight/amdgpu_bl1/brightness
     else
-        echo "$1" > /sys/class/backlight/amdgpu_bl0/brightness
+        echo "$1" > /sys/class/backlight/amdgpu_bl1/brightness
     fi
 }
 #show_brightness(){
