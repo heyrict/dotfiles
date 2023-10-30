@@ -43,9 +43,9 @@ zstyle ':completion:*' verbose yes
 zstyle ':completion:*' group-name ''
 
 # Antibody {{{1
-export ANTIBODY_HOME=~/.antibody
-source <(antibody init)
-antibody bundle < ~/.zsh/.zsh_plugins.txt
+#export ANTIBODY_HOME=~/.antibody
+#source <(antibody init)
+#antibody bundle < ~/.zsh/.zsh_plugins.txt
 
 #if [ ! "${TTY:5:3}" = "tty" ]; then
 #    antibody bundle romkatv/powerlevel10k
