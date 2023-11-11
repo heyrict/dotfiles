@@ -11,9 +11,9 @@
 [pull]
 	rebase = false
 #[https]
-#    proxy = http://127.0.0.1:8123
+#    proxy = http://127.0.0.1:1081
 #[http]
-#    proxy = http://127.0.0.1:8123
+#    proxy = http://127.0.0.1:1081
 [init]
 	defaultBranch = master
 [core]

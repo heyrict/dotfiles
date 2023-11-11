@@ -193,7 +193,7 @@ source /usr/share/nvm/init-nvm.sh
 ## Yarn {{{2
 path+=$HOME/.yarn/bin
 ## Java {{{2
-export JAVA_HOME=/usr/lib/jvm/java-19-openjdk
+export JAVA_HOME=/usr/lib/jvm/java-21-openjdk
 classpath=(. $JAVA_HOME/lib/dt.jar $JAVA_HOME/lib/tools.jar)
 path=($JAVA_HOME/bin $JAVA_HOME/jre/bin $path)
 ## Android {{{2
@@ -308,7 +308,7 @@ export NNN_IDLE_TIMEOUT=180
 # - c: CD into directory found with fzf
 # - s: Organize
 # - b: Page the file with bat
-export NNN_PLUG='o:fzopen;p:-!feh -Z.*;P:-!feh -Z. `ls|sort -n`*;d:diffs;k:!chksum;c:fzcd;z:fzz;S:organize;b:-!bat $nnn;s:croc'
+export NNN_PLUG='o:fzopen;p:-!feh -Z.*;P:-!feh -Z. `ls|sort -n`*;d:diffs;k:!chksum;c:fzcd;z:fzz;S:organize;b:-!bat "$nnn";s:croc'
 
 # Start sway automatically {{{1
 if [ -z $DISPLAY ] && [ "$(tty)" = "/dev/tty1" ]; then

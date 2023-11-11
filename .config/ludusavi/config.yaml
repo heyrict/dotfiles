@@ -1,7 +1,7 @@
 ---
 manifest:
   url: "https://raw.githubusercontent.com/mtkennerly/ludusavi-manifest/master/data/manifest.yaml"
-  etag: "\"964e2c9305a2b3e9aa2ef8eaf695d1d4a7d63f11fdc8dedc145eebb9f182f6fc\""
+  etag: "\"260c146e509eacea1d4627420430be55d2809fcb93e6b1717e36a336b61b067a\""
 language: en-US
 theme: dark
 roots:
@@ -23,35 +23,27 @@ backup:
     - "AI: The Somnium Files"
     - Autonauts
     - "Bridge Constructor: The Walking Dead"
-    - Disgaea PC
     - Epistory - Typing Chronicles
-    - "Hyperdimension Neptunia Re;Birth 2: Sisters Generation"
     - Lego Bricktales
     - Lego The Lord of the Rings
     - "Mary Skelter: Nightmares"
     - "Monster Hunter Stories 2: Wings of Ruin"
     - My Time at Portia
-    - Orwell
-    - Phantom Brave PC
     - RPG Fighter League
     - RetroArch
-    - Shining Resonance Refrain
     - Stranded Deep
-    - Supraland
-    - "Sword Art Online: Lost Song"
-    - Tales of Berseria
-    - Tales of Zestiria
     - Tales of the Neon Sea
     - "The Legend of Heroes: Trails of Cold Steel II"
     - This War of Mine
-    - Tokyo Xanadu eX+
     - "Utawarerumono: Prelude to the Fallen"
     - Worms Clan Wars
   recentGames:
     - A Short Hike
     - "AI: The Somnium Files"
     - "Atelier Firis: The Alchemist and the Mysterious Journey"
+    - "Atelier Sophie: The Alchemist of the Mysterious Book DX"
     - Baba Is You
+    - Back to Bed
     - "Bridge Constructor: The Walking Dead"
     - Bullet Girls Phantasia
     - Celeste
@@ -64,6 +56,7 @@ backup:
     - Hidden Folks
     - "Hyperdimension Neptunia Re;Birth 2: Sisters Generation"
     - Lego The Lord of the Rings
+    - Model Builder
     - "Monster Hunter Stories 2: Wings of Ruin"
     - My Time at Portia
     - Nekomimi Sweet Housemates
@@ -72,7 +65,6 @@ backup:
     - Orwell
     - Overcooked!
     - Phantom Brave PC
-    - RPG Fighter League
     - RetroArch
     - Rune Factory 5
     - Shining Resonance Refrain
@@ -89,7 +81,6 @@ backup:
     - Unrailed!
     - "Utawarerumono: Prelude to the Fallen"
     - Worms Clan Wars
-    - Yakuza Kiwami
   merge: true
   filter:
     excludeStoreScreenshots: true

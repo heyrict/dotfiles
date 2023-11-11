@@ -130,7 +130,7 @@ bind -m vi G:end-of-history
 bind -m vi g:start-of-history
 
 # enable default python virtualenv
-source ~/pyenv/env/bin/activate
+[ -f ~/pyenv/env/bin/activate ] && source ~/pyenv/env/bin/activate
 export HASURA_GRAPHQL_ADMIN_SECRET="CINDYTHINK_HASURA_ADMIN_SECRET"
 
 # yarn
@@ -154,9 +154,6 @@ export RUST_SRC_PATH=/home/heyrict/.rustup/toolchains/nightly-x86_64-unknown-lin
 export PUB_HOSTED_URL=https://dart-pub.mirrors.sjtug.sjtu.edu.cn/
 export FLUTTER_STORAGE_BASE_URL=https://mirrors.sjtug.sjtu.edu.cn/
 export PATH=$PATH:$HOME/Flutter/bin
-
-# often-use programs
-export PATH=$PATH:~/Eric/MyPrograms/bin:~/Eric/Program_Files/bin:$HOME/Android/platform-tools:~/Eric/Program_Files/java-jars
 
 # starship
 # To uninstall, run cargo uninstall starship
