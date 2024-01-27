@@ -17,7 +17,7 @@ syokusyu:
 	just run "{{HOME}}/Games/era/syokusyu1150/Emuera1824+v10.exe"
 
 theworld:
-	just run "{{HOME}}/Games/era/eraTW4.903/Emuera.exe"
+	just run "{{HOME}}/Games/era/eraTW4.920/Emuera_RainForTW_v0.05.exe"
 
 k:
 	just run "{{HOME}}/Games/era/eratohoK1293/Emuera1824+v9.exe"
@@ -32,7 +32,7 @@ awt:
 	just run "{{HOME}}/Games/era/eraAWT1004/Emuera1824+v5.exe"
 
 akumaMaid:
-	just run "{{HOME}}/Games/era/eraAkumaMaid 2022_08_23/Emuera1824+v15.exe"
+	just run "{{HOME}}/Games/era/eraAkumaMaid 2023_12_21/Emuera1824+v18.exe"
 
 t:
 	just run "{{HOME}}/Games/era/eratohoT3300/Emuera1824.exe"

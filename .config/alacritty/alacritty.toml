@@ -1,0 +1,72 @@
+live_config_reload = true
+working_directory = "/home/heyrict"
+import = [
+    "~/.config/alacritty/gruvbox_dark.toml"
+]
+
+[bell]
+animation = "EaseOutExpo"
+color = "0xffffff"
+duration = 0
+
+[cursor.style]
+blinking = "Off"
+shape = "Block"
+
+[debug]
+log_level = "Warn"
+persistent_logging = false
+print_events = false
+render_timer = false
+
+[font]
+size = 13
+bold = { family = "monospace", style = "Bold" }
+italic = { family = "monospace", style = "Italic" }
+normal = { family = "MesloLGS Nerd Font Mono", style = "Regular" }
+
+[colors]
+selection = { background = "CellForeground", text = "CellBackground" }
+vi_mode_cursor = { cursor = "CellForeground", text = "CellBackground" }
+
+[keyboard]
+bindings = [
+    { key = "K", mods = "Super|Shift", action = "ScrollLineUp" },
+    { key = "J", mods = "Super|Shift", action = "ScrollLineDown" },
+    { key = "P", mods = "Super|Shift", action = "ScrollPageUp" },
+    { key = "N", mods = "Super|Shift", action = "ScrollPageDown" },
+    { key = "T", mods = "Super|Shift", action = "ScrollToTop" },
+    { key = "G", mods = "Super|Shift", action = "ScrollToBottom" },
+    # Cursor key replacement
+    # ←↑↓→
+    { key = "H", mods = "Super", chars = "\u001b[D" },
+    { key = "L", mods = "Super", chars = "\u001b[C" },
+    { key = "K", mods = "Super", chars = "\u001b[A" },
+    { key = "J", mods = "Super", chars = "\u001b[B" },
+    # home and end
+    { key = "T", mods = "Super", chars = "\u001b[H" },
+    { key = "G", mods = "Super", chars = "\u001b[F" },
+    # pgup and pgdn
+    { key = "P", mods = "Super", chars = "\u001b[5~" },
+    { key = "N", mods = "Super", chars = "\u001b[6~" },
+    # delete
+    { key = "D", mods = "Super", chars = "\u001b[3~" },
+]
+
+[mouse]
+bindings = [
+    { action = "PasteSelection", mouse = "Middle" },
+]
+
+[scrolling]
+history = 10000
+multiplier = 3
+
+[window]
+dynamic_padding = false
+dynamic_title = true
+opacity = 0.7
+
+class = { general = "Alacritty", instance = "Alacritty" }
+dimensions = { columns = 0, lines = 0 }
+padding = { x = 0, y = 0 }

@@ -7,6 +7,7 @@ fi
 # Language and IME {{{1
 export LANG=en_US.UTF-8
 export XMODIFIERS="@im=fcitx"
+
 export GTK_IM_MODULE="fcitx"
 export QT_IM_MODULE="fcitx"
 export SDL_IM_MODULE="fcitx"
@@ -312,6 +313,7 @@ export NNN_PLUG='o:fzopen;p:-!feh -Z.*;P:-!feh -Z. `ls|sort -n`*;d:diffs;k:!chks
 
 # Start sway automatically {{{1
 if [ -z $DISPLAY ] && [ "$(tty)" = "/dev/tty1" ]; then
+  #exec sway -Dnoscanout # Workaround for adaptive sync in fullscreen https://github.com/swaywm/sway/issues/7370
   exec sway
 fi
 

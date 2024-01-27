@@ -1,0 +1,3 @@
+% soc.opi3b.serial.connect
+# Connect to orange pi 3b with serial com
+picocom -b 1500000 -f n /dev/ttyUSB0

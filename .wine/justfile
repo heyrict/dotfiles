@@ -9,6 +9,7 @@ GE_VERSION := "current"
 GE := "/home/heyrict/WineGE/" + PROTON_VERSION
 GE_WINE64 := GE + "/bin/wine64"
 LANG := "ja_JP.UTF-8"
+GAMESCOPE_ENV := "SDL_VIDEODRIVER=x11"
 DEFAULT_ENV := 'LC_ALL=' + LANG + ' LANG=' + LANG + ' WINEPREFIX="' + ROOT + '"'
 FSR_MODE := "balanced"
 FSR_ENABLE := "1"
@@ -39,16 +40,16 @@ angel_beats:
 	just _siglus_run "{{ROOT}}/drive_c/Program Files (x86)/Key/AngelBeats!/SiglusEngine.exe"
 
 amayui:
-	gamescope -F fsr -W 1920 -H 1080 -w 1280 -h 720 just FSR_ENABLE=0 ge_run "/mnt/windows/Users/xiezh/Games/Eushully/AMAYUI/AGE.exe"
+	env {{GAMESCOPE_ENV}} gamescope -F fsr -W 1920 -H 1080 -w 1280 -h 720 just FSR_ENABLE=0 ge_run "/mnt/windows/Users/xiezh/Games/Eushully/AMAYUI/AGE.exe"
 
 soukoku:
-	gamescope -F fsr -W 1920 -H 1080 -w 1280 -h 720 just FSR_ENABLE=0 ge_run "/mnt/windows/Users/xiezh/Games/Eushully/創刻のアテリアル/AGE.EXE"
+	env {{GAMESCOPE_ENV}} gamescope -F fsr -W 1920 -H 1080 -w 1280 -h 720 just FSR_ENABLE=0 ge_run "/mnt/windows/Users/xiezh/Games/Eushully/創刻のアテリアル/AGE.EXE"
 
 tenmei:
-	gamescope -F fsr -W 1920 -H 1080 -w 1280 -h 720 just FSR_ENABLE=0 ge_run "/mnt/windows/Users/xiezh/Games/Eushully/天冥のコンキスタ/AGE.EXE"
+	env {{GAMESCOPE_ENV}} gamescope -F fsr -W 1920 -H 1080 -w 1280 -h 720 just FSR_ENABLE=0 ge_run "/mnt/windows/Users/xiezh/Games/Eushully/天冥のコンキスタ/AGE.EXE"
 
 fuukan:
-	gamescope -F fsr -W 1920 -H 1080 -w 1280 -h 720 just FSR_ENABLE=0 ge_run "/mnt/windows/Users/xiezh/Games/Eushully/封緘のグラセスタ/AGE.EXE"
+	env {{GAMESCOPE_ENV}} gamescope -F fsr -W 1920 -H 1080 -w 1280 -h 720 just FSR_ENABLE=0 ge_run "/mnt/windows/Users/xiezh/Games/Eushully/封緘のグラセスタ/AGE.EXE"
 
 th10:
 	just ge_run "{{HOME}}/Games/th10/th10.exe" >/dev/null 2>&1
@@ -66,13 +67,13 @@ kinkoi:
 	just _siglus_run "{{ROOT}}/drive_c/Program Files (x86)/SAGAPLANETS/金色ラブリッチェ/SiglusEngine.exe"
 
 kanon:
-	gamescope -F fsr -H 1200 just FSR_ENABLE=0 _siglus_run "{{HOME}}/Games/KEY/KANON_SE/REALLIVE.EXE"
+	env {{GAMESCOPE_ENV}} gamescope -F fsr -H 1200 just FSR_ENABLE=0 _siglus_run "{{HOME}}/Games/KEY/KANON_SE/REALLIVE.EXE"
 
 dohna:
 	just ge_run "{{ROOT}}/drive_c/Program Files (x86)/DohnaDohna/dohnadohna.exe"
 
 evenicle:
-	gamescope -F fsr -W {{W}} -H {{H}} just FSR_ENABLE=0 ge_run "{{HOME}}/Games/イブニクル/Evenicle.exe"
+	env {{GAMESCOPE_ENV}} gamescope -F fsr -W {{W}} -H {{H}} just FSR_ENABLE=0 ge_run "{{HOME}}/Games/イブニクル/Evenicle.exe"
 
 kirasarafe:
 	just ge_run "{{HOME}}/Games/pandadanpa/魔法少女きららとさららFE/kirasarafe.exe"
@@ -90,19 +91,19 @@ seirei:
 	just ge_run "{{HOME}}/Games/SeireiDensyo_2_0_4/game.exe"
 
 seorin:
-    just ge_run "{{ROOT}}/drive_c/Program Files (x86)/CHAOS-R/神聖昂燐ダクリュオン・ルナ/神聖昂燐ダクリュオン・ルナ.exe"
+    just FSR_ENABLE=0 ge_run "{{ROOT}}/drive_c/Program Files (x86)/CHAOS-R/神聖昂燐ダクリュオン・ルナ/神聖昂燐ダクリュオン・ルナ.exe"
 
 #virnemelet:
 #	just ge_run "{{HOME}}/Games/ヴィルネーメレト ver1.07d4(windows)//Game.exe"
 
 ff12:
-	gamescope -F fsr -w 1280 -h 720 just run "/run/media/heyrict/wd22b/heyrict/pc/Final Fantasy XII - The Zodiac Age/x64/FFXII_TZA.exe"
+	env {{GAMESCOPE_ENV}} gamescope -F fsr -w 1280 -h 720 just run "/run/media/heyrict/wd22b/heyrict/pc/Final Fantasy XII - The Zodiac Age/x64/FFXII_TZA.exe"
 
 ff12_plain:
 	just run "/run/media/heyrict/wd22b/heyrict/pc/Final Fantasy XII - The Zodiac Age/x64/FFXII_TZA.exe"
 
 tyouR:
-	gamescope -F fsr -W 1920 -H 1200 just FSR_ENABLE=0 ge_run "{{HOME}}/Games/tyouR/tyouR.exe"
+	env {{GAMESCOPE_ENV}} gamescope -F fsr -W 1920 -H 1200 just FSR_ENABLE=0 ge_run "{{HOME}}/Games/tyouR/tyouR.exe"
 
 monobeno:
 	just ge_run "{{HOME}}/Games/ものべの/ものべの.exe"
@@ -110,17 +111,14 @@ monobeno:
 brave:
 	just ge_run "{{HOME}}/Games/VenusBlood-BRAVE-/VBB.exe"
 
-riko:
-	just ge_run "{{HOME}}/Games/220310_Riko/Game.exe"
-
 shellil:
-	gamescope -F fsr just FSR_ENABLE=0 ge_run "{{HOME}}/Games/311136_Shellil/Game.exe"
+	env {{GAMESCOPE_ENV}} gamescope -F fsr just FSR_ENABLE=0 ge_run "{{HOME}}/Games/311136_Shellil/Game.exe"
 
 mobi:
 	just ge_run "{{HOME}}/Games/RJ01042745_mobi_kazamachi/Game.exe"
 
 sakura_moyu:
-	gamescope -F fsr -W 1920 -H 1200 just FSR_ENABLE=0 ge_run "{{HOME}}/Games/さくら、もゆ。/Sakura.exe"
+	env {{GAMESCOPE_ENV}} gamescope -F fsr -W 1920 -H 1200 just FSR_ENABLE=0 ge_run "{{HOME}}/Games/さくら、もゆ。/Sakura.exe"
 
 god2:
-	gamescope -F fsr -W {{W}} -H {{H}} just FSR_ENABLE=0 ge_run "{{HOME}}/Games/GEARS of DRAGOON 2/GoD2.exe"
+	env {{GAMESCOPE_ENV}} gamescope -F fsr -W {{W}} -H {{H}} just FSR_ENABLE=0 ge_run "{{HOME}}/Games/GEARS of DRAGOON 2/GoD2.exe"
