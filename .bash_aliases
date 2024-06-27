@@ -6,7 +6,12 @@ fi
 
 export NLTK_DATA="/mnt/LENOVO/Data/NLTK"
 
-export P_THEME="/home/heyrict/.prev_theme"
+if [ "$SSH_CONNECTION" ]; then
+    SSH_SESSION=$(echo "$SSH_CONNECTION" | base64)
+    export P_THEME="/home/heyrict/.prev_theme_$SSH_SESSION"
+else
+    export P_THEME="/home/heyrict/.prev_theme"
+fi
 
 # fmriprep
 function fmriprep-docker {

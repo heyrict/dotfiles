@@ -15,6 +15,11 @@ set $mod Mod1
 # The super key
 set $sup Mod4
 
+input "14:13330:BTK1_BT5.0_Keyboard" {
+    xkb_layout us
+    xkb_options altwin:swap_lalt_lwin
+}
+
 # Use super key for moving floating windows
 floating_modifier $sup
 
@@ -470,8 +475,8 @@ bindsym $sup+b exec "notify-send 'Capacity = '$(cat /sys/class/power_supply/BAT0
 # Wayland specific commands
 ## Wallpaper
 #output "*" bg ~/Pictures/backgrounds/astize_cc0_split1_alt.png fill
-output eDP-1 bg ~/Pictures/backgrounds/edna_dark.jpeg fill
-output HDMI-1 bg ~/Pictures/backgrounds/black.png fill
+output eDP-1 bg ~/Pictures/backgrounds/elena_sr.png fit
+output HDMI-1 bg ~/Pictures/backgrounds/edna_dark.jpeg fill
 
 ## Toggle backlight
 bindsym $mod+bracketright exec ~/.config/sway/scripts/backlight-toggle.sh

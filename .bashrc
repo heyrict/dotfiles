@@ -1,12 +1,9 @@
-# ~/.bashrc: executed by bash(1) for non-login shells.
-# see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
-# for examples
+#
+# ~/.bashrc
+#
 
 # If not running interactively, don't do anything
-case $- in
-    *i*) ;;
-      *) return;;
-esac
+[[ $- != *i* ]] && return
 
 # don't put duplicate lines or lines starting with space in the history.
 # See bash(1) for more options
@@ -56,11 +53,7 @@ if [ -n "$force_color_prompt" ]; then
     fi
 fi
 
-if [ "$color_prompt" = yes ]; then
-    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
-else
-    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
-fi
+PS1='[\u@\h \W]\$ '
 unset color_prompt force_color_prompt
 
 # If this is an xterm set the title to user@host:dir
@@ -137,7 +130,7 @@ bind -m vi G:end-of-history
 bind -m vi g:start-of-history
 
 # enable default python virtualenv
-source ~/pyenv/env/bin/activate
+[ -f ~/pyenv/env/bin/activate ] && source ~/pyenv/env/bin/activate
 export HASURA_GRAPHQL_ADMIN_SECRET="CINDYTHINK_HASURA_ADMIN_SECRET"
 
 # yarn
@@ -161,9 +154,6 @@ export RUST_SRC_PATH=/home/heyrict/.rustup/toolchains/nightly-x86_64-unknown-lin
 export PUB_HOSTED_URL=https://dart-pub.mirrors.sjtug.sjtu.edu.cn/
 export FLUTTER_STORAGE_BASE_URL=https://mirrors.sjtug.sjtu.edu.cn/
 export PATH=$PATH:$HOME/Flutter/bin
-
-# often-use programs
-export PATH=$PATH:~/Eric/MyPrograms/bin:~/Eric/Program_Files/bin:$HOME/Android/platform-tools:~/Eric/Program_Files/java-jars
 
 # starship
 # To uninstall, run cargo uninstall starship

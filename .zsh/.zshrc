@@ -7,8 +7,10 @@ fi
 # Language and IME {{{1
 export LANG=en_US.UTF-8
 export XMODIFIERS="@im=fcitx"
+
 export GTK_IM_MODULE="fcitx"
 export QT_IM_MODULE="fcitx"
+export QT_IM_MODULES="wayland;fcitx"
 export SDL_IM_MODULE="fcitx"
 
 # The following lines were added by compinstall {{{1
@@ -43,9 +45,9 @@ zstyle ':completion:*' verbose yes
 zstyle ':completion:*' group-name ''
 
 # Antibody {{{1
-#export ANTIBODY_HOME=~/.antibody
-#source <(antibody init)
-#antibody bundle < ~/.zsh/.zsh_plugins.txt
+export ANTIBODY_HOME=~/.antibody
+source <(antibody init)
+antibody bundle < ~/.zsh/.zsh_plugins.txt
 
 #if [ ! "${TTY:5:3}" = "tty" ]; then
 #    antibody bundle romkatv/powerlevel10k
@@ -193,7 +195,7 @@ source /usr/share/nvm/init-nvm.sh
 ## Yarn {{{2
 path+=$HOME/.yarn/bin
 ## Java {{{2
-export JAVA_HOME=/usr/lib/jvm/java-19-openjdk
+export JAVA_HOME=/usr/lib/jvm/java-21-openjdk
 classpath=(. $JAVA_HOME/lib/dt.jar $JAVA_HOME/lib/tools.jar)
 path=($JAVA_HOME/bin $JAVA_HOME/jre/bin $path)
 ## Android {{{2
@@ -308,10 +310,11 @@ export NNN_IDLE_TIMEOUT=180
 # - c: CD into directory found with fzf
 # - s: Organize
 # - b: Page the file with bat
-export NNN_PLUG='o:fzopen;p:-!feh -Z.*;P:-!feh -Z. `ls|sort -n`*;d:diffs;k:!chksum;c:fzcd;z:fzz;S:organize;b:-!bat $nnn;s:croc'
+export NNN_PLUG='o:fzopen;p:-!feh -Z.*;P:-!feh -Z. `ls|sort -n`*;d:diffs;k:!chksum;c:fzcd;z:fzz;S:organize;b:-!bat "$nnn";s:croc'
 
 # Start sway automatically {{{1
 if [ -z $DISPLAY ] && [ "$(tty)" = "/dev/tty1" ]; then
+  #exec sway -Dnoscanout # Workaround for adaptive sync in fullscreen https://github.com/swaywm/sway/issues/7370
   exec sway
 fi
 

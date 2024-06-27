@@ -79,8 +79,8 @@ endif
 
 " For markdown
 Plug 'godlygeek/tabular'
-"Plug 'plasticboy/vim-markdown'
-Plug 'vim-pandoc/vim-pandoc-syntax'
+"Plug 'preservim/vim-markdown'
+Plug 'heyrict/vim-pandoc-syntax', { 'branch': 'allow-consecutive-heading' }
 Plug 'vim-pandoc/vim-pandoc'
 
 " Color Schema
@@ -137,6 +137,13 @@ let g:pandoc#folding#level = 1
 let g:pandoc#folding#mode = 'syntax'
 let g:pandoc#modules#disabled = ['bibliographies', 'completion', 'spell']
 "let g:pandoc#spell#default_langs = ['en_us', 'cjk']
+
+" Fix consecutive heading highlighting https://github.com/vim-pandoc/vim-pandoc-syntax/issues/391
+augroup consecutive_heading
+    au!
+    au filetype pandoc syn clear pandocAtxHeader
+    au filetype pandoc syn match pandocAtxHeader /\(\%^\|<.\+>.*\|^\s*\)\@<=#\{1,6}.*\n/ contains=pandocEmphasis,pandocStrong,pandocNoFormatted,pandocLaTeXInlineMath,pandocEscapedDollar,@Spell,pandocAmpersandEscape,pandocReferenceLabel,pandocReferenceURL display
+augroup END
 
 " Adding bullet support
 autocmd filetype pandoc,markdown set comments+=b:*,b:-,b:+
@@ -773,6 +780,7 @@ set encoding=utf-8 fileencodings=ucs-bom,utf-8,shift-jis,cp932,cp936
 " {{{1 Custom filetype autocommands
 autocmd filetype typescript,javascript,typescript.jsx,javascript.jsx,python setlocal foldmethod=marker
 autocmd BufNewFile,BufRead *.ERH,*.ERB set filetype=freebasic
+"autocmd BufNewFile,BufRead *.md set syntax=markdown
 
 " {{{1 Netrw
 let g:netrw_browsex_viewer= "xdg-open"
