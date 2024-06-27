@@ -10,6 +10,7 @@ export XMODIFIERS="@im=fcitx"
 
 export GTK_IM_MODULE="fcitx"
 export QT_IM_MODULE="fcitx"
+export QT_IM_MODULES="wayland;fcitx"
 export SDL_IM_MODULE="fcitx"
 
 # The following lines were added by compinstall {{{1

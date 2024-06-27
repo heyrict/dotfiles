@@ -65,7 +65,7 @@ multiplier = 3
 [window]
 dynamic_padding = false
 dynamic_title = true
-opacity = 0.7
+opacity = 0.8
 
 class = { general = "Alacritty", instance = "Alacritty" }
 dimensions = { columns = 0, lines = 0 }

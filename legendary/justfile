@@ -1,9 +1,9 @@
 ROOT := "/home/heyrict/legendary/pfx"
 HOME := ROOT + "/drive_c/users/heyrict"
-#PROTON := "/home/heyrict/.local/share/Steam/steamapps/common/Proton 5.13"
-#PROTON_WINE64 := PROTON + "/dist/bin/wine64"
-PROTON := "/home/heyrict/.local/share/Steam/compatibilitytools.d/current"
-PROTON_WINE64 := PROTON + "/files/bin/wine64"
+PROTON_VERSION := "current"
+PROTON := "/home/heyrict/WineGE/" + PROTON_VERSION
+PROTON_WINE64 := PROTON + "/bin/wine64"
+
 FSR_MODE := "performance"
 PROTON_ENV := "DXVK_ASYNC=1 WINE_FULLSCREEN_FSR=1 WINE_FULLSCREEN_FSR_MODE=" + FSR_MODE
 
@@ -11,10 +11,10 @@ sync:
 	legendary sync-saves
 
 kill:
-	{{PROTON}}/files/bin/wineserver -k
+	{{PROTON}}/bin/wineserver -k
 
 kill9:
-	{{PROTON}}/files/bin/wineserver -k9
+	{{PROTON}}/bin/wineserver -k9
 
 run FILE:
 	cd "$(dirname '{{FILE}}')" && env WINEPREFIX="{{ROOT}}" "{{PROTON_WINE64}}" "$(basename '{{FILE}}')"

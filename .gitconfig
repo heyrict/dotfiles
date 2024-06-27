@@ -20,5 +20,6 @@
     sshCommand = ssh -i ~/.ssh/id_ed25519_nopass
 [safe]
 	directory = /mnt/windows/Users/xiezh/MyPrograms/renji360
+	directory = /run/media/heyrict/wd23e/heyrict/orangepi3b-images/build
 [protocol "file"]
 	allow = always

@@ -39,3 +39,6 @@ t:
 
 as:
 	just run "{{HOME}}/Games/era/eraAS_0.665/Emuera1824+v5.exe"
+
+fl:
+	just run "{{HOME}}/Games/era/eraFL_v0.303/Emuera1824+v18+EMv17+EEv44.exe"
