@@ -1,7 +1,7 @@
 ---
 manifest:
   url: "https://raw.githubusercontent.com/mtkennerly/ludusavi-manifest/master/data/manifest.yaml"
-  etag: "\"b4d7f1b67b9e68b0cce2985472cebc001907a974637f608ebd3da24dd549db8b\""
+  etag: "\"964e2c9305a2b3e9aa2ef8eaf695d1d4a7d63f11fdc8dedc145eebb9f182f6fc\""
 language: en-US
 theme: dark
 roots:
@@ -13,11 +13,7 @@ roots:
     store: otherWine
   - path: /run/media/heyrict/wd23e/heyrict/wine
     store: otherWine
-  - path: /run/media/heyrict/zt23b/heyrict/wine
-    store: otherWine
   - path: /run/media/heyrict/wd22b/heyrict/steam/
-    store: steam
-  - path: /run/media/heyrict/zt23b/heyrict/Steam/
     store: steam
   - path: /run/media/heyrict/SG20E/SteamLibrary
     store: steam
@@ -27,32 +23,35 @@ backup:
     - "AI: The Somnium Files"
     - Autonauts
     - "Bridge Constructor: The Walking Dead"
+    - Disgaea PC
     - Epistory - Typing Chronicles
+    - "Hyperdimension Neptunia Re;Birth 2: Sisters Generation"
     - Lego Bricktales
     - Lego The Lord of the Rings
     - "Mary Skelter: Nightmares"
-    - Model Builder
     - "Monster Hunter Stories 2: Wings of Ruin"
     - My Time at Portia
+    - Orwell
+    - Phantom Brave PC
     - RPG Fighter League
     - RetroArch
+    - Shining Resonance Refrain
     - Stranded Deep
+    - Supraland
     - "Sword Art Online: Lost Song"
     - Tales of Berseria
+    - Tales of Zestiria
     - Tales of the Neon Sea
     - "The Legend of Heroes: Trails of Cold Steel II"
     - This War of Mine
-    - Tomb Raider (2013)
+    - Tokyo Xanadu eX+
     - "Utawarerumono: Prelude to the Fallen"
     - Worms Clan Wars
   recentGames:
     - A Short Hike
     - "AI: The Somnium Files"
-    - Atelier Escha and Logy DX
     - "Atelier Firis: The Alchemist and the Mysterious Journey"
-    - "Atelier Sophie: The Alchemist of the Mysterious Book DX"
     - Baba Is You
-    - Back to Bed
     - "Bridge Constructor: The Walking Dead"
     - Bullet Girls Phantasia
     - Celeste
@@ -64,9 +63,7 @@ backup:
     - Gal*Gun Returns
     - Hidden Folks
     - "Hyperdimension Neptunia Re;Birth 2: Sisters Generation"
-    - It Takes Two
     - Lego The Lord of the Rings
-    - Model Builder
     - "Monster Hunter Stories 2: Wings of Ruin"
     - My Time at Portia
     - Nekomimi Sweet Housemates
@@ -75,6 +72,7 @@ backup:
     - Orwell
     - Overcooked!
     - Phantom Brave PC
+    - RPG Fighter League
     - RetroArch
     - Rune Factory 5
     - Shining Resonance Refrain
@@ -89,11 +87,9 @@ backup:
     - Tokyo Xanadu eX+
     - Tomb Raider (2013)
     - Unrailed!
-    - Untitled Goose Game
     - "Utawarerumono: Prelude to the Fallen"
     - Worms Clan Wars
     - Yakuza Kiwami
-    - "Ys VIII: Lacrimosa of DANA"
   merge: true
   filter:
     excludeStoreScreenshots: true
@@ -127,12 +123,4 @@ customGames:
   - name: Nekomimi Sweet Housemates
     files:
       - /home/heyrict/.local/share/Steam/steamapps/compatdata/1789650/pfx/drive_c/users/steamuser/AppData/LocalLow/AnimalHerb/Nekomimi Sweet Housemates
-    registry: []
-  - name: Atelier Escha and Logy DX
-    files:
-      - /home/heyrict/.local/share/Steam/steamapps/compatdata/1152310/pfx/drive_c/users/steamuser/Documents/KoeiTecmo/Atelier Escha and Logy DX/
-    registry: []
-  - name: Atelier Shallie DX
-    files:
-      - /home/heyrict/.local/share/Steam/steamapps/compatdata/1152320/pfx/drive_c/users/steamuser/My Documents/KoeiTecmo/Atelier Shallie DX/
     registry: []

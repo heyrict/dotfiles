@@ -3,7 +3,8 @@
 ## Created By Aditya Shakya
 
 #MENU="$(rofi -sep "|" -dmenu -i -p 'System' -location 5 -xoffset -14 -yoffset -52 -width 10 -hide-scrollbar -line-padding 4 -padding 20 -lines 4 <<< " Lock| Logout| Reboot| Shutdown")"
-MENU="$(rofi -sep "|" -dmenu -font 'Meslo Nerd Font Mono 12' -i -p 'System' -location 5 -xoffset -4 -yoffset -25 -theme-str 'window {width: 14em; height: 10em;}' -hide-scrollbar -line-padding 4 -padding 10 -lines 6 <<< " Lock| Suspend| Hibernate| Reboot|⏻ Shutdown")"
+#MENU="$(rofi -sep "|" -dmenu -font 'Meslo Nerd Font Mono 12' -i -p 'System' -location 5 -xoffset -4 -yoffset -25 -theme-str 'window {width: 14em; height: 10em;}' -hide-scrollbar -line-padding 4 -padding 10 -lines 6 <<< " Lock| Suspend| Hibernate| Reboot|⏻ Shutdown")"
+MENU="$(echo " Lock| Suspend| Hibernate| Reboot|⏻ Shutdown" | sed 's/|/\n/g' | wofi -d)"
 
 case "$MENU" in
     *Lock) swaylock -c 000000 ;;

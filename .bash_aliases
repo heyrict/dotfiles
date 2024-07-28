@@ -6,12 +6,7 @@ fi
 
 export NLTK_DATA="/mnt/LENOVO/Data/NLTK"
 
-if [ "$SSH_CONNECTION" ]; then
-    SSH_SESSION=$(echo "$SSH_CONNECTION" | base64)
-    export P_THEME="/home/heyrict/.prev_theme_$SSH_SESSION"
-else
-    export P_THEME="/home/heyrict/.prev_theme"
-fi
+export P_THEME="/home/heyrict/.prev_theme"
 
 # fmriprep
 function fmriprep-docker {
@@ -58,6 +53,8 @@ alias syncthing-cindy-connect="ssh -N -L 8385:127.0.0.1:8384 cindy"
 alias bton="bluetoothctl power on"
 alias btoff="bluetoothctl power off"
 
+# Alias for fd on debian
+alias fd="fdfind"
 
 # Extension to git merge
 alias gmn="git merge --no-commit"

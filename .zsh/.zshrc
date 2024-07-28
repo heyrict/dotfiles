@@ -7,10 +7,8 @@ fi
 # Language and IME {{{1
 export LANG=en_US.UTF-8
 export XMODIFIERS="@im=fcitx"
-
 export GTK_IM_MODULE="fcitx"
 export QT_IM_MODULE="fcitx"
-export QT_IM_MODULES="wayland;fcitx"
 export SDL_IM_MODULE="fcitx"
 
 # The following lines were added by compinstall {{{1
@@ -45,9 +43,11 @@ zstyle ':completion:*' verbose yes
 zstyle ':completion:*' group-name ''
 
 # Antibody {{{1
-export ANTIBODY_HOME=~/.antibody
-source <(antibody init)
-antibody bundle < ~/.zsh/.zsh_plugins.txt
+#export ANTIBODY_HOME=~/.antibody
+#source <(antibody init)
+#antibody bundle < ~/.zsh/.zsh_plugins.txt
+
+eval "$(zoxide init zsh)"
 
 #if [ ! "${TTY:5:3}" = "tty" ]; then
 #    antibody bundle romkatv/powerlevel10k
@@ -119,11 +119,7 @@ fi
 export ARCHFLAGS="-arch x86_64"
 
 # History {{{1
-if [ $SSH_CONNECTION ]; then
-  HISTFILE=~/.histfile_$SSH_SESSION
-else
-  HISTFILE=~/.histfile
-fi
+HISTFILE=~/.histfile
 HISTSIZE=1000
 SAVEHIST=1000
 setopt EXTENDED_HISTORY
@@ -190,12 +186,12 @@ export WINIT_X11_SCALE_FACTOR=1 # No upscaling in XWayland
 
 ## Nvm {{{2
 export NVM_DIR="$HOME/.nvm"
-source /usr/share/nvm/init-nvm.sh
+[ -x /usr/share/nvm/init-nvm.sh ] && source /usr/share/nvm/init-nvm.sh
 
 ## Yarn {{{2
 path+=$HOME/.yarn/bin
 ## Java {{{2
-export JAVA_HOME=/usr/lib/jvm/java-21-openjdk
+export JAVA_HOME=/usr/lib/jvm/java-19-openjdk
 classpath=(. $JAVA_HOME/lib/dt.jar $JAVA_HOME/lib/tools.jar)
 path=($JAVA_HOME/bin $JAVA_HOME/jre/bin $path)
 ## Android {{{2
@@ -223,6 +219,13 @@ export NEOVIDE_MULTIGRID=1
 
 ## Zoxide {{{2
 export _ZO_EXCLUDE_DIRS=$HOME:$HOME/Private/:/tmp*
+
+## Armbian {{{2
+path=($HOME/wine/wine-8.16-amd64/bin $path)
+
+## Flatpak {{{2
+export XDG_DATA_DIRS=$HOME/.local/share/flatpak/exports/shares:/var/lib/flatpak/exports/share:$XDG_DATA_DIRS
+path=($HOME/.local/share/flatpak/exports/bin /var/lib/flatpak/exports/bin $path)
 
 ## Custom {{{2
 export TASKRC="~/.taskrc"
@@ -294,7 +297,7 @@ esac
 # - m: Multimedia
 # - u: Mount point
 # - t: /tmp
-export NNN_BMS="w:~/MyPrograms;c:~/pandoc_markdown/CliMed;m:/mnt/windows;u:/run/media;t:/tmp"
+export NNN_BMS="w:~/MyPrograms;c:~/pandoc_markdown/CliMed;u:/media;t:/tmp"
 
 # Light theme
 export NNN_COLORS='5234'
@@ -310,11 +313,10 @@ export NNN_IDLE_TIMEOUT=180
 # - c: CD into directory found with fzf
 # - s: Organize
 # - b: Page the file with bat
-export NNN_PLUG='o:fzopen;p:-!feh -Z.*;P:-!feh -Z. `ls|sort -n`*;d:diffs;k:!chksum;c:fzcd;z:fzz;S:organize;b:-!bat "$nnn";s:croc'
+export NNN_PLUG='o:fzopen;p:-!feh -Z.*;P:-!feh -Z. `ls|sort -n`*;d:diffs;k:!chksum;c:fzcd;z:fzz;S:organize;b:-!bat $nnn;s:croc'
 
 # Start sway automatically {{{1
 if [ -z $DISPLAY ] && [ "$(tty)" = "/dev/tty1" ]; then
-  #exec sway -Dnoscanout # Workaround for adaptive sync in fullscreen https://github.com/swaywm/sway/issues/7370
   exec sway
 fi
 

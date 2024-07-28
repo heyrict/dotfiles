@@ -1,25 +1,5 @@
-[user]
-	name = heyrict
-	email = xiezh0831@yahoo.co.jp
-	signingkey = F164CB5BC7D313E98ABA2530C3B26C19CA5EED91
-[credential]
-    helper = cache --timeout=3600
-[commit]
-	gpgsign = true
-[gpg]
-	program = gpg
-[pull]
-	rebase = false
-#[https]
-#    proxy = http://127.0.0.1:1081
-#[http]
-#    proxy = http://127.0.0.1:1081
-[init]
-	defaultBranch = master
 [core]
-    sshCommand = ssh -i ~/.ssh/id_ed25519_nopass
-[safe]
-	directory = /mnt/windows/Users/xiezh/MyPrograms/renji360
-	directory = /run/media/heyrict/wd23e/heyrict/orangepi3b-images/build
-[protocol "file"]
-	allow = always
+    sshCommand = ssh -i ~/.ssh/id_opi3b
+[user]
+	email = heyrict@yandex.com
+	name = Zhenhui Xie
