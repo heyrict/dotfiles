@@ -179,9 +179,9 @@ path=('/usr/local/bin' '/usr/bin' $path)
 manpath=('/usr/local/man' '/usr/share/man' $manpath)
 
 ## Texlive {{{2
-manpath+=/usr/local/texlive/2023/texmf-dist/doc/man
-infopath+=/usr/local/texlive/2023/texmf-dist/doc/info
-path+=/usr/local/texlive/2023/bin/x86_64-linux
+manpath+=/usr/local/texlive/2024/texmf-dist/doc/man
+infopath+=/usr/local/texlive/2024/texmf-dist/doc/info
+path=(/usr/local/texlive/2024/bin/x86_64-linux $path)
 
 ## XWayland and Wayland related {{{2
 export ANKI_WAYLAND=1
@@ -191,6 +191,7 @@ export WINIT_X11_SCALE_FACTOR=1 # No upscaling in XWayland
 ## Nvm {{{2
 export NVM_DIR="$HOME/.nvm"
 source /usr/share/nvm/init-nvm.sh
+path=($path $HOME/.bun/bin)
 
 ## Yarn {{{2
 path+=$HOME/.yarn/bin
@@ -208,6 +209,10 @@ export RUSTUP_DIST_SERVER=https://mirrors.ustc.edu.cn/rust-static
 export RUSTUP_UPDATE_ROOT=https://mirrors.ustc.edu.cn/rust-static/rustup
 export RUST_SRC_PATH=/home/heyrict/.rustup/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src
 path+=$HOME/.cargo/bin
+## Go {{{2
+#go env -w GO111MODULE=on
+#go env -w GOPROXY=https://goproxy.cn,direct
+
 ## Flutter {{{2
 #export PUB_HOSTED_URL=https://pub.flutter-io.cn
 #export FLUTTER_STORAGE_BASE_URL=https://storage.flutter-io.cn
@@ -234,6 +239,9 @@ path=(
     $HOME/Programs/Slicer-4.11.0-2020-04-30-linux-amd64/bin
     $HOME/Android/platform-tools
 )
+
+# Prevent `less` from storing and regenerate history file
+export LESSHISTFILE=/dev/null
 
 
 # Other configs {{{1
@@ -312,10 +320,11 @@ export NNN_IDLE_TIMEOUT=180
 # - b: Page the file with bat
 export NNN_PLUG='o:fzopen;p:-!feh -Z.*;P:-!feh -Z. `ls|sort -n`*;d:diffs;k:!chksum;c:fzcd;z:fzz;S:organize;b:-!bat "$nnn";s:croc'
 
-# Start sway automatically {{{1
+# Start window managers automatically {{{1
 if [ -z $DISPLAY ] && [ "$(tty)" = "/dev/tty1" ]; then
-  #exec sway -Dnoscanout # Workaround for adaptive sync in fullscreen https://github.com/swaywm/sway/issues/7370
   exec sway
+elif [ -z $DISPLAY ] && [ "$(tty)" = "/dev/tty2" ]; then
+  exec startx
 fi
 
 # Countdown in alacritty

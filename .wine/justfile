@@ -54,8 +54,8 @@ fuukan:
 th10:
 	just run "{{HOME}}/Games/th10/th10.exe" >/dev/null 2>&1
 
-boushi:
-	just run "{{HOME}}/Games/Boushi/Game.exe"
+#boushi:
+#	just run "{{HOME}}/Games/Boushi/Game.exe"
 
 ninth_existence:
 	just run "{{HOME}}/Games/9th_Existence_ver.3.01/Game.exe"
@@ -120,5 +120,9 @@ sakura_moyu:
 god2:
 	env {{GAMESCOPE_ENV}} gamescope -F fsr -W {{W}} -H {{H}} just FSR_ENABLE=0 run "{{HOME}}/Games/GEARS of DRAGOON 2/GoD2.exe"
 
-houkiboshi:
-	just run "{{HOME}}/Games/PrimaDoll_Houkiboshi/StartData/GameData/data/SiglusEngine_Crack.exe"
+#houkiboshi:
+#	just run "{{HOME}}/Games/PrimaDoll_Houkiboshi/StartData/GameData/data/SiglusEngine_Crack.exe"
+
+material_brave:
+	#env {{GAMESCOPE_ENV}} gamescope -F fsr -W 1920 -H 1080 -w 1280 -h 720 just FSR_ENABLE=0 run "{{HOME}}/Games/MaterialBrave/MaterialBrave.exe"
+	just run "{{HOME}}/Games/MaterialBrave/MaterialBrave.exe"

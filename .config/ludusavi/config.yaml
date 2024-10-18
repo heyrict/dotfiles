@@ -1,32 +1,35 @@
 ---
+runtime:
+  threads: ~
 manifest:
   url: "https://raw.githubusercontent.com/mtkennerly/ludusavi-manifest/master/data/manifest.yaml"
-  etag: "\"b4d7f1b67b9e68b0cce2985472cebc001907a974637f608ebd3da24dd549db8b\""
 language: en-US
 theme: dark
 roots:
-  - path: ~/.steam/steam
-    store: steam
-  - path: ~/.wine
-    store: otherWine
-  - path: ~/legendary/pfx
-    store: otherWine
-  - path: /run/media/heyrict/wd23e/heyrict/wine
-    store: otherWine
-  - path: /run/media/heyrict/zt23b/heyrict/wine
-    store: otherWine
-  - path: /run/media/heyrict/wd22b/heyrict/steam/
-    store: steam
-  - path: /run/media/heyrict/zt23b/heyrict/Steam/
-    store: steam
-  - path: /run/media/heyrict/SG20E/SteamLibrary
-    store: steam
+  - store: steam
+    path: ~/.steam/steam
+  - store: otherWine
+    path: ~/.wine
+  - store: otherWine
+    path: ~/legendary/pfx
+  - store: otherWine
+    path: /run/media/heyrict/wd23e/heyrict/wine
+  - store: otherWine
+    path: /run/media/heyrict/zt23b/heyrict/wine
+  - store: steam
+    path: /run/media/heyrict/wd22b/heyrict/steam/
+  - store: steam
+    path: /run/media/heyrict/zt23b/heyrict/Steam/
+  - store: steam
+    path: /run/media/heyrict/SG20E/SteamLibrary
+redirects: []
 backup:
   path: /home/heyrict/Sync/backup/ludusavi
   ignoredGames:
     - "AI: The Somnium Files"
     - Autonauts
     - "Bridge Constructor: The Walking Dead"
+    - Dolphin
     - Epistory - Typing Chronicles
     - Lego Bricktales
     - Lego The Lord of the Rings
@@ -45,58 +48,15 @@ backup:
     - Tomb Raider (2013)
     - "Utawarerumono: Prelude to the Fallen"
     - Worms Clan Wars
-  recentGames:
-    - A Short Hike
-    - "AI: The Somnium Files"
-    - Atelier Escha and Logy DX
-    - "Atelier Firis: The Alchemist and the Mysterious Journey"
-    - "Atelier Sophie: The Alchemist of the Mysterious Book DX"
-    - Baba Is You
-    - Back to Bed
-    - "Bridge Constructor: The Walking Dead"
-    - Bullet Girls Phantasia
-    - Celeste
-    - Chaos;Child
-    - Cosmic Express
-    - Disgaea PC
-    - Epistory - Typing Chronicles
-    - "Final Fantasy XII: The Zodiac Age"
-    - Gal*Gun Returns
-    - Hidden Folks
-    - "Hyperdimension Neptunia Re;Birth 2: Sisters Generation"
-    - It Takes Two
-    - Lego The Lord of the Rings
-    - Model Builder
-    - "Monster Hunter Stories 2: Wings of Ruin"
-    - My Time at Portia
-    - Nekomimi Sweet Housemates
-    - "Neptunia x Senran Kagura: Ninja Wars"
-    - NieR Replicant
-    - Orwell
-    - Overcooked!
-    - Phantom Brave PC
-    - RetroArch
-    - Rune Factory 5
-    - Shining Resonance Refrain
-    - Sonic Mania
-    - Supraland
-    - "Sword Art Online: Lost Song"
-    - Tales of Berseria
-    - Tales of Zestiria
-    - Tales of the Neon Sea
-    - "The Legend of Heroes: Trails of Cold Steel II"
-    - This War of Mine
-    - Tokyo Xanadu eX+
-    - Tomb Raider (2013)
-    - Unrailed!
-    - Untitled Goose Game
-    - "Utawarerumono: Prelude to the Fallen"
-    - Worms Clan Wars
-    - Yakuza Kiwami
-    - "Ys VIII: Lacrimosa of DANA"
-  merge: true
   filter:
     excludeStoreScreenshots: true
+    cloud:
+      exclude: false
+      epic: false
+      gog: false
+      origin: false
+      steam: false
+      uplay: false
     ignoredPaths: []
     ignoredRegistry: []
   toggledPaths: {}
@@ -111,14 +71,33 @@ backup:
     chosen: simple
     zip:
       compression: deflate
+    compression:
+      deflate:
+        level: 6
+      bzip2:
+        level: 6
+      zstd:
+        level: 10
 restore:
   path: /home/heyrict/Sync/backup/ludusavi
   ignoredGames: []
-  recentGames: []
-  redirects: []
+  toggledPaths: {}
+  toggledRegistry: {}
   sort:
     key: name
     reversed: false
+scan:
+  showDeselectedGames: true
+  showUnchangedGames: true
+  showUnscannedGames: true
+cloud:
+  remote: ~
+  path: ludusavi-backup
+  synchronize: true
+apps:
+  rclone:
+    path: /usr/bin/rclone
+    arguments: "--fast-list --ignore-checksum"
 customGames:
   - name: "Monochrome Mobius: Rights and Wrongs Forgotten"
     files:
@@ -127,10 +106,6 @@ customGames:
   - name: Nekomimi Sweet Housemates
     files:
       - /home/heyrict/.local/share/Steam/steamapps/compatdata/1789650/pfx/drive_c/users/steamuser/AppData/LocalLow/AnimalHerb/Nekomimi Sweet Housemates
-    registry: []
-  - name: Atelier Escha and Logy DX
-    files:
-      - /home/heyrict/.local/share/Steam/steamapps/compatdata/1152310/pfx/drive_c/users/steamuser/Documents/KoeiTecmo/Atelier Escha and Logy DX/
     registry: []
   - name: Atelier Shallie DX
     files:

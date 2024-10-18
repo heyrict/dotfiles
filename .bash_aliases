@@ -47,6 +47,10 @@ if `which exa >/dev/null`; then
     alias la="exa -a"
 fi
 
+if `which marp >/dev/null`; then
+    alias marp="CHROME_PATH=$(which chromium) marp"
+fi
+
 # SSLVPN
 #alias easyconnect="docker run --device /dev/net/tun --cap-add NET_ADMIN -ti -p 127.0.0.1:1080:1080 -e EC_VER=7.6.7 hagb/docker-easyconnect:cli"
 alias px1081="env https_proxy=http://127.0.0.1:1081 http_proxy=http://127.0.0.1:1081"
@@ -165,7 +169,7 @@ alias hiber="wifi off; sudo systemctl hibernate"
 alias fetch_trackers='sed -i "s@^\(bt-tracker=\).*@\1$(curl -s -L https://raw.githubusercontent.com/ngosang/trackerslist/master/trackers_all_ip.txt | sed "/^\s*$/d" | tr "\n" ",")@" ~/.aria2/aria2.conf'
 
 # Colored bottom
-alias btm='if [ $BACKLIGHT = light ]; then btm --color gruvbox-light; else btm --color gruvbox; fi'
+alias btm='if [ $BACKLIGHT = light ]; then btm --theme gruvbox-light; else btm --theme gruvbox; fi'
 
 # 8-bit color for fbterm
 alias eight-dark='export TERM=fbterm; export BACKLIGHT=dark; ~/MyPrograms/shell/solarized-dark-fbterm.sh; clear; echo $BACKLIGHT > $P_THEME'
@@ -248,7 +252,7 @@ set_brightness() {
 #}
 
 # battery preference
-alias show_capacity='echo $(cat /sys/class/power_supply/BAT0/capacity)%;'
+alias show_capacity='echo $(cat /sys/class/power_supply/BAT0/capacity)% \($(cat /sys/class/power_supply/BAT0/status)\);'
 
 # Change opacity of alacritty
 altrans() {

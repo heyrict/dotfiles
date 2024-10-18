@@ -15,11 +15,6 @@ set $mod Mod1
 # The super key
 set $sup Mod4
 
-input "14:13330:BTK1_BT5.0_Keyboard" {
-    xkb_layout us
-    xkb_options altwin:swap_lalt_lwin
-}
-
 # Use super key for moving floating windows
 floating_modifier $sup
 
@@ -101,6 +96,7 @@ for_window [title="^Extension: .*TJDict"] floating enable
 for_window [title="^Extension: .*TJDict"] resize set 600 800
 for_window [title="^Extension: \(Aria2"] floating enable
 for_window [title="^wemeetapp$"] floating enable
+for_window [class="TigerVNC$"] floating enable
 
 for_window [class="^(?i)emuera"] floating enable
 for_window [class="^emuera"] border pixel 0

@@ -48,3 +48,8 @@ $ brightness: seq 0 10 100
 adb shell settings put system screen_brightness_auto <auto_brightness>
 
 $ auto_brightness: seq 0 1 1
+
+
+% android.activity.monitor
+# Monitor changes in foreground application
+adb shell am monitor

@@ -28,6 +28,13 @@ ip addr | grep inet | sed "s/^ *//" | cut -d" " -f 1,2 | awk '{printf "\033[1m%-
 sudo sysctl -w fs.file-max=1000000
 
 
+% sys.port-scan
+
+nmap -p "<port>" "<addr>"
+$ port: echo -e "22"
+$ addr: echo -e "192.168.3.0/24\n192.168.0.0/24\n192.168.71.0/24"
+
+
 # mount disk
 % sys.udisksctl.mount
 udisksctl mount -o noatime -b <partition>
@@ -137,6 +144,19 @@ $ max: seq 1200 400 4001
 
 cpupower frequency-info
 
+
+% sys.m3400qa.perf.low
+
+# Asus M3400QA Powersave
+
+sudo bash -c "cpupower frequency-set -g powersave && cpupower frequency-set -d 400M -u 1400M && cpupower frequency-info"
+
+
+% sys.m3400qa.perf.normal
+
+# Asus M3400QA Normal performance
+
+sudo bash -c "cpupower frequency-set -g powersave && cpupower frequency-set -d 400M -u 4463M && cpupower frequency-info"
 
 % sys.ryzen.tctl_temp.set
 

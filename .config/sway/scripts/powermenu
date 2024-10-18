@@ -6,7 +6,10 @@
 MENU="$(rofi -sep "|" -dmenu -font 'Meslo Nerd Font Mono 12' -i -p 'System' -location 5 -xoffset -4 -yoffset -25 -theme-str 'window {width: 14em; height: 10em;}' -hide-scrollbar -line-padding 4 -padding 10 -lines 6 <<< " Lock| Suspend| Hibernate| Reboot|⏻ Shutdown")"
 
 case "$MENU" in
-    *Lock) swaylock -c 000000 ;;
+    *Lock)
+        if [ ${SWAYSOCK} ]; then
+            swaylock -c 000000
+        fi ;;
     *Suspend) systemctl suspend;;
     *Hibernate) systemctl hibernate;;
     *Reboot) systemctl reboot ;;
