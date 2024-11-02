@@ -145,6 +145,6 @@ map [fullscreen] w adjust_window width
 map [normal] W adjust_window best-fit
 map [fullscreen] W adjust_window best-fit
 
-database sqlite
+set database sqlite
 
 # vim: foldmethod=marker

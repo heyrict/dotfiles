@@ -19,7 +19,7 @@ fi
 picom -b 2>/dev/null &
 
 # Reset brightness
-echo 12 > /sys/class/backlight/amdgpu_bl0/brightness &
+#(sleep 1 && echo 12 > /sys/class/backlight/amdgpu_bl1/brightness) &
 
 ## Authentication agent (PolicyKit).
 #if [ -x "$(command -v lxpolkit)" ]; then

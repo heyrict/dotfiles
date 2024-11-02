@@ -471,7 +471,7 @@ bindsym $sup+b exec "notify-send 'Capacity = '$(cat /sys/class/power_supply/BAT0
 # Wayland specific commands
 ## Wallpaper
 #output "*" bg ~/Pictures/backgrounds/astize_cc0_split1_alt.png fill
-output eDP-1 bg ~/Pictures/backgrounds/elena_sr.png fit
+output eDP-1 bg ~/Pictures/backgrounds/wallpaperaccess/dark/2178.jpg fill
 output HDMI-1 bg ~/Pictures/backgrounds/edna_dark.jpeg fill
 
 ## Toggle backlight

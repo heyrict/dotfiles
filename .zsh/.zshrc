@@ -19,7 +19,7 @@ fpath=(${ZDOTDIR:-$HOME/.zsh}/completion $fpath)
 zstyle :compinstall filename '/home/heyrict/.zshrc'
 zstyle ':completion:*' menu select
 
-autoload -Uz compinit 
+autoload -Uz compinit
 compinit
 
 # End of lines added by compinstall
@@ -170,6 +170,12 @@ if [ -f ~/.bash_aliases ]; then
     source ~/.bash_aliases
 fi
 # Enviroment {{{1
+## XDG Directories {{{2
+export XDG_CONFIG_HOME=$HOME/.config
+export XDG_CACHE_HOME=$HOME/.cache
+export XDG_DATA_HOME=$HOME/.local/share
+export XDG_STATE_HOME=$HOME/.local/state
+
 ## Mapping {{{2
 typeset -U path
 export -TU INFOPATH infopath
@@ -228,6 +234,9 @@ export NEOVIDE_MULTIGRID=1
 
 ## Zoxide {{{2
 export _ZO_EXCLUDE_DIRS=$HOME:$HOME/Private/:/tmp*
+
+## Lua {{{2
+path=($HOME/.luarocks/bin $path)
 
 ## Custom {{{2
 export TASKRC="~/.taskrc"

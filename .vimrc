@@ -18,7 +18,7 @@ if getenv("NOCOMPL") == v:null
   "Plug 'Valloric/YouCompleteMe'
   "Plug 'Shougo/deoplete.nvim'
   "Plug 'tbodt/deoplete-tabnine'
-  Plug 'neoclide/coc.nvim', {'branch': 'release'}
+  "Plug 'neoclide/coc.nvim', {'branch': 'release'}
 endif
 
 "Plug 'zxqfl/tabnine-vim'
