@@ -95,7 +95,7 @@ fi
 
 # Commandline tools {{{1
 zsh_themes="$HOME/.zsh/.zsh_themes"
-if [ -f "${zsh_theme}" ]; then
+if [ -f "${zsh_themes}" ]; then
     sed -e "/BAT_THEME=/s/=.*/=${bat_theme}/" \
         -e "/BTM_THEME=/s/=.*/=${btm_theme}/" \
         -i "${zsh_themes}"
