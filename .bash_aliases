@@ -6,45 +6,38 @@ fi
 
 export NLTK_DATA="/mnt/LENOVO/Data/NLTK"
 
-if [ "$SSH_CONNECTION" ]; then
-    SSH_SESSION=$(echo "$SSH_CONNECTION" | base64)
-    export P_THEME="/home/heyrict/.prev_theme_$SSH_SESSION"
-else
-    export P_THEME="/home/heyrict/.prev_theme"
-fi
-
 # fmriprep
-function fmriprep-docker {
-    local data=$(realpath $1)
-    local out=$(realpath $2)
-    shift 2
-    docker run -it --rm \
-        -u $(id -u) \
-        -v $data:/data -v $out:/out \
-        -v /tmp/fmriprep-work:/work \
-        -v /home/heyrict/.local/share/freesurfer:/freesurfer \
-        nipreps/fmriprep:22.0.0 /data /out $@ \
-        -w /work --fs-license-file /freesurfer/license.txt
-}
+#function fmriprep-docker {
+#    local data=$(realpath $1)
+#    local out=$(realpath $2)
+#    shift 2
+#    docker run -it --rm \
+#        -u $(id -u) \
+#        -v $data:/data -v $out:/out \
+#        -v /tmp/fmriprep-work:/work \
+#        -v /home/heyrict/.local/share/freesurfer:/freesurfer \
+#        nipreps/fmriprep:22.0.0 /data /out $@ \
+#        -w /work --fs-license-file /freesurfer/license.txt
+#}
+#
+#function fmriprep-docker-bash {
+#    local data=$(realpath $1)
+#    local out=$(realpath $2)
+#    shift 2
+#    docker run -it --rm \
+#        --entrypoint /bin/bash \
+#        -u $(id -u) \
+#        -v $data:/data -v $out:/out \
+#        -v /tmp/fmriprep-work:/work \
+#        -v /home/heyrict/.local/share/freesurfer:/freesurfer \
+#        nipreps/fmriprep:22.0.0 $@
+#}
 
-function fmriprep-docker-bash {
-    local data=$(realpath $1)
-    local out=$(realpath $2)
-    shift 2
-    docker run -it --rm \
-        --entrypoint /bin/bash \
-        -u $(id -u) \
-        -v $data:/data -v $out:/out \
-        -v /tmp/fmriprep-work:/work \
-        -v /home/heyrict/.local/share/freesurfer:/freesurfer \
-        nipreps/fmriprep:22.0.0 $@
-}
-
-# exa
-if `which exa >/dev/null`; then
-    alias ls="exa"
-    alias ll="exa -hl --git"
-    alias la="exa -a"
+# eza
+if `which eza >/dev/null`; then
+    alias ls="eza"
+    alias ll="eza -hl --git"
+    alias la="eza -a"
 fi
 
 if `which marp >/dev/null`; then
@@ -167,26 +160,6 @@ alias hiber="wifi off; sudo systemctl hibernate"
 
 # aria2c bt trackers
 alias fetch_trackers='sed -i "s@^\(bt-tracker=\).*@\1$(curl -s -L https://raw.githubusercontent.com/ngosang/trackerslist/master/trackers_all_ip.txt | sed "/^\s*$/d" | tr "\n" ",")@" ~/.aria2/aria2.conf'
-
-# Colored bottom
-alias btm='if [ $BACKLIGHT = light ]; then btm --theme gruvbox-light; else btm --theme gruvbox; fi'
-
-# 8-bit color for fbterm
-alias eight-dark='export TERM=fbterm; export BACKLIGHT=dark; ~/MyPrograms/shell/solarized-dark-fbterm.sh; clear; echo $BACKLIGHT > $P_THEME'
-alias eight-light='export TERM=fbterm; export BACKLIGHT=light; ~/MyPrograms/shell/solarized-light-fbterm.sh; clear; echo $BACKLIGHT > $P_THEME'
-alias eight='eight-dark'
-alias bg-dark="export BACKLIGHT=dark; vim --clean ~/.config/alacritty/alacritty.yml -c '%s/\*gruvbox_light/\*gruvbox_dark/' -c 'wq'; export BAT_THEME=OneHalfDark; echo dark > $P_THEME"
-alias bg-light="export BACKLIGHT=light; vim --clean ~/.config/alacritty/alacritty.yml -c '%s/\*gruvbox_dark/\*gruvbox_light/' -c 'wq'; export BAT_THEME='Monokai Extended Light'; echo light > $P_THEME"
-
-if [ -f $P_THEME ]; then
-  if [ `cat $P_THEME` = light ]; then
-    export BAT_THEME="Monokai Extended Light";
-    export BACKLIGHT=light;
-  else
-    export BAT_THEME="OneHalfDark";
-    export BACKLIGHT=dark;
-  fi
-fi
 
 # 256 color for tmux
 if [ $TMUX ]; then

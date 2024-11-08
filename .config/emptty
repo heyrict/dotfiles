@@ -1,0 +1,5 @@
+#!/bin/sh
+Selection=true
+LoginShell=/bin/zsh --login
+
+exec dbus-launch $@

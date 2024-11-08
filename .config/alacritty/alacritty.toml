@@ -69,6 +69,4 @@ padding = { x = 0, y = 0 }
 [general]
 live_config_reload = true
 working_directory = "/home/heyrict"
-import = [
-    "~/.config/alacritty/gruvbox_dark.toml"
-]
+import = ["gruvbox_dark.toml"] # theme
