@@ -33,8 +33,8 @@ vim.opt.fileencodings = { "ucs-bom", "utf-8", "shift-jis", "cp932", "cp936" }
 vim.api.nvim_create_autocmd("FileType", {
 	pattern = { "pandoc", "markdown" },
 	callback = function()
-		vim.opt.linebreak = false
-		vim.opt.formatoptions:append({ r = true, m = true, B = true })
+		vim.opt_local.linebreak = false
+		vim.opt_local.formatoptions:append({ r = true, m = true, B = true })
 	end,
 })
 

@@ -20,6 +20,7 @@ if [ $(echo "$session_type" | grep "wayland") ]; then
     read oled < /tmp/oled
     if [ "$oled" -eq "0" ]; then
         swaymsg output eDP-1 dpms on
+        sleep 1
         brightnessctl set `brightnessctl get`
         echo 1 > /tmp/oled
     else

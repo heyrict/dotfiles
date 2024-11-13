@@ -109,11 +109,7 @@ HIST_STAMPS="%Y-%M-%d %H:%m:%s"
 #source $ZSH/oh-my-zsh.sh
 
 # Preferred editor for local and remote sessions
-if [ $SSH_CONNECTION ]; then
-  export EDITOR='vim'
-else
-  export EDITOR='nvim'
-fi
+export EDITOR='nvim'
 
 # Compilation flags
 export ARCHFLAGS="-arch x86_64"

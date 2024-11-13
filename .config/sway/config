@@ -83,6 +83,8 @@ client.background                     $bg_dark
 # Make config floating
 for_window [window_role="pop-up"] floating enable
 for_window [window_role="task_dialog"] floating enable
+for_window [window_type="dialog"] floating enable
+for_window [window_role="dialog"] floating enable
 for_window [class="(?i)config"] floating enable
 for_window [title="float$"] floating enable
 for_window [title="mpv$"] floating enable
@@ -107,6 +109,9 @@ for_window [class="^org-weasis-launcher-AppLauncher$"] floating enable
 
 # Config for steam games
 for_window [class="steam_app_405900"] floating enable
+
+# Config for zotero
+for_window [title="^Progress$" app_id="Zotero"] floating enable
 
 # Border
 #default_border normal 1
@@ -498,7 +503,7 @@ input type:touchpad {
 # Swayidle
 exec swayidle -w \
     timeout 240 'swaymsg "output * dpms off" && echo 0 > /tmp/oled' \
-    resume 'swaymsg "output * dpms on" && brightnessctl set `brightnessctl get` && echo 1 > /tmp/oled' \
+    resume 'swaymsg "output * dpms on" && sleep 1 && brightnessctl set `brightnessctl get` && echo 1 > /tmp/oled' \
     timeout 600 'swaylock -f -i /home/heyrict/Pictures/backgrounds/astize_cc0_split1.png' \
     before-sleep 'swaylock -f -i /home/heyrict/Pictures/backgrounds/astize_cc0_split1.png'
 
