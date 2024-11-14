@@ -115,11 +115,7 @@ export EDITOR='nvim'
 export ARCHFLAGS="-arch x86_64"
 
 # History {{{1
-if [ $SSH_CONNECTION ]; then
-  HISTFILE=~/.histfile_$SSH_SESSION
-else
-  HISTFILE=~/.histfile
-fi
+HISTFILE=~/.histfile
 HISTSIZE=1000
 SAVEHIST=1000
 setopt EXTENDED_HISTORY
@@ -166,12 +162,6 @@ if [ -f ~/.bash_aliases ]; then
     source ~/.bash_aliases
 fi
 # Enviroment {{{1
-## XDG Directories {{{2
-export XDG_CONFIG_HOME=$HOME/.config
-export XDG_CACHE_HOME=$HOME/.cache
-export XDG_DATA_HOME=$HOME/.local/share
-export XDG_STATE_HOME=$HOME/.local/state
-
 ## Mapping {{{2
 typeset -U path
 export -TU INFOPATH infopath
@@ -192,13 +182,17 @@ export WINIT_X11_SCALE_FACTOR=1 # No upscaling in XWayland
 
 ## Nvm {{{2
 export NVM_DIR="$HOME/.nvm"
-source /usr/share/nvm/init-nvm.sh
-path=($path $HOME/.bun/bin)
+if [ -x "/usr/share/nvm/init-nvm.sh" ]; then
+  source /usr/share/nvm/init-nvm.sh
+fi
+if [ -d "$HOME/.bun" ]; then
+  path=($path $HOME/.bun/bin)
+fi
 
 ## Yarn {{{2
 path+=$HOME/.yarn/bin
 ## Java {{{2
-export JAVA_HOME=/usr/lib/jvm/java-21-openjdk
+export JAVA_HOME=/usr/lib/jvm/java-23-openjdk
 classpath=(. $JAVA_HOME/lib/dt.jar $JAVA_HOME/lib/tools.jar)
 path=($JAVA_HOME/bin $JAVA_HOME/jre/bin $path)
 ## Android {{{2
@@ -234,6 +228,11 @@ export _ZO_EXCLUDE_DIRS=$HOME:$HOME/Private/:/tmp*
 ## Lua {{{2
 path=($HOME/.luarocks/bin $path)
 
+## Themes {{{2
+if [ -f "$HOME/.zsh/.zsh_themes" ]; then
+  source "$HOME/.zsh/.zsh_themes"
+fi
+
 ## Custom {{{2
 export TASKRC="~/.taskrc"
 
@@ -253,7 +252,7 @@ export LESSHISTFILE=/dev/null
 ## Vulkan {{{2
 
 # Use RADV vulkan driver
-export AMD_VULKAN_ICD=RADV
+#export AMD_VULKAN_ICD=RADV
 
 ## Zsh {{{2
 unsetopt beep
@@ -273,9 +272,6 @@ export NAVI_PATH=~/.config/navi/custom
 
 ## Veloren {{{2
 export VELOREN_ASSETS=/usr/share/veloren
-
-## Qt {{{2
-export QT_QPA_PLATFORMTHEME=qt5ct
 
 # Network related {{{1
 export CURL_SSL_BACKEND=rustls
@@ -325,27 +321,3 @@ export NNN_IDLE_TIMEOUT=180
 # - b: Page the file with bat
 export NNN_PLUG='o:fzopen;p:-!feh -Z.*;P:-!feh -Z. `ls|sort -n`*;d:diffs;k:!chksum;c:fzcd;z:fzz;S:organize;b:-!bat "$nnn";s:croc'
 
-# Start window managers automatically {{{1
-if [ -z $DISPLAY ] && [ "$(tty)" = "/dev/tty1" ]; then
-  exec sway
-elif [ -z $DISPLAY ] && [ "$(tty)" = "/dev/tty2" ]; then
-  exec startx
-fi
-
-# Countdown in alacritty
-#if [ "$TERM" = "alacritty" ]; then
-#  local TARGET=`date -d "March 13" +%j`
-#  local TODAY=`date +%j`
-#  local DAYS=$(($TARGET - $TODAY))
-#  local COUNTDOWN="\
-#   \e[1m== 倒计时 ==\e[0m
-#
-#距离复试还有约 \e[1;31m$DAYS\e[0m 天
-#"
-#
-#  case $DAYS in
-#    [0-9]*)
-#      echo
-#      echo $COUNTDOWN | ponythink -b unicode -f $HOME/.config/ponysay/eevee.pony;;
-#  esac
-#fi

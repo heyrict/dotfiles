@@ -9,6 +9,8 @@
 #
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
 
+include /etc/sway/config.d/*
+
 # The alt key
 set $mod Mod1
 
@@ -22,63 +24,7 @@ floating_modifier $sup
 # is used in the bar {} block below.
 font pango:WenQuanYi Micro Hei 8
 
-# Gruvbox Colors
-
-set $gb_dark0_hard    '#1d2021'
-set $gb_dark0         '#282828'
-set $gb_dark0_soft    '#32302f'
-set $gb_dark1         '#3c3836'
-set $gb_dark2         '#504945'
-set $gb_dark3         '#665c54'
-set $gb_dark4         '#7c6f64'
-set $gb_dark4_256     '#7c6f64'
-
-set $gb_gray          '#928374'
-
-set $gb_light0_hard   '#f9f5d7'
-set $gb_light0        '#fbf1c7'
-set $gb_light0_soft   '#f2e5bc'
-set $gb_light1        '#ebdbb2'
-set $gb_light2        '#d5c4a1'
-set $gb_light3        '#bdae93'
-set $gb_light4        '#a89984'
-set $gb_light4_256    '#a89984'
-
-set $gb_bright_red       '#fb4934'
-set $gb_bright_green     '#b8bb26'
-set $gb_bright_yellow    '#fabd2f'
-set $gb_bright_blue      '#83a598'
-set $gb_bright_purple    '#d3869b'
-set $gb_bright_aqua      '#8ec07c'
-set $gb_bright_orange    '#fe8019'
-
-set $gb_neutral_red      '#cc241d'
-set $gb_neutral_green    '#98971a'
-set $gb_neutral_yellow   '#d79921'
-set $gb_neutral_blue     '#458588'
-set $gb_neutral_purple   '#b16286'
-set $gb_neutral_aqua     '#689d6a'
-set $gb_neutral_orange   '#d65d0e'
-
-set $gb_faded_red        '#9d0006'
-set $gb_faded_green      '#79740e'
-set $gb_faded_yellow     '#b57614'
-set $gb_faded_blue       '#076678'
-set $gb_faded_purple     '#8f3f71'
-set $gb_faded_aqua       '#427b58'
-set $gb_faded_orange     '#af3a03'
-
-
-set $bg_dark   "#00000000"
-
-# Colors
-# class                 border        bg            text         indicator      child_border
-client.focused          $gb_dark0     $gb_dark0     $gb_gray     $gb_light0     $gb_gray
-client.unfocused        $bg_dark      $bg_dark      $gb_gray     $gb_gray       $bg_dark
-client.focused_inactive $gb_dark0     $gb_dark0     $gb_gray     $gb_light0     $gb_dark3
-client.urgent           $gb_faded_red $gb_faded_red $gb_dark0    $gb_light1     $gb_faded_red
-client.placeholder      $bg_dark      $gb_dark1     $gb_gray     $gb_faded_blue $gb_dark0
-client.background                     $bg_dark
+include themes/gruvbox-dark.conf
 
 # Make config floating
 for_window [window_role="pop-up"] floating enable
@@ -99,6 +45,7 @@ for_window [title="^Extension: .*TJDict"] resize set 600 800
 for_window [title="^Extension: \(Aria2"] floating enable
 for_window [title="^wemeetapp$"] floating enable
 for_window [class="TigerVNC$"] floating enable
+for_window [class="Ryujinx"] floating enable
 
 for_window [class="^(?i)emuera"] floating enable
 for_window [class="^emuera"] border pixel 0
@@ -106,6 +53,8 @@ for_window [class="^emuera"] move position 0 -30
 for_window [class="^emuera"] floating_maximum_size 1940 x 1240
 for_window [class="^emuera"] resize set 1940 1240 30 0
 for_window [class="^org-weasis-launcher-AppLauncher$"] floating enable
+
+for_window [app_id="^blueman-applet$"] move position 0 px 0 px
 
 # Config for steam games
 for_window [class="steam_app_405900"] floating enable
@@ -146,11 +95,10 @@ bindsym $mod+F3 exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +4%
 
 # start a terminal
 bindsym $mod+Return exec alacritty
-bindsym $mod+Shift+Return exec "env WAYLAND_DISPLAY= alacritty"
 
 # look up in dict
 bindsym $mod+i exec alacritty -t "dict_lookup | float" -o window.dimensions.columns=72 -o window.dimensions.lines=32 -o window.position.x=200 -o window.position.y=200 -o font.size=12 -e bash -c 'sdcv -cn "$(wl-paste -p)" | less -R'
-bindsym $mod+Shift+i exec "env WAYLAND_DISPLAY= alacritty -t 'dict_lookup | float' -o font.size=12 -o window.dimensions.columns=72 -o window.dimensions.lines=32 -o window.position.x=200 -o window.position.y=200 -e bash -c 'sdcv -c'"
+bindsym $mod+Shift+i exec "alacritty -t 'dict_lookup | float' -o font.size=12 -o window.dimensions.columns=72 -o window.dimensions.lines=32 -o window.position.x=200 -o window.position.y=200 -e bash -c 'sdcv -c'"
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -161,49 +109,22 @@ bindsym $mod+Shift+q kill
 set $launch_mode Rofi: DRun Kao/Emoji Pow Combi = dIce
 mode "$launch_mode" {
     # :drun (bash -e "{cmd}; read -n 1 -s ")
-    bindsym d mode "default"; exec --no-startup-id "rofi -show drun"
-
-    # :ssh
-    #bindsym s mode "default"; exec --no-startup-id "rofi -show ssh"
-
-    # :run
-    bindsym r mode "default"; exec --no-startup-id "_res=\\"$(rofi -show run)\\"; if [ -n \\"$_res\\" ]; then notify-send Result $_res; fi"
-
-    # :window
-    bindsym w mode "default"; exec --no-startup-id "~/.config/rofi/switch-window.sh"
-
-    # :ssh
-    bindsym f mode "default"; exec --no-startup-id firefox
-
-    # :combi
-    bindsym c mode "default"; exec --no-startup-id "rofi -show combi"
-
-    # :keys
-    bindsym y mode "default"; exec --no-startup-id "rofi -show keys"
-
-    # :calc
-    bindsym equal mode "default"; exec --no-startup-id 'rofi -show calc -modi calc -no-show-match -no-sort'
-
-    ## rofi-theme-selector
-    #bindsym t mode "default"; exec --no-startup-id "rofi-theme-selector"
-
-    # :emoji
-    bindsym e mode "default"; exec --no-startup-id "/home/heyrict/pyenv/env/bin/rofimoji"
-
-    # :kaomoji
-    bindsym k mode "default"; exec --no-startup-id "~/.config/rofi/kaomoji/kaomoji.sh"
+    bindsym d mode "default"; exec --no-startup-id "wofi --show drun"
 
     # powermenu
     bindsym p mode "default"; exec --no-startup-id "~/.config/sway/scripts/powermenu"
 
-    # rustdice
-    bindsym i mode "default"; exec --no-startup-id '_exp="$(rofi -dmenu -i -p dice -lines 0)"; notify-send "$(rustdice "$_exp")" '
+    # firefox
+    bindsym f mode "default"; exec --no-startup-id firefox
 
     # navi
-    bindsym g mode "default"; exec --no-startup-id "alacritty -t 'navi | float' -o window.dimensions.columns=150 -o window.dimensions.lines=38 -e bash -c 'navi && read -t60'"
+    bindsym g mode "default"; exec --no-startup-id "alacritty -t 'navi | float' -o window.dimensions.columns=150 -o window.dimensions.lines=38 -e bash -c 'env NAVI_PATH=~/.config/navi/custom navi && read -t60'"
 
-    # nnn
-    bindsym n mode "default"; exec --no-startup-id "env WAYLAND_DISPLAY= alacritty --class nnn -e nnn"
+    # yazi
+    bindsym n mode "default"; exec --no-startup-id "alacritty --class yazi -e yazi"
+
+    # Switch theme
+    bindsym Shift+5 mode "default"; exec --no-startup-id "~/.scripts/theme.sh"
 
     # back to normal: Enter or Escape or $mod+r
     bindsym q mode "default"
@@ -445,6 +366,7 @@ bindsym $mod+Escape mode "Raw"
 bindsym $sup+space exec dunstctl close
 bindsym $sup+Shift+space exec dunstctl close-all
 bindsym $sup+grave exec dunstctl history-pop
+bindsym $sup+period exec dunstctl context
 
 # Screenshot
 bindsym Print exec '~/.config/sway/scripts/screenshot.sh Full'
@@ -513,12 +435,6 @@ for_window [class="^RPCS3 "] inhibit_idle fullscreen
 for_window [class="^RetroArch"] inhibit_idle fullscreen
 
 # GTK theme workaround
-set $gnome-schema org.gnome.desktop.interface
-exec_always {
-    gsettings set $gnome-schema gtk-theme 'Nordic-darker'
-    gsettings set $gnome-schema icon-theme 'Tela-orange-dark'
-}
-
 exec ~/.config/waybar/waybar.sh
 
 exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway

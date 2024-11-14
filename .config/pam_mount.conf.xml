@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE pam_mount SYSTEM "pam_mount.conf.xml.dtd">
+
+<pam_mount>
+    <volume user="heyrict" fstype="fuse" options="nodev,nosuid,quiet"
+        path="/usr/bin/gocryptfs#/home/%(USER)/.cipher" mountpoint="/home/%(USER)/Private" />
+</pam_mount>

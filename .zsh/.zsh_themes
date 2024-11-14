@@ -1,0 +1,6 @@
+# Theme-related variables for command line tools
+# bat
+export BAT_THEME=gruvbox-light
+
+BTM_THEME=default
+alias btm="btm --theme ${BTM_THEME}"

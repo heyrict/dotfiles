@@ -10,7 +10,7 @@
 
 window {
   color: @theme_text_color;
-  background: alpha(@theme_base_color, 0.6);
+  background: alpha(@theme_base_color, 0.4);
 }
 
 /*
@@ -25,11 +25,13 @@ window#waybar.solo {
 
 #workspaces button {
   padding: 0 5px;
-  color: rgba(217, 216, 216, 0.4);
+  color: alpha(@theme_text_color, 0.4);
+  /* color: rgba(217, 216, 216, 0.4); */
 }
 
 #workspaces button.visible {
-  color: rgba(217, 216, 216, 1);
+  color: @theme_text_color;
+  /* color: rgba(217, 216, 216, 1); */
 }
 
 #workspaces button.focused {
