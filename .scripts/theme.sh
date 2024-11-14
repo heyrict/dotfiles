@@ -10,8 +10,8 @@ ALACRITTY_THEME_DARK=gruvbox_dark.toml
 ALACRITTY_THEME_LIGHT=gruvbox_light.toml
 SWAY_THEME_DARK=gruvbox-dark.conf
 SWAY_THEME_LIGHT=catppuccin-latte.conf
-WALLPAPER_DARK="wallpaperaccess\\/flat\\/160352.png fill"
-WALLPAPER_LIGHT="wallpaperaccess\\/flat\\/203545.jpg fill"
+WALLPAPER_DARK="wallpaperaccess\\/ai-generated\\/9070149.jpg fill"
+WALLPAPER_LIGHT="gruvbox-light-focus.jpg fill"
 
 BTM_THEME_DARK=gruvbox
 BTM_THEME_LIGHT=default
@@ -85,7 +85,7 @@ fi
 # Sway settings {{{1
 sway_settings="$HOME/.config/sway/config"
 if [ -n "$SWAYSOCK" ]; then
-    sed -e "/output HDMI-A-1 bg/s/backgrounds\/.*/backgrounds\/${wallpaper}/" \
+    sed -e "/output eDP-1 bg/s/backgrounds\/.*/backgrounds\/${wallpaper}/" \
         -e "/include themes/s/themes\/.*/themes\/${sway_theme}/" \
         -i "${sway_settings}"
     swaymsg reload

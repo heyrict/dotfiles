@@ -16,8 +16,8 @@ render_timer = false
 
 [font]
 size = 13
-bold = { family = "monospace", style = "Bold" }
-italic = { family = "monospace", style = "Italic" }
+bold = { family = "MesloLGS Nerd Font Mono", style = "Bold" }
+italic = { family = "MesloLGS Nerd Font Mono", style = "Italic" }
 normal = { family = "MesloLGS Nerd Font Mono", style = "Regular" }
 
 [colors]
