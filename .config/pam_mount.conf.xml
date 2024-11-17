@@ -3,5 +3,5 @@
 
 <pam_mount>
     <volume user="heyrict" fstype="fuse" options="nodev,nosuid,quiet"
-        path="/usr/bin/gocryptfs#/home/%(USER)/.cipher" mountpoint="/home/%(USER)/Private" />
+        path="/usr/bin/gocryptfs#/home/heyrict/.cipher" mountpoint="/home/heyrict/Private" />
 </pam_mount>

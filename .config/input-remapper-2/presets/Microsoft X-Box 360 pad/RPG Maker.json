@@ -60,7 +60,7 @@
             }
         ],
         "target_uinput": "keyboard",
-        "output_symbol": "q",
+        "output_symbol": "KEY_Q",
         "mapping_type": "key_macro"
     },
     {
@@ -72,7 +72,7 @@
             }
         ],
         "target_uinput": "keyboard",
-        "output_symbol": "w",
+        "output_symbol": "KEY_W",
         "mapping_type": "key_macro"
     },
     {
@@ -98,7 +98,7 @@
             }
         ],
         "target_uinput": "keyboard",
-        "output_symbol": "e",
+        "output_symbol": "KEY_E",
         "mapping_type": "key_macro"
     },
     {
@@ -162,7 +162,7 @@
             }
         ],
         "target_uinput": "keyboard",
-        "output_symbol": "x",
+        "output_symbol": "KEY_X",
         "mapping_type": "key_macro"
     },
     {
@@ -174,7 +174,7 @@
             }
         ],
         "target_uinput": "keyboard",
-        "output_symbol": "z",
+        "output_symbol": "KEY_Z",
         "mapping_type": "key_macro"
     },
     {
@@ -198,7 +198,7 @@
             }
         ],
         "target_uinput": "keyboard",
-        "output_symbol": "d",
+        "output_symbol": "KEY_D",
         "mapping_type": "key_macro"
     },
     {
@@ -210,7 +210,7 @@
             }
         ],
         "target_uinput": "keyboard",
-        "output_symbol": "s",
+        "output_symbol": "KEY_S",
         "mapping_type": "key_macro"
     },
     {
@@ -222,7 +222,7 @@
             }
         ],
         "target_uinput": "keyboard",
-        "output_symbol": "a",
+        "output_symbol": "KEY_A",
         "mapping_type": "key_macro"
     }
 ]

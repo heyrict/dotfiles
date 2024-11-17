@@ -11,7 +11,7 @@ ALACRITTY_THEME_LIGHT=gruvbox_light.toml
 SWAY_THEME_DARK=gruvbox-dark.conf
 SWAY_THEME_LIGHT=catppuccin-latte.conf
 WALLPAPER_DARK="wallpaperaccess\\/flat\\/160352.png fill"
-WALLPAPER_LIGHT="wallpaperaccess\\/flat\\/203545.jpg fill"
+WALLPAPER_LIGHT="wallpaperaccess\\/light-pink\\/1250031.jpg fill"
 ZATHURA_THEME_LIGHT=zathura-gruvbox/zathura-gruvbox-light
 ZATHURA_THEME_DARK=zathura-gruvbox/zathura-gruvbox-dark
 

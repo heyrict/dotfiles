@@ -1,8 +1,10 @@
 ---
 runtime:
   threads: ~
+release:
+  check: true
 manifest:
-  url: "https://raw.githubusercontent.com/mtkennerly/ludusavi-manifest/master/data/manifest.yaml"
+  enable: true
 language: en-US
 theme: dark
 roots:
@@ -86,6 +88,7 @@ restore:
   sort:
     key: name
     reversed: false
+  reverseRedirects: false
 scan:
   showDeselectedGames: true
   showUnchangedGames: true
@@ -100,14 +103,17 @@ apps:
     arguments: "--fast-list --ignore-checksum"
 customGames:
   - name: "Monochrome Mobius: Rights and Wrongs Forgotten"
+    integration: override
     files:
       - /home/heyrict/.local/share/Steam/steamapps/compatdata/1962430/pfx/drive_c/users/steamuser/Documents/AQUAPLUS/MonochromeMobius Rights and Wrongs Forgotten
     registry: []
   - name: Nekomimi Sweet Housemates
+    integration: override
     files:
       - /home/heyrict/.local/share/Steam/steamapps/compatdata/1789650/pfx/drive_c/users/steamuser/AppData/LocalLow/AnimalHerb/Nekomimi Sweet Housemates
     registry: []
   - name: Atelier Shallie DX
+    integration: override
     files:
       - /home/heyrict/.local/share/Steam/steamapps/compatdata/1152320/pfx/drive_c/users/steamuser/My Documents/KoeiTecmo/Atelier Shallie DX/
     registry: []

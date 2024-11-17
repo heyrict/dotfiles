@@ -37,6 +37,12 @@ vim.api.nvim_create_autocmd("FileType", {
 		vim.opt.formatoptions:append({ r = true, m = true, B = true })
 	end,
 })
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = { "just" },
+  callback = function()
+    vim.opt.expandtab = false
+  end,
+})
 
 -- Additional remaps
 vim.keymap.set("n", "gh", "<cmd>nohlsearch<cr>")
