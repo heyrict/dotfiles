@@ -14,6 +14,8 @@ WALLPAPER_DARK="wallpaperaccess\\/flat\\/160352.png fill"
 WALLPAPER_LIGHT="wallpaperaccess\\/light-pink\\/1250031.jpg fill"
 ZATHURA_THEME_LIGHT=zathura-gruvbox/zathura-gruvbox-light
 ZATHURA_THEME_DARK=zathura-gruvbox/zathura-gruvbox-dark
+WOFI_THEME_DARK=quantumfate/src/macchiato/style.css
+WOFI_THEME_LIGHT=quantumfate/src/latte/style.css
 
 BTM_THEME_DARK=gruvbox
 BTM_THEME_LIGHT=default
@@ -47,6 +49,7 @@ if [ $is_light = 1 ]; then
     sway_theme=$SWAY_THEME_LIGHT
     wallpaper=$WALLPAPER_LIGHT
     zathura_theme=$ZATHURA_THEME_LIGHT
+    wofi_theme=$WOFI_THEME_LIGHT
 
     btm_theme=$BTM_THEME_LIGHT
     bat_theme=$BAT_THEME_LIGHT
@@ -58,6 +61,7 @@ else
     sway_theme=$SWAY_THEME_DARK
     wallpaper=$WALLPAPER_DARK
     zathura_theme=$ZATHURA_THEME_DARK
+    wofi_theme=$WOFI_THEME_DARK
 
     btm_theme=$BTM_THEME_DARK
     bat_theme=$BAT_THEME_DARK
@@ -113,6 +117,16 @@ if [ -d "${zathura_conf_d}" ] &&
     command -v jq >/dev/null &&
     command -v minijinja-cli > /dev/null; then
     jq -Rs '{ theme: . }' "${zathura_conf_d}/${zathura_theme}" | minijinja-cli -f json "${zathura_template}" - > "${zathura_settings}"
+fi
+
+# Wofi settings {{{1
+wofi_conf_d="$HOME/.config/wofi"
+wofi_style="${wofi_conf_d}/style.css"
+if [ -d "${wofi_conf_d}" ] && [ -f "${wofi_conf_d}/${wofi_theme}" ]; then
+    if [ -f "${wofi_style}" ]; then
+        rm "${wofi_style}"
+    fi
+    ln -s "${wofi_theme}" "${wofi_style}"
 fi
 
 # Commandline tools {{{1
