@@ -12,11 +12,17 @@ SWAY_THEME_DARK=gruvbox-dark.conf
 SWAY_THEME_LIGHT=catppuccin-latte.conf
 WALLPAPER_DARK="wallpaperaccess\\/flat\\/160352.png fill"
 WALLPAPER_LIGHT="wallpaperaccess\\/flat\\/203545.jpg fill"
+ZATHURA_THEME_LIGHT=zathura-gruvbox/zathura-gruvbox-light
+ZATHURA_THEME_DARK=zathura-gruvbox/zathura-gruvbox-dark
 
 BTM_THEME_DARK=gruvbox
 BTM_THEME_LIGHT=default
 BAT_THEME_DARK=gruvbox-dark
 BAT_THEME_LIGHT=gruvbox-light
+
+if ! command -v gsettings > /dev/null; then
+    exit 1; # Gsettings not found
+fi
 
 case "$1" in
     1|light) is_light=1
@@ -40,6 +46,7 @@ if [ $is_light = 1 ]; then
     alacritty_theme=$ALACRITTY_THEME_LIGHT
     sway_theme=$SWAY_THEME_LIGHT
     wallpaper=$WALLPAPER_LIGHT
+    zathura_theme=$ZATHURA_THEME_LIGHT
 
     btm_theme=$BTM_THEME_LIGHT
     bat_theme=$BAT_THEME_LIGHT
@@ -50,6 +57,7 @@ else
     alacritty_theme=$ALACRITTY_THEME_DARK
     sway_theme=$SWAY_THEME_DARK
     wallpaper=$WALLPAPER_DARK
+    zathura_theme=$ZATHURA_THEME_DARK
 
     btm_theme=$BTM_THEME_DARK
     bat_theme=$BAT_THEME_DARK
@@ -74,7 +82,9 @@ then
 fi
 
 # QT Settings {{{1
-kvantummanager --set "${qt_theme}"
+if command -v kvantummanager > /dev/null; then
+    kvantummanager --set "${qt_theme}"
+fi
 
 # Alacritty Settings {{{1
 alacritty_settings="$HOME/.config/alacritty/alacritty.toml"
@@ -84,7 +94,8 @@ fi
 
 # Sway settings {{{1
 sway_settings="$HOME/.config/sway/config"
-if [ -n "$SWAYSOCK" ]; then
+if [ -n "$SWAYSOCK" ] &&
+    command -v swaymsg > /dev/null; then
     sed -e "/output HDMI-A-1 bg/s/backgrounds\/.*/backgrounds\/${wallpaper}/" \
         -e "/include themes/s/themes\/.*/themes\/${sway_theme}/" \
         -i "${sway_settings}"
@@ -92,6 +103,17 @@ if [ -n "$SWAYSOCK" ]; then
 fi
 
 . $HOME/.config/waybar/waybar.sh # Restart waybar
+
+# Zathura settings {{{1
+zathura_conf_d="$HOME/.config/zathura"
+zathura_settings="${zathura_conf_d}/zathurarc"
+zathura_template="${zathura_conf_d}/zathurarc.j2"
+if [ -d "${zathura_conf_d}" ] &&
+    [ -f "${zathura_template}" ] &&
+    command -v jq >/dev/null &&
+    command -v minijinja-cli > /dev/null; then
+    jq -Rs '{ theme: . }' "${zathura_conf_d}/${zathura_theme}" | minijinja-cli -f json "${zathura_template}" - > "${zathura_settings}"
+fi
 
 # Commandline tools {{{1
 zsh_themes="$HOME/.zsh/.zsh_themes"

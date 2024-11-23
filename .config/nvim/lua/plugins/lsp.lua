@@ -153,7 +153,15 @@ return {
 			lspconfig.ruff.setup({})
 
 			-- LSP: typescript
-			lspconfig.ts_ls.setup({})
+			lspconfig.ts_ls.setup({
+				settings = {
+					typescript = {
+						format = {
+							indentSize = 2,
+						},
+					},
+				},
+			})
 		end,
 	},
 }

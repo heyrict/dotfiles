@@ -11,18 +11,18 @@ vim.opt.backspace = { indent = true, eol = true, start = true }
 vim.opt.title = true
 
 vim.api.nvim_create_autocmd("FileType", {
-  pattern = { "lua", "html", "json", "javascript", "typescript", "typescript.tsx", "css", "yaml", "dart" },
-  callback = function()
-    vim.opt_local.tabstop = 2
-    vim.opt_local.shiftwidth = 2
-  end,
+	pattern = { "lua", "html", "json", "javascript", "typescript", "typescript.tsx", "css", "yaml", "dart" },
+	callback = function()
+		vim.opt_local.tabstop = 2
+		vim.opt_local.shiftwidth = 2
+	end,
 })
 
 vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
-  pattern = { "*.tex" },
-  callback = function()
-    vim.opt.filetype = "tex"
-  end,
+	pattern = { "*.tex" },
+	callback = function()
+		vim.opt.filetype = "tex"
+	end,
 })
 
 -- File encodings
@@ -31,11 +31,11 @@ vim.opt.fileencodings = { "ucs-bom", "utf-8", "shift-jis", "cp932", "cp936" }
 
 -- Format options
 vim.api.nvim_create_autocmd("FileType", {
-  pattern = { "pandoc", "markdown" },
-  callback = function()
-    vim.opt.linebreak = false
-    vim.opt.formatoptions:append({ r = true, m = true, B = true })
-  end,
+	pattern = { "pandoc", "markdown", "tex" },
+	callback = function()
+		vim.opt.linebreak = false
+		vim.opt.formatoptions:append({ r = true, m = true, B = true })
+	end,
 })
 
 -- Additional remaps
@@ -44,12 +44,12 @@ vim.keymap.set("n", "gh", "<cmd>nohlsearch<cr>")
 -- Switch light/dark theme
 
 vim.keymap.set("n", "<leader>%", function()
-  local curr = vim.o.background
-  if curr == "light" then
-    vim.o.background = "dark"
-  else
-    vim.o.background = "light"
-  end
+	local curr = vim.o.background
+	if curr == "light" then
+		vim.o.background = "dark"
+	else
+		vim.o.background = "light"
+	end
 end)
 
 -- Disable mouse
