@@ -81,3 +81,19 @@ snippet ai-title
 
 snippet ai-abstract
     Please read through the uploaded manuscript and write an structured abstract in English for it. The abstract should include 4 sections, including Backgrounds, Methods, Results and Conclusion. Backgrounds section should initiate with a comprehensive summary of the broader context or background of the study, followed by a statement that describe the gaps, limitations or issues. Methods section describe the research methods used in the manuscript. Conclusion includes 3-5 sentences showing the key findings. In the end, include a statement which underscores the unique value or significant contribution of the manuscript.
+
+# Pandoc snippets
+snippet columns
+    ::: {.columns align=center}
+    :::: {.column align=center}
+    $1
+    ::::
+    :::: {.column align=center}
+    $2
+    ::::
+    :::
+
+snippet column
+    :::: {.column align=center}
+    $1
+    ::::
