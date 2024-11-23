@@ -1,0 +1,6 @@
+[submodule ".config/zathura/zathura-gruvbox"]
+	path = .config/zathura/zathura-gruvbox
+	url = https://github.com/eastack/zathura-gruvbox
+[submodule ".config/wofi/quantumfate"]
+	path = .config/wofi/quantumfate
+	url = https://github.com/quantumfate/wofi
