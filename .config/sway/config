@@ -106,7 +106,7 @@ bindsym $mod+Shift+q kill
 # start dmenu (a program launcher)
 #bindsym $mod+d exec dmenu_run
 
-set $launch_mode DRun Pow Firefox navi(G) yazi(n) %
+set $launch_mode DRun Pow Firefox navi(G) yazi(n) %=
 mode "$launch_mode" {
     # :drun (bash -e "{cmd}; read -n 1 -s ")
     bindsym d mode "default"; exec --no-startup-id "wofi --show drun"
@@ -125,6 +125,8 @@ mode "$launch_mode" {
 
     # Switch theme
     bindsym Shift+5 mode "default"; exec --no-startup-id "~/.scripts/theme.sh"
+
+    bindsym Equal mode "default"; exec  --no-startup-id "alacritty -t 'qalc | float' -o window.dimensions.columns=150 -o window.dimensions.lines=38 -e qalc"
 
     # back to normal: Enter or Escape or $mod+r
     bindsym q mode "default"

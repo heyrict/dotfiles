@@ -171,9 +171,12 @@ path=('/usr/local/bin' '/usr/bin' $path)
 manpath=('/usr/local/man' '/usr/share/man' $manpath)
 
 ## Texlive {{{2
-manpath+=/usr/local/texlive/2024/texmf-dist/doc/man
-infopath+=/usr/local/texlive/2024/texmf-dist/doc/info
-path=(/usr/local/texlive/2024/bin/x86_64-linux $path)
+#manpath+=/usr/local/texlive/2024/texmf-dist/doc/man
+#infopath+=/usr/local/texlive/2024/texmf-dist/doc/info
+#path=(/usr/local/texlive/2024/bin/x86_64-linux $path)
+
+## Miktex {{{2
+path=($path $HOME/bin /opt/miktex/bin)
 
 ## XWayland and Wayland related {{{2
 export ANKI_WAYLAND=1
