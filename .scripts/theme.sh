@@ -16,6 +16,8 @@ ZATHURA_THEME_LIGHT=zathura-gruvbox/zathura-gruvbox-light
 ZATHURA_THEME_DARK=zathura-gruvbox/zathura-gruvbox-dark
 WOFI_THEME_DARK=quantumfate/src/macchiato/style.css
 WOFI_THEME_LIGHT=quantumfate/src/latte/style.css
+ZELLIJ_THEME_DARK=catppuccin-macchiato
+ZELLIJ_THEME_LIGHT=catppuccin-latte
 
 BTM_THEME_DARK=gruvbox
 BTM_THEME_LIGHT=default
@@ -50,6 +52,7 @@ if [ $is_light = 1 ]; then
     wallpaper=$WALLPAPER_LIGHT
     zathura_theme=$ZATHURA_THEME_LIGHT
     wofi_theme=$WOFI_THEME_LIGHT
+    zellij_theme=$ZELLIJ_THEME_LIGHT
 
     btm_theme=$BTM_THEME_LIGHT
     bat_theme=$BAT_THEME_LIGHT
@@ -62,6 +65,7 @@ else
     wallpaper=$WALLPAPER_DARK
     zathura_theme=$ZATHURA_THEME_DARK
     wofi_theme=$WOFI_THEME_DARK
+    zellij_theme=$ZELLIJ_THEME_DARK
 
     btm_theme=$BTM_THEME_DARK
     bat_theme=$BAT_THEME_DARK
@@ -127,6 +131,12 @@ if [ -d "${wofi_conf_d}" ] && [ -f "${wofi_conf_d}/${wofi_theme}" ]; then
         rm "${wofi_style}"
     fi
     ln -s "${wofi_theme}" "${wofi_style}"
+fi
+
+# Zellij Settings {{{1
+zellij_settings="$HOME/.config/zellij/config.kdl"
+if [ -f "${zellij_settings}" ]; then
+    sed -i "/^\(\/\/ \)\?theme/s/^.*$/theme \"${zellij_theme}\"/" "${zellij_settings}"
 fi
 
 # Commandline tools {{{1
