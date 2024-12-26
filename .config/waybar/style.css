@@ -77,7 +77,7 @@ window#waybar.solo {
 }
 
 #battery.charging {
-  color: rgba(217, 216, 216, 1);
+  color: alpha(@theme_text_color, 0.4);
 }
 
 #custom-pixel_swift { font-size: 6px; }

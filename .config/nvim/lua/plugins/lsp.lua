@@ -151,6 +151,7 @@ return {
 
 			-- LSP: python
 			lspconfig.ruff.setup({})
+			lspconfig.basedpyright.setup({})
 
 			-- LSP: typescript
 			lspconfig.ts_ls.setup({

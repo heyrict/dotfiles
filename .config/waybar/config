@@ -146,15 +146,15 @@
   "temperature#cpu": {
     "hwmon-path": "/sys/class/hwmon/hwmon1/temp1_input",
     "critical-threshold": 90,
-    "format-critical": " {temperatureC}℃",
-    "format": " {temperatureC}℃",
+    "format-critical": " {temperatureC}°C",
+    "format": " {temperatureC}°C",
     "format-alt": ""
   },
   "temperature#gpu": {
     "hwmon-path": "/sys/class/hwmon/hwmon6/temp1_input",
     "critical-threshold": 90,
-    "format-critical": "󰊭 {temperatureC}℃",
-    "format": "󰊭 {temperatureC}℃",
+    "format-critical": "󰊭 {temperatureC}°C",
+    "format": "󰊭 {temperatureC}°C",
     "format-alt": "󰊭"
   }
 }

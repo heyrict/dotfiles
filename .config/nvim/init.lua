@@ -11,7 +11,19 @@ vim.opt.backspace = { indent = true, eol = true, start = true }
 vim.opt.title = true
 
 vim.api.nvim_create_autocmd("FileType", {
-	pattern = { "lua", "html", "json", "javascript", "typescript", "typescript.tsx", "css", "yaml", "dart" },
+	pattern = {
+		"lua",
+		"html",
+		"xml",
+		"json",
+		"javascript",
+		"typescript",
+		"typescript.tsx",
+		"typescriptreact",
+		"css",
+		"yaml",
+		"dart",
+	},
 	callback = function()
 		vim.opt_local.tabstop = 2
 		vim.opt_local.shiftwidth = 2

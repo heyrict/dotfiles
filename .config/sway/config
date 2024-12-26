@@ -425,7 +425,7 @@ input type:touchpad {
 # Swayidle
 exec swayidle -w \
     timeout 240 'swaymsg "output * dpms off" && echo 0 > /tmp/oled' \
-    resume 'swaymsg "output * dpms on" && sleep 1 && brightnessctl set `brightnessctl get` && echo 1 > /tmp/oled' \
+    resume 'swaymsg "output * dpms on" && brightnessctl set `brightnessctl get` && echo 1 > /tmp/oled' \
     timeout 600 'swaylock -f -i /home/heyrict/Pictures/backgrounds/astize_cc0_split1.png' \
     before-sleep 'swaylock -f -i /home/heyrict/Pictures/backgrounds/astize_cc0_split1.png'
 
