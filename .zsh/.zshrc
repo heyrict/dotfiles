@@ -258,11 +258,13 @@ export LESSHISTFILE=/dev/null
 unsetopt beep
 
 ## Python {{{2
+path=($HOME/.local/bin $path)
+export UV_INDEX_URL="https://pypi.tuna.tsinghua.edu.cn/simple"
+
 if [ ! "${TTY:5:3}" = "tty" ]; then
     # Load venv only on pseudo-tty
     source ~/pyenv/env/bin/activate
 fi
-export HASURA_GRAPHQL_ADMIN_SECRET="CINDYTHINK_HASURA_ADMIN_SECRET"
 
 ## Change ls colors {{{2
 export LS_COLORS="$LS_COLORS:ow=1;36"

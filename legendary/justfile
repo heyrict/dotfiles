@@ -24,3 +24,6 @@ sonic_mania +OPTIONS="":
 
 overcooked +OPTIONS="":
 	{{PROTON_ENV}} legendary launch {{OPTIONS}} Sage
+
+dredge +OPTIONS="":
+	{{PROTON_ENV}} legendary launch {{OPTIONS}} DREDGE

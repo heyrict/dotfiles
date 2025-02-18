@@ -9,6 +9,7 @@ vim.opt.timeout = true
 vim.opt.ttimeoutlen = 10
 vim.opt.backspace = { indent = true, eol = true, start = true }
 vim.opt.title = true
+vim.opt.spell = false
 
 vim.api.nvim_create_autocmd("FileType", {
 	pattern = {

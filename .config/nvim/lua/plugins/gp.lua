@@ -3,11 +3,16 @@ return {
 		"robitx/gp.nvim",
 		config = function()
 			local zhipu_key = { "secret-tool", "lookup", "url", "https://open.bigmodel.cn/api/paas/v4/" }
+			local volceengine_key = { "secret-tool", "lookup", "model_provider", "volceengine" }
 			local conf = {
 				providers = {
 					zhipu = {
 						endpoint = "https://open.bigmodel.cn/api/paas/v4/chat/completions",
 						secret = zhipu_key,
+					},
+					volceengine = {
+						endpoint = "https://ark.cn-beijing.volces.com/api/v3/chat/completions#",
+						secret = volceengine_key,
 					},
 				},
 				agents = {
@@ -58,6 +63,26 @@ return {
 						model = { model = "codegeex-4", temperature = 0.95, top_p = 0.7 },
 						-- system prompt (use this to specify the persona/role of the AI)
 						system_prompt = require("gp.defaults").code_system_prompt,
+					},
+					{
+						provider = "volceengine",
+						name = "deepseek-r1-distill-qwen-7b",
+						chat = true,
+						command = true,
+						-- string with model name or table with model name and parameters
+						model = "ep-20250218183103-nzpmb",
+						-- system prompt (use this to specify the persona/role of the AI)
+						system_prompt = require("gp.defaults").chat_system_prompt,
+					},
+					{
+						provider = "volceengine",
+						name = "deepseek-r1",
+						chat = true,
+						command = true,
+						-- string with model name or table with model name and parameters
+						model = "ep-20250218183001-njqb4",
+						-- system prompt (use this to specify the persona/role of the AI)
+						system_prompt = require("gp.defaults").chat_system_prompt,
 					},
 				},
 				default_command_agent = "glm-4-flash",

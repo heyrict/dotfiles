@@ -33,8 +33,8 @@ proton_run FILE:
 _siglus_run FILE:
 	cd "$(dirname '{{FILE}}')" && env {{DEFAULT_ENV}} {{PROTON_ENV}} {{EXTRA_ENV}} "{{GE_WINE64}}" "{{ALPHAROMDIE}}" "$(basename '{{FILE}}')"
 
-ciel_nosurge:
-	just run "{{HOME}}/Games/Ciel Nosurge DX/CielnosurgeDX.exe"
+#ciel_nosurge:
+#	just run "{{HOME}}/Games/Ciel Nosurge DX/CielnosurgeDX.exe"
 
 angel_beats:
 	just _siglus_run "{{ROOT}}/drive_c/Program Files (x86)/Key/AngelBeats!/SiglusEngine.exe"
@@ -50,6 +50,9 @@ tenmei:
 
 fuukan:
 	env {{GAMESCOPE_ENV}} gamescope -F fsr -W 1920 -H 1080 -w 1280 -h 720 just FSR_ENABLE=0 run "/mnt/windows/Users/xiezh/Games/Eushully/封緘のグラセスタ/AGE.EXE"
+
+th09:
+	just FSR_ENABLE=1 FSR_MODE="ultra" run "{{HOME}}/Games/th09/th09.exe" >/dev/null 2>&1
 
 th10:
 	just run "{{HOME}}/Games/th10/th10.exe" >/dev/null 2>&1
@@ -69,14 +72,8 @@ kinkoi:
 kanon:
 	env {{GAMESCOPE_ENV}} gamescope -F fsr -H 1200 just FSR_ENABLE=0 _siglus_run "{{HOME}}/Games/KEY/KANON_SE/REALLIVE.EXE"
 
-dohna:
-	just run "{{ROOT}}/drive_c/Program Files (x86)/DohnaDohna/dohnadohna.exe"
-
 evenicle:
 	env {{GAMESCOPE_ENV}} gamescope -F fsr -W {{W}} -H {{H}} just FSR_ENABLE=0 run "{{HOME}}/Games/イブニクル/Evenicle.exe"
-
-kirasarafe:
-	just run "{{HOME}}/Games/pandadanpa/魔法少女きららとさららFE/kirasarafe.exe"
 
 nier_replicant:
 	just run "/run/media/heyrict/SG20E/pc/NieR Replicant ver.1.22474487139/NieR Replicant ver.1.22474487139.exe"
@@ -122,7 +119,3 @@ god2:
 
 #houkiboshi:
 #	just run "{{HOME}}/Games/PrimaDoll_Houkiboshi/StartData/GameData/data/SiglusEngine_Crack.exe"
-
-material_brave:
-	#env {{GAMESCOPE_ENV}} gamescope -F fsr -W 1920 -H 1080 -w 1280 -h 720 just FSR_ENABLE=0 run "{{HOME}}/Games/MaterialBrave/MaterialBrave.exe"
-	just run "{{HOME}}/Games/MaterialBrave/MaterialBrave.exe"
