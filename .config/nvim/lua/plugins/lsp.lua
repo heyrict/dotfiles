@@ -196,14 +196,16 @@ return {
 
 			-- LSP: keys
 			-- Key mappings
-			opts = { buffer = true }
+			local opts = { buffer = true }
 
 			vim.keymap.set({ "n" }, "<space>fi", "<cmd>FzfLua files<cr>", opts)
-			vim.keymap.set({ "n" }, "<space>qf", "<cmd>FzfLua lsp_quickfix<cr>", opts)
+			vim.keymap.set({ "n" }, "<space>dd", "<cmd>FzfLua diagnostics_document<cr>", opts)
+			vim.keymap.set({ "n" }, "<space>dw", "<cmd>FzfLua diagnostics_workspace<cr>", opts)
 			vim.keymap.set({ "n" }, "<space>ca", "<cmd>FzfLua lsp_code_actions<cr>", opts)
 			vim.keymap.set({ "n" }, "<space>cc", "<cmd>FzfLua quickfix<cr>", opts)
 			vim.keymap.set({ "n" }, "<space>ll", "<cmd>FzfLua loclist<cr>", opts)
 			vim.keymap.set({ "n" }, "<space>ld", "<cmd>FzfLua lsp_definitions<cr>", opts)
+			vim.keymap.set({ "n" }, "<space>ly", "<cmd>FzfLua lsp_declarations<cr>", opts)
 			vim.keymap.set({ "n" }, "<space>lr", "<cmd>FzfLua lsp_references<cr>", opts)
 			vim.keymap.set({ "n" }, "<space>li", "<cmd>FzfLua lsp_implementations<cr>", opts)
 			vim.keymap.set({ "n" }, "<space>ly", "<cmd>FzfLua lsp_typedefs<cr>", opts)
