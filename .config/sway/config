@@ -54,7 +54,7 @@ for_window [class="^emuera"] floating_maximum_size 1940 x 1240
 for_window [class="^emuera"] resize set 1940 1240 30 0
 for_window [class="^org-weasis-launcher-AppLauncher$"] floating enable
 #for_window [class="^wechat$"] floating enable
-for_window [title="^微信$"] floating enable
+for_window [class="wechat"] floating enable
 
 for_window [app_id="^blueman-applet$"] move position 0 px 0 px
 

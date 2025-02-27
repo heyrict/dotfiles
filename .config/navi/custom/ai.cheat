@@ -1,0 +1,13 @@
+% whisper.transcript
+
+# Transcribe audio to text
+basename=$(echo "<file>" | cut -f1 -d.)
+tmpfile=$(mktemp -u whisper-XXXXXXXX.wav)
+ffmpeg -i "<file>" -ar 16000 -ac 1 -c:a pcm_s16le $tmpfile
+whisper.cpp -otxt -osrt -m <model> -l <lang> $tmpfile
+rm $tmpfile
+rename $tmpfile "$basename" $tmpfile.txt $tmpfile.srt
+
+$ model: ls /usr/share/whisper.cpp-model*/*.bin
+$ file: ls
+$ lang: echo "auto en zh jp" | tr " " "\n"
