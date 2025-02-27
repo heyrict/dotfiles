@@ -53,6 +53,8 @@ for_window [class="^emuera"] move position 0 -30
 for_window [class="^emuera"] floating_maximum_size 1940 x 1240
 for_window [class="^emuera"] resize set 1940 1240 30 0
 for_window [class="^org-weasis-launcher-AppLauncher$"] floating enable
+#for_window [class="^wechat$"] floating enable
+for_window [title="^微信$"] floating enable
 
 for_window [app_id="^blueman-applet$"] move position 0 px 0 px
 
@@ -425,7 +427,7 @@ input type:touchpad {
 # Swayidle
 exec swayidle -w \
     timeout 240 'swaymsg "output * dpms off" && echo 0 > /tmp/oled' \
-    resume 'swaymsg "output * dpms on" && sleep 1 && brightnessctl set `brightnessctl get` && echo 1 > /tmp/oled' \
+    resume 'swaymsg "output * dpms on" && brightnessctl set `brightnessctl get` && echo 1 > /tmp/oled' \
     timeout 600 'swaylock -f -i /home/heyrict/Pictures/backgrounds/astize_cc0_split1.png' \
     before-sleep 'swaylock -f -i /home/heyrict/Pictures/backgrounds/astize_cc0_split1.png'
 

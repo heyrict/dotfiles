@@ -49,6 +49,12 @@ adb shell settings put system screen_brightness_auto <auto_brightness>
 
 $ auto_brightness: seq 0 1 1
 
+% android.apk.pull
+# Pull installed package as apk
+adb pull <location> <package>.apk
+$ package: adb shell pm list packages | cut -d: -f2
+$ location: adb shell pm path <package> | cut -d: -f2
+
 
 % android.activity.monitor
 # Monitor changes in foreground application

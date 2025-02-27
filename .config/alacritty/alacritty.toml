@@ -16,9 +16,10 @@ render_timer = false
 
 [font]
 size = 13
-bold = { family = "MesloLGS Nerd Font Mono", style = "Bold" }
-italic = { family = "MesloLGS Nerd Font Mono", style = "Italic" }
-normal = { family = "MesloLGS Nerd Font Mono", style = "Regular" }
+bold = { family = "monospace", style = "Bold" }
+italic = { family = "monospace", style = "Italic" }
+normal = { family = "monospace", style = "Regular" }
+# ℃
 
 [colors]
 selection = { background = "CellForeground", text = "CellBackground" }

@@ -1,6 +1,4 @@
 {
-    "version": "2.0.1",
-    "autoload": {
-        "Microsoft X-Box 360 pad": "RPG Maker"
-    }
+    "version": "2.1.0",
+    "autoload": {}
 }

@@ -151,6 +151,7 @@ return {
 
 			-- LSP: python
 			lspconfig.ruff.setup({})
+			lspconfig.basedpyright.setup({})
 
 			-- LSP: typescript
 			lspconfig.ts_ls.setup({
@@ -162,6 +163,50 @@ return {
 					},
 				},
 			})
+
+			-- LSP: spellcheck
+			lspconfig.harper_ls.setup({
+				settings = {
+					["harper-ls"] = {
+						fileDictPath = "~/.cache/harper/",
+						userDictPath = "~/.local/share/harper/dict.txt",
+						isolateEnglish = true,
+						markdown = {
+							ignore_link_title = true,
+							ignoreLinkTitle = true,
+						},
+					},
+				},
+			})
+
+			-- LSP: Keys
+			vim.keymap.set({ "n" }, "<space>rn", ":lua vim.lsp.buf.rename<cr>")
+		end,
+	},
+	-- FZF
+	{
+		"ibhagwan/fzf-lua",
+		-- optional for icon support
+		dependencies = { "nvim-tree/nvim-web-devicons" },
+		-- or if using mini.icons/mini.nvim
+		-- dependencies = { "echasnovski/mini.icons" },
+		opts = {},
+		config = function()
+			local fzf = require("fzf-lua")
+
+			-- LSP: keys
+			-- Key mappings
+			opts = { buffer = true }
+
+			vim.keymap.set({ "n" }, "<space>fi", "<cmd>FzfLua files<cr>", opts)
+			vim.keymap.set({ "n" }, "<space>qf", "<cmd>FzfLua lsp_quickfix<cr>", opts)
+			vim.keymap.set({ "n" }, "<space>ca", "<cmd>FzfLua lsp_code_actions<cr>", opts)
+			vim.keymap.set({ "n" }, "<space>cc", "<cmd>FzfLua quickfix<cr>", opts)
+			vim.keymap.set({ "n" }, "<space>ll", "<cmd>FzfLua loclist<cr>", opts)
+			vim.keymap.set({ "n" }, "<space>ld", "<cmd>FzfLua lsp_definitions<cr>", opts)
+			vim.keymap.set({ "n" }, "<space>lr", "<cmd>FzfLua lsp_references<cr>", opts)
+			vim.keymap.set({ "n" }, "<space>li", "<cmd>FzfLua lsp_implementations<cr>", opts)
+			vim.keymap.set({ "n" }, "<space>ly", "<cmd>FzfLua lsp_typedefs<cr>", opts)
 		end,
 	},
 }

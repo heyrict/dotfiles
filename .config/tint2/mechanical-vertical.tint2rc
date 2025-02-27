@@ -6,13 +6,13 @@
 # Gradients
 # Gradient 1
 gradient = vertical
-start_color = #f48ee8 100
-end_color = #fa74b2 100
+start_color = STARTCOLOR1 100
+end_color = STARTCOLOR2 100
 
 # Gradient 2
 gradient = vertical
-start_color = #f48ee8 82
-end_color = #fa74b2 82
+start_color = STARTCOLOR1 82
+end_color = STARTCOLOR2 82
 
 #-------------------------------------
 # Backgrounds
