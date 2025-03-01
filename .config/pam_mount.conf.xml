@@ -2,6 +2,6 @@
 <!DOCTYPE pam_mount SYSTEM "pam_mount.conf.xml.dtd">
 
 <pam_mount>
-    <volume user="heyrict" fstype="fuse" options="nodev,nosuid,quiet"
+    <volume user="heyrict" fstype="fuse" options="nodev,nosuid"
         path="/usr/bin/gocryptfs#/home/heyrict/.cipher" mountpoint="/home/heyrict/Private" />
 </pam_mount>
