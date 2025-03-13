@@ -103,6 +103,9 @@ alias mimic-xbox="xboxdrv \
 # virtualenv
 activate() {
     source ~/$1/bin/activate;
+    if [ $STARSHIP_SHELL = "zsh" ]; then
+        eval "$(starship init zsh)";
+    fi
 }
 
 # aria2c with rpc enabled
