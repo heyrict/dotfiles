@@ -187,28 +187,118 @@ return {
 	{
 		"ibhagwan/fzf-lua",
 		-- optional for icon support
-		dependencies = { "nvim-tree/nvim-web-devicons" },
+		dependencies = {
+			"nvim-tree/nvim-web-devicons",
+			"folke/which-key.nvim",
+		},
 		-- or if using mini.icons/mini.nvim
 		-- dependencies = { "echasnovski/mini.icons" },
 		opts = {},
 		config = function()
 			local fzf = require("fzf-lua")
+			local wk = require("which-key")
 
 			-- LSP: keys
 			-- Key mappings
 			local opts = { buffer = true }
 
-			vim.keymap.set({ "n" }, "<space>fi", "<cmd>FzfLua files<cr>", opts)
-			vim.keymap.set({ "n" }, "<space>dd", "<cmd>FzfLua diagnostics_document<cr>", opts)
-			vim.keymap.set({ "n" }, "<space>dw", "<cmd>FzfLua diagnostics_workspace<cr>", opts)
-			vim.keymap.set({ "n" }, "<space>ca", "<cmd>FzfLua lsp_code_actions<cr>", opts)
-			vim.keymap.set({ "n" }, "<space>cc", "<cmd>FzfLua quickfix<cr>", opts)
-			vim.keymap.set({ "n" }, "<space>ll", "<cmd>FzfLua loclist<cr>", opts)
-			vim.keymap.set({ "n" }, "<space>ld", "<cmd>FzfLua lsp_definitions<cr>", opts)
-			vim.keymap.set({ "n" }, "<space>ly", "<cmd>FzfLua lsp_declarations<cr>", opts)
-			vim.keymap.set({ "n" }, "<space>lr", "<cmd>FzfLua lsp_references<cr>", opts)
-			vim.keymap.set({ "n" }, "<space>li", "<cmd>FzfLua lsp_implementations<cr>", opts)
-			vim.keymap.set({ "n" }, "<space>ly", "<cmd>FzfLua lsp_typedefs<cr>", opts)
+			wk.add({
+				{ "<space>f", group = "Fzf" },
+				{
+					mode = "n",
+					{
+						"<space>fi",
+						function()
+							fzf.files()
+						end,
+						desc = "Files",
+					},
+					{
+						"<space>fd",
+						function()
+							fzf.diagnostics_document()
+						end,
+						desc = "Document Diagnostics",
+					},
+					{
+						"<space>fw",
+						function()
+							fzf.diagnostics_workspace()
+						end,
+						desc = "Workspace Diagnostics",
+					},
+					{
+						"<space>fl",
+						function()
+							fzf.loclist()
+						end,
+						desc = "Loclist",
+					},
+					{
+						"<space>ff",
+						function()
+							fzf.quickfix()
+						end,
+						desc = "Quickfix",
+					},
+				},
+			})
+
+			wk.add({
+				{ "<space>l", group = "Lsp" },
+				{
+					mode = { "n" },
+					{
+						"<space>lc",
+						function()
+							fzf.lsp_code_actions()
+						end,
+						desc = "Code Actions",
+					},
+					{
+						"<space>ld",
+						function()
+							fzf.lsp_definitions()
+						end,
+						desc = "Definitions",
+					},
+					{
+						"<space>ll",
+						function()
+							fzf.lsp_declarations()
+						end,
+						desc = "Declarations",
+					},
+					{
+						"<space>lr",
+						function()
+							fzf.lsp_references()
+						end,
+						desc = "References",
+					},
+					{
+						"<space>li",
+						function()
+							fzf.lsp_implementations()
+						end,
+						desc = "Implementations",
+					},
+					{
+						"<space>ly",
+						function()
+							fzf.lsp_typedefs()
+						end,
+						desc = "Typedefs",
+					},
+					{
+						"<space>ln",
+						function()
+							vim.lsp.buf.rename()
+						end,
+						desc = "Rename variable",
+					},
+				},
+			})
 		end,
 	},
 }
