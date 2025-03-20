@@ -12,30 +12,30 @@ vim.opt.title = true
 vim.opt.spell = false
 
 vim.api.nvim_create_autocmd("FileType", {
-	pattern = {
-		"lua",
-		"html",
-		"xml",
-		"json",
-		"javascript",
-		"typescript",
-		"typescript.tsx",
-		"typescriptreact",
-		"css",
-		"yaml",
-		"dart",
-	},
-	callback = function()
-		vim.opt_local.tabstop = 2
-		vim.opt_local.shiftwidth = 2
-	end,
+  pattern = {
+    "lua",
+    "html",
+    "xml",
+    "json",
+    "javascript",
+    "typescript",
+    "typescript.tsx",
+    "typescriptreact",
+    "css",
+    "yaml",
+    "dart",
+  },
+  callback = function()
+    vim.opt_local.tabstop = 2
+    vim.opt_local.shiftwidth = 2
+  end,
 })
 
 vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
-	pattern = { "*.tex" },
-	callback = function()
-		vim.opt.filetype = "tex"
-	end,
+  pattern = { "*.tex" },
+  callback = function()
+    vim.opt.filetype = "tex"
+  end,
 })
 
 -- File encodings
@@ -44,11 +44,11 @@ vim.opt.fileencodings = { "ucs-bom", "utf-8", "shift-jis", "cp932", "cp936" }
 
 -- Format options
 vim.api.nvim_create_autocmd("FileType", {
-	pattern = { "pandoc", "markdown", "tex" },
-	callback = function()
-		vim.opt.linebreak = false
-		vim.opt.formatoptions:append({ r = true, m = true, B = true })
-	end,
+  pattern = { "pandoc", "markdown", "tex" },
+  callback = function()
+    vim.opt.linebreak = false
+    vim.opt.formatoptions:append({ r = true, m = true, B = true })
+  end,
 })
 vim.api.nvim_create_autocmd("FileType", {
   pattern = { "just" },
@@ -60,15 +60,33 @@ vim.api.nvim_create_autocmd("FileType", {
 -- Additional remaps
 vim.keymap.set("n", "gh", "<cmd>nohlsearch<cr>")
 
--- Switch light/dark theme
+-- Theme
+--- Initial background setting, credits: https://agentydragon.com/posts/2022-09-03-neovim-theme-switch.html
+if vim.fn.executable('gsettings') == 0 then
+  return
+end
 
+local color_scheme = vim.fn.system({ 'gsettings', 'get', 'org.gnome.desktop.interface', 'color-scheme' })
+-- remove newline character from color_scheme
+color_scheme = vim.fn.substitute(color_scheme, "\n", "", "")
+-- Remove quote marks
+color_scheme = vim.fn.substitute(color_scheme, "'", "", "g")
+
+if color_scheme == 'prefer-dark' then
+  vim.cmd('set background=dark')
+else
+  -- With disabled night mode, value seems to be to 'default' on my system.
+  vim.cmd('set background=light')
+end
+
+--- Switch light/dark theme
 vim.keymap.set("n", "<leader>%", function()
-	local curr = vim.o.background
-	if curr == "light" then
-		vim.o.background = "dark"
-	else
-		vim.o.background = "light"
-	end
+  local curr = vim.o.background
+  if curr == "light" then
+    vim.o.background = "dark"
+  else
+    vim.o.background = "light"
+  end
 end)
 
 -- Disable mouse
