@@ -1,13 +1,22 @@
 % whisper.transcript
 
 # Transcribe audio to text
-basename=$(echo "<file>" | cut -f1 -d.)
-tmpfile=$(mktemp -u whisper-XXXXXXXX.wav)
-ffmpeg -i "<file>" -ar 16000 -ac 1 -c:a pcm_s16le $tmpfile
+filename="<file>"
+basename=${filename%.*}
+tmpfile=$(mktemp -ut whisper-XXXXXXXX.wav)
+
+if [ -f /opt/intel/oneapi/setvars.sh ] && [ -z "${SETVARS_COMPLETED}" ]; then source /opt/intel/oneapi/setvars.sh; fi
+ffmpeg -i "${filename}" -ar 16000 -ac 1 -c:a pcm_s16le $tmpfile
 whisper-cli -otxt -osrt -m <model> -l <lang> $tmpfile
 rm $tmpfile
-rename $tmpfile "$basename" $tmpfile.txt $tmpfile.srt
+mv "${tmpfile}.txt" "${basename}.txt"
+mv "${tmpfile}.srt" "${basename}.srt"
 
 $ model: ls /usr/share/whisper.cpp-model*/*.bin
 $ file: ls
 $ lang: echo "auto en zh jp" | tr " " "\n"
+
+
+% llama.sycl.serve.phi4min
+if [ -f /opt/intel/oneapi/setvars.sh ] && [ -z "${SETVARS_COMPLETED}" ]; then source /opt/intel/oneapi/setvars.sh; fi
+llama-server -m /usr/share/ollama/blobs/sha256-88c00229914083cd112853aab84ed51b87bdf6b9ce42f532d8c85c7c63b1730a -ngl 99

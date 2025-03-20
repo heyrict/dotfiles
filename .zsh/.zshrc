@@ -278,6 +278,10 @@ export NAVI_PATH=~/.config/navi/custom
 ## Veloren {{{2
 export VELOREN_ASSETS=/usr/share/veloren
 
+## LLAMA.CPP {{{2
+export LLAMA_ARG_PORT=8928
+export LLAMA_LOG_COLORS=1
+
 # Network related {{{1
 export CURL_SSL_BACKEND=rustls
 
