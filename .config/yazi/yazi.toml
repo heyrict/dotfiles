@@ -1,0 +1,7 @@
+[opener]
+edit = [
+    { run = '${EDITOR:-vi} "$@"', desc = "$EDITOR", block = true, for = "unix" },
+    { run = 'neovide --fork "$@"', orphan = true, desc = "Neovide", for = "unix" },
+    { run = 'code %*',    orphan = true, desc = "code",           for = "windows" },
+    { run = 'code -w %*', block = true,  desc = "code (block)",   for = "windows" },
+]

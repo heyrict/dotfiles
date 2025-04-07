@@ -175,6 +175,9 @@ manpath+=/usr/local/texlive/2025/texmf-dist/doc/man
 infopath+=/usr/local/texlive/2025/texmf-dist/doc/info
 path=(/usr/local/texlive/2025/bin/x86_64-linux $path)
 
+## Miktex {{{2
+path=($path $HOME/bin /opt/miktex/bin)
+
 ## XWayland and Wayland related {{{2
 export ANKI_WAYLAND=1
 export MOZ_ENABLE_WAYLAND=1
@@ -274,6 +277,10 @@ export NAVI_PATH=~/.config/navi/custom
 
 ## Veloren {{{2
 export VELOREN_ASSETS=/usr/share/veloren
+
+## LLAMA.CPP {{{2
+export LLAMA_ARG_PORT=8928
+export LLAMA_LOG_COLORS=1
 
 # Network related {{{1
 export CURL_SSL_BACKEND=rustls
