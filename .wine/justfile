@@ -22,7 +22,7 @@ W := '$(swaymsg -t get_outputs | jq ".[' + DISPLAY + '].rect.width")'
 H := '$(swaymsg -t get_outputs | jq ".[' + DISPLAY + '].rect.height")'
 
 run FILE:
-	cd "$(dirname '{{FILE}}')" && env {{DEFAULT_ENV}} {{PROTON_ENV}} {{EXTRA_ENV}} wine64 "$(basename '{{FILE}}')"
+	cd "$(dirname '{{FILE}}')" && env {{DEFAULT_ENV}} {{PROTON_ENV}} {{EXTRA_ENV}} wine "$(basename '{{FILE}}')"
 
 ge_run FILE:
 	cd "$(dirname '{{FILE}}')" && env {{DEFAULT_ENV}} {{PROTON_ENV}} {{EXTRA_ENV}} "{{GE_WINE64}}" "$(basename '{{FILE}}')"
