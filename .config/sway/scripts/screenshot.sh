@@ -2,13 +2,13 @@
 date=$(date +%Y-%m-%dT%H:%M:%S)
 
 case "$1" in
-    Window) 
+    Window)
         win_pos=$(swaymsg -t get_tree | jq -j '.. | select(.type?) | select(.focused).rect | "\(.x),\(.y) \(.width)x\(.height)"')
-        grim -g "${win_pos}" ~/Pictures/Screenshot-${date}.png;;
+        grim -g "${win_pos}" ~/Pictures/Screenshots/${date}.png;;
     Full)
         grim ~/Pictures/Screenshot-${date}.png;;
     Select)
-        grim -g "`slurp`" ~/Pictures/Screenshot-${date}.png;;
+        grim -g "`slurp`" ~/Pictures/Screenshots/${date}.png;;
     *) echo $1;
 esac
 

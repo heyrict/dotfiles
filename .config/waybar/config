@@ -42,8 +42,8 @@
     "format-icons": ["", "", "", "", ""],
     "format-charging": "{icon}  {capacity}%",
     "states": {
-      "warning": 25,
-      "critical": 10
+      "warning": 40,
+      "critical": 25
     },
     "tooltip": false
   },

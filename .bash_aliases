@@ -113,7 +113,7 @@ alias aria2cd="aria2c --enable-rpc"
 
 # vim without language server
 alias vi='nvim'
-alias nv='neovide'
+alias nv='neovide --fork'
 alias ncvim='NOCOMPL=1 vim'
 alias ncvi='NOCOMPL=1 nvim'
 alias ncnv='NOCOMPL=1 neovide'

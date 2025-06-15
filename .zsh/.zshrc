@@ -4,15 +4,6 @@ if [ "$SSH_CONNECTION" ]; then
   SSH_SESSION=$(echo "$SSH_CONNECTION" | cut -d' ' -f1 | base64)
 fi
 
-# Language and IME {{{1
-export LANG=en_US.UTF-8
-export XMODIFIERS="@im=fcitx"
-
-export GTK_IM_MODULE="fcitx"
-export QT_IM_MODULE="fcitx"
-export QT_IM_MODULES="wayland;fcitx"
-export SDL_IM_MODULE="fcitx"
-
 # The following lines were added by compinstall {{{1
 fpath=(${ZDOTDIR:-$HOME/.zsh}/completion $fpath)
 

@@ -16,7 +16,7 @@ export XDG_STATE_HOME=$HOME/.local/state
 export LANG=en_US.UTF-8
 export XMODIFIERS="@im=fcitx"
 
-export GTK_IM_MODULE="fcitx"
+#export GTK_IM_MODULE="fcitx"
 export QT_IM_MODULE="fcitx"
 export QT_IM_MODULES="wayland;fcitx"
 export SDL_IM_MODULE="fcitx"

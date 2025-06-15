@@ -10,14 +10,18 @@ ALACRITTY_THEME_DARK=gruvbox_dark.toml
 ALACRITTY_THEME_LIGHT=gruvbox_light.toml
 SWAY_THEME_DARK=gruvbox-dark.conf
 SWAY_THEME_LIGHT=catppuccin-latte.conf
-WALLPAPER_DARK="wallpaperaccess\\/ai-generated\\/9070149.jpg fill"
-WALLPAPER_LIGHT="gruvbox-light-focus.jpg fill"
+WALLPAPER_DARK="wallpaperaccess/ai-generated/9070149.jpg"
+WALLPAPER_LIGHT="gruvbox-light-focus.jpg"
 ZATHURA_THEME_LIGHT=zathura-gruvbox/zathura-gruvbox-light
 ZATHURA_THEME_DARK=zathura-gruvbox/zathura-gruvbox-dark
 WOFI_THEME_DARK=quantumfate/src/macchiato/style.css
 WOFI_THEME_LIGHT=quantumfate/src/latte/style.css
 ZELLIJ_THEME_DARK=catppuccin-macchiato
 ZELLIJ_THEME_LIGHT=catppuccin-latte
+WAYBAR_THEME_DARK=catppuccin/macchiato.css
+WAYBAR_THEME_LIGHT=catppuccin/latte.css
+HYPRLAND_THEME_DARK=catppuccin/mocha.conf
+HYPRLAND_THEME_LIGHT=catppuccin/latte.conf
 
 BTM_THEME_DARK=gruvbox
 BTM_THEME_LIGHT=default
@@ -53,6 +57,8 @@ if [ $is_light = 1 ]; then
     zathura_theme=$ZATHURA_THEME_LIGHT
     wofi_theme=$WOFI_THEME_LIGHT
     zellij_theme=$ZELLIJ_THEME_LIGHT
+    waybar_theme=${WAYBAR_THEME_LIGHT//\//\\\/}
+    hyprland_theme=${HYPRLAND_THEME_LIGHT//\//\\\/}
 
     btm_theme=$BTM_THEME_LIGHT
     bat_theme=$BAT_THEME_LIGHT
@@ -66,6 +72,8 @@ else
     zathura_theme=$ZATHURA_THEME_DARK
     wofi_theme=$WOFI_THEME_DARK
     zellij_theme=$ZELLIJ_THEME_DARK
+    waybar_theme=${WAYBAR_THEME_DARK//\//\\\/}
+    hyprland_theme=${HYPRLAND_THEME_DARK//\//\\\/}
 
     btm_theme=$BTM_THEME_DARK
     bat_theme=$BAT_THEME_DARK
@@ -104,11 +112,29 @@ fi
 sway_settings="$HOME/.config/sway/config"
 if [ -n "$SWAYSOCK" ] &&
     command -v swaymsg > /dev/null; then
-    sed -e "/output eDP-1 bg/s/backgrounds\/.*/backgrounds\/${wallpaper}/" \
+    sed -e "/output eDP-1 bg/s/backgrounds\/.*/backgrounds\/${wallpaper//\//\\\/} fill/" \
         -e "/include themes/s/themes\/.*/themes\/${sway_theme}/" \
         -i "${sway_settings}"
     swaymsg reload
 fi
+
+# Hyprland settings {{{1
+hyprland_settings="$HOME/.config/hypr/hyprland.conf"
+hyprpaper_settings="$HOME/.config/hypr/hyprpaper.conf"
+wallpaper_dir="$HOME/Pictures/backgrounds/"
+if [ -n "$HYPRLAND_CMD" ] && command -v hyprpaper > /dev/null; then
+    # Wallpaper
+    hyprctl hyprpaper unload all
+    hyprctl hyprpaper preload "${wallpaper_dir}${wallpaper}"
+    hyprctl hyprpaper wallpaper ",${wallpaper_dir}${wallpaper}"
+    sed -i "/^wallpaper/s/,.*/,${wallpaper_dir}${wallpaper}/" "${hyprpaper_settings}"
+fi
+# Hy3
+sed -i "/colorscheme/s/themes\/[^ ]\+/themes\/${hyprland_theme}/" "${hyprland_settings}"
+
+# Waybar settings {{{1
+waybar_style="$HOME/.config/waybar/style.css"
+sed -i "/colorscheme/s/themes\/[^\"]\+/themes\/${waybar_theme}/" "${waybar_style}"
 
 . $HOME/.config/waybar/waybar.sh # Restart waybar
 

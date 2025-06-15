@@ -97,7 +97,7 @@ return {
 					end, { "i", "s" }),
 				}),
 				sources = {
-					{ name = "nvim_lsp" },
+					-- { name = "nvim_lsp" },
 					{ name = "luasnip" },
 					{ name = "vimtex" },
 				},
@@ -297,6 +297,23 @@ return {
 						end,
 						desc = "Rename variable",
 					},
+				},
+			})
+		end,
+	},
+	-- Pandoc
+	{
+		"jc-doyle/cmp-pandoc-references",
+		dependencies = {
+			"hrsh7th/nvim-cmp",
+		},
+		config = function()
+			local cmp = require("cmp")
+
+			cmp.setup.filetype("markdown", {
+				sources = {
+					{ name = "luasnip" },
+					{ name = "pandoc_references" },
 				},
 			})
 		end,

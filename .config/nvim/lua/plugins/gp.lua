@@ -105,7 +105,7 @@ return {
 					ProofRead = function(gp, params)
 						local template = "你作为学术领域的引领者，在各个领域拥有丰富的学术经验与专业知识，不仅参与前沿研究，还积极分享经验与见解擅长学术写作规范，提升论文的品质与影响力，精细润色每个细节，优化语言表达与逻辑结构。以下是你需要修改的内容:\n\n"
 							.. "```{{filetype}}\n{{selection}}\n```\n\n"
-							.. "请在细阅全文并确保理解论文核心观点的基础上，细致调整表述，采用更为精准和学术化的词汇替换原有语句，同时确保不改变原意，以增强论文的专业性和学术性。请直接给出修改后的全文，不要给出其它任何提示词。"
+							.. "请在细阅全文并确保理解论文核心观点的基础上，细致调整表述，使语言更为专业、连贯，逻辑清晰，必要时采用更为精准和学术化的词汇替换原有语句，同时确保不改变原意，以增强论文的专业性和学术性。请直接给出修改后的全文，不要给出其它任何提示词。"
 						local agent = gp.get_chat_agent()
 						gp.Prompt(params, gp.Target.vnew, agent, template)
 					end,
@@ -198,13 +198,12 @@ return {
 			-- add any opts here
 			-- for example
 			provider = "volceengine",
-			vendors = {
+			providers = {
 				zhipu = {
 					__inherited_from = "openai",
 					endpoint = "https://open.bigmodel.cn/api/paas/v4",
 					api_key_name = "cmd:secret-tool lookup url https://open.bigmodel.cn/api/paas/v4/",
 					model = "codegeex-4", -- your desired model (or use gpt-4o, etc.)
-					max_tokens = 4096,
 					-- reasoning_effort = "high" -- only supported for reasoning models (o1, etc.)
 				},
 				volceengine = {
@@ -212,11 +211,24 @@ return {
 					endpoint = "https://ark.cn-beijing.volces.com/api/v3",
 					api_key_name = "cmd:secret-tool lookup model_provider volceengine",
 					model = "ep-20250301061622-8pclj", -- Deepseek V3
-					max_tokens = 4096,
+					extra_request_body = {
+						max_tokens = 2048, -- to avoid using max_completion_tokens
+					},
 				},
 			},
 			web_search_engine = {
 				provider = "serpapi", -- tavily, serpapi, searchapi, google or kagi
+			},
+			behavior = {
+				-- enable_cursor_planning_mode = true,
+			},
+			input = {
+				provider = "snacks",
+				provider_opts = {
+					-- Additional snacks.input options
+					title = "Avante Input",
+					icon = " ",
+				},
 			},
 		},
 		-- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
@@ -224,7 +236,7 @@ return {
 		-- build = "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false" -- for windows
 		dependencies = {
 			"nvim-treesitter/nvim-treesitter",
-			"stevearc/dressing.nvim",
+			"folke/snacks.nvim",
 			"nvim-lua/plenary.nvim",
 			"MunifTanjim/nui.nvim",
 			--- The below dependencies are optional,

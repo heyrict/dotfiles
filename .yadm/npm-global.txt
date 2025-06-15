@@ -1,5 +1,7 @@
-/home/heyrict/.nvm/versions/node/v18.17.1/lib
-├── corepack@0.18.0
-├── npm@9.6.7
-└── yarn@1.22.19
+/usr/lib
+├── corepack@0.31.0
+├── node-gyp@11.2.0
+├── nopt@7.2.1
+├── npm@11.3.0
+└── semver@7.7.1
 

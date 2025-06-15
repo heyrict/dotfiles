@@ -7,4 +7,10 @@ killall -q waybar
 while pgrep -x waybar >/dev/null; do sleep 1; done
 
 # Launch main
-waybar >/dev/null 2>&1 &!
+if [ "${XDG_CURRENT_DESKTOP}" = "Hyprland" ]; then
+    waybar -c ~/.config/waybar/config-hyprland >/dev/null 2>&1 &
+elif [ "${XDG_CURRENT_DESKTOP}" = "Niri" ]; then
+    waybar -c ~/.config/waybar/config-niri >/dev/null 2>&1 &
+else
+    waybar >/dev/null 2>&1 &
+fi

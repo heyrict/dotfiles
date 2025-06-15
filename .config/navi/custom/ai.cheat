@@ -14,7 +14,7 @@ mv "${tmpfile}.srt" "${basename}.srt"
 
 $ model: ls /usr/share/whisper.cpp-model*/*.bin
 $ file: ls
-$ lang: echo "auto en zh jp" | tr " " "\n"
+$ lang: echo "auto en zh ja" | tr " " "\n"
 
 
 % llama.sycl.serve.phi4min

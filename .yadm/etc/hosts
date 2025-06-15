@@ -6,8 +6,9 @@
 ::1	localhost ip6-localhost ip6-loopback
 
 10.10.10.12	securelogin.arubanetworks.com
+192.168.3.7     homeassistant.local
 
-159.203.93.54	pxy.cindythink.com 
+159.203.93.54	pxy.cindythink.com
 149.28.46.74	static.cindythink.com www.cindythink.com
 #192.168.3.52	home-ddns.cindythink.com
 
@@ -15,6 +16,9 @@
 # Renji
 192.168.81.46	oa.renji.com
 192.168.81.96	dzda.renji.com
+192.168.81.64	cci.renji.com
+220.197.30.136	mail.qiye.163.com
+111.124.200.39	mailh.qiye.163.com
 
 # github
 #140.82.112.3	github.com

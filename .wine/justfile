@@ -119,3 +119,6 @@ god2:
 
 #houkiboshi:
 #	just run "{{HOME}}/Games/PrimaDoll_Houkiboshi/StartData/GameData/data/SiglusEngine_Crack.exe"
+
+ratopia:
+	env {{GAMESCOPE_ENV}} gamescope -F fsr -W {{W}} -H {{H}} just FSR_ENABLE=0 run "{{HOME}}/Games/Ratopia/Ratopia.exe"

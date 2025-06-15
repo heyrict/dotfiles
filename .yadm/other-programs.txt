@@ -1,6 +1,26 @@
 /home/heyrict/Programs/
 ├── ariang.html
 ├── ascf
+├── AutoGPT
+│   ├── assets
+│   ├── autogpt_platform
+│   ├── CITATION.cff
+│   ├── classic
+│   ├── CODE_OF_CONDUCT.md
+│   ├── CONTRIBUTING.md
+│   ├── docs
+│   ├── LICENSE
+│   ├── README.md
+│   └── SECURITY.md
+├── awesome-chatgpt-prompts
+│   ├── CNAME
+│   ├── _config.yml
+│   ├── CONTRIBUTING.md
+│   ├── _layouts
+│   ├── LICENSE
+│   ├── prompts.csv
+│   ├── README.md
+│   └── scripts
 ├── battery-notify
 │   ├── alert.mp3
 │   ├── battery-critical.png
@@ -11,13 +31,49 @@
 ├── bin
 │   ├── ascf -> ../ascf
 │   ├── go-mtpfs -> ../go-mtpfs.x86_64
-│   ├── ludusavi
 │   ├── protontricks -> ../protontricks
 │   ├── replaykit -> ../replaykit
 │   ├── rpcs3 -> ../rpcs3/rpcs3-v0.0.27-14979-5c0113ce_linux64.AppImage
 │   ├── rtsp-simple-server -> ../rtsp-simple-server
 │   ├── send-to-kodi.sh -> ../send-to-kodi.sh
 │   └── sndrec -> ../sndcpy/sndrec
+├── dev-rewards
+│   ├── bin
+│   ├── Dockerfile
+│   ├── install.sh
+│   ├── LICENSE
+│   ├── MANUAL_INSTRUCTIONS.md
+│   ├── metadata.bin
+│   ├── metadata.json
+│   ├── proof-sh
+│   ├── python
+│   ├── README.md
+│   ├── __sh_cache__
+│   └── web
+├── django-appointment
+│   ├── appointment
+│   ├── appointments
+│   ├── check_version.py
+│   ├── CODE_OF_CONDUCT.md
+│   ├── compatibility_matrix.md
+│   ├── compatibility_matrix.sh
+│   ├── CONTRIBUTING.md
+│   ├── django_compatible.json
+│   ├── docker-compose.yml
+│   ├── Dockerfile
+│   ├── Dockerfile.test
+│   ├── docs
+│   ├── LICENSE
+│   ├── manage.py
+│   ├── MANIFEST.in
+│   ├── pyproject.toml
+│   ├── python_compatible.json
+│   ├── README.md
+│   ├── requirements-test.txt
+│   ├── requirements.txt
+│   ├── SECURITY.md
+│   ├── setup.cfg
+│   └── setup.py
 ├── FBI
 │   ├── buildtools
 │   ├── LICENSE.txt
@@ -28,10 +84,69 @@
 │   ├── servefiles
 │   └── source
 ├── go-mtpfs.x86_64
-├── graphql-playground-electron-1.8.10-x86_64.AppImage
+├── gpt_academic
+│   ├── check_proxy.py
+│   ├── colorful.py
+│   ├── config.py
+│   ├── core_functional.py
+│   ├── crazy_functional.py
+│   ├── crazy_functions
+│   ├── docker-compose.yml
+│   ├── Dockerfile
+│   ├── docs
+│   ├── LICENSE
+│   ├── main.py
+│   ├── multi_language.py
+│   ├── README.md
+│   ├── request_llms
+│   ├── requirements.txt
+│   ├── shared_utils
+│   ├── tests
+│   ├── themes
+│   ├── toolbox.py
+│   └── version
 ├── ludusavi
+├── MetaGPT
+│   ├── build
+│   ├── config
+│   ├── Dockerfile
+│   ├── docs
+│   ├── examples
+│   ├── LICENSE
+│   ├── MANIFEST.in
+│   ├── metagpt
+│   ├── metagpt.egg-info
+│   ├── pytest.ini
+│   ├── README.md
+│   ├── requirements.txt
+│   ├── ruff.toml
+│   ├── SECURITY.md
+│   ├── setup.py
+│   └── tests
 ├── noeggs
+├── pdf2pptx
+│   ├── LICENSE
+│   ├── pdf2pptx.sh
+│   ├── README.md
+│   ├── template
+│   └── test.pdf
 ├── protontricks
+├── Rath
+│   ├── apps
+│   ├── buildspec.yml
+│   ├── CHANGELOG.md
+│   ├── citations.md
+│   ├── client.dockerfile
+│   ├── CONTRIBUTING.md
+│   ├── docker
+│   ├── docker-compose.yml
+│   ├── docs
+│   ├── LICENSE
+│   ├── package.json
+│   ├── packages
+│   ├── README.md
+│   ├── services
+│   └── yarn.lock
 ├── replaykit
 ├── rpcs3
 │   ├── rpcs3-v0.0.27-14854-6fbca1ac_linux64.AppImage
@@ -41,18 +156,39 @@
 ├── sndcpy
 │   ├── sndcpy
 │   └── sndrec
-└── ventoy-1.0.44
-    ├── boot
-    ├── CreatePersistentImg.sh
-    ├── log.txt
-    ├── plugin
-    ├── README
-    ├── tool
-    ├── ventoy
-    ├── Ventoy2Disk.ini
-    ├── Ventoy2Disk.sh
-    ├── VentoyWebDeepin.sh
-    ├── VentoyWeb.sh
-    └── WebUI
+├── supabase
+│   ├── babel.config.js
+│   ├── CONTRIBUTING.md
+│   ├── DEVELOPERS.md
+│   ├── docker
+│   ├── LICENSE
+│   ├── Makefile
+│   ├── package.json
+│   ├── package-lock.json
+│   ├── README.md
+│   ├── SECURITY.md -> apps/docs/public/.well-known/security.txt
+│   ├── tsconfig.json
+│   └── turbo.json
+└── TaskWeaver
+    ├── auto_eval
+    ├── CODE_OF_CONDUCT.md
+    ├── CONTRIBUTING.md
+    ├── docker
+    ├── justfile
+    ├── LICENSE
+    ├── playground
+    ├── project
+    ├── pytest.ini
+    ├── README.md
+    ├── requirements.txt
+    ├── scripts
+    ├── SECURITY.md
+    ├── setup.py
+    ├── SUPPORT.md
+    ├── taskweaver
+    ├── tests
+    ├── tracing
+    ├── version.json
+    └── website
 
-17 directories, 39 files
+64 directories, 128 files
