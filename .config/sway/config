@@ -379,16 +379,16 @@ bindsym Control+Print exec '~/.config/sway/scripts/screenshot.sh Window'
 
 # Multi-monitor
 ## Config
-workspace $ws1 output eDP-1
-workspace $ws2 output eDP-1
-workspace $ws3 output eDP-1
-workspace $ws4 output eDP-1
-workspace $ws5 output eDP-1
-workspace $ws6 output eDP-1
-workspace $ws7 output eDP-1
-workspace $ws8 output eDP-1
-workspace $ws9 output eDP-1
-workspace $ws10 output eDP-1
+workspace $ws1 output HDMI-A-1
+workspace $ws2 output HDMI-A-1
+workspace $ws3 output HDMI-A-1
+workspace $ws4 output HDMI-A-1
+workspace $ws5 output HDMI-A-1
+workspace $ws6 output HDMI-A-1
+workspace $ws7 output HDMI-A-1
+workspace $ws8 output HDMI-A-1
+workspace $ws9 output HDMI-A-1
+workspace $ws10 output HDMI-A-1
 workspace $wsminus output HDMI-A-1
 workspace $wsplus output HDMI-A-1
 
@@ -401,12 +401,10 @@ bindsym $sup+b exec "notify-send 'Capacity = '$(cat /sys/class/power_supply/BAT0
 
 # Wayland specific commands
 ## Wallpaper
-#output "*" bg ~/Pictures/backgrounds/astize_cc0_split1_alt.png fill
-output eDP-1 bg ~/Pictures/backgrounds/wallpaperaccess/ai-generated/9070149.jpg fill
-output HDMI-1 bg ~/Pictures/backgrounds/edna_dark.jpeg fill
+output HDMI-A-1 bg ~/Pictures/backgrounds/wallpaperaccess/flat/160352.png fill
 
 ## Toggle backlight
-bindsym $mod+bracketright exec ~/.config/sway/scripts/backlight-toggle.sh
+#bindsym $mod+bracketright exec ~/.config/sway/scripts/backlight-toggle.sh
 bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +3%
 bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -3%
 bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
@@ -416,8 +414,8 @@ bindsym XF86MonBrightnessUp exec brightnessctl set +2
 bindsym $sup+p exec swaymsg output eDP-1 toggle
 
 ## HiDPI
-output eDP-1 mode 1920x1200@90.001Hz scale 1
-#output eDP-1 mode 2880x1800@90.001Hz scale 1.5
+#output eDP-1 mode 1920x1200@90.001Hz scale 1
+output HDMI-A-1 mode 1920x1200@59.950Hz scale 1
 
 ## Input
 input type:touchpad {
