@@ -18,6 +18,7 @@
 	defaultBranch = master
 [core]
     sshCommand = ssh -i ~/.ssh/id_ed25519_nopass
+    pager = delta
 [safe]
 	directory = /mnt/windows/Users/xiezh/MyPrograms/renji360
 	directory = /run/media/heyrict/wd23e/heyrict/orangepi3b-images/build
@@ -28,3 +29,14 @@
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
+[interactive]
+   diffFilter = delta --color-only
+[delta]
+   navigate = true
+   line-numbers = true
+   side-by-side = true
+   syntax-theme = Monokai Extended Bright
+[merge]
+   conflictstyle = diff3
+[diff]
+   colorMoved = default

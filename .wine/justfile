@@ -18,8 +18,10 @@ EXTRA_ENV := ""
 ALPHAROMDIE := HOME + "/Tools/AlphaROMdiE/AlphaROMdiE.exe"
 
 DISPLAY := "0"
-W := '$(swaymsg -t get_outputs | jq ".[' + DISPLAY + '].rect.width")'
-H := '$(swaymsg -t get_outputs | jq ".[' + DISPLAY + '].rect.height")'
+#W := '$(swaymsg -t get_outputs | jq ".[' + DISPLAY + '].rect.width")'
+#H := '$(swaymsg -t get_outputs | jq ".[' + DISPLAY + '].rect.height")'
+W := '$(hyprctl monitors -j | jq ".[' + DISPLAY + '].width")'
+H := '$(hyprctl monitors -j | jq ".[' + DISPLAY + '].height")'
 
 run FILE:
 	cd "$(dirname '{{FILE}}')" && env {{DEFAULT_ENV}} {{PROTON_ENV}} {{EXTRA_ENV}} wine "$(basename '{{FILE}}')"
@@ -115,7 +117,8 @@ sakura_moyu:
 	env {{GAMESCOPE_ENV}} gamescope -F fsr -W 1920 -H 1200 just FSR_ENABLE=0 run "{{HOME}}/Games/さくら、もゆ。/Sakura.exe"
 
 god2:
-	env {{GAMESCOPE_ENV}} gamescope -F fsr -W {{W}} -H {{H}} just FSR_ENABLE=0 run "{{HOME}}/Games/GEARS of DRAGOON 2/GoD2.exe"
+	#env {{GAMESCOPE_ENV}} gamescope -F fsr -W {{W}} -H {{H}} just FSR_ENABLE=0 run "{{HOME}}/Games/GEARS of DRAGOON 2/GoD2.exe"
+	just run "{{HOME}}/Games/GEARS of DRAGOON 2/GoD2.exe"
 
 #houkiboshi:
 #	just run "{{HOME}}/Games/PrimaDoll_Houkiboshi/StartData/GameData/data/SiglusEngine_Crack.exe"

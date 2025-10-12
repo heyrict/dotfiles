@@ -62,16 +62,6 @@ return {
 		end,
 		config = function()
 			-- D2 config
-			local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
-			parser_config.d2 = {
-				install_info = {
-					url = "https://github.com/ravsii/tree-sitter-d2",
-					files = { "src/parser.c" },
-					branch = "main",
-				},
-				filetype = "d2",
-			}
-
 			vim.filetype.add({
 				extension = {
 					d2 = function()
@@ -126,5 +116,10 @@ return {
 			vim.opt.foldmethod = "expr"
 			vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
 		end,
+	},
+	{
+		"ravsii/tree-sitter-d2",
+		dependencies = { "nvim-treesitter/nvim-treesitter" },
+		build = "make nvim-install",
 	},
 }

@@ -1,15 +1,15 @@
 [Default Applications]
-x-scheme-handler/http=firefox.desktop
-x-scheme-handler/https=firefox.desktop
+x-scheme-handler/http=userapp-Firefox-105EC3.desktop
+x-scheme-handler/https=userapp-Firefox-105EC3.desktop
 x-scheme-handler/ftp=firefox.desktop
-x-scheme-handler/chrome=firefox.desktop
-text/html=firefox.desktop
-application/x-extension-htm=firefox.desktop
-application/x-extension-html=firefox.desktop
-application/x-extension-shtml=firefox.desktop
-application/xhtml+xml=firefox.desktop
-application/x-extension-xhtml=firefox.desktop
-application/x-extension-xht=firefox.desktop
+x-scheme-handler/chrome=userapp-Firefox-105EC3.desktop
+text/html=userapp-Firefox-105EC3.desktop
+application/x-extension-htm=userapp-Firefox-105EC3.desktop
+application/x-extension-html=userapp-Firefox-105EC3.desktop
+application/x-extension-shtml=userapp-Firefox-105EC3.desktop
+application/xhtml+xml=userapp-Firefox-105EC3.desktop
+application/x-extension-xhtml=userapp-Firefox-105EC3.desktop
+application/x-extension-xht=userapp-Firefox-105EC3.desktop
 audio/x-ape=mpv.desktop
 application/x-anki=anki.desktop
 application/x-apkg=anki.desktop
@@ -114,6 +114,7 @@ application/x-mswrite=libreoffice-writer.desktop;
 application/x-starwriter=libreoffice-writer.desktop;
 x-scheme-handler/baiduyunguanjia=baidunetdisk.desktop
 x-scheme-handler/discord-460807638964371468=discord-460807638964371468.desktop
+x-scheme-handler/tuta=tutanota-desktop.desktop
 
 [Added Associations]
 x-scheme-handler/ftp=firefox.desktop
@@ -180,3 +181,13 @@ video/x-matroska=mpv.desktop;
 video/webm=mpv.desktop;
 image/jpeg=blender.desktop;
 image/png=blender.desktop;
+x-scheme-handler/http=userapp-Firefox-105EC3.desktop;
+x-scheme-handler/https=userapp-Firefox-105EC3.desktop;
+x-scheme-handler/chrome=userapp-Firefox-105EC3.desktop;
+text/html=userapp-Firefox-105EC3.desktop;
+application/x-extension-htm=userapp-Firefox-105EC3.desktop;
+application/x-extension-html=userapp-Firefox-105EC3.desktop;
+application/x-extension-shtml=userapp-Firefox-105EC3.desktop;
+application/xhtml+xml=userapp-Firefox-105EC3.desktop;
+application/x-extension-xhtml=userapp-Firefox-105EC3.desktop;
+application/x-extension-xht=userapp-Firefox-105EC3.desktop;

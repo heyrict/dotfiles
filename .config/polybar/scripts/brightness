@@ -3,9 +3,10 @@
 # Usage
 # brightness (set|get)
 
-MAX_BRIGHTNESS=$(cat /sys/class/backlight/intel_backlight/max_brightness)
+DEVICE=amdgpu_bl1
+MAX_BRIGHTNESS=$(cat /sys/class/backlight/$DEVICE/max_brightness)
 
-CUR_ACTUAL_BRIGHTNESS=$(cat /sys/class/backlight/intel_backlight/brightness)
+CUR_ACTUAL_BRIGHTNESS=$(cat /sys/class/backlight/$DEVICE/brightness)
 
 CUR_BRIGHTNESS=$(echo "scale=1; $CUR_ACTUAL_BRIGHTNESS * 100 / $MAX_BRIGHTNESS" | bc)
 
@@ -20,14 +21,14 @@ set_brightness() {
 
     if [ $BRIGHTNESS -le 100 -a $BRIGHTNESS -ge 0 ]; then
         ACTUAL_BRIGHTNESS=$(echo "$BRIGHTNESS * $MAX_BRIGHTNESS / 100" | bc)
-        echo "$ACTUAL_BRIGHTNESS" > /sys/class/backlight/intel_backlight/brightness
+        echo "$ACTUAL_BRIGHTNESS" > /sys/class/backlight/$DEVICE/brightness
     fi
 }
 
 update_brightness() {
     ACTUAL_BRIGHTNESS=$(echo "$CUR_ACTUAL_BRIGHTNESS $*" | bc)
     if [ $ACTUAL_BRIGHTNESS -le $MAX_BRIGHTNESS -a $ACTUAL_BRIGHTNESS -ge 0 ]; then
-        echo "$ACTUAL_BRIGHTNESS" > /sys/class/backlight/intel_backlight/brightness
+        echo "$ACTUAL_BRIGHTNESS" > /sys/class/backlight/$DEVICE/brightness
     fi
 }
 
@@ -35,8 +36,8 @@ case "$1" in
     *get) echo $CUR_BRIGHTNESS ;;
     *get-percent) echo $CUR_BRIGHTNESS ;;
     *get-actual) echo $CUR_ACTUAL_BRIGHTNESS ;;
-    *follow) tail /sys/class/backlight/intel_backlight/brightness;;
-    *follow-actual) tail /sys/class/backlight/intel_backlight/brightness;;
+    *follow) tail /sys/class/backlight/$DEVICE/brightness;;
+    *follow-actual) tail /sys/class/backlight/$DEVICE/brightness;;
     *set) set_brightness & ;;
     *update) update_brightness $2 & ;;
 esac
