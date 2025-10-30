@@ -207,7 +207,7 @@ return {
 					__inherited_from = "openai",
 					endpoint = "https://open.bigmodel.cn/api/coding/paas/v4",
 					api_key_name = "cmd:secret-tool lookup url https://open.bigmodel.cn/api/paas/v4/",
-					model_names = { "glm-4.5", "glm-4.5-air" }, -- your desired model (or use gpt-4o, etc.)
+					model_names = { "glm-4.5", "glm-4.5-air", "glm-4.6" }, -- your desired model (or use gpt-4o, etc.)
 					-- reasoning_effort = "high" -- only supported for reasoning models (o1, etc.)
 				},
 				zhipu = {
