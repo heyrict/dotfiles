@@ -125,3 +125,7 @@ god2:
 
 ratopia:
 	env {{GAMESCOPE_ENV}} gamescope -F fsr -W {{W}} -H {{H}} just FSR_ENABLE=0 run "{{HOME}}/Games/Ratopia/Ratopia.exe"
+
+rk_elin:
+	env MESA_VK_VERSION_OVERRIDE=1.4.305 just run ~/.local/share/Steam/steamapps/common/Elin/Elin.exe
+	rsync -a "{{HOME}}/AppData/LocalLow/Lafrontier" ~/Sync/backup/pc/

@@ -15,7 +15,7 @@ print_events = false
 render_timer = false
 
 [font]
-size = 13
+size = 11
 bold = { family = "monospace", style = "Bold" }
 italic = { family = "monospace", style = "Italic" }
 normal = { family = "monospace", style = "Regular" }

@@ -44,7 +44,7 @@ return {
 	-- LSP, snippets and complete
 	{
 		"neovim/nvim-lspconfig",
-		branch = "master",
+		tag = "v2.5.0",
 		dependencies = {
 			"hrsh7th/nvim-cmp",
 			-- LSP
@@ -129,8 +129,7 @@ return {
 			})
 
 			-- LSP: lua_ls
-			vim.lsp.enable("lua_ls")
-			vim.lsp.config("lua_ls", {
+			lspconfig.lua_ls.setup({
 				on_init = function(client)
 					if client.workspace_folders then
 						local path = client.workspace_folders[1].name
@@ -165,8 +164,7 @@ return {
 			})
 
 			-- LSP: rust_analyzer
-			vim.lsp.enable("rust_analyzer")
-			vim.lsp.config("rust_analyzer", {
+			lspconfig.rust_analyzer.setup({
 				settings = {
 					["rust-analyzer"] = {
 						diagnostics = {
@@ -177,21 +175,11 @@ return {
 			})
 
 			-- LSP: python
-			vim.lsp.enable("ruff")
-			vim.lsp.config("basedpyright", {
-				settings = {
-					basedpyright = {
-						analysis = {
-							typeCheckingMode = "standard",
-						},
-					},
-				},
-			})
-			vim.lsp.enable("basedpyright")
+			lspconfig.ruff.setup({})
+			lspconfig.basedpyright.setup({})
 
 			-- LSP: typescript
-			vim.lsp.enable("ts_ls")
-			vim.lsp.config("ts_ls", {
+			lspconfig.ts_ls.setup({
 				settings = {
 					typescript = {
 						format = {
@@ -201,12 +189,8 @@ return {
 				},
 			})
 
-			-- LSP: SQL
-			vim.lsp.enable("sqruff")
-
 			-- LSP: spellcheck
-			vim.lsp.enable("harper_ls")
-			vim.lsp.config("harper_ls", {
+			lspconfig.harper_ls.setup({
 				settings = {
 					["harper-ls"] = {
 						fileDictPath = "~/.cache/harper/",

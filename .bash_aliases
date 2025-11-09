@@ -40,6 +40,11 @@ if `which eza >/dev/null`; then
     alias la="eza -a"
 fi
 
+# bat
+if `which batcat >/dev/null`; then
+    alias bat="batcat"
+fi
+
 if `which marp >/dev/null`; then
     alias marp="CHROME_PATH=$(which chromium) marp"
 fi

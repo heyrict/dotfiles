@@ -24,7 +24,7 @@ floating_modifier $sup
 # is used in the bar {} block below.
 font pango:WenQuanYi Micro Hei 8
 
-include themes/gruvbox-dark.conf
+include themes/catppuccin-latte.conf
 
 # Make config floating
 for_window [window_role="pop-up"] floating enable
@@ -401,10 +401,12 @@ bindsym $sup+b exec "notify-send 'Capacity = '$(cat /sys/class/power_supply/BAT0
 
 # Wayland specific commands
 ## Wallpaper
-output HDMI-A-1 bg ~/Pictures/backgrounds/wallpaperaccess/flat/160352.png fill
+#output "*" bg ~/Pictures/backgrounds/astize_cc0_split1_alt.png fill
+#output eDP-1 bg ~/Pictures/backgrounds/gruvbox-light-focus.jpg fill
+#output HDMI-1 bg ~/Pictures/backgrounds/edna_dark.jpeg fill
 
 ## Toggle backlight
-#bindsym $mod+bracketright exec ~/.config/sway/scripts/backlight-toggle.sh
+bindsym $mod+bracketright exec ~/.config/sway/scripts/backlight-toggle.sh
 bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +3%
 bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -3%
 bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
@@ -415,7 +417,8 @@ bindsym $sup+p exec swaymsg output eDP-1 toggle
 
 ## HiDPI
 #output eDP-1 mode 1920x1200@90.001Hz scale 1
-output HDMI-A-1 mode 1920x1200@59.950Hz scale 1
+#output eDP-1 mode 2880x1800@90.001Hz scale 1.5
+output HDMI-A-1 mode 1280x720@60.001Hz scale 1
 
 ## Input
 input type:touchpad {

@@ -1,4 +1,4 @@
-# !/bin/env bash
+#!/bin/env zsh
 # Changes theme to 0/dark or 1/light
 # Usage: ./theme.sh dark
 

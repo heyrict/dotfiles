@@ -65,7 +65,7 @@ input {
 // Find more information on the wiki:
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Outputs
 // Remember to uncomment the node by removing "/-"!
-output "eDP-1" {
+output "HDMI-A-1" {
     // Uncomment this line to disable this output.
     // off
 
@@ -75,7 +75,7 @@ output "eDP-1" {
     // for the resolution.
     // If the mode is omitted altogether or is invalid, niri will pick one automatically.
     // Run `niri msg outputs` while inside a niri instance to list all outputs and their modes.
-    mode "1920x1200@90.001"
+    mode "1280x720@60.000"
 
     // You can use integer or fractional scale, for example use 1.5 for 150% scale.
     scale 1
@@ -101,7 +101,7 @@ output "eDP-1" {
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Layout
 layout {
     // Set gaps around windows in logical pixels.
-    gaps 16
+    gaps 12
 
     // When to center a column when changing focus, options are:
     // - "never", default behavior, focusing an off-screen column will keep at the left
@@ -254,12 +254,12 @@ spawn-at-startup "swayidle" "-w" "timeout" "601" "niri msg action power-off-moni
 
 // Autostart Programs
 spawn-at-startup "fcitx5" "-d"
-spawn-at-startup "~/.config/waybar/waybar.sh"
+//spawn-at-startup "~/.config/waybar/waybar.sh"
 
 // XWayland config
 spawn-at-startup "xwayland-satellite"
 environment {
-    DISPLAY ":0"
+    DISPLAY ":1"
 }
 
 // Uncomment this line to ask the clients to omit their client-side decorations if possible.
@@ -300,6 +300,13 @@ window-rule {
     // You can get away with just app-id="wezterm" if you want.
     match app-id=r#"^org\.wezfurlong\.wezterm$"#
     default-column-width {}
+}
+
+window-rule {
+    match app-id="com.libretro.RetroArch"
+    match app-id="org.ppsspp.PPSSPP"
+    match app-id="firefox-esr"
+    open-maximized true
 }
 
 // Open the Firefox picture-in-picture player as floating by default.

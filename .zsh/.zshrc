@@ -276,6 +276,9 @@ export VELOREN_ASSETS=/usr/share/veloren
 export LLAMA_ARG_PORT=8928
 export LLAMA_LOG_COLORS=1
 
+## Zoxide {{{2
+eval "$(zoxide init zsh)"
+
 # Network related {{{1
 export CURL_SSL_BACKEND=rustls
 
@@ -324,3 +327,10 @@ export NNN_IDLE_TIMEOUT=180
 # - b: Page the file with bat
 export NNN_PLUG='o:fzopen;p:-!feh -Z.*;P:-!feh -Z. `ls|sort -n`*;d:diffs;k:!chksum;c:fzcd;z:fzz;S:organize;b:-!bat "$nnn";s:croc'
 
+
+# Box64-Wine {{{1
+export path=(~/Wine/current/bin $path)
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion

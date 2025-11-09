@@ -1,13 +1,13 @@
 [user]
 	name = heyrict
 	email = xiezh0831@yahoo.co.jp
-	signingkey = E81C88AEFD6C2BAD
-[credential]
-    helper = cache --timeout=3600
-[commit]
-	gpgsign = true
-[gpg]
-	program = gpg
+	signingkey = F164CB5BC7D313E98ABA2530C3B26C19CA5EED91
+#[credential]
+#    helper = cache --timeout=3600
+#[commit]
+#	gpgsign = true
+#[gpg]
+#	program = gpg
 [pull]
 	rebase = false
 #[https]
@@ -17,7 +17,7 @@
 [init]
 	defaultBranch = master
 [core]
-    sshCommand = ssh -i ~/.ssh/id_ed25519_nopass
+    sshCommand = ssh -i ~/.ssh/id_opi5
     pager = delta
 [safe]
 	directory = /mnt/windows/Users/xiezh/MyPrograms/renji360
