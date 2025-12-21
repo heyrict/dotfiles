@@ -30,21 +30,21 @@ return {
 					},
 					{
 						provider = "zhipu_coding",
-						name = "glm-4.5",
+						name = "glm-4.6",
 						chat = true,
 						command = true,
 						-- string with model name or table with model name and parameters
-						model = { model = "glm-4.5", temperature = 0.95, top_p = 0.7 },
+						model = { model = "glm-4.6", temperature = 0.95, top_p = 0.7 },
 						-- system prompt (use this to specify the persona/role of the AI)
 						system_prompt = require("gp.defaults").chat_system_prompt,
 					},
 					{
 						provider = "zhipu_coding",
-						name = "glm-4.5-air",
+						name = "glm-4.6-air",
 						chat = true,
 						command = true,
 						-- string with model name or table with model name and parameters
-						model = { model = "glm-4.5-air", temperature = 0.95, top_p = 0.7 },
+						model = { model = "glm-4.6-air", temperature = 0.95, top_p = 0.7 },
 						-- system prompt (use this to specify the persona/role of the AI)
 						system_prompt = require("gp.defaults").chat_system_prompt,
 					},

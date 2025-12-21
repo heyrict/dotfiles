@@ -37,7 +37,7 @@ $ addr: echo -e "192.168.3.0/24\n192.168.0.0/24\n192.168.71.0/24"
 
 # mount disk
 % sys.udisksctl.mount
-udisksctl mount -o noatime -b <partition>
+udisksctl mount -o noatime -b "<partition>"
 $ partition: ls /dev/sd?? /dev/disk/by-label/*
 
 

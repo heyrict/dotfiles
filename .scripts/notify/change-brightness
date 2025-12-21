@@ -4,7 +4,7 @@ EXNOTIFY_SEND=dunstify
 BRIGHTNESS_STEPS=3
 OPTIMAL_BRIGHTNESS=20
 
-type -p brightnessctl &>/dev/null || exec "$EXNOTIFY_SEND" -u low -r 16 'Install brightnessctl!'
+type -p brightnessctl &>/dev/null || exec "$EXNOTIFY_SEND" -a Brightness -u low -r 16 'Install brightnessctl!'
 
 notify()
 {
@@ -25,7 +25,7 @@ notify()
         #icon='notification-display-brightness-full'
         icon='brightness-display-symbolic'
     fi
-    exec "$EXNOTIFY_SEND" -r 1234 -t 700 -i "$icon" "$BRIGHTNESS " -h "int:value:${BRIGHTNESS}"
+    exec "$EXNOTIFY_SEND" -a Brightness -r 1234 -t 700 -i "$icon" "$BRIGHTNESS " -h "int:value:${BRIGHTNESS}"
 }
 
 case ${1} in

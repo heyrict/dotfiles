@@ -65,7 +65,18 @@ return {
 
 			vim.diagnostic.enable = true
 			vim.diagnostic.config({
+				virtual_text = false,
 				virtual_lines = true,
+			})
+
+			vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
+				pattern = { "*.md", "*.tex" },
+				callback = function()
+					vim.diagnostic.config({
+						virtual_lines = false,
+						virtual_text = true,
+					})
+				end,
 			})
 		end,
 		config = function()
@@ -201,9 +212,11 @@ return {
 						fileDictPath = "~/.cache/harper/",
 						userDictPath = "~/.local/share/harper/dict.txt",
 						isolateEnglish = true,
+						linters = {
+							LongSentences = false,
+						},
 						markdown = {
-							ignore_link_title = true,
-							ignoreLinkTitle = true,
+							IgnoreLinkTitle = true,
 						},
 					},
 				},
@@ -226,6 +239,9 @@ return {
 		opts = {},
 		config = function()
 			local fzf = require("fzf-lua")
+			fzf.setup()
+			fzf.register_ui_select()
+
 			local wk = require("which-key")
 
 			-- LSP: keys

@@ -1,4 +1,4 @@
-@import "themes/catppuccin/macchiato.css"; /* colorscheme */
+@import "themes/catppuccin/latte.css"; /* colorscheme */
 
 * {
   border: none;
@@ -34,7 +34,7 @@
     opacity: 0.8;
 }
 
-#workspaces button.active {
+#workspaces button.active, #workspaces button.focused {
     color: @base;
     background-color: @mauve;
     border-radius: 15px;
