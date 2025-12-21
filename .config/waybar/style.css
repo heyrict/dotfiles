@@ -2,7 +2,7 @@
 
 * {
   border: none;
-  border-radius: 5;
+  border-radius: 5px;
   font-family: "MesloLGS Nerd Font", Arial, sans-serif;
   font-size: 13px;
   box-shadow: none;
@@ -34,7 +34,7 @@
     opacity: 0.8;
 }
 
-#workspaces button.active {
+#workspaces button.active, #workspaces button.focused {
     color: @base;
     background-color: @mauve;
     border-radius: 15px;

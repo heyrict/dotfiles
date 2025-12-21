@@ -10,10 +10,10 @@
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
 
 # The alt key
-set $mod Mod1
+set $mod Mod4
 
 # The super key
-set $sup Mod4
+set $sup Mod1
 
 # Use super key for moving floating windows
 floating_modifier $sup

@@ -4,3 +4,13 @@
 magick mogrify -negate <file>;
 
 $ file: fd -d1 --type f
+
+
+% graphics.image.remove-border
+
+# Remove border from image
+
+magick mogrify -fuzz <fuzz>% -trim +repage <file>
+
+$ fuzz: seq 15 15 90
+$ file: fd -d1 --type f

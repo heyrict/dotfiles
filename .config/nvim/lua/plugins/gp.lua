@@ -10,6 +10,10 @@ return {
 						endpoint = "https://open.bigmodel.cn/api/paas/v4/chat/completions",
 						secret = zhipu_key,
 					},
+					zhipu_coding = {
+						endpoint = "https://open.bigmodel.cn/api/coding/paas/v4/chat/completions",
+						secret = zhipu_key,
+					},
 					volceengine = {
 						endpoint = "https://ark.cn-beijing.volces.com/api/v3/chat/completions#",
 						secret = volceengine_key,
@@ -25,32 +29,32 @@ return {
 						disable = true,
 					},
 					{
-						provider = "zhipu",
-						name = "glm-4-plus",
+						provider = "zhipu_coding",
+						name = "glm-4.6",
 						chat = true,
 						command = true,
 						-- string with model name or table with model name and parameters
-						model = { model = "glm-4-plus", temperature = 0.95, top_p = 0.7 },
+						model = { model = "glm-4.6", temperature = 0.95, top_p = 0.7 },
+						-- system prompt (use this to specify the persona/role of the AI)
+						system_prompt = require("gp.defaults").chat_system_prompt,
+					},
+					{
+						provider = "zhipu_coding",
+						name = "glm-4.6-air",
+						chat = true,
+						command = true,
+						-- string with model name or table with model name and parameters
+						model = { model = "glm-4.6-air", temperature = 0.95, top_p = 0.7 },
 						-- system prompt (use this to specify the persona/role of the AI)
 						system_prompt = require("gp.defaults").chat_system_prompt,
 					},
 					{
 						provider = "zhipu",
-						name = "glm-4-air",
+						name = "glm-4.5-flash",
 						chat = true,
 						command = true,
 						-- string with model name or table with model name and parameters
-						model = { model = "glm-4-air", temperature = 0.95, top_p = 0.7 },
-						-- system prompt (use this to specify the persona/role of the AI)
-						system_prompt = require("gp.defaults").chat_system_prompt,
-					},
-					{
-						provider = "zhipu",
-						name = "glm-4-flash",
-						chat = true,
-						command = true,
-						-- string with model name or table with model name and parameters
-						model = { model = "glm-4-flash", temperature = 0.95, top_p = 0.7 },
+						model = { model = "glm-4.5-flash", temperature = 0.95, top_p = 0.7 },
 						-- system prompt (use this to specify the persona/role of the AI)
 						system_prompt = require("gp.defaults").chat_system_prompt,
 					},
@@ -85,8 +89,8 @@ return {
 						system_prompt = require("gp.defaults").chat_system_prompt,
 					},
 				},
-				default_command_agent = "glm-4-flash",
-				default_chat_agent = "glm-4-flash",
+				default_command_agent = "glm-4.5-flash",
+				default_chat_agent = "glm-4.5-flash",
 				chat_template = require("gp.defaults").short_chat_template,
 				whisper = { disabled = true },
 				image = {
@@ -197,13 +201,20 @@ return {
 		opts = {
 			-- add any opts here
 			-- for example
-			provider = "volceengine",
+			provider = "zhipu",
 			providers = {
+				zhipu_coding = {
+					__inherited_from = "openai",
+					endpoint = "https://open.bigmodel.cn/api/coding/paas/v4",
+					api_key_name = "cmd:secret-tool lookup url https://open.bigmodel.cn/api/paas/v4/",
+					model_names = { "glm-4.5", "glm-4.5-air", "glm-4.6" }, -- your desired model (or use gpt-4o, etc.)
+					-- reasoning_effort = "high" -- only supported for reasoning models (o1, etc.)
+				},
 				zhipu = {
 					__inherited_from = "openai",
 					endpoint = "https://open.bigmodel.cn/api/paas/v4",
 					api_key_name = "cmd:secret-tool lookup url https://open.bigmodel.cn/api/paas/v4/",
-					model = "codegeex-4", -- your desired model (or use gpt-4o, etc.)
+					model_names = { "glm-4-air", "glm-4.5-flash", "codegeex-4" }, -- your desired model (or use gpt-4o, etc.)
 					-- reasoning_effort = "high" -- only supported for reasoning models (o1, etc.)
 				},
 				volceengine = {

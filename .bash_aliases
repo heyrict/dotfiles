@@ -49,12 +49,16 @@ fi
 alias px1081="env https_proxy=http://127.0.0.1:1081 http_proxy=http://127.0.0.1:1081"
 
 # Syncthing
-alias syncthing-cindy-connect="ssh -N -L 8385:127.0.0.1:8384 cindy"
+alias syncthing-cindy-connect="ssh -N -L 8385:127.0.0.1:8384 vultr"
 
 # bluetooth
 alias bton="bluetoothctl power on"
 alias btoff="bluetoothctl power off"
 
+# obtain API keys
+zhipu_api_setup() {
+    export OPENAI_API_KEY=$(secret-tool lookup url https://open.bigmodel.cn/api/paas/v4/)
+}
 
 # Extension to git merge
 alias gmn="git merge --no-commit"

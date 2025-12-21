@@ -180,11 +180,13 @@ if [ -x "/usr/share/nvm/init-nvm.sh" ]; then
   source /usr/share/nvm/init-nvm.sh
 fi
 if [ -d "$HOME/.bun" ]; then
-  path=($path $HOME/.bun/bin)
+  path=($HOME/.bun/bin $path)
+fi
+if [ -d "$HOME/.cache/.bun" ]; then
+  path=($HOME/.cache/.bun/bin $path)
 fi
 
-## Yarn {{{2
-path+=$HOME/.yarn/bin
+path=($HOME/.yarn/bin $path)
 ## Java {{{2
 export JAVA_HOME=/usr/lib/jvm/java-23-openjdk
 classpath=(. $JAVA_HOME/lib/dt.jar $JAVA_HOME/lib/tools.jar)
@@ -198,7 +200,8 @@ path+=$ANDROID_SDK_ROOT/platform-tools
 export RUSTUP_DIST_SERVER=https://mirrors.ustc.edu.cn/rust-static
 export RUSTUP_UPDATE_ROOT=https://mirrors.ustc.edu.cn/rust-static/rustup
 export RUST_SRC_PATH=/home/heyrict/.rustup/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src
-path+=$HOME/.cargo/bin
+path=($HOME/.cargo/bin $path)
+
 ## Go {{{2
 #go env -w GO111MODULE=on
 #go env -w GOPROXY=https://goproxy.cn,direct

@@ -8,6 +8,9 @@ return {
 				lua = { "stylua" },
 				python = { "ruff_format" },
 				rust = { "rustfmt", lsp_format = "fallback" },
+				markdown = {},
+				d2 = { "d2" },
+				sql = { "sqruff" },
 				["_"] = { "trim_whitespace" },
 			},
 			-- Set this to change the default values when calling conform.format()
@@ -29,6 +32,13 @@ return {
 			notify_on_error = true,
 			-- Conform will notify you when no formatters are available for the buffer
 			notify_no_formatters = true,
+			formatters = {
+				d2 = {
+					command = "d2",
+					args = { "fmt", "$FILENAME" },
+					stdin = false,
+				},
+			},
 		},
 	},
 	-- LSP, snippets and complete
@@ -52,10 +62,25 @@ return {
 			vim.g.vimtex_view_method = "zathura"
 			vim.g.vimtex_doc_handlers = { "vimtex#doc#handlers#texdoc" }
 			vim.g.vimtex_syntax_enabled = 0
+
+			vim.diagnostic.enable = true
+			vim.diagnostic.config({
+				virtual_text = false,
+				virtual_lines = true,
+			})
+
+			vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
+				pattern = { "*.md", "*.tex" },
+				callback = function()
+					vim.diagnostic.config({
+						virtual_lines = false,
+						virtual_text = true,
+					})
+				end,
+			})
 		end,
 		config = function()
 			local capabilities = require("cmp_nvim_lsp").default_capabilities()
-			local lspconfig = require("lspconfig")
 			local luasnip = require("luasnip")
 			local cmp = require("cmp")
 
@@ -97,14 +122,15 @@ return {
 					end, { "i", "s" }),
 				}),
 				sources = {
-					-- { name = "nvim_lsp" },
+					{ name = "nvim_lsp" },
 					{ name = "luasnip" },
 					{ name = "vimtex" },
 				},
 			})
 
 			-- LSP: lua_ls
-			lspconfig.lua_ls.setup({
+			vim.lsp.enable("lua_ls")
+			vim.lsp.config("lua_ls", {
 				on_init = function(client)
 					if client.workspace_folders then
 						local path = client.workspace_folders[1].name
@@ -139,7 +165,8 @@ return {
 			})
 
 			-- LSP: rust_analyzer
-			lspconfig.rust_analyzer.setup({
+			vim.lsp.enable("rust_analyzer")
+			vim.lsp.config("rust_analyzer", {
 				settings = {
 					["rust-analyzer"] = {
 						diagnostics = {
@@ -150,11 +177,21 @@ return {
 			})
 
 			-- LSP: python
-			lspconfig.ruff.setup({})
-			lspconfig.basedpyright.setup({})
+			vim.lsp.enable("ruff")
+			vim.lsp.config("basedpyright", {
+				settings = {
+					basedpyright = {
+						analysis = {
+							typeCheckingMode = "standard",
+						},
+					},
+				},
+			})
+			vim.lsp.enable("basedpyright")
 
 			-- LSP: typescript
-			lspconfig.ts_ls.setup({
+			vim.lsp.enable("ts_ls")
+			vim.lsp.config("ts_ls", {
 				settings = {
 					typescript = {
 						format = {
@@ -164,23 +201,29 @@ return {
 				},
 			})
 
+			-- LSP: SQL
+			vim.lsp.enable("sqruff")
+
 			-- LSP: spellcheck
-			lspconfig.harper_ls.setup({
+			vim.lsp.enable("harper_ls")
+			vim.lsp.config("harper_ls", {
 				settings = {
 					["harper-ls"] = {
 						fileDictPath = "~/.cache/harper/",
 						userDictPath = "~/.local/share/harper/dict.txt",
 						isolateEnglish = true,
+						linters = {
+							LongSentences = false,
+						},
 						markdown = {
-							ignore_link_title = true,
-							ignoreLinkTitle = true,
+							IgnoreLinkTitle = true,
 						},
 					},
 				},
 			})
 
 			-- LSP: Keys
-			vim.keymap.set({ "n" }, "<space>rn", ":lua vim.lsp.buf.rename<cr>")
+			vim.keymap.set({ "n" }, "<space>rn", ":lua vim.lsp.buf.rename()<cr>")
 		end,
 	},
 	-- FZF
@@ -196,6 +239,9 @@ return {
 		opts = {},
 		config = function()
 			local fzf = require("fzf-lua")
+			fzf.setup()
+			fzf.register_ui_select()
+
 			local wk = require("which-key")
 
 			-- LSP: keys
