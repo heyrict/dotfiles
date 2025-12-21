@@ -5,6 +5,9 @@ release:
   check: true
 manifest:
   enable: true
+  secondary:
+    - url: "https://raw.githubusercontent.com/BloodShed-Oni/ludusavi-extra-manifests/main/BS_ex-manifest.yaml"
+      enable: true
 language: en-US
 theme: dark
 roots:
@@ -22,8 +25,6 @@ roots:
     path: /run/media/heyrict/wd22b/heyrict/steam/
   - store: steam
     path: /run/media/heyrict/zt23b/heyrict/Steam/
-  - store: steam
-    path: /run/media/heyrict/SG20E/SteamLibrary
 redirects: []
 backup:
   path: /home/heyrict/Sync/backup/ludusavi
@@ -42,12 +43,11 @@ backup:
     - RPG Fighter League
     - RetroArch
     - Stranded Deep
-    - "Sword Art Online: Lost Song"
-    - Tales of Berseria
     - Tales of the Neon Sea
     - "The Legend of Heroes: Trails of Cold Steel II"
     - This War of Mine
     - Tomb Raider (2013)
+    - Treasure of Nadia
     - "Utawarerumono: Prelude to the Fallen"
     - Worms Clan Wars
   filter:
@@ -64,8 +64,8 @@ backup:
   toggledPaths: {}
   toggledRegistry: {}
   sort:
-    key: name
-    reversed: false
+    key: size
+    reversed: true
   retention:
     full: 1
     differential: 0

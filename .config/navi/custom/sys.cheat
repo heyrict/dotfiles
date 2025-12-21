@@ -69,9 +69,9 @@ $ state: echo -e "1: off\n0: on"
 $ actual: echo "<state>" | cut -d: -f1
 
 ; % sys.lenovo_u31-70.show_conservation_mode
-; 
+;
 ; # Show current conservation mode
-; 
+;
 ; echo '\_SB.PCI0.LPCB.EC0.FCGM' | sudo tee /proc/acpi/call
 ; sudo cat /proc/acpi/call
 ; printf '\n'
@@ -215,6 +215,18 @@ swaymsg output <monitor> mode <resolution> && brightnessctl set `brightnessctl g
 
 $ monitor: swaymsg -t get_outputs | jq '.[].name'
 $ resolution: swaymsg -t get_outputs | jq '(.[] | select(.name == <monitor>)).modes[] | ((.width | tostring) + "x" + (.height | tostring)) + "@" + ((.refresh / 1000) | tostring) + "Hz"'
+
+
+; ========================== Hyprland monitor settings ==========================
+
+% sys.hypr.set_monitor_resolution
+
+# Set monitor resolution for hyprland
+
+hyprctl keyword monitor "<monitor>, <mode>, 0x0, 1"
+
+$ monitor: hyprctl monitors -j | jq -r 'map(.name) | join("\n")'
+$ mode: hyprctl monitors -j | jq -r 'map(select(.name = "<monitor>")) | .[0]? | .availableModes | join("\n")'
 
 
 ; ============================== IPtables settings ==============================

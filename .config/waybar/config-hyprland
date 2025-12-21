@@ -6,7 +6,6 @@
   "modules-center": ["hyprland/window"],
   "modules-right": [
     "tray",
-    "backlight",
     "custom/colortemp",
     "pulseaudio",
     "network",
@@ -95,7 +94,7 @@
     "exec": "~/.config/waybar/modules/storage.sh"
   },
   "custom/colortemp": {
-    "format": "<span size='12pt'>🌚</span> {}K",
+    "format": " {}K",
     "on-click": "~/.config/hypr/scripts/sunset.sh temperature 4000 toggle",
     "on-click-right": "~/.config/hypr/scripts/sunset.sh temperature 6500",
     "on-scroll-up": "~/.config/hypr/scripts/sunset.sh temperature +500",
