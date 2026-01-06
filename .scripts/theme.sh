@@ -124,10 +124,8 @@ hyprpaper_settings="$HOME/.config/hypr/hyprpaper.conf"
 wallpaper_dir="$HOME/Pictures/backgrounds/"
 if [ -n "$HYPRLAND_CMD" ] && command -v hyprpaper > /dev/null; then
     # Wallpaper
-    hyprctl hyprpaper unload all
-    hyprctl hyprpaper preload "${wallpaper_dir}${wallpaper}"
     hyprctl hyprpaper wallpaper ",${wallpaper_dir}${wallpaper}"
-    sed -i "/^wallpaper/s/,.*/,${wallpaper_dir}${wallpaper}/" "${hyprpaper_settings}"
+    sed -i "/^\s*path/s/=.*/= ${wallpaper_dir//\//\\\/}${wallpaper//\//\\\/}/" "${hyprpaper_settings}"
 fi
 # Hy3
 sed -i "/colorscheme/s/themes\/[^ ]\+/themes\/${hyprland_theme}/" "${hyprland_settings}"

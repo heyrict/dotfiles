@@ -17,6 +17,11 @@ set $mod Mod1
 # The super key
 set $sup Mod4
 
+set $terminal alacritty
+set $fileManager "alacritty --class yazi -e yazi"
+set $browser zen-browser
+set $menu "wofi --show drun"
+
 # Use super key for moving floating windows
 floating_modifier $sup
 
@@ -96,7 +101,7 @@ bindsym $mod+F2 exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -4%
 bindsym $mod+F3 exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +4%
 
 # start a terminal
-bindsym $mod+Return exec alacritty
+bindsym $mod+Return exec $terminal
 
 # look up in dict
 bindsym $mod+i exec alacritty -t "dict_lookup | float" -o window.dimensions.columns=72 -o window.dimensions.lines=32 -o window.position.x=200 -o window.position.y=200 -o font.size=12 -e bash -c 'sdcv -cn "$(wl-paste -p)" | less -R'
@@ -111,19 +116,19 @@ bindsym $mod+Shift+q kill
 set $launch_mode DRun Pow Firefox navi(G) yazi(n) %=
 mode "$launch_mode" {
     # :drun (bash -e "{cmd}; read -n 1 -s ")
-    bindsym d mode "default"; exec --no-startup-id "wofi --show drun"
+    bindsym d mode "default"; exec --no-startup-id $menu
 
     # powermenu
     bindsym p mode "default"; exec --no-startup-id "~/.config/sway/scripts/powermenu"
 
     # firefox
-    bindsym f mode "default"; exec --no-startup-id firefox
+    bindsym f mode "default"; exec --no-startup-id $browser
 
     # navi
     bindsym g mode "default"; exec --no-startup-id "alacritty -t 'navi | float' -o window.dimensions.columns=150 -o window.dimensions.lines=38 -e bash -c 'env NAVI_PATH=~/.config/navi/custom navi && read -t60'"
 
     # yazi
-    bindsym n mode "default"; exec --no-startup-id "alacritty --class yazi -e yazi"
+    bindsym n mode "default"; exec --no-startup-id $fileManager
 
     # Switch theme
     bindsym Shift+5 mode "default"; exec --no-startup-id "~/.scripts/theme.sh"

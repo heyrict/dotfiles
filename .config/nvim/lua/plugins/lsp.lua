@@ -220,6 +220,7 @@ return {
 						},
 					},
 				},
+				filetypes = { "markdown" },
 			})
 
 			-- LSP: Keys
