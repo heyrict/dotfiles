@@ -8,3 +8,9 @@ sudo pacman -Rsn $(pacman -Qdtq)
 
 # List packages not required by any package
 pacman -Qdt | cut -d" " -f 1,2 | awk '{printf "\033[1m%-20s\033[0m\t\033[0;32m%s\033[0m\n", $1, $2}'
+
+
+% archlinux.patchelf
+
+# Patches ELF file for binary, replace outdated library
+sudo patchelf --debug --replace-needed "<library-old>" "<library-new>" "<binary>"
