@@ -35,8 +35,12 @@
    navigate = true
    line-numbers = true
    side-by-side = true
-   syntax-theme = Monokai Extended Bright
+   syntax-theme = gruvbox-dark # delta-syntax-theme
+   features = catppuccin-mocha # delta-theme
 [merge]
    conflictstyle = diff3
 [diff]
    colorMoved = default
+
+[include]
+    path = /home/heyrict/.config/catppuccin/delta/catppuccin.gitconfig

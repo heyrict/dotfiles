@@ -1,0 +1,5 @@
+fetch REPO:
+	# Fetch catppuccin theme from tool repository
+	wget https://github.com/catppuccin/{{REPO}}/archive/refs/heads/main.zip -O /tmp/_catppuccin.zip
+	unzip /tmp/_catppuccin.zip && mv {{REPO}}-main {{REPO}}
+	rm /tmp/_catppuccin.zip

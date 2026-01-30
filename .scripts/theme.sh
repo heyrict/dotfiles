@@ -25,8 +25,14 @@ HYPRLAND_THEME_LIGHT=catppuccin/latte.conf
 
 BTM_THEME_DARK=gruvbox
 BTM_THEME_LIGHT=default
-BAT_THEME_DARK=gruvbox-dark
-BAT_THEME_LIGHT=gruvbox-light
+BAT_THEME_DARK="Catppuccin Mocha"
+BAT_THEME_LIGHT="Catppuccin Latte"
+DELTA_THEME_DARK=catppuccin-mocha
+DELTA_THEME_LIGHT=catppuccin-latte
+DELTA_SYNTAX_THEME_DARK=gruvbox-dark
+DELTA_SYNTAX_THEME_LIGHT=gruvbox-light
+FZF_THEME_DARK=catppuccin-fzf-frappe
+FZF_THEME_LIGHT=catppuccin-fzf-latte
 
 if ! command -v gsettings > /dev/null; then
     exit 1; # Gsettings not found
@@ -62,6 +68,9 @@ if [ $is_light = 1 ]; then
 
     btm_theme=$BTM_THEME_LIGHT
     bat_theme=$BAT_THEME_LIGHT
+    delta_theme=$DELTA_THEME_LIGHT
+    delta_syntax_theme=$DELTA_SYNTAX_THEME_LIGHT
+    fzf_theme=$FZF_THEME_LIGHT
 else
     gsettings set org.gnome.desktop.interface color-scheme prefer-dark
     gtk_theme=$GTK_THEME_DARK
@@ -77,6 +86,9 @@ else
 
     btm_theme=$BTM_THEME_DARK
     bat_theme=$BAT_THEME_DARK
+    delta_theme=$DELTA_THEME_DARK
+    delta_syntax_theme=$DELTA_SYNTAX_THEME_DARK
+    fzf_theme=$FZF_THEME_DARK
 fi
 
 # GTK Theme {{{1
@@ -163,11 +175,20 @@ if [ -f "${zellij_settings}" ]; then
     sed -i "/^\(\/\/ \)\?theme/s/^.*$/theme \"${zellij_theme}\"/" "${zellij_settings}"
 fi
 
+# Delta Settings {{{1
+gitconfig="$HOME/.gitconfig"
+if [ -f "${gitconfig}" ]; then
+    sed -e "/delta-theme/s/=\s*[^#]*/= ${delta_theme} /" \
+        -e "/delta-syntax-theme/s/=\s*[^#]*/= ${delta_syntax_theme} /" \
+        -i "${gitconfig}"
+fi
+
 # Commandline tools {{{1
 zsh_themes="$HOME/.zsh/.zsh_themes"
 if [ -f "${zsh_themes}" ]; then
-    sed -e "/BAT_THEME=/s/=.*/=${bat_theme}/" \
+    sed -e "/BAT_THEME=/s/=.*/=\"${bat_theme}\"/" \
         -e "/BTM_THEME=/s/=.*/=${btm_theme}/" \
+        -e "/fzf-theme/s/source [^#]*/source ~\/.config\/catppuccin\/fzf\/themes\/${fzf_theme}.sh /" \
         -i "${zsh_themes}"
 fi
 

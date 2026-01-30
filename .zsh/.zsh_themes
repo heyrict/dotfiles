@@ -1,6 +1,10 @@
 # Theme-related variables for command line tools
 # bat
-export BAT_THEME=gruvbox-dark
+export BAT_THEME="Catppuccin Mocha"
 
+# btm
 BTM_THEME=gruvbox
 alias btm="btm --theme ${BTM_THEME}"
+
+# fzf
+source ~/.config/catppuccin/fzf/themes/catppuccin-fzf-frappe.sh # fzf-theme
