@@ -33,7 +33,7 @@ proton_run FILE:
 	cd "$(dirname '{{FILE}}')" && env {{DEFAULT_ENV}} {{PROTON_ENV}} {{EXTRA_ENV}} "{{PROTON_WINE64}}" "$(basename '{{FILE}}')"
 
 _siglus_run FILE:
-	cd "$(dirname '{{FILE}}')" && env {{DEFAULT_ENV}} {{PROTON_ENV}} {{EXTRA_ENV}} "{{GE_WINE64}}" "{{ALPHAROMDIE}}" "$(basename '{{FILE}}')"
+	cd "$(dirname '{{FILE}}')" && env {{DEFAULT_ENV}} {{PROTON_ENV}} {{EXTRA_ENV}} wine "{{ALPHAROMDIE}}" "$(basename '{{FILE}}')"
 
 #ciel_nosurge:
 #	just run "{{HOME}}/Games/Ciel Nosurge DX/CielnosurgeDX.exe"
@@ -74,8 +74,8 @@ kinkoi:
 kanon:
 	env {{GAMESCOPE_ENV}} gamescope -F fsr -H 1200 just FSR_ENABLE=0 _siglus_run "{{HOME}}/Games/KEY/KANON_SE/REALLIVE.EXE"
 
-evenicle:
-	env {{GAMESCOPE_ENV}} gamescope -F fsr -W {{W}} -H {{H}} just FSR_ENABLE=0 run "{{HOME}}/Games/イブニクル/Evenicle.exe"
+#evenicle:
+#	env {{GAMESCOPE_ENV}} gamescope -F fsr -W {{W}} -H {{H}} just FSR_ENABLE=0 run "{{HOME}}/Games/イブニクル/Evenicle.exe"
 
 nier_replicant:
 	just run "/run/media/heyrict/SG20E/pc/NieR Replicant ver.1.22474487139/NieR Replicant ver.1.22474487139.exe"
@@ -104,8 +104,8 @@ ff12_plain:
 tyouR:
 	env {{GAMESCOPE_ENV}} gamescope -F fsr -W 1920 -H 1200 just FSR_ENABLE=0 run "{{HOME}}/Games/tyouR/tyouR.exe"
 
-monobeno:
-	just run "{{HOME}}/Games/ものべの/ものべの.exe"
+#monobeno:
+#	just run "{{HOME}}/Games/ものべの/ものべの.exe"
 
 shellil:
 	env {{GAMESCOPE_ENV}} gamescope -F fsr just FSR_ENABLE=0 run "{{HOME}}/Games/311136_Shellil/Game.exe"
@@ -122,6 +122,3 @@ god2:
 
 #houkiboshi:
 #	just run "{{HOME}}/Games/PrimaDoll_Houkiboshi/StartData/GameData/data/SiglusEngine_Crack.exe"
-
-ratopia:
-	env {{GAMESCOPE_ENV}} gamescope -F fsr -W {{W}} -H {{H}} just FSR_ENABLE=0 run "{{HOME}}/Games/Ratopia/Ratopia.exe"

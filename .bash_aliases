@@ -58,6 +58,7 @@ alias btoff="bluetoothctl power off"
 # obtain API keys
 zhipu_api_setup() {
     export OPENAI_API_KEY=$(secret-tool lookup url https://open.bigmodel.cn/api/paas/v4/)
+    export ZAI_API_KEY=$(secret-tool lookup url https://open.bigmodel.cn/api/paas/v4/)
 }
 
 # Extension to git merge

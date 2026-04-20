@@ -205,23 +205,23 @@ return {
 			vim.lsp.enable("sqruff")
 
 			-- LSP: spellcheck
-			vim.lsp.enable("harper_ls")
-			vim.lsp.config("harper_ls", {
-				settings = {
-					["harper-ls"] = {
-						fileDictPath = "~/.cache/harper/",
-						userDictPath = "~/.local/share/harper/dict.txt",
-						isolateEnglish = true,
-						linters = {
-							LongSentences = false,
-						},
-						markdown = {
-							IgnoreLinkTitle = true,
-						},
-					},
-				},
-				filetypes = { "markdown" },
-			})
+			--vim.lsp.enable("harper_ls")
+			--vim.lsp.config("harper_ls", {
+			--	settings = {
+			--		["harper-ls"] = {
+			--			fileDictPath = "~/.cache/harper/",
+			--			userDictPath = "~/.local/share/harper/dict.txt",
+			--			isolateEnglish = true,
+			--			linters = {
+			--				LongSentences = false,
+			--			},
+			--			markdown = {
+			--				IgnoreLinkTitle = true,
+			--			},
+			--		},
+			--	},
+			--	filetypes = { "markdown" },
+			--})
 
 			-- LSP: Keys
 			vim.keymap.set({ "n" }, "<space>rn", ":lua vim.lsp.buf.rename()<cr>")

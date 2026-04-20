@@ -56,70 +56,43 @@ return {
 	-- Tree-sitter
 	{
 		"nvim-treesitter/nvim-treesitter",
+		branch = "main",
 		lazy = false,
-		build = function()
-			require("nvim-treesitter.install").update({ with_sync = true })()
-		end,
-		config = function()
-			-- D2 config
-			vim.filetype.add({
-				extension = {
-					d2 = function()
-						return "d2", function(bufnr)
-							vim.bo[bufnr].commentstring = "# %s"
-						end
-					end,
-				},
+		build = ":TSUpdate",
+		init = function()
+			vim.api.nvim_create_autocmd("FileType", {
+				callback = function()
+					-- Enable treesitter highlighting and disable regex syntax
+					pcall(vim.treesitter.start)
+					-- Enable treesitter-based indentation
+					vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+				end,
 			})
-
-			-- Local config setup
-			local configs = require("nvim-treesitter.configs")
-
-			configs.setup({
-				ensure_installed = {
-					"css",
-					"html",
-					"javascript",
-					"just",
-					"latex",
-					"lua",
-					"markdown",
-					"rust",
-					"typescript",
-					"vim",
-					"vimdoc",
-					"json",
-					"toml",
-					"yaml",
-				},
-				sync_install = false,
-				highlight = {
-					enable = true,
-					disable = function(lang, buf)
-						local max_filesize = 100 * 1024 -- 100 KB
-						local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
-						if ok and stats and stats.size > max_filesize then
-							return true
-						end
-					end,
-				},
-				indent = { enable = true },
-				-- Setting this to true will run `:h syntax` and tree-sitter at the same time.
-				-- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
-				-- Using this option may slow down your editor, and you may see some duplicate highlights.
-				-- Instead of true it can also be a list of languages
-				additional_vim_regex_highlighting = false,
-			})
-
-			vim.opt.foldminlines = 1
-			vim.opt.foldnestmax = 8
-			vim.opt.foldmethod = "expr"
-			vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
+			-- Install plugins
+			local ensureInstalled = {
+				"css",
+				"html",
+				"javascript",
+				"just",
+				"latex",
+				"lua",
+				"markdown",
+				"rust",
+				"typescript",
+				"vim",
+				"vimdoc",
+				"json",
+				"toml",
+				"yaml",
+				"python",
+			}
+			local alreadyInstalled = require("nvim-treesitter.config").get_installed()
+			local parsersToInstall = vim.iter(ensureInstalled)
+				:filter(function(parser)
+					return not vim.tbl_contains(alreadyInstalled, parser)
+				end)
+				:totable()
+			require("nvim-treesitter").install(parsersToInstall)
 		end,
-	},
-	{
-		"ravsii/tree-sitter-d2",
-		dependencies = { "nvim-treesitter/nvim-treesitter" },
-		build = "make nvim-install",
 	},
 }

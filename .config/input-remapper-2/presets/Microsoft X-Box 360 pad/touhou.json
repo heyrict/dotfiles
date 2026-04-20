@@ -7,8 +7,8 @@
                 "origin_hash": "bd947e359c04f76008fa811dcacb68b9"
             }
         ],
-        "target_uinput": "gamepad",
-        "output_symbol": "BTN_WEST",
+        "target_uinput": "keyboard",
+        "output_symbol": "a",
         "mapping_type": "key_macro"
     },
     {
@@ -19,8 +19,8 @@
                 "origin_hash": "bd947e359c04f76008fa811dcacb68b9"
             }
         ],
-        "target_uinput": "gamepad",
-        "output_symbol": "BTN_B",
+        "target_uinput": "keyboard",
+        "output_symbol": "x",
         "mapping_type": "key_macro"
     },
     {
@@ -31,8 +31,8 @@
                 "origin_hash": "bd947e359c04f76008fa811dcacb68b9"
             }
         ],
-        "target_uinput": "gamepad",
-        "output_symbol": "BTN_NORTH",
+        "target_uinput": "keyboard",
+        "output_symbol": "c",
         "mapping_type": "key_macro"
     },
     {
@@ -43,8 +43,8 @@
                 "origin_hash": "bd947e359c04f76008fa811dcacb68b9"
             }
         ],
-        "target_uinput": "gamepad",
-        "output_symbol": "BTN_A",
+        "target_uinput": "keyboard",
+        "output_symbol": "z",
         "mapping_type": "key_macro"
     },
     {
@@ -55,8 +55,8 @@
                 "origin_hash": "bd947e359c04f76008fa811dcacb68b9"
             }
         ],
-        "target_uinput": "gamepad",
-        "output_symbol": "BTN_TL",
+        "target_uinput": "keyboard",
+        "output_symbol": "Shift_L",
         "mapping_type": "key_macro"
     },
     {
@@ -67,8 +67,8 @@
                 "origin_hash": "bd947e359c04f76008fa811dcacb68b9"
             }
         ],
-        "target_uinput": "gamepad",
-        "output_symbol": "BTN_TR",
+        "target_uinput": "keyboard",
+        "output_symbol": "KEY_LEFTCTRL",
         "mapping_type": "key_macro"
     },
     {
@@ -79,8 +79,8 @@
                 "origin_hash": "bd947e359c04f76008fa811dcacb68b9"
             }
         ],
-        "target_uinput": "gamepad",
-        "output_symbol": "BTN_SELECT",
+        "target_uinput": "keyboard",
+        "output_symbol": "KEY_TAB",
         "mapping_type": "key_macro"
     },
     {
@@ -91,8 +91,34 @@
                 "origin_hash": "bd947e359c04f76008fa811dcacb68b9"
             }
         ],
-        "target_uinput": "gamepad",
-        "output_symbol": "BTN_START",
+        "target_uinput": "keyboard",
+        "output_symbol": "KEY_ESC",
+        "mapping_type": "key_macro"
+    },
+    {
+        "input_combination": [
+            {
+                "type": 3,
+                "code": 17,
+                "origin_hash": "bd947e359c04f76008fa811dcacb68b9",
+                "analog_threshold": -30
+            }
+        ],
+        "target_uinput": "keyboard",
+        "output_symbol": "KP_Up",
+        "mapping_type": "key_macro"
+    },
+    {
+        "input_combination": [
+            {
+                "type": 3,
+                "code": 17,
+                "origin_hash": "bd947e359c04f76008fa811dcacb68b9",
+                "analog_threshold": 30
+            }
+        ],
+        "target_uinput": "keyboard",
+        "output_symbol": "KP_Down",
         "mapping_type": "key_macro"
     },
     {
@@ -100,25 +126,69 @@
             {
                 "type": 3,
                 "code": 16,
+                "origin_hash": "bd947e359c04f76008fa811dcacb68b9",
+                "analog_threshold": -30
+            }
+        ],
+        "target_uinput": "keyboard",
+        "output_symbol": "KP_Left",
+        "mapping_type": "key_macro"
+    },
+    {
+        "input_combination": [
+            {
+                "type": 3,
+                "code": 16,
+                "origin_hash": "bd947e359c04f76008fa811dcacb68b9",
+                "analog_threshold": 30
+            }
+        ],
+        "target_uinput": "keyboard",
+        "output_symbol": "KP_Right",
+        "mapping_type": "key_macro"
+    },
+    {
+        "input_combination": [
+            {
+                "type": 3,
+                "code": 0,
                 "origin_hash": "bd947e359c04f76008fa811dcacb68b9"
             }
         ],
-        "target_uinput": "gamepad",
-        "output_type": 3,
-        "output_code": 0,
+        "target_uinput": "keyboard",
         "mapping_type": "analog"
     },
     {
         "input_combination": [
             {
                 "type": 3,
-                "code": 17,
+                "code": 4,
                 "origin_hash": "bd947e359c04f76008fa811dcacb68b9"
             }
         ],
-        "target_uinput": "gamepad",
-        "output_type": 3,
-        "output_code": 1,
+        "target_uinput": "keyboard",
         "mapping_type": "analog"
+    },
+    {
+        "input_combination": [
+            {
+                "type": 3,
+                "code": 2,
+                "origin_hash": "bd947e359c04f76008fa811dcacb68b9",
+                "analog_threshold": 30
+            }
+        ],
+        "target_uinput": "keyboard"
+    },
+    {
+        "input_combination": [
+            {
+                "type": 3,
+                "code": 5,
+                "origin_hash": "bd947e359c04f76008fa811dcacb68b9",
+                "analog_threshold": 30
+            }
+        ],
+        "target_uinput": "keyboard"
     }
 ]
