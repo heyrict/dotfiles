@@ -173,22 +173,23 @@
         "input_combination": [
             {
                 "type": 3,
-                "code": 2,
-                "origin_hash": "bd947e359c04f76008fa811dcacb68b9",
-                "analog_threshold": 30
+                "code": 5,
+                "origin_hash": "bd947e359c04f76008fa811dcacb68b9"
             }
         ],
-        "target_uinput": "keyboard"
+        "target_uinput": "keyboard",
+        "release_combination_keys": false
     },
     {
         "input_combination": [
             {
                 "type": 3,
-                "code": 5,
-                "origin_hash": "bd947e359c04f76008fa811dcacb68b9",
-                "analog_threshold": 30
+                "code": 2,
+                "origin_hash": "bd947e359c04f76008fa811dcacb68b9"
             }
         ],
-        "target_uinput": "keyboard"
+        "target_uinput": "keyboard",
+        "mapping_type": "analog",
+        "release_combination_keys": false
     }
 ]

@@ -14,8 +14,8 @@
 #    proxy = http://127.0.0.1:1081
 #[http]
 #    proxy = http://127.0.0.1:1081
-#[init]
-#	defaultBranch = master
+[init]
+	defaultBranch = main
 [core]
     sshCommand = ssh -i ~/.ssh/id_ed25519_nopass
     pager = delta

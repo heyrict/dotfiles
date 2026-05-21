@@ -2,7 +2,7 @@
   "layer": "bottom",
   "position": "top",
   "height": 30,
-  "modules-left": ["custom/pixel_swift", "wlr/taskbar"],
+  "modules-left": ["custom/pixel_swift", "niri/workspaces"],
   "modules-center": ["niri/window"],
   "modules-right": [
     "tray",
@@ -33,6 +33,19 @@
   "sway/window": {
     "max-length": 80,
     "tooltip": false
+  },
+  "niri/workspaces": {
+      "format": "{icon}",
+      "format-icons": {
+          // Named workspaces
+          // (you need to configure them in niri)
+          "browser": "",
+          "discord": "",
+          "chat": "<b></b>",
+          // Icons by state
+          "active": "",
+          "default": ""
+      }
   },
   "clock": {
     "interval": 23,

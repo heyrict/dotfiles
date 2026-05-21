@@ -33,6 +33,9 @@ export NLTK_DATA="/mnt/LENOVO/Data/NLTK"
 #        nipreps/fmriprep:22.0.0 $@
 #}
 
+# Jupyter lab
+alias jlab="jupyter lab --IdentityProvider.token $JUPYTER_TOKEN"
+
 # eza
 if `which eza >/dev/null`; then
     alias ls="eza"

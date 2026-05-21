@@ -255,6 +255,7 @@ spawn-at-startup "swayidle" "-w" "timeout" "601" "niri msg action power-off-moni
 // Autostart Programs
 spawn-at-startup "fcitx5" "-d"
 spawn-at-startup "~/.config/waybar/waybar.sh"
+spawn-at-startup "vicinae" "server"
 
 // XWayland config
 spawn-at-startup "xwayland-satellite"
@@ -347,8 +348,15 @@ binds {
 
     // Suggested binds for running programs: terminal, app launcher, screen locker.
     Alt+Return { spawn "alacritty"; }
-    Alt+D { spawn "wofi" "--show" "drun"; }
-    Super+Alt+L { spawn "swaylock" "-f" "-i" "/home/heyrict/Pictures/backgrounds/astize_cc0_split1.png"; }
+    Alt+A { spawn "vicinae" "vicinae://launch/applications"; }
+    Alt+D { spawn "vicinae" "toggle"; }
+    Alt+P { spawn "vicinae" "vicinae://launch/power"; }
+    Super+F { spawn "zen-browser"; }
+    Super+N { spawn "alacritty" "--class" "yazi" "-e" "yazi"; }
+    Super+G { spawn "alacritty" "-t" "navi | float" "-o" "window.dimensions.columns=150" "-o" "window.dimensions.lines=38" "-e" "bash" "-c" "source ~/.zsh/.zsh_themes && env NAVI_PATH=~/.config/navi/custom navi && read -t60"; }
+    Super+T { spawn "~/.scripts/theme.sh"; }
+    Super+Equal { spawn "vicinae" "vicinae://launch/calculator/history"; }
+    Super+Shift+L { spawn "swaylock" "-f" "-i" "/home/heyrict/Pictures/backgrounds/astize_cc0_split1.png"; }
 
     // You can also use a shell. Do this if you need pipes, multiple commands, etc.
     // Note: the entire command goes as a single argument in the end.

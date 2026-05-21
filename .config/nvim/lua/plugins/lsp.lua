@@ -204,6 +204,19 @@ return {
 			-- LSP: SQL
 			vim.lsp.enable("sqruff")
 
+			-- LSP: Rlang
+			vim.lsp.config["r_language_server"] = {
+				settings = {
+					filetypes = { "r", "rmd" },
+				},
+			}
+			vim.api.nvim_create_autocmd("FileType", {
+				pattern = { "r", "rmd" },
+				callback = function()
+					vim.lsp.start(vim.lsp.config["r_language_server"])
+				end,
+			})
+
 			-- LSP: spellcheck
 			--vim.lsp.enable("harper_ls")
 			--vim.lsp.config("harper_ls", {

@@ -22,6 +22,8 @@ roots:
     path: /run/media/heyrict/zt23b/heyrict/Steam/
   - store: steam
     path: /run/media/heyrict/SG20E/SteamLibrary
+  - store: steam
+    path: /run/media/heyrict/wd22a/SteamLibrary
 redirects: []
 backup:
   path: /home/heyrict/Sync/backup/ludusavi

@@ -195,38 +195,27 @@ return {
 	},
 	{
 		"yetone/avante.nvim",
-		event = "VeryLazy",
+		-- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
+		-- ⚠️ must add this setting! ! !
+		build = vim.fn.has("win32") ~= 0
+				and "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false"
+			or "make",
 		lazy = false,
-		version = false, -- Set this to "*" to always pull the latest release version, or set it to false to update to the latest code changes.
+		event = "VeryLazy",
+		version = false, -- Never set this value to "*"! Never!
+		---@module 'avante'
+		---@type avante.Config
 		opts = {
 			-- add any opts here
-			-- for example
-			provider = "zhipu",
-			providers = {
-				zhipu_coding = {
-					__inherited_from = "openai",
-					endpoint = "https://open.bigmodel.cn/api/coding/paas/v4",
-					api_key_name = "cmd:secret-tool lookup url https://open.bigmodel.cn/api/paas/v4/",
-					model_names = { "glm-4.5", "glm-4.5-air", "glm-4.6" }, -- your desired model (or use gpt-4o, etc.)
-					-- reasoning_effort = "high" -- only supported for reasoning models (o1, etc.)
-				},
-				zhipu = {
-					__inherited_from = "openai",
-					endpoint = "https://open.bigmodel.cn/api/paas/v4",
-					api_key_name = "cmd:secret-tool lookup url https://open.bigmodel.cn/api/paas/v4/",
-					model_names = { "glm-4-air", "glm-4.5-flash", "codegeex-4" }, -- your desired model (or use gpt-4o, etc.)
-					-- reasoning_effort = "high" -- only supported for reasoning models (o1, etc.)
-				},
-				volceengine = {
-					__inherited_from = "openai",
-					endpoint = "https://ark.cn-beijing.volces.com/api/v3",
-					api_key_name = "cmd:secret-tool lookup model_provider volceengine",
-					model = "ep-20250301061622-8pclj", -- Deepseek V3
-					extra_request_body = {
-						max_tokens = 2048, -- to avoid using max_completion_tokens
-					},
+			-- this file can contain specific instructions for your project
+			instructions_file = "avante.md",
+			acp_providers = {
+				["opencode"] = {
+					command = "opencode",
+					args = { "acp" },
 				},
 			},
+			provider = "opencode",
 			web_search_engine = {
 				provider = "serpapi", -- tavily, serpapi, searchapi, google or kagi
 			},
@@ -242,12 +231,7 @@ return {
 				},
 			},
 		},
-		-- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
-		build = "make",
-		-- build = "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false" -- for windows
 		dependencies = {
-			"nvim-treesitter/nvim-treesitter",
-			"folke/snacks.nvim",
 			"nvim-lua/plenary.nvim",
 			"MunifTanjim/nui.nvim",
 			--- The below dependencies are optional,
@@ -256,6 +240,8 @@ return {
 			-- "nvim-telescope/telescope.nvim", -- for file_selector provider telescope
 			"hrsh7th/nvim-cmp", -- autocompletion for avante commands and mentions
 			"ibhagwan/fzf-lua", -- for file_selector provider fzf
+			"stevearc/dressing.nvim", -- for input provider dressing
+			"folke/snacks.nvim", -- for input provider snacks
 			"nvim-tree/nvim-web-devicons", -- or echasnovski/mini.icons
 			-- "zbirenbaum/copilot.lua", -- for providers='copilot'
 			{
@@ -287,27 +273,11 @@ return {
 
 			-- NOTE: most templates are inspired from ChatGPT.nvim -> chatgpt-actions.json
 			local avante_grammar_correction =
-				"Correct the text to standard English, but keep any code blocks inside intact."
+				"Correct the text to standard English (excluding code, latex formulas, etc.)"
 			local avante_keywords = "Extract the main keywords from the following text"
-			local avante_code_readability_analysis = [[
-  You must identify any readability issues in the code snippet.
-  Some readability issues to consider:
-  - Unclear naming
-  - Unclear purpose
-  - Redundant or obvious comments
-  - Lack of comments
-  - Long or complex one liners
-  - Too much nesting
-  - Long variable names
-  - Inconsistent naming and code style.
-  - Code repetition
-  You may identify additional problems. The user submits a small section of code from a larger file.
-  Only list lines with readability issues, in the format <line_num>|<issue and proposed solution>
-  If there's no issues with code respond with only: <OK>
-]]
-			local avante_optimize_code = "Optimize the following code"
 			local avante_summarize = "Summarize the following text"
-			local avante_translate = "Translate this into Chinese, but keep any code blocks inside intact"
+			local avante_translate_english = "Translate this into English"
+			local avante_translate_chinese = "Translate this into Chinese"
 			local avante_explain_code = "Explain the following code"
 			local avante_complete_code = "Complete the following codes written in " .. vim.bo.filetype
 			local avante_add_docstring = "Add docstring to the following codes"
@@ -315,137 +285,120 @@ return {
 			local avante_add_tests = "Implement tests for the following code"
 
 			wk.add({
-				{ "<space>a", group = "Avante" }, -- NOTE: add for avante.nvim
+				{ "<space>aT", group = "Avante Templates" }, -- NOTE: add for avante.nvim
 				{
 					mode = { "n", "v" },
 					{
-						"<space>ag",
+						"<space>aTg",
 						function()
 							require("avante.api").ask({ question = avante_grammar_correction })
 						end,
 						desc = "Grammar Correction(ask)",
 					},
 					{
-						"<space>ak",
+						"<space>aTk",
 						function()
 							require("avante.api").ask({ question = avante_keywords })
 						end,
 						desc = "Keywords(ask)",
 					},
 					{
-						"<space>al",
-						function()
-							require("avante.api").ask({ question = avante_code_readability_analysis })
-						end,
-						desc = "Code Readability Analysis(ask)",
-					},
-					{
-						"<space>ao",
-						function()
-							require("avante.api").ask({ question = avante_optimize_code })
-						end,
-						desc = "Optimize Code(ask)",
-					},
-					{
-						"<space>am",
+						"<space>aTm",
 						function()
 							require("avante.api").ask({ question = avante_summarize })
 						end,
 						desc = "Summarize text(ask)",
 					},
 					{
-						"<space>an",
+						"<space>aTe",
 						function()
-							require("avante.api").ask({ question = avante_translate })
+							require("avante.api").ask({ question = avante_translate_english })
 						end,
-						desc = "Translate text(ask)",
+						desc = "Translate to English(ask)",
 					},
 					{
-						"<space>ax",
+						"<space>aTn",
+						function()
+							require("avante.api").ask({ question = avante_translate_chinese })
+						end,
+						desc = "Translate to Chinese(ask)",
+					},
+					{
+						"<space>aTx",
 						function()
 							require("avante.api").ask({ question = avante_explain_code })
 						end,
 						desc = "Explain Code(ask)",
 					},
 					{
-						"<space>ac",
+						"<space>aTc",
 						function()
 							require("avante.api").ask({ question = avante_complete_code })
 						end,
 						desc = "Complete Code(ask)",
 					},
 					{
-						"<space>ad",
+						"<space>aTd",
 						function()
 							require("avante.api").ask({ question = avante_add_docstring })
 						end,
 						desc = "Docstring(ask)",
 					},
 					{
-						"<space>ab",
+						"<space>aTb",
 						function()
 							require("avante.api").ask({ question = avante_fix_bugs })
 						end,
 						desc = "Fix Bugs(ask)",
 					},
 					{
-						"<space>au",
+						"<space>aTu",
 						function()
 							require("avante.api").ask({ question = avante_add_tests })
 						end,
 						desc = "Add Tests(ask)",
 					},
 				},
-			})
-
-			wk.add({
-				{ "<space>a", group = "Avante" }, -- NOTE: add for avante.nvim
+				-- Edit
 				{
 					mode = { "v" },
 					{
-						"<space>aG",
+						"<space>aTG",
 						function()
 							prefill_edit_window(avante_grammar_correction)
 						end,
-						desc = "Grammar Correction",
+						desc = "Grammar Correction(edit)",
 					},
 					{
-						"<space>aK",
+						"<space>aTK",
 						function()
 							prefill_edit_window(avante_keywords)
 						end,
-						desc = "Keywords",
+						desc = "Keywords(edit)",
 					},
 					{
-						"<space>aO",
-						function()
-							prefill_edit_window(avante_optimize_code)
-						end,
-						desc = "Optimize Code(edit)",
-					},
-					{
-						"<space>aC",
+						"<space>aTC",
 						function()
 							prefill_edit_window(avante_complete_code)
 						end,
 						desc = "Complete Code(edit)",
 					},
 					{
-						"<space>aD",
+						"<space>aTD",
 						function()
 							prefill_edit_window(avante_add_docstring)
 						end,
 						desc = "Docstring(edit)",
 					},
 					{
-						"<space>aB",
+						"<space>aTB",
 						function()
 							prefill_edit_window(avante_fix_bugs)
 						end,
 						desc = "Fix Bugs(edit)",
 					},
 					{
-						"<space>aU",
+						"<space>aTU",
 						function()
 							prefill_edit_window(avante_add_tests)
 						end,
