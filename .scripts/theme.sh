@@ -10,8 +10,8 @@ ALACRITTY_THEME_DARK=gruvbox_dark.toml
 ALACRITTY_THEME_LIGHT=gruvbox_light.toml
 SWAY_THEME_DARK=gruvbox-dark.conf
 SWAY_THEME_LIGHT=catppuccin-latte.conf
-WALLPAPER_DARK="wallpaperaccess/ai-generated/9070149.jpg"
-WALLPAPER_LIGHT="wallpaperaccess/light-green/397977.jpg"
+#WALLPAPER_DARK="wallpaperaccess/ai-generated/9070149.jpg"
+#WALLPAPER_LIGHT="wallpaperaccess/light-green/397977.jpg"
 ZATHURA_THEME_LIGHT=zathura-gruvbox/zathura-gruvbox-light
 ZATHURA_THEME_DARK=zathura-gruvbox/zathura-gruvbox-dark
 WOFI_THEME_DARK=quantumfate/src/macchiato/style.css
@@ -59,7 +59,7 @@ if [ $is_light = 1 ]; then
     qt_theme=$QT_THEME_LIGHT
     alacritty_theme=$ALACRITTY_THEME_LIGHT
     sway_theme=$SWAY_THEME_LIGHT
-    wallpaper=$WALLPAPER_LIGHT
+    #wallpaper=$WALLPAPER_LIGHT
     zathura_theme=$ZATHURA_THEME_LIGHT
     wofi_theme=$WOFI_THEME_LIGHT
     zellij_theme=$ZELLIJ_THEME_LIGHT
@@ -77,7 +77,7 @@ else
     qt_theme=$QT_THEME_DARK
     alacritty_theme=$ALACRITTY_THEME_DARK
     sway_theme=$SWAY_THEME_DARK
-    wallpaper=$WALLPAPER_DARK
+    #wallpaper=$WALLPAPER_DARK
     zathura_theme=$ZATHURA_THEME_DARK
     wofi_theme=$WOFI_THEME_DARK
     zellij_theme=$ZELLIJ_THEME_DARK
@@ -124,21 +124,21 @@ fi
 sway_settings="$HOME/.config/sway/config"
 if [ -n "$SWAYSOCK" ] &&
     command -v swaymsg > /dev/null; then
-    sed -e "/output eDP-1 bg/s/backgrounds\/.*/backgrounds\/${wallpaper//\//\\\/} fill/" \
-        -e "/include themes/s/themes\/.*/themes\/${sway_theme}/" \
+    #sed -e "/output eDP-1 bg/s/backgrounds\/.*/backgrounds\/${wallpaper//\//\\\/} fill/" \
+    sed -e "/include themes/s/themes\/.*/themes\/${sway_theme}/" \
         -i "${sway_settings}"
     swaymsg reload
 fi
 
 # Hyprland settings {{{1
-hyprland_settings="$HOME/.config/hypr/hyprland.conf"
-hyprpaper_settings="$HOME/.config/hypr/hyprpaper.conf"
-wallpaper_dir="$HOME/Pictures/backgrounds/"
-if [ -n "$HYPRLAND_CMD" ] && command -v hyprpaper > /dev/null; then
-    # Wallpaper
-    hyprctl hyprpaper wallpaper ",${wallpaper_dir}${wallpaper}"
-    sed -i "/^\s*path/s/=.*/= ${wallpaper_dir//\//\\\/}${wallpaper//\//\\\/}/" "${hyprpaper_settings}"
-fi
+#hyprland_settings="$HOME/.config/hypr/hyprland.conf"
+#hyprpaper_settings="$HOME/.config/hypr/hyprpaper.conf"
+#wallpaper_dir="$HOME/Pictures/backgrounds/"
+#if [ -n "$HYPRLAND_CMD" ] && command -v hyprpaper > /dev/null; then
+#    # Wallpaper
+#    hyprctl hyprpaper wallpaper ",${wallpaper_dir}${wallpaper}"
+#    sed -i "/^\s*path/s/=.*/= ${wallpaper_dir//\//\\\/}${wallpaper//\//\\\/}/" "${hyprpaper_settings}"
+#fi
 # Hy3
 sed -i "/colorscheme/s/themes\/[^ ]\+/themes\/${hyprland_theme}/" "${hyprland_settings}"
 

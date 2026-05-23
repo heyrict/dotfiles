@@ -256,11 +256,12 @@ spawn-at-startup "swayidle" "-w" "timeout" "601" "niri msg action power-off-moni
 spawn-at-startup "fcitx5" "-d"
 spawn-at-startup "~/.config/waybar/waybar.sh"
 spawn-at-startup "vicinae" "server"
+spawn-at-startup "awww-daemon"
 
 // XWayland config
 spawn-at-startup "xwayland-satellite"
 environment {
-    DISPLAY ":0"
+    DISPLAY ":1"
 }
 
 // Uncomment this line to ask the clients to omit their client-side decorations if possible.
@@ -585,5 +586,5 @@ binds {
 
     // Powers off the monitors. To turn them back on, do any input like
     // moving the mouse or pressing any other key.
-    Alt+Shift+P { power-off-monitors; }
+    Alt+bracketright { power-off-monitors; }
 }

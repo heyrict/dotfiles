@@ -382,8 +382,8 @@ bindsym $sup+b exec "notify-send 'Capacity = '$(cat /sys/class/power_supply/BAT0
 # Wayland specific commands
 ## Wallpaper
 #output "*" bg ~/Pictures/backgrounds/astize_cc0_split1_alt.png fill
-output eDP-1 bg ~/Pictures/backgrounds/wallpaperaccess/ai-generated/9070149.jpg fill
-output HDMI-1 bg ~/Pictures/backgrounds/edna_dark.jpeg fill
+#output eDP-1 bg ~/Pictures/backgrounds/wallpaperaccess/ai-generated/9070149.jpg fill
+#output HDMI-1 bg ~/Pictures/backgrounds/edna_dark.jpeg fill
 
 ## Toggle backlight
 bindsym $mod+bracketright exec ~/.config/sway/scripts/backlight-toggle.sh
@@ -427,6 +427,7 @@ exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DE
 
 exec --no-startup-id fcitx5 -d
 exec --no-startup-id vicinae server
+exec --no-startup-id awww-daemon
 exec --no-startup-id gammastep-indicator
 
 # Start i3bar to display a workspace bar (plus the system information i3status
