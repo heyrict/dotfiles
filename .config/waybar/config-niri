@@ -39,12 +39,14 @@
       "format-icons": {
           // Named workspaces
           // (you need to configure them in niri)
-          "browser": "",
-          "discord": "",
-          "chat": "<b></b>",
+          "browser": "󰖟",
+          "coding": "",
+          "discord": "",
+          "tools": "󱁤",
+          "chat": "",
           // Icons by state
-          "active": "",
-          "default": ""
+          //"active": "",
+          "default": ""
       }
   },
   "clock": {
@@ -116,7 +118,7 @@
     "format": "{icon} {percent}%",
     "format-alt": "{icon}",
     "format-alt-click": "click-right",
-    "on-click": "alacritty -t 'backglith-float' -o window.dimensions.columns=68 -o window.dimensions.lines=20 -e vim /sys/class/backlight/amdgpu_bl1/brightness",
+    "on-click": "alacritty -t 'backlight-float' -o window.dimensions.columns=68 -o window.dimensions.lines=20 -e vim /sys/class/backlight/amdgpu_bl1/brightness",
     "format-icons": ["󰌵", "󱧡"],
     "on-scroll-down": "brightnessctl set 1-",
     "on-scroll-up": "brightnessctl set +1"

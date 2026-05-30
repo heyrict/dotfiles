@@ -128,7 +128,7 @@ layout {
     // preset-window-heights { }
 
     // You can change the default width of the new windows.
-    default-column-width { proportion 0.5; }
+    default-column-width { proportion 0.6667; }
     // If you leave the brackets empty, the windows themselves will decide their initial width.
     // default-column-width {}
 
@@ -258,23 +258,17 @@ spawn-at-startup "~/.config/waybar/waybar.sh"
 spawn-at-startup "vicinae" "server"
 spawn-at-startup "awww-daemon"
 
-// XWayland config
-spawn-at-startup "xwayland-satellite"
-environment {
-    DISPLAY ":1"
-}
-
 // Uncomment this line to ask the clients to omit their client-side decorations if possible.
 // If the client will specifically ask for CSD, the request will be honored.
 // Additionally, clients will be informed that they are tiled, removing some client-side rounded corners.
 // This option will also fix border/focus ring drawing behind some semitransparent windows.
 // After enabling or disabling this, you need to restart the apps for this to take effect.
-// prefer-no-csd
+prefer-no-csd
 
 // You can change the path where screenshots are saved.
 // A ~ at the front will be expanded to the home directory.
 // The path is formatted with strftime(3) to give you the screenshot date and time.
-screenshot-path "~/Pictures/Screenshots/Screenshot-%Y-%m-%dT%H-%M-%S.png"
+screenshot-path "~/Pictures/Screenshots/niri_%Y-%m-%d-%H%M%S.png"
 
 // You can also set this to null to disable saving screenshots to disk.
 // screenshot-path null
@@ -288,6 +282,36 @@ animations {
 
     // Slow down all animations by this factor. Values below 1 speed them up instead.
     // slowdown 3.0
+}
+
+// Named workspaces
+workspace "coding"
+window-rule {
+    match app-id=r#"^steam$"#
+    open-maximized true
+    open-on-workspace "coding"
+}
+
+workspace "browser" {
+    layout {
+        always-center-single-column
+    }
+}
+window-rule {
+    match app-id=r#"^zen$"#
+    match app-id=r#"^firefox$"#
+    match app-id=r#"^chromium$"#
+    exclude title="^Picture-in-Picture$"
+    open-maximized true
+    open-on-workspace "browser"
+}
+
+workspace "chat"
+window-rule {
+    match app-id=r#"^wechat$"#
+    match app-id=r#"^discord$"#
+    match app-id=r#"^org.mozilla.Thunderbird$"#
+    open-on-workspace "chat"
 }
 
 // Window rules let you adjust behavior for individual windows.
@@ -304,13 +328,41 @@ window-rule {
     default-column-width {}
 }
 
+// Enable blur behind the Alacritty terminal.
+window-rule {
+    match app-id="^Alacritty$"
+    match app-id="^neovide$"
+
+    background-effect {
+        blur true
+    }
+}
+
+// Disable focus ring behind vicinae launcher
+window-rule {
+    match app-id="^vicinae$"
+
+    focus-ring {
+        off
+    }
+}
+
 // Open the Firefox picture-in-picture player as floating by default.
 window-rule {
     // This app-id regular expression will work for both:
     // - host Firefox (app-id is "firefox")
     // - Flatpak Firefox (app-id is "org.mozilla.firefox")
     match app-id=r#"firefox$"# title="^Picture-in-Picture$"
+    match title="float$"
     open-floating true
+
+    default-floating-position x=32 y=32 relative-to="bottom-right"
+}
+
+window-rule {
+    match title="^(iwctl|backlight|calendar|pactl)-float$"
+    open-floating true
+    default-floating-position x=32 y=32 relative-to="top-right"
 }
 
 // Example: block out two password managers from screen capture.
@@ -325,11 +377,28 @@ window-rule {
     // block-out-from "screencast"
 }
 
+// Always focus the KeePassXC-Browser unlock dialog.
+//
+// This dialog opens parented to the KeePassXC window rather than the browser,
+// so it doesn't get auto-focused by default.
+window-rule {
+    match app-id=r#"^org\.keepassxc\.KeePassXC$"# title="^Unlock Database - KeePassXC$"
+    open-focused true
+}
+
+window-rule {
+    match app-id=r#"^org\.keepassxc\.KeePassXC$"# title="KeePassXC - Browser Access Request"
+    open-floating true
+    default-floating-position x=32 y=32 relative-to="bottom-right"
+}
+
+// Make unlock request floating
+
 // Example: enable rounded corners for all windows.
 // (This example rule is commented out with a "/-" in front.)
-/-window-rule {
-    geometry-corner-radius 12
-    clip-to-geometry true
+window-rule {
+    geometry-corner-radius 5
+    //clip-to-geometry true
 }
 
 binds {
@@ -358,6 +427,9 @@ binds {
     Super+T { spawn "~/.scripts/theme.sh"; }
     Super+Equal { spawn "vicinae" "vicinae://launch/calculator/history"; }
     Super+Shift+L { spawn "swaylock" "-f" "-i" "/home/heyrict/Pictures/backgrounds/astize_cc0_split1.png"; }
+
+    Alt+I { spawn "alacritty" "-t" "dict_lookup | float" "-o" "window.dimensions.columns=72" "-o" "window.dimensions.lines=32" "-o" "window.position.x=200" "-o" "window.position.y=200" "-o" "font.size=12" "-e" "bash" "-c" "sdcv -cn \"$(wl-paste -p)\" | less -R"; }
+    Alt+Shift+I { spawn "alacritty" "-t" "dict_lookup | float" "-o" "font.size=12" "-o" "window.dimensions.columns=72" "-o" "window.dimensions.lines=32" "-o" "window.position.x=200" "-o" "window.position.y=200" "-e" "bash" "-c" "sdcv -c"; }
 
     // You can also use a shell. Do this if you need pipes, multiple commands, etc.
     // Note: the entire command goes as a single argument in the end.
@@ -557,6 +629,9 @@ binds {
     // Windows in this column will appear as vertical tabs,
     // rather than stacked on top of each other.
     Alt+W { toggle-column-tabbed-display; }
+
+    // Toggle overview mode
+    Alt+Grave { toggle-overview; }
 
     // Actions to switch layouts.
     // Note: if you uncomment these, make sure you do NOT have

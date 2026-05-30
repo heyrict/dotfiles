@@ -41,4 +41,9 @@ return {
 			theme = "gruvbox",
 		},
 	},
+	-- transparent
+	{
+		"xiyaowong/transparent.nvim",
+		lazy = false,
+	},
 }

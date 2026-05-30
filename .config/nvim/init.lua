@@ -115,4 +115,6 @@ vim.api.nvim_create_autocmd({ "CmdlineEnter", "CmdlineLeave" }, {
 	callback = set_ime,
 })
 
+vim.g.neovide_normal_opacity = 0.6
+
 require("config.lazy")
