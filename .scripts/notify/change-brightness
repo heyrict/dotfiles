@@ -1,0 +1,44 @@
+#!/usr/bin/env bash
+
+EXNOTIFY_SEND=dunstify
+BRIGHTNESS_STEPS=3
+OPTIMAL_BRIGHTNESS=20
+
+type -p brightnessctl &>/dev/null || exec "$EXNOTIFY_SEND" -a Brightness -u low -r 16 'Install brightnessctl!'
+
+notify()
+{
+    BRIGHTNESS="$(brightnessctl i | grep -oP '\(\K[^%\)]+')"
+    if [ "$BRIGHTNESS" -eq 0 ]; then
+        #icon='notification-display-brightness-off'
+        icon='brightness-display-symbolic'
+    elif [ "$BRIGHTNESS" -lt 10 ]; then
+        #icon='notification-display-brightness-low'
+        icon='brightness-display-symbolic'
+    elif [ "$BRIGHTNESS" -lt 70 ]; then
+        #icon='notification-display-brightness-medium'
+        icon='brightness-display-symbolic'
+    elif [ "$BRIGHTNESS" -lt 100 ]; then
+        #icon='notification-display-brightness-high'
+        icon='brightness-display-symbolic'
+    else
+        #icon='notification-display-brightness-full'
+        icon='brightness-display-symbolic'
+    fi
+    exec "$EXNOTIFY_SEND" -a Brightness -r 1234 -t 700 -i "$icon" "$BRIGHTNESS " -h "int:value:${BRIGHTNESS}"
+}
+
+case ${1} in
+    up)      brightnessctl set "${BRIGHTNESS_STEPS:-2}%+" -q
+    ;;
+    down)    brightnessctl set "${BRIGHTNESS_STEPS:-2}%-" -q
+    ;;
+    optimal) brightnessctl set "${OPTIMAL_BRIGHTNESS}%" -q
+    ;;
+    *) brightnessctl set "${1}%" -q
+    ;;
+esac
+
+notify
+
+exit ${?}

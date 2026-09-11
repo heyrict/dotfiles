@@ -1,0 +1,12 @@
+[source.crates-io]
+registry = "https://github.com/rust-lang/crates.io-index"
+replace-with = 'tuna'
+
+[source.tuna]
+registry = "sparse+https://mirrors.tuna.tsinghua.edu.cn/crates.io-index/"
+
+[registries.tuna]
+index = "sparse+https://mirrors.tuna.tsinghua.edu.cn/crates.io-index/"
+
+[build]
+jobs = 4

@@ -1,11 +1,8 @@
 # vim:foldmethod=marker ts=2 sw=2
 
 if [ "$SSH_CONNECTION" ]; then
-  SSH_SESSION=$(echo "$SSH_CONNECTION" | base64)
+  SSH_SESSION=$(echo "$SSH_CONNECTION" | cut -d' ' -f1 | base64)
 fi
-
-# Language and IME {{{1
-export LANG=en_US.UTF-8
 
 # The following lines were added by compinstall {{{1
 fpath=(${ZDOTDIR:-$HOME/.zsh}/completion $fpath)
@@ -13,7 +10,7 @@ fpath=(${ZDOTDIR:-$HOME/.zsh}/completion $fpath)
 zstyle :compinstall filename '/home/heyrict/.zshrc'
 zstyle ':completion:*' menu select
 
-autoload -Uz compinit 
+autoload -Uz compinit
 compinit
 
 # End of lines added by compinstall
@@ -94,21 +91,13 @@ HIST_STAMPS="%Y-%M-%d %H:%m:%s"
 #source $ZSH/oh-my-zsh.sh
 
 # Preferred editor for local and remote sessions
-if [ $SSH_CONNECTION ]; then
-  export EDITOR='vim'
-else
-  export EDITOR='nvim'
-fi
+export EDITOR='nvim'
 
 # Compilation flags
 export ARCHFLAGS="-arch x86_64"
 
 # History {{{1
-if [ $SSH_CONNECTION ]; then
-  HISTFILE=~/.histfile_$SSH_SESSION
-else
-  HISTFILE=~/.histfile
-fi
+HISTFILE=~/.histfile
 HISTSIZE=1000
 SAVEHIST=1000
 setopt EXTENDED_HISTORY
@@ -170,25 +159,38 @@ export WINIT_X11_SCALE_FACTOR=1 # No upscaling in XWayland
 
 ## Nvm {{{2
 export NVM_DIR="$HOME/.nvm"
-source /usr/share/nvm/init-nvm.sh
+if [ -x "/usr/share/nvm/init-nvm.sh" ]; then
+  source /usr/share/nvm/init-nvm.sh
+fi
+if [ -d "$HOME/.bun" ]; then
+  path=($HOME/.bun/bin $path)
+fi
+if [ -d "$HOME/.cache/.bun" ]; then
+  path=($HOME/.cache/.bun/bin $path)
+fi
 
 ## Yarn {{{2
-path+=$HOME/.yarn/bin
+path=($HOME/.yarn/bin $path)
 ## Rust {{{2
 export RUST_SRC_PATH=/home/heyrict/.rustup/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src
-path+=$HOME/.cargo/bin
+path=($HOME/.cargo/bin $path)
+
 ## GPG {{{2
 export GPG_TTY=$(tty)
-
-## Fcitx {{{2
-export XMODIFIERS="@im=fcitx"
-export QT_IM_MODULE="fcitx"
 
 ## Neovide {{{2
 export NEOVIDE_MULTIGRID=1
 
 ## Zoxide {{{2
 export _ZO_EXCLUDE_DIRS=$HOME:$HOME/Private/:/tmp*
+
+## Lua {{{2
+path=($HOME/.luarocks/bin $path)
+
+## Themes {{{2
+if [ -f "$HOME/.zsh/.zsh_themes" ]; then
+  source "$HOME/.zsh/.zsh_themes"
+fi
 
 ## Custom {{{2
 export TASKRC="~/.taskrc"
@@ -198,22 +200,27 @@ path=(
     $HOME/bin
 )
 
+# Prevent `less` from storing and regenerate history file
+export LESSHISTFILE=/dev/null
+
 
 # Other configs {{{1
 ## Vulkan {{{2
 
 # Use RADV vulkan driver
-export AMD_VULKAN_ICD=RADV
+#export AMD_VULKAN_ICD=RADV
 
 ## Zsh {{{2
 unsetopt beep
 
 ## Python {{{2
+path=($HOME/.local/bin $path)
+export UV_INDEX_URL="https://pypi.tuna.tsinghua.edu.cn/simple"
+
 if [ ! "${TTY:5:3}" = "tty" ]; then
     # Load venv only on pseudo-tty
     source ~/pyenv/env/bin/activate
 fi
-export HASURA_GRAPHQL_ADMIN_SECRET="CINDYTHINK_HASURA_ADMIN_SECRET"
 
 ## Change ls colors {{{2
 export LS_COLORS="$LS_COLORS:ow=1;36"
@@ -238,4 +245,30 @@ esac
 # Navi {{{1
 #Change shortcut to '^y' to avoid conflicts
 [ `command -v navi` ] && source <(navi widget zsh)
+
+# NNN {{{1
+
+# Book marks
+# - w: working directory
+# - c: notes for clinical medicine
+# - m: Multimedia
+# - u: Mount point
+# - t: /tmp
+export NNN_BMS="w:~/MyPrograms;c:~/pandoc_markdown/CliMed;m:/mnt/windows;u:/run/media;t:/tmp"
+
+# Light theme
+export NNN_COLORS='5234'
+export NNN_FCOLORS='04030c020001090e050ddc06'
+export NNN_ARCHIVE="\\.(7z|bz2|gz|tar|tgz|zip|zst)$"
+export NNN_IDLE_TIMEOUT=180
+
+# Plugins
+# - o: Open file found with fzf
+# - p: View photos in this folder
+# - P: View photos in this folder in numeric order
+# - d: Show diffs between two files
+# - c: CD into directory found with fzf
+# - s: Organize
+# - b: Page the file with bat
+export NNN_PLUG='o:fzopen;p:-!feh -Z.*;P:-!feh -Z. `ls|sort -n`*;d:diffs;k:!chksum;c:fzcd;z:fzz;S:organize;b:-!bat "$nnn";s:croc'
 

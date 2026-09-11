@@ -10,3 +10,13 @@ pg_dump <dbname> | gzip > <outfile>.gz
 gunzip -c <filename> | psql <dbname>
 
 $ filename: ls
+
+
+% db.duckdb.myduckserver
+
+# Spawn up a myduckserver container given a database file
+tmpdir=$(mktemp -dp /tmp)
+cp <duckdb_file> $tmpdir/myduck.db
+docker run -p 13306:3306 -p 15432:5432 --volume=$tmpdir:/home/admin/data apecloud/myduckserver:latest
+
+$ duckdb_file: ls

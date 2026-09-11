@@ -1,73 +1,124 @@
-ROOT := "/home/heyrict/.wine"
+ROOT := justfile_directory()
 HOME := ROOT + "/drive_c/users/heyrict"
 #PROTON := "/home/heyrict/.local/share/Steam/steamapps/common/Proton 5.13"
 #PROTON_WINE64 := PROTON + "/dist/bin/wine64"
-PROTON := "/home/heyrict/.local/share/Steam/compatibilitytools.d/GE-Proton7-18"
+PROTON_VERSION := "current"
+PROTON := "/home/heyrict/Proton/" + PROTON_VERSION
 PROTON_WINE64 := PROTON + "/files/bin/wine64"
-DEFAULT_ENV := 'LC_ALL=ja_JP.UTF-8 LANG=ja_JP.UTF-8 WINEPREFIX="' + ROOT + '"'
-PROTON_ENV := "DXVK_ASYNC=1 WINE_FULLSCREEN_FSR=1"
+GE_VERSION := "current"
+GE := "/home/heyrict/WineGE/" + GE_VERSION
+GE_WINE64 := GE + "/bin/wine64"
+LANG := "ja_JP.UTF-8"
+GAMESCOPE_ENV := "SDL_VIDEODRIVER=x11"
+DEFAULT_ENV := 'LC_ALL=' + LANG + ' LANG=' + LANG + ' WINEPREFIX="' + ROOT + '"'
+FSR_MODE := "balanced"
+FSR_ENABLE := "1"
+PROTON_ENV := "DXVK_ASYNC=1 WINE_FULLSCREEN_FSR=" + FSR_ENABLE + " WINE_FULLSCREEN_FSR_MODE=" + FSR_MODE
 EXTRA_ENV := ""
 ALPHAROMDIE := HOME + "/Tools/AlphaROMdiE/AlphaROMdiE.exe"
 
-# Fake resolution for wine
-#WINE_FULLSCREEN_FAKE_CURRENT_RES=
+DISPLAY := "0"
+#W := '$(swaymsg -t get_outputs | jq ".[' + DISPLAY + '].rect.width")'
+#H := '$(swaymsg -t get_outputs | jq ".[' + DISPLAY + '].rect.height")'
+W := '$(hyprctl monitors -j | jq ".[' + DISPLAY + '].width")'
+H := '$(hyprctl monitors -j | jq ".[' + DISPLAY + '].height")'
 
 run FILE:
-	cd "$(dirname '{{FILE}}')" && env {{DEFAULT_ENV}} {{PROTON_ENV}} {{EXTRA_ENV}} wine64 "$(basename '{{FILE}}')"
+	cd "$(dirname '{{FILE}}')" && env {{DEFAULT_ENV}} {{PROTON_ENV}} {{EXTRA_ENV}} wine "$(basename '{{FILE}}')"
+
+ge_run FILE:
+	cd "$(dirname '{{FILE}}')" && env {{DEFAULT_ENV}} {{PROTON_ENV}} {{EXTRA_ENV}} "{{GE_WINE64}}" "$(basename '{{FILE}}')"
 
 proton_run FILE:
 	cd "$(dirname '{{FILE}}')" && env {{DEFAULT_ENV}} {{PROTON_ENV}} {{EXTRA_ENV}} "{{PROTON_WINE64}}" "$(basename '{{FILE}}')"
 
 _siglus_run FILE:
-	cd "$(dirname '{{FILE}}')" && env {{DEFAULT_ENV}} {{PROTON_ENV}} {{EXTRA_ENV}} "{{PROTON_WINE64}}" "{{ALPHAROMDIE}}" "$(basename '{{FILE}}')"
+	cd "$(dirname '{{FILE}}')" && env {{DEFAULT_ENV}} {{PROTON_ENV}} {{EXTRA_ENV}} wine "{{ALPHAROMDIE}}" "$(basename '{{FILE}}')"
 
-ciel_nosurge:
-	just proton_run "{{HOME}}/Games/Ciel Nosurge DX/CielnosurgeDX.exe"
+#ciel_nosurge:
+#	just run "{{HOME}}/Games/Ciel Nosurge DX/CielnosurgeDX.exe"
 
 angel_beats:
 	just _siglus_run "{{ROOT}}/drive_c/Program Files (x86)/Key/AngelBeats!/SiglusEngine.exe"
 
 amayui:
-	just proton_run "/mnt/windows/Users/heyrict/Games/Eushully/AMAYUI/AGE.exe"
+	env {{GAMESCOPE_ENV}} gamescope -F fsr -W 1920 -H 1080 -w 1280 -h 720 just FSR_ENABLE=0 run "/mnt/windows/Users/xiezh/Games/Eushully/AMAYUI/AGE.exe"
+
+soukoku:
+	env {{GAMESCOPE_ENV}} gamescope -F fsr -W 1920 -H 1080 -w 1280 -h 720 just FSR_ENABLE=0 run "/mnt/windows/Users/xiezh/Games/Eushully/創刻のアテリアル/AGE.EXE"
+
+tenmei:
+	env {{GAMESCOPE_ENV}} gamescope -F fsr -W 1920 -H 1080 -w 1280 -h 720 just FSR_ENABLE=0 run "/mnt/windows/Users/xiezh/Games/Eushully/天冥のコンキスタ/AGE.EXE"
+
+fuukan:
+	env {{GAMESCOPE_ENV}} gamescope -F fsr -W 1920 -H 1080 -w 1280 -h 720 just FSR_ENABLE=0 run "/mnt/windows/Users/xiezh/Games/Eushully/封緘のグラセスタ/AGE.EXE"
+
+th09:
+	just FSR_ENABLE=1 FSR_MODE="ultra" run "{{HOME}}/Games/th09/th09.exe" >/dev/null 2>&1
 
 th10:
-	just proton_run "{{HOME}}/Games/th10/th10.exe" >/dev/null 2>&1
+	just run "{{HOME}}/Games/th10/th10.exe" >/dev/null 2>&1
 
-boushi:
-	just proton_run "{{HOME}}/Games/Boushi/Game.exe"
+#boushi:
+#	just run "{{HOME}}/Games/Boushi/Game.exe"
 
 ninth_existence:
-	just proton_run "{{HOME}}/Games/9th_Existence_ver.3.01/Game.exe"
+	just run "{{HOME}}/Games/9th_Existence_ver.3.01/Game.exe"
 
 imo2:
-	just proton_run "{{HOME}}/Games/122216/Game.exe"
+	just run "{{HOME}}/Games/122216/Game.exe"
 
 kinkoi:
 	just _siglus_run "{{ROOT}}/drive_c/Program Files (x86)/SAGAPLANETS/金色ラブリッチェ/SiglusEngine.exe"
 
 kanon:
-	rlvm "{{HOME}}/Games/KEY/KANON_SE"
+	env {{GAMESCOPE_ENV}} gamescope -F fsr -H 1200 just FSR_ENABLE=0 _siglus_run "{{HOME}}/Games/KEY/KANON_SE/REALLIVE.EXE"
 
-dohna:
-	just proton_run "{{ROOT}}/drive_c/Program Files (x86)/DohnaDohna/dohnadohna.exe"
+#evenicle:
+#	env {{GAMESCOPE_ENV}} gamescope -F fsr -W {{W}} -H {{H}} just FSR_ENABLE=0 run "{{HOME}}/Games/イブニクル/Evenicle.exe"
 
-unless_terminalia:
-	just proton_run "{{HOME}}/Games/Whirlpool/unless_luminalia/unless_terminalia.exe"
+nier_replicant:
+	just run "/run/media/heyrict/SG20E/pc/NieR Replicant ver.1.22474487139/NieR Replicant ver.1.22474487139.exe"
 
-vbb:
-	just proton_run "{{HOME}}/Games/VenusBlood-BRAVE-/VBB.exe"
+rewrite_hf:
+	just FSR_ENABLE=0 _siglus_run "{{HOME}}/Games/KEY/RewriteHf/SiglusEngine.exe"
 
-nepnin:
-	just proton_run "{{HOME}}/Games/Neptunia x SENRAN KAGURA/GameData/Neptunia x SENRAN KAGURA Ninja Wars.exe"
+#rf5:
+#	just FSR_ENABLE=0 run "{{HOME}}/Games/Rune Factory 5/Rune Factory 5.exe"
 
-evenicle:
-	just proton_run "{{HOME}}/Games/イブニクル/Evenicle.exe"
+seirei:
+	just run "{{HOME}}/Games/SeireiDensyo_2_0_4/game.exe"
 
-returns:
-	just proton_run "{{HOME}}/Games/Gal Gun Returns/game.exe"
+#seorin:
+#    just FSR_ENABLE=0 run "{{ROOT}}/drive_c/Program Files (x86)/CHAOS-R/神聖昂燐ダクリュオン・ルナ/神聖昂燐ダクリュオン・ルナ.exe"
 
-sistrvl:
-	just proton_run "{{HOME}}/Games/G-RJ179801-Ver1.1.3/Game.exe"
+#virnemelet:
+#	just run "{{HOME}}/Games/ヴィルネーメレト ver1.07d4(windows)//Game.exe"
 
-testament:
-	just proton_run drive_c/users/heyrict/Games/Test/Testament/testament.exe
+ff12:
+	env {{GAMESCOPE_ENV}} gamescope -F fsr -w 1280 -h 720 just run "/run/media/heyrict/wd22b/heyrict/pc/Final Fantasy XII - The Zodiac Age/x64/FFXII_TZA.exe"
+
+ff12_plain:
+	just run "/run/media/heyrict/wd22b/heyrict/pc/Final Fantasy XII - The Zodiac Age/x64/FFXII_TZA.exe"
+
+tyouR:
+	env {{GAMESCOPE_ENV}} gamescope -F fsr -W 1920 -H 1200 just FSR_ENABLE=0 run "{{HOME}}/Games/tyouR/tyouR.exe"
+
+#monobeno:
+#	just run "{{HOME}}/Games/ものべの/ものべの.exe"
+
+shellil:
+	env {{GAMESCOPE_ENV}} gamescope -F fsr just FSR_ENABLE=0 run "{{HOME}}/Games/311136_Shellil/Game.exe"
+
+mobi:
+	just run "{{HOME}}/Games/RJ01042745_mobi_kazamachi/Game.exe"
+
+sakura_moyu:
+	env {{GAMESCOPE_ENV}} gamescope -F fsr -W 1920 -H 1200 just FSR_ENABLE=0 run "{{HOME}}/Games/さくら、もゆ。/Sakura.exe"
+
+god2:
+	#env {{GAMESCOPE_ENV}} gamescope -F fsr -W {{W}} -H {{H}} just FSR_ENABLE=0 run "{{HOME}}/Games/GEARS of DRAGOON 2/GoD2.exe"
+	just run "{{HOME}}/Games/GEARS of DRAGOON 2/GoD2.exe"
+
+#houkiboshi:
+#	just run "{{HOME}}/Games/PrimaDoll_Houkiboshi/StartData/GameData/data/SiglusEngine_Crack.exe"

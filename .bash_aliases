@@ -6,31 +6,63 @@ fi
 
 export NLTK_DATA="/mnt/LENOVO/Data/NLTK"
 
-if [ "$SSH_CONNECTION" ]; then
-    SSH_SESSION=$(echo "$SSH_CONNECTION" | base64)
-    export P_THEME="/home/heyrict/.prev_theme_$SSH_SESSION"
-else
-    export P_THEME="/home/heyrict/.prev_theme"
+# fmriprep
+#function fmriprep-docker {
+#    local data=$(realpath $1)
+#    local out=$(realpath $2)
+#    shift 2
+#    docker run -it --rm \
+#        -u $(id -u) \
+#        -v $data:/data -v $out:/out \
+#        -v /tmp/fmriprep-work:/work \
+#        -v /home/heyrict/.local/share/freesurfer:/freesurfer \
+#        nipreps/fmriprep:22.0.0 /data /out $@ \
+#        -w /work --fs-license-file /freesurfer/license.txt
+#}
+#
+#function fmriprep-docker-bash {
+#    local data=$(realpath $1)
+#    local out=$(realpath $2)
+#    shift 2
+#    docker run -it --rm \
+#        --entrypoint /bin/bash \
+#        -u $(id -u) \
+#        -v $data:/data -v $out:/out \
+#        -v /tmp/fmriprep-work:/work \
+#        -v /home/heyrict/.local/share/freesurfer:/freesurfer \
+#        nipreps/fmriprep:22.0.0 $@
+#}
+
+# Jupyter lab
+alias jlab="jupyter lab --IdentityProvider.token $JUPYTER_TOKEN"
+
+# eza
+if `which eza >/dev/null`; then
+    alias ls="eza"
+    alias ll="eza -hl --git"
+    alias la="eza -a"
 fi
 
-# exa
-if `which exa >/dev/null`; then
-    alias ls="exa"
-    alias ll="exa -hl --git"
-    alias la="exa -a"
+if `which marp >/dev/null`; then
+    alias marp="CHROME_PATH=$(which chromium) marp"
 fi
 
 # SSLVPN
 #alias easyconnect="docker run --device /dev/net/tun --cap-add NET_ADMIN -ti -p 127.0.0.1:1080:1080 -e EC_VER=7.6.7 hagb/docker-easyconnect:cli"
-alias px8123="env https_proxy=http://127.0.0.1:8123 http_proxy=http://127.0.0.1:8123"
+alias px1081="env https_proxy=http://127.0.0.1:1081 http_proxy=http://127.0.0.1:1081"
 
 # Syncthing
-alias syncthing-cindy-connect="ssh -N -L 8385:127.0.0.1:8384 cindy"
+alias syncthing-cindy-connect="ssh -N -L 8385:127.0.0.1:8384 vultr"
 
 # bluetooth
 alias bton="bluetoothctl power on"
 alias btoff="bluetoothctl power off"
 
+# obtain API keys
+zhipu_api_setup() {
+    export OPENAI_API_KEY=$(secret-tool lookup url https://open.bigmodel.cn/api/paas/v4/)
+    export ZAI_API_KEY=$(secret-tool lookup url https://open.bigmodel.cn/api/paas/v4/)
+}
 
 # Extension to git merge
 alias gmn="git merge --no-commit"
@@ -79,6 +111,9 @@ alias mimic-xbox="xboxdrv \
 # virtualenv
 activate() {
     source ~/$1/bin/activate;
+    if [ $STARSHIP_SHELL = "zsh" ]; then
+        eval "$(starship init zsh)";
+    fi
 }
 
 # aria2c with rpc enabled
@@ -86,7 +121,7 @@ alias aria2cd="aria2c --enable-rpc"
 
 # vim without language server
 alias vi='nvim'
-alias nv='neovide'
+alias nv='neovide --fork'
 alias ncvim='NOCOMPL=1 vim'
 alias ncvi='NOCOMPL=1 nvim'
 alias ncnv='NOCOMPL=1 neovide'
@@ -136,26 +171,6 @@ alias hiber="wifi off; sudo systemctl hibernate"
 
 # aria2c bt trackers
 alias fetch_trackers='sed -i "s@^\(bt-tracker=\).*@\1$(curl -s -L https://raw.githubusercontent.com/ngosang/trackerslist/master/trackers_all_ip.txt | sed "/^\s*$/d" | tr "\n" ",")@" ~/.aria2/aria2.conf'
-
-# Colored ytop
-alias ytop='if [ $BACKLIGHT = light ]; then ytop -c default-dark; else ytop; fi'
-
-# 8-bit color for fbterm
-alias eight-dark='export TERM=fbterm; export BACKLIGHT=dark; ~/MyPrograms/shell/solarized-dark-fbterm.sh; clear; echo $BACKLIGHT > $P_THEME'
-alias eight-light='export TERM=fbterm; export BACKLIGHT=light; ~/MyPrograms/shell/solarized-light-fbterm.sh; clear; echo $BACKLIGHT > $P_THEME'
-alias eight='eight-dark'
-alias bg-dark="export BACKLIGHT=dark; vim --clean ~/.config/alacritty/alacritty.yml -c '%s/\*gruvbox_light/\*gruvbox_dark/' -c 'wq'; export BAT_THEME=OneHalfDark; echo dark > $P_THEME"
-alias bg-light="export BACKLIGHT=light; vim --clean ~/.config/alacritty/alacritty.yml -c '%s/\*gruvbox_dark/\*gruvbox_light/' -c 'wq'; export BAT_THEME='Monokai Extended Light'; echo light > $P_THEME"
-
-if [ -f $P_THEME ]; then
-  if [ `cat $P_THEME` = light ]; then
-    export BAT_THEME="Monokai Extended Light";
-    export BACKLIGHT=light;
-  else
-    export BAT_THEME="OneHalfDark";
-    export BACKLIGHT=dark;
-  fi
-fi
 
 # 256 color for tmux
 if [ $TMUX ]; then
@@ -211,9 +226,9 @@ alias backlight_off="sleep 1; xset dpms force off"
 
 set_brightness() {
     if [ $# -eq 0 ]; then
-        vim /sys/class/backlight/amdgpu_bl0/brightness
+        vim /sys/class/backlight/amdgpu_bl1/brightness
     else
-        echo "$1" > /sys/class/backlight/amdgpu_bl0/brightness
+        echo "$1" > /sys/class/backlight/amdgpu_bl1/brightness
     fi
 }
 #show_brightness(){
@@ -221,7 +236,7 @@ set_brightness() {
 #}
 
 # battery preference
-alias show_capacity='echo $(cat /sys/class/power_supply/BAT0/capacity)%;'
+alias show_capacity='echo $(cat /sys/class/power_supply/BAT0/capacity)% \($(cat /sys/class/power_supply/BAT0/status)\);'
 
 # Change opacity of alacritty
 altrans() {

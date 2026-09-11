@@ -1,6 +1,8 @@
+@import "themes/catppuccin/macchiato.css"; /* colorscheme */
+
 * {
   border: none;
-  border-radius: 0;
+  border-radius: 5px;
   font-family: "MesloLGS Nerd Font", Arial, sans-serif;
   font-size: 13px;
   box-shadow: none;
@@ -8,35 +10,90 @@
   transition-duration: 0s;
 }
 
-window {
-  color: alpha(@theme_text_color, 0.7);
-  background: rgba(35, 31, 32, 0);
-}
-
-window#waybar.solo {
-  background: alpha(@theme_base_color, 0.51);
-}
+/* Workspaces */
 
 #workspaces {
-  margin: 0 5px;
+    margin: 5px 1px 6px 1px;
+    padding: 0px 5px;
+    border-radius: 15px;
+    border: 0px;
+    font-weight: bold;
+    font-style: normal;
+    opacity: 0.8;
+    font-size: 16px;
+    color: @text;
 }
 
 #workspaces button {
-  padding: 0 5px;
-  color: rgba(217, 216, 216, 0.4);
+    padding: 0px 2px;
+    margin: 0px 2px;
+    border-radius: 15px;
+    border: 0px;
+    background-color: @crust;
+    transition: all 0.3s ease-in-out;
+    opacity: 0.8;
 }
 
-#workspaces button.visible {
-  color: rgba(217, 216, 216, 1);
+#workspaces button.active, #workspaces button.focused {
+    color: @base;
+    background-color: @mauve;
+    border-radius: 15px;
+    min-width: 35px;
+    transition: all 0.3s ease-in-out;
+    opacity:1.0;
 }
 
-#workspaces button.focused {
-  border-top: 3px solid rgba(217, 216, 216, 1);
-  border-bottom: 3px solid rgba(217, 216, 216, 0);
+#workspaces button:hover {
+    color: @text;
+    background: @crust;
+    border-radius: 15px;
+    opacity:0.7;
 }
 
-#workspaces button.urgent {
-  color: rgba(238, 46, 36, 1);
+/* Window */
+
+window#waybar {
+  transition-property: background-color;
+  transition-duration: .5s;
+  background-color: alpha(@crust, 0.8);
+}
+
+#window {
+  margin: 8px 15px 8px 0px;
+  padding: 2px 10px 0px 10px;
+  border-radius: 12px;
+  font-size:16px;
+  font-weight:normal;
+}
+
+window#waybar.empty #window {
+  background-color:transparent;
+}
+
+/* Taskbar */
+
+#taskbar {
+    background: @mantle;
+    margin: 6px 15px 6px 0px;
+    padding:0px;
+    border-radius: 15px;
+    font-weight: normal;
+    font-style: normal;
+    opacity:0.8;
+    border: 3px solid @mantle;
+}
+
+#taskbar button {
+    margin:0;
+    border-radius: 15px;
+    padding: 0px 5px 0px 5px;
+}
+
+#taskbar.empty {
+    background:transparent;
+    border:0;
+    padding:0;
+    margin:0;
 }
 
 #mode,
@@ -53,7 +110,6 @@ window#waybar.solo {
 #custom-mail,
 #temperature {
   margin: 0px 6px 0px 10px;
-  min-width: 20px;
 }
 
 #clock {
@@ -61,19 +117,35 @@ window#waybar.solo {
   min-width: 30px;
 }
 
-#battery.warning,
 #custom-storage.warning {
-  color: rgba(255, 210, 4, 1);
+  color: @rosewater;
 }
 
-#battery.critical,
 #temperature.critical,
 #custom-storage.critical {
-  color: rgba(238, 46, 36, 1);
+  color: @red;
 }
 
 #battery.charging {
-  color: rgba(217, 216, 216, 1);
+  color: @green;
+}
+
+#battery.critical:not(.charging) {
+  color: @red;
+  animation-name: blink;
+  animation-duration: 0.5s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+#battery.warning:not(.charging) {
+  color: @rosewater;
+  animation-name: blink;
+  animation-duration: 3s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
 }
 
 #custom-pixel_swift { font-size: 6px; }
@@ -85,3 +157,18 @@ window#waybar.solo {
 #custom-pixel_swift.px-5 { padding-left: 5px; }
 #custom-pixel_swift.px-6 { padding-left: 6px; }
 #custom-pixel_swift.px-7 { min-width: 7px; }
+
+#tray {
+  padding: 0px 10px;
+  color: @lavender;
+  border-radius: 15px;
+  border: 3px solid @overlay0;
+}
+
+#tray > .passive {
+  -gtk-icon-effect: dim;
+}
+
+#tray > .needs-attention {
+  -gtk-icon-effect: highlight;
+}

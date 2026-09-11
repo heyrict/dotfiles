@@ -7,8 +7,36 @@
 [pull]
 	rebase = false
 #[https]
-#    proxy = http://127.0.0.1:8123
+#    proxy = http://127.0.0.1:1081
 #[http]
-#    proxy = http://127.0.0.1:8123
+#    proxy = http://127.0.0.1:1081
 [init]
-	defaultBranch = master
+	defaultBranch = main
+[core]
+    sshCommand = ssh -i ~/.ssh/id_ed25519_nopass
+    pager = delta
+[safe]
+	directory = /mnt/windows/Users/xiezh/MyPrograms/renji360
+	directory = /run/media/heyrict/wd23e/heyrict/orangepi3b-images/build
+[protocol "file"]
+	allow = always
+[filter "lfs"]
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+[interactive]
+   diffFilter = delta --color-only
+[delta]
+   navigate = true
+   line-numbers = true
+   side-by-side = true
+   syntax-theme = gruvbox-dark # delta-syntax-theme
+   features = catppuccin-mocha # delta-theme
+[merge]
+   conflictstyle = diff3
+[diff]
+   colorMoved = default
+
+[include]
+    path = /home/heyrict/.config/catppuccin/delta/catppuccin.gitconfig

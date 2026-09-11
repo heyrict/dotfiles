@@ -1,0 +1,42 @@
+% whisper.transcript
+
+# Transcribe audio to text
+filename="<file>"
+basename=${filename%.*}
+tmpfile=$(mktemp -ut whisper-XXXXXXXX.wav)
+
+if [ -f /opt/intel/oneapi/setvars.sh ] && [ -z "${SETVARS_COMPLETED}" ]; then source /opt/intel/oneapi/setvars.sh; fi
+ffmpeg -i "${filename}" -ar 16000 -ac 1 -c:a pcm_s16le $tmpfile
+whisper-cli -otxt -osrt -m <model> -l <lang> $tmpfile
+rm $tmpfile
+mv "${tmpfile}.txt" "${basename}.txt"
+mv "${tmpfile}.srt" "${basename}.srt"
+
+$ model: ls /usr/share/whisper.cpp-model*/*.bin
+$ file: ls
+$ lang: echo "auto en zh ja" | tr " " "\n"
+
+
+% llama.sycl.serve.phi4min
+if [ -f /opt/intel/oneapi/setvars.sh ] && [ -z "${SETVARS_COMPLETED}" ]; then source /opt/intel/oneapi/setvars.sh; fi
+llama-server -m /usr/share/ollama/blobs/sha256-88c00229914083cd112853aab84ed51b87bdf6b9ce42f532d8c85c7c63b1730a --jinja -ngl 99
+
+
+% llama.sycl.serve.deepseek-r1:8b
+if [ -f /opt/intel/oneapi/setvars.sh ] && [ -z "${SETVARS_COMPLETED}" ]; then source /opt/intel/oneapi/setvars.sh; fi
+llama-server -m ~/LLM/unsloth/DeepSeek-R1-Distill-Llama-8B-GGUF/DeepSeek-R1-Distill-Llama-8B-Q4_K_M.gguf --jinja -ngl 99
+
+
+% llama.sycl.serve.gemma-3:12b
+if [ -f /opt/intel/oneapi/setvars.sh ] && [ -z "${SETVARS_COMPLETED}" ]; then source /opt/intel/oneapi/setvars.sh; fi
+llama-server -m ~/LLM/ggml-org/gemma-3-12b-it/gemma-3-12b-it-Q4_K_M.gguf --jinja -ngl 45
+
+
+% llama.sycl.serve.gemma-3:4b
+if [ -f /opt/intel/oneapi/setvars.sh ] && [ -z "${SETVARS_COMPLETED}" ]; then source /opt/intel/oneapi/setvars.sh; fi
+llama-server -m ~/LLM/ggml-org/gemma-3-4b-it/gemma-3-4b-it-Q4_K_M.gguf --jinja -ngl 99
+
+
+% llama.sycl.serve.qwen2.5:7b
+if [ -f /opt/intel/oneapi/setvars.sh ] && [ -z "${SETVARS_COMPLETED}" ]; then source /opt/intel/oneapi/setvars.sh; fi
+llama-server -m ~/LLM/lmstudio-community/Qwen2.5-7B-Instruct-GGUF/Qwen2.5-7B-Instruct-Q4_K_M.gguf --jinja -ngl 99

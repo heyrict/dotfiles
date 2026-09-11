@@ -1,0 +1,54 @@
+ROOT := justfile_directory() + "/pfx"
+HOME := ROOT + "/drive_c/users/heyrict"
+LANG := "ja_JP.UTF-8"
+GAMESCOPE_ENV := "SDL_VIDEODRIVER=x11"
+DEFAULT_ENV := 'LC_ALL=' + LANG + ' LANG=' + LANG + ' WINEPREFIX="' + ROOT + '"'
+FSR_MODE := "balanced"
+FSR_ENABLE := "1"
+PROTON_ENV := "DXVK_ASYNC=1 WINE_FULLSCREEN_FSR=" + FSR_ENABLE + " WINE_FULLSCREEN_FSR_MODE=" + FSR_MODE
+EXTRA_ENV := ""
+
+DISPLAY := "0"
+#W := '$(swaymsg -t get_outputs | jq ".[' + DISPLAY + '].rect.width")'
+#H := '$(swaymsg -t get_outputs | jq ".[' + DISPLAY + '].rect.height")'
+W := '$(hyprctl monitors -j | jq ".[' + DISPLAY + '].width")'
+H := '$(hyprctl monitors -j | jq ".[' + DISPLAY + '].height")'
+
+run FILE:
+	cd "$(dirname '{{FILE}}')" && env {{DEFAULT_ENV}} {{PROTON_ENV}} {{EXTRA_ENV}} wine "$(basename '{{FILE}}')"
+
+smt:
+	just run "Games/ShinEraTensei1.0用私家版パッチ纏め_Rev164/00_データ本体/Emuera1824+v8.1.exe"
+
+reverse:
+	just run "Games/eraReverse1214/Emuera1824+v1.exe"
+
+syokusyu:
+	just run "Games/syokusyu1150/Emuera1824+v10.exe"
+
+theworld:
+	just run "Games/eraTW4.920/Emuera_RainForTW_v0.05.exe"
+
+k:
+	just run "Games/eratohoK1293/Emuera1824+v9.exe"
+
+rsyokusyu:
+	just run "Games/rsyokusyuV337/Emuera1823beta003.exe"
+
+ymaem:
+	just run "Games/eraYMAEM4269/Emuera1824+v13.exe"
+
+awt:
+	just run "Games/eraAWT1004/Emuera1824+v5.exe"
+
+akumaMaid:
+	just run "Games/eraAkumaMaid 2023_12_21/Emuera1824+v18.exe"
+
+t:
+	just run "Games/eratohoT3300/Emuera1824.exe"
+
+as:
+	just run "Games/eraAS_0.665/Emuera1824+v5.exe"
+
+fl:
+	just run "Games/eraFL_v0.303/Emuera1824+v18+EMv17+EEv44.exe"
